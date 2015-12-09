@@ -55,7 +55,7 @@ public class LoginServiceImpl implements LoginService {
 		if(p==null){
 			return 1;//不存在
 		}else{
-			if(p.getRole().getRolename().contains("用户") || p.getRole().getRolename().contains("艺术家")){
+			if(getAuth(p)<=10){
 				if(p.getPassword().equals(person.getPassword()))
 				{
 					return 2;//用户密码正确
@@ -71,5 +71,35 @@ public class LoginServiceImpl implements LoginService {
 				}
 			}
 		}
+	}
+
+	@Override
+	public int getAuth(Person person) {
+		// TODO Auto-generated method stub
+		int auth = -1;
+		switch(person.getRole().getRolename()){
+		case Common.ROLE_YONGHU: auth = 0;
+	    	break;
+		case Common.ROLE_YISHUJIA1: auth = 1;
+	    	break;
+		case Common.ROLE_YISHUJIA2: auth = 2;
+     		break;
+		case Common.ROLE_YISHUJIA3: auth = 3;
+		    break;
+		case Common.ROLE_YISHUJIA4: auth = 4;
+		    break;
+		case Common.ROLE_YISHUJIA5: auth = 5;
+		    break;
+		case Common.ROLE_CAIBIAN: auth = 10;
+		    break;
+		case Common.ROLE_ZHUBIAN: auth = 20;
+		    break;	
+		case Common.ROLE_ADMIN: auth = 50;
+		    break;	
+		case Common.ROLE_SUPERADMIN: auth = 100;
+		    break;	
+		default : auth = -1;
+		}
+		return auth;
 	}
 }

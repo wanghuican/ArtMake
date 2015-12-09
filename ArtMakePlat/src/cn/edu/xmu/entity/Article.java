@@ -33,18 +33,23 @@ public class Article {
 	  * @Fields content
 	  */
 	private String content;
+	
+	/**
+	  * @Fields type : TODO（用一句话描述这个变量表示什么）
+	  */
+	private int type;
 	/**
 	  * @Fields image
 	  */
 	private String image;
 	
 	/**
-	  * @Fields uptime : TODO（用一句话描述这个变量表示什么）
+	  * @Fields uptime
 	  */
 	private Date uptime;
 	
 	/**
-	  * @Fields person : TODO（用一句话描述这个变量表示什么）
+	  * @Fields person 
 	  */
 	private Person person;
 	
@@ -55,6 +60,21 @@ public class Article {
 	
 	
 	/**
+	  * @Fields time : TODO（用一句话描述这个变量表示什么）
+	  */
+	private String time;
+	
+	/**
+	  * @Fields column_id : TODO（用一句话描述这个变量表示什么）
+	  */
+	private String column_id;
+	
+	/**
+	  * @Fields type : TODO（用一句话描述这个变量表示什么）
+	  */
+	private int pass;
+	
+	/**
 	  * 创建一个新的实例 Article. 
 	  * <p>Description: 无参构造函数</p>
 	  */
@@ -63,6 +83,7 @@ public class Article {
 		super();
 	}
 
+	
 
 
 	/**
@@ -72,26 +93,104 @@ public class Article {
 	  * @param article_id
 	  * @param title
 	  * @param content
+	  * @param type
 	  * @param image
 	  * @param uptime
 	  * @param person
 	  * @param video
+	  * @param time
+	  * @param column_id
+	  * @param pass
 	  */
 	
-	public Article(int article_id, String title, String content, String image,
-			Date uptime, Person person, String video) {
+	public Article(int article_id, String title, String content, int type,
+			String image, Date uptime, Person person, String video,
+			String time, String column_id, int pass) {
 		super();
 		this.article_id = article_id;
 		this.title = title;
 		this.content = content;
+		this.type = type;
 		this.image = image;
 		this.uptime = uptime;
 		this.person = person;
 		this.video = video;
+		this.time = time;
+		this.column_id = column_id;
+		this.pass = pass;
 	}
 
 
 
+
+	/**
+	 * getter method
+	 * @return the time
+	 */
+	
+	public String getTime() {
+		return time;
+	}
+
+
+
+
+	/**
+	 * setter method
+	 * @param time the time to set
+	 */
+	
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+
+
+
+	/**
+	 * getter method
+	 * @return the column_id
+	 */
+	
+	public String getColumn_id() {
+		return column_id;
+	}
+
+
+
+
+	/**
+	 * setter method
+	 * @param column_id the column_id to set
+	 */
+	
+	public void setColumn_id(String column_id) {
+		this.column_id = column_id;
+	}
+
+
+
+
+	/**
+	 * getter method
+	 * @return the pass
+	 */
+	
+	public int getPass() {
+		return pass;
+	}
+
+
+
+
+	/**
+	 * setter method
+	 * @param pass the pass to set
+	 */
+	
+	public void setPass(int pass) {
+		this.pass = pass;
+	}
 
 
 
@@ -236,6 +335,29 @@ public class Article {
 	public void setPerson(Person person) {
 		this.person = person;
 	}
+
+
+
+	/**
+	 * getter method
+	 * @return the type
+	 */
+	
+	public int getType() {
+		return type;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param type the type to set
+	 */
+	
+	public void setType(int type) {
+		this.type = type;
+	}
+	
 	
 	
 }

@@ -209,6 +209,7 @@ public class RegisterAction extends ActionSupport{
         person.setRole(new Role(1, 0, "用户"));//这句话需要改进
 		registerService.register(person);      
         ActionContext.getContext().getSession().put("person", person);
+        ActionContext.getContext().getSession().put("auth",loginService.getAuth(person));
         return "registerSuccess";
 	}
 
@@ -223,7 +224,7 @@ public class RegisterAction extends ActionSupport{
 		}else{
 			Person p = new Person();
 			p.setAccount(getAccount());
-			if(loginService.check(p) != 0){
+			if(loginService.check(p) != 1){
 				this.addFieldError("account2", "用户名已经存在");
 			}
 		}

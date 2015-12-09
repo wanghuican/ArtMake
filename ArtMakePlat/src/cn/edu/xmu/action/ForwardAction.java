@@ -15,6 +15,10 @@ public class ForwardAction extends ActionSupport {
 	       return super.execute();
 	 }
 	 
+	public String goUser() throws Exception{
+			return "user";
+	}
+	
 	public String goIndex() throws Exception{
 		return "index";
 	}
@@ -25,6 +29,10 @@ public class ForwardAction extends ActionSupport {
 	
 	public String goAbout() throws Exception{
 		return "about";
+	}
+	
+	public String goInfo() throws Exception{
+		return "info";
 	}
 	
 	public String goInfolist() throws Exception{

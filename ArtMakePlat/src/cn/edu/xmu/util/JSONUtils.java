@@ -60,17 +60,6 @@ public class JSONUtils
     }   
     
    
-    /***
-     * 将对象转换为Collection对象
-     * @param object
-     * @return
-     */
-    public static Collection toCollection(Object object)
-    {
-        JSONArray jsonArray = JSONArray.fromObject(object);
-
-        return JSONArray.toCollection(jsonArray);
-    }
 
     /***
      * 将对象转换为JSON对象数组

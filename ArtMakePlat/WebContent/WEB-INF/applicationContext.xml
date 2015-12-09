@@ -62,7 +62,6 @@
 				<value>cn/edu/xmu/entity/Proimg.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Prokey.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Demkey.hbm.xml</value>
-				<value>cn/edu/xmu/entity/ArticleCol.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -76,9 +75,11 @@
 	<!-- 即将被注入dao -->
 	<bean id="dao" class="cn.edu.xmu.daoImpl.BaseDaoImpl"></bean>
 	<bean id="persondao" class="cn.edu.xmu.daoImpl.PersonDaoImpl"></bean>
+	<bean id="articledao" class="cn.edu.xmu.daoImpl.ArticleDaoImpl"></bean>
 	<!-- 业务层注入 即将注入action控制层 -->
 	<bean id="loginService" class="cn.edu.xmu.serviceImpl.LoginServiceImpl"></bean>
 	<bean id="registerService" class="cn.edu.xmu.serviceImpl.RegisterServiceImpl"></bean>
+	<bean id="articleService" class="cn.edu.xmu.serviceImpl.ArticleServiceImpl"></bean>
 	<context:annotation-config />
 
 	<!-- 开启Spring的Bean自动扫描机制来查找与管理Bean实例 -->

@@ -36,5 +36,17 @@ public interface LoginService {
 	  */
 	public int check(Person person);
 	
-	
+	/**
+	  * MethidName: getAuth
+	  * TODO(这里描述这个方法适用条件 – 可选)
+	  * TODO(这里描述这个方法的使用方法 – 可选)
+	  * TODO(这里描述这个方法的注意事项 – 可选)
+	  * @Title: getAuth
+	  * @Description: TODO
+	  * @param @param person
+	  * @param @return    设定文件
+	  * @return int    返回类型
+	  * @throws
+	  */
+	public int getAuth(Person person);
 }
