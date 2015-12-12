@@ -8,6 +8,9 @@
  */
 
 package cn.edu.xmu.entity;
+
+import java.io.Serializable;
+
 /**
  * @ClassName: Prokey
  * @Description: 艺术品关键词实体
@@ -15,7 +18,7 @@ package cn.edu.xmu.entity;
  * @date 2015年11月25日 下午9:42:09
  */
 
-public class Prokey {
+public class Prokey extends JsonEntity{
 
 	/**
 	  * @Fields record_id 
@@ -109,7 +112,17 @@ public class Prokey {
 	public void setKey(Key key) {
 		this.key = key;
 	}
-	
-	
+
+
+	/*
+	  * Title: toJsonString
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  */
+	public String toJsonString() {
+		return "{\"record_id\":\"" + record_id + "\",\"product\":\"" + product
+				+ "\",\"key\":\"" + key + "\"}  ";
+	}
 	
 }

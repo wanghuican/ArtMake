@@ -8,6 +8,9 @@
  */
 
 package cn.edu.xmu.entity;
+
+import java.io.Serializable;
+
 /**
  * @ClassName: Address
  * @Description: 用户收货地址实体
@@ -15,7 +18,7 @@ package cn.edu.xmu.entity;
  * @date 2015年11月25日 下午8:05:17
  */
 
-public class Address {
+public class Address extends JsonEntity{
 
 	/**
 	  * @Fields record_id
@@ -149,5 +152,17 @@ public class Address {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	
+
+
+	/*
+	  * Title: toJsonString
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  */
+	public String toJsonString() {
+		return "{\"record_id\":\"" + record_id + "\",\"person\":\"" + person
+				+ "\",\"name\":\"" + name + "\",\"address\":\"" + address
+				+ "\",\"tel\":\"" + tel + "\"}  ";
+	}
 }

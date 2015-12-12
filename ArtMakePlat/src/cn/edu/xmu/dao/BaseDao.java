@@ -1,6 +1,8 @@
 package cn.edu.xmu.dao;
 
 import com.mysql.jdbc.Connection;
+
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -54,7 +56,7 @@ public interface BaseDao {
 	  * @return Object    返回类型
 	  * @throws
 	  */
-	public Object loadObject( String nq,List pro);
+	public Object loadObject( String nq,List<String> pro);
 	
 	/**
 	  * MethidName: delById
@@ -69,6 +71,7 @@ public interface BaseDao {
 	  * @throws
 	  */
 	public void  delById(Class clazz, int id);
+	
 
 	/**
 	  * MethidName: saveOrUpdate
@@ -154,7 +157,7 @@ public interface BaseDao {
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List query(String nq,List pro);
+	public List query(String nq,List<String> pro);
 
 	
 	/**
@@ -188,7 +191,7 @@ public interface BaseDao {
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List query(String nq,List pro, int pageNo, int pageSize);
+	public List query(String nq,List<String> pro, int pageNo, int pageSize);
 	/**
 	  * MethidName: countQuery
 	  * TODO(这里描述这个方法适用条件 – 可选)
@@ -217,7 +220,7 @@ public interface BaseDao {
 	  * @return int    返回类型
 	  * @throws
 	  */
-	public int countQuery(String nq,List pro);
+	public int countQuery(String nq,List<String> pro);
 	/**
 	  * MethidName: update
 	  * TODO(这里描述这个方法适用条件 – 可选)

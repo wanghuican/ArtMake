@@ -9,6 +9,7 @@
 
 package cn.edu.xmu.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  * @date 2015年11月25日 下午8:49:24
  */
 
-public class Product {
+public class Product extends JsonEntity{
 
 	/**
 	  * @Fields product_id
@@ -371,6 +372,23 @@ public class Product {
 	public void setKeyList(List<Prokey> keyList) {
 		this.keyList = keyList;
 	}
-	
+
+
+	/*
+	  * Title: toJsonString
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  */
+	public String toJsonString() {
+		return "{\"product_id\":\"" + product_id + "\",\"price\":\"" + price
+				+ "\",\"fixedprice\":\"" + fixedprice + "\",\"startprice\":\""
+				+ startprice + "\",\"addprice\":\"" + addprice
+				+ "\",\"type\":\"" + type + "\",\"describe\":\"" + describe
+				+ "\",\"uptime\":\"" + uptime + "\",\"person\":\"" + person
+				+ "\",\"lasttime\":\"" + lasttime + "\",\"state\":\"" + state
+				+ "\",\"imageList\":\"" + imageList + "\",\"keyList\":\""
+				+ keyList + "\"}  ";
+	}
 	
 }

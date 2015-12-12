@@ -9,6 +9,7 @@
 
 package cn.edu.xmu.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
   * team: 3-10打屁屁小队
   * @date 2015年11月25日 下午7:08:51
   */
-public class Person {
+public class Person extends JsonEntity{
 
 	/**
 	  * @Fields person_id
@@ -410,6 +411,24 @@ public class Person {
 	public void setArticleList(List<Article> articleList) {
 		this.articleList = articleList;
 	}
-	
+
+
+	/*
+	  * Title: toJsonString
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  */
+	public String toJsonString() {
+		return "{\"person_id\":\"" + person_id + "\",\"account\":\"" + account
+				+ "\",\"password\":\"" + password + "\",\"realname\":\""
+				+ realname + "\",\"email\":\"" + email + "\",\"tel\":\"" + tel
+				+ "\",\"address\":\"" + address + "\",\"sex\":\"" + sex
+				+ "\",\"introduce\":\"" + introduce + "\",\"role\":\"" + role
+				+ "\",\"addressList\":\"" + addressList
+				+ "\",\"productList\":\"" + productList
+				+ "\",\"demandList\":\"" + demandList + "\",\"articleList\":\""
+				+ articleList + "\"}  ";
+	}
 	
 }

@@ -19,9 +19,6 @@ public class ForwardAction extends ActionSupport {
 			return "user";
 	}
 	
-	public String goIndex() throws Exception{
-		return "index";
-	}
 	
 	public String goAdminLogin() throws Exception{
 		return "adminLogin";
@@ -33,6 +30,10 @@ public class ForwardAction extends ActionSupport {
 	
 	public String goInfo() throws Exception{
 		return "info";
+	}
+	
+	public String goAdminInfo() throws Exception{
+		return "admininfo";
 	}
 	
 	public String goInfolist() throws Exception{

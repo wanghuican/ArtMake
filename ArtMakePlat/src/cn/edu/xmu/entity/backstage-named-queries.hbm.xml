@@ -4,10 +4,12 @@
 <!-- Generated 2012-11-22 22:11:50 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
 <query name="HQL_ARTICLELIST">
-<![CDATA[from Article where type = ? Order by uptime desc]]>
+<![CDATA[from Article where cast(type as string) = ? Order by uptime desc]]>
 </query>
-<query name="HQL_COUNT_ARTICLE">
-<![CDATA[select count(*) from Article where type = ?]]>
+<query name="HQL_ARTICLELIST_SELECT">
+<![CDATA[from Article as a where cast(a.pass as string) like ? and a.time like ? and
+a.person.account like ? and a.title like ? and cast(a.type as string) = ?
+ Order by a.uptime desc]]>
 </query>
 </hibernate-mapping>
 

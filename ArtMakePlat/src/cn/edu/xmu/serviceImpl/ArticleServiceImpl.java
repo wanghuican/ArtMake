@@ -18,6 +18,8 @@ import javax.annotation.Resource;
 import cn.edu.xmu.dao.ArticleDao;
 import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.service.ArticleService;
+import cn.edu.xmu.util.DateHandler;
+import cn.edu.xmu.util.WebTool;
 
 /**
  * @ClassName: ArticleServiceImpl
@@ -28,6 +30,20 @@ import cn.edu.xmu.service.ArticleService;
 
 public class ArticleServiceImpl implements ArticleService {
 
+	/*
+	  * Title: getInfoListToday
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.service.ArticleService#getInfoListToday()
+	  */
+	@Override
+	public List<Article> getInfoListToday(int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		List<Article> articleList = new ArrayList<Article>();
+		articleList = dao.getArticleListToday(0,pageNo,pageSize);
+		return articleList;
+	}
+	
 	/**
      * @Fields dao : dao组件
      */
@@ -42,22 +58,26 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 
 	@Override
-	public List<Article> getInfoList(List pro,int pageNo,int pageSize) {
+	public List<Article> getInfoList(List<String> pro,int pageNo,int pageSize) {
 		// TODO Auto-generated method stub
 		List<Article> articleList = new ArrayList<Article>();
-		if(pro.size() == 0){
-			articleList = dao.getArticleList(0,pageNo,pageSize);
-		}
+		articleList = dao.getArticleList(0,pro,pageNo,pageSize);
 		return articleList;
 	}
 	
 	@Override
-	public int getInfoCount(List pro) {
+	public int getInfoCount(List<String> pro) {
 		// TODO Auto-generated method stub
 		int count = 0;
-		if(pro.size() == 0){
-			count = dao.countArticle(0);
-		}
+		count = dao.countArticle(0,pro);
+		return count;
+	}
+	
+	@Override
+	public int getTodayInfoCount() {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = dao.countTodayArticle(0);
 		return count;
 	}
 

@@ -23,9 +23,13 @@ import cn.edu.xmu.entity.Article;
 
 public interface ArticleService {
 	
-	public List<Article> getInfoList(List pro,int pageNo,int pageSize);
+	public List<Article> getInfoListToday(int pageNo, int pageSize);
 	
-	public int getInfoCount(List pro);
+	public List<Article> getInfoList(List<String> pro,int pageNo,int pageSize);
+	
+	public int getInfoCount(List<String> pro);
+	
+	public int getTodayInfoCount();
 	
 	public void saveArticle(Article article);
 

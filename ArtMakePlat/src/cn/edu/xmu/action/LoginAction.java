@@ -96,7 +96,7 @@ public class LoginAction extends ActionSupport {
 	@Override
 	public void validate() {
 		/* Check that fields are not empty */
-		  System.out.println("validate");
+		//  System.out.println("validate");
 		if (person.getPassword().length() == 0) {
 			addFieldError("password", getText("password is required"));
 		}

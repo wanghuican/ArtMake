@@ -9,6 +9,7 @@
 
 package cn.edu.xmu.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
  * @date 2015年11月25日 下午7:34:34
  */
 
-public class Role {
+public class Role extends JsonEntity{
 	
 	/**
 	  * @Fields role_id
@@ -168,4 +169,18 @@ public class Role {
 	public void setPersonList(List<Person> personList) {
 		this.personList = personList;
 	}
+
+	/*
+	  * Title: toJsonString
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  */
+	public String toJsonString() {
+		return "{\"role_id\":\"" + role_id + "\",\"role_code\":\"" + role_code
+				+ "\",\"rolename\":\"" + rolename + "\",\"personList\":\""
+				+ personList + "\"}  ";
+	}
+		
 }
+

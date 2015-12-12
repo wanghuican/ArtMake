@@ -44,7 +44,7 @@ function goAdminLogin()
           <div class="navigation ">
             <nav>
               <ul class="sf-menu" id="sel_menu">
-               <li class="current"><a href="forward!goIndex">首页</a></li>
+               <li class="current"><a href="article">首页</a></li>
                <li><a href="about.html">关于</a></li>
                <li><a href="gallery.html">拍卖</a></li>
                <li><a href="blog.html">定制</a></li>

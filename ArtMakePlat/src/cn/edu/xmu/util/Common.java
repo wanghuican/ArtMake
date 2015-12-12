@@ -25,12 +25,13 @@ public class Common {
 	//query
 	public final static String HQL_LOGIN = "HQL_LOGIN";
 	public final static String HQL_GET_PERSON_BYACCOUNT = "HQL_GET_PERSON_BYACCOUNT";
+	public final static String HQL_ARTICLELIST_TODAY = "HQL_ARTICLELIST_TODAY";
 	
 	//backstage query
 	public final static String HQL_ARTICLELIST = "HQL_ARTICLELIST";
-	public final static String HQL_COUNT_ARTICLE = "HQL_COUNT_ARTICLE";
+	public final static String HQL_ARTICLELIST_SELECT = "HQL_ARTICLELIST_SELECT";
 	
 	//common
-	public final static int BACKSTAGE_PAGESIZE = 3;
-
+	public final static int BACKSTAGE_PAGESIZE = 10;
+	public final static int PAGESIZE = 6;
 }

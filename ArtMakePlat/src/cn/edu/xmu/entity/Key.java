@@ -8,6 +8,9 @@
  */
 
 package cn.edu.xmu.entity;
+
+import java.io.Serializable;
+
 /**
  * @ClassName: Key
  * @Description: 关键词实体
@@ -15,7 +18,7 @@ package cn.edu.xmu.entity;
  * @date 2015年11月25日 下午8:40:58
  */
 
-public class Key {
+public class Key extends JsonEntity{
 
 	/**
 	  * @Fields key_id
@@ -85,4 +88,17 @@ public class Key {
 		this.keyname = keyname;
 	}
 
+	
+	/*
+	  * Title: toJsonString
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  */
+	public String toJsonString() {
+		return "{\"key_id\":\"" + key_id + "\",\"keyname\":\"" + keyname
+				+ "\"}  ";
+	}
+
+	
 }

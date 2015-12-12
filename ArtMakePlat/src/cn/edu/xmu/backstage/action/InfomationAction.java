@@ -53,6 +53,8 @@ public class InfomationAction extends ActionSupport{
 	private Article article;
 
 	private String result;
+
+	private List<String> selectpro;
 	
 	/**
 	 * getter method
@@ -149,6 +151,25 @@ public class InfomationAction extends ActionSupport{
 		this.result = result;
 	}
 
+
+	/**
+	 * getter method
+	 * @return the selectpro
+	 */
+	
+	public List<String> getSelectpro() {
+		return selectpro;
+	}
+
+	/**
+	 * setter method
+	 * @param selectpro the selectpro to set
+	 */
+	
+	public void setSelectpro(List<String> selectpro) {
+		this.selectpro = selectpro;
+	}
+
 	/*
 	  * Title: execute
 	  * Description:
@@ -159,25 +180,31 @@ public class InfomationAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		// 登录前清空所有session
-		List pro = new ArrayList<>();
+		
+		if(getSelectpro() != null){
+			selectpro = WebTool.dealProList(selectpro);
+			//WebTool.printList(selectpro);
+		}else{
+			selectpro = new ArrayList<String>();
+		}
 		int page = 1;
-		int count = articleService.getInfoCount(pro);
-		page = WebTool.dealPage(count,page);
-		setArticleList(articleService.getInfoList(pro,page,Common.BACKSTAGE_PAGESIZE));
-		WebTool.getRequest().setAttribute("IMGSRC", Common.INFO_SRC);
+		int count = articleService.getInfoCount(selectpro);
+		page = WebTool.dealPage(count,page,Common.BACKSTAGE_PAGESIZE);
+		setArticleList(articleService.getInfoList(selectpro,page,Common.BACKSTAGE_PAGESIZE));
+		WebTool.goInfoSrc();
 		return INPUT;
 	}
 	
 	public String goShow(){
 		Article article = articleService.getArticleById(getId());
 		setArticle(article);
-		WebTool.getRequest().setAttribute("IMGSRC", Common.INFO_SRC);
+		WebTool.goInfoSrc();
 		return "show";
 	}
 	
 	public void deleteInfo() throws IOException{
 		articleService.deleteArticleById(getId());
-		WebTool.alertMessage("删除资讯成功", "articleCheck");
+		WebTool.alertMessage("删除资讯成功", "infoCheck");
 	}
 	
 	public String changePass() throws IOException{
@@ -194,4 +221,29 @@ public class InfomationAction extends ActionSupport{
 		result = json.toString();
 		return SUCCESS;
 	}
+	
+	public void ndelInfo() throws IOException{
+		String[] aids = WebTool.getNids();
+		for(String aid:aids){
+			articleService.deleteArticleById(Integer.parseInt(aid));
+	    	System.out.print(aid);	
+		}
+		WebTool.alertMessage("删除资讯成功", "infoCheck");
+	}
+	
+	public String nchangePass(){
+		String[] aids = WebTool.getNids();
+		for(String aid:aids){
+			Article article = articleService.getArticleById(Integer.parseInt(aid));
+			articleService.changePass(article);
+		}
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("message", "通过成功");
+		map.put("aids", aids);
+		JSONObject json = JSONObject.fromObject(map);
+		result = json.toString();
+		//System.out.println(result);
+		return SUCCESS;
+	}
+	
 }

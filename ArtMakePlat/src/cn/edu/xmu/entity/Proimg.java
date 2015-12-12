@@ -8,6 +8,9 @@
  */
 
 package cn.edu.xmu.entity;
+
+import java.io.Serializable;
+
 /**
  * @ClassName: Proimg
  * @Description: 艺术品图片实体
@@ -15,7 +18,7 @@ package cn.edu.xmu.entity;
  * @date 2015年11月25日 下午9:31:18
  */
 
-public class Proimg {
+public class Proimg extends JsonEntity{
 
 	/**
 	  * @Fields record_id 
@@ -109,5 +112,18 @@ public class Proimg {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+
+	/*
+	  * Title: toJsonString
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  */
+	public String toJsonString() {
+		return "{\"record_id\":\"" + record_id + "\",\"product\":\"" + product
+				+ "\",\"image\":\"" + image + "\"}  ";
+	}
+	
 	
 }

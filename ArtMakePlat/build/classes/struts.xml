@@ -19,10 +19,10 @@
 		</action>
 		<action name="forward" class="cn.edu.xmu.action.ForwardAction">
 		    <result name="user">/WEB-INF/main/user.jsp</result>
-			<result name="index">/WEB-INF/main/index.jsp</result>
 			<result name="info">/WEB-INF/main/article/info_edit.jsp</result>
 			<result name="adminLogin">/WEB-INF/backstage/adminLogin.jsp</result>
 			<result name="about">/WEB-INF/backstage/about.jsp</result>
+			<result name="admininfo">/WEB-INF/backstage/information/info_edit.jsp</result>
 		</action>
 		<action name="register" class="cn.edu.xmu.action.RegisterAction">
 			<result name="registerSuccess">/WEB-INF/main/index.jsp</result>
@@ -30,25 +30,47 @@
 		</action>
 		<action name="uploadinfo" class="cn.edu.xmu.action.UploadArticleAction">
 			<result name="success">/WEB-INF/main/index.jsp</result>
+			<result name="backUpSuccess">/WEB-INF/backstage/information/info_edit.jsp</result>
 		</action>
+		<action name="article" class="cn.edu.xmu.action.ArticleAction">
+	    	<result name="success">/WEB-INF/main/index.jsp</result>
+	    	<result name="detail">/WEB-INF/main/article/info_detail.jsp</result>
+	    </action>
 	</package>
 	<package name="backstage" namespace="/" extends="struts-default">
 		<action name="adminLogin" class="cn.edu.xmu.backstage.action.AdminLoginAction">
 			<result name="loginSuccess">/WEB-INF/backstage/main.jsp</result>
 			<result name="input">/WEB-INF/backstage/adminLogin.jsp</result>
      	</action>
-     	<action name="articleCheck" class="cn.edu.xmu.backstage.action.InfomationAction">
+     	<action name="infoCheck" class="cn.edu.xmu.backstage.action.InfomationAction">
 			<result name="input">/WEB-INF/backstage/information/info_list.jsp</result>
 			<result name="show">/WEB-INF/backstage/information/info_show.jsp</result>
      	</action>
 	</package>
 	<package name="ajax" extends="struts-default,json-default">
-	<action name="articleCheckAjax" method="changePass" class="cn.edu.xmu.backstage.action.InfomationAction">
+	<action name="changePassAjax" method="changePass" class="cn.edu.xmu.backstage.action.InfomationAction">
 		<!-- 返回json类型数据 -->
 		<result type="json">
 			<param name="root">result</param>
 		</result>
 	</action>
-		
+	<action name="nchangePassAjax" method="nchangePass" class="cn.edu.xmu.backstage.action.InfomationAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="infoListAjax" method="goPageInfo" class="cn.edu.xmu.action.ArticleAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="infoAjax" method="goInfo" class="cn.edu.xmu.action.ArticleAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
 	</package>
 </struts>

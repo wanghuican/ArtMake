@@ -21,7 +21,7 @@
 	    /**编辑   **/
 	    <s:iterator value="articleList" id="row">
 	    $("#showbtn<s:property value='#row.article_id'/>").fancybox({
-	    	'href' : 'articleCheck!goShow?id=<s:property value='#row.article_id'/>',
+	    	'href' : 'infoCheck!goShow?id=<s:property value='#row.article_id'/>',
 	    	'width' : 733,
 	        'height' : 530,
 	        'type' : 'iframe',
@@ -36,7 +36,7 @@
 
 	/** 模糊查询  **/
 	function search(){
-		$("#submitForm").attr("action", "forward!goInfolist?page=" + 1).submit();
+		$("#submitForm").attr("action", "infoCheck").submit();
 	}
 
 	 
@@ -44,7 +44,7 @@
 	/** 删除 **/
 	function del(id){
 		if(confirm("您确定要删除吗？")){
-			$("#submitForm").attr("action", "articleCheck!deleteInfo?id=" + id).submit();			
+			$("#submitForm").attr("action", "infoCheck!deleteInfo?id=" + id).submit();			
 		}
 	}
 	
@@ -57,40 +57,58 @@
 		// 1）取出用户选中的checkbox放入字符串传给后台,form提交
 		var allIDCheck = "";
 		$("input[name='IDCheck']:checked").each(function(index, domEle){
-			bjText = $(domEle).parent("td").parent("tr").last().children("td").last().prev().text();
-// 			alert(bjText);
-			// 用户选择的checkbox, 过滤掉“已审核”的，记住哦
-			if($.trim(bjText)=="已审核"){
-// 				$(domEle).removeAttr("checked");
-				$(domEle).parent("td").parent("tr").css({color:"red"});
-				$("#resultInfo").html("已审核的是不允许您删除的，请联系管理员删除！！！");
-// 				return;
-			}else{
-				allIDCheck += $(domEle).val() + ",";
-			}
+			
+			allIDCheck += $(domEle).val() + ",";
 		});
-		// 截掉最后一个","
-		if(allIDCheck.length>0) {
-			allIDCheck = allIDCheck.substring(0, allIDCheck.length-1);
-			// 赋给隐藏域
-			$("#allIDCheck").val(allIDCheck);
-			if(confirm("您确定要批量删除这些记录吗？")){
-				// 提交form
-				$("#submitForm").attr("action", "/xngzf/archives/batchDelFangyuan.action").submit();
-			}
+		//alert(allIDCheck)
+		$("#submitForm").attr("action", "infoCheck!ndelInfo?nid="+allIDCheck).submit();
+	}
+	
+	function batchPass(){
+		// 1）取出用户选中的checkbox放入字符串传给后台,form提交
+		var allIDCheck = "";
+		$("input[name='IDCheck']:checked").each(function(index, domEle){
+			if($("#pass"+$(domEle).val()).html() != 1)
+		    	allIDCheck += $(domEle).val() + ",";
+		});
+		if($("input[name='IDCheck']:checked").size()<=0 || allIDCheck == ""){
+			art.dialog({icon:'error', title:'友情提示', drag:false, resize:false, content:'至少选择一条未通过', ok:true,});
+			return;
 		}
+		 $.ajax({
+		        type: "post",
+		        url: "nchangePassAjax?nchangePass",
+		        data:{//设置数据源
+		        	nid:allIDCheck
+		        },
+		        dataType: "json",
+		        success: function(data){
+		        	data = eval('(' + data + ')');
+		        	alert(data.message);
+		        	aids = data.aids;
+		        	for(var i=0;i<aids.length;i++){
+		        		$("#passbtn"+aids[i]).html("取消");
+		        	}
+		        },
+		        error: function(XMLHttpRequest, textStatus, errorThrown){
+                 alert("XMLHttpRequest=" + XMLHttpRequest);
+                 alert("textStatus=" + textStatus);
+                 alert("errorThrown=" + errorThrown);
+                 return false;
+             }
+		   });	
 	}
 	
 	function changePass(id){
 		 $.ajax({
 		        type: "post",
-		        url: "articleCheckAjax?changePass",
+		        url: "changePassAjax?changePass",
 		        data:{//设置数据源
 		        	id:id
 		        },
 		        dataType: "json",
 		        success: function(data){
-		        	data = eval('(' + data + ')'); ;
+		        	data = eval('(' + data + ')');
 		        	alert(data.message);
 		        	if(data.pass == 1)
 		            	$("#passbtn"+data.id).html("取消");
@@ -109,7 +127,7 @@
 	
 	function jumpNormalPage(page,key){
 		if(jumpPage(page,key)){
-			window.location.href = "articleCheck?PAGE="+ page;
+			window.location.href = "infoCheck?PAGE="+ page;
 		}
 	}
 
@@ -128,21 +146,21 @@
 						<div id="box_top">搜索</div>
 						<div id="box_center">
 							状态
-							<select name="selectpass" id="selectpass" class="ui_select01">
+							<select name="selectpro" id="selectpass" class="ui_select01">
                                 <option value=""
                                 >--请选择--</option>
                                 <option value="1">通过</option>
                                 <option value="0">未通过</option>
                             </select>					
 							申请时间
-							<input type="date" name="selecttime" id="selecttime" class="ui_input_txt02"/>
+							<input type="date" name="selectpro" id="selecttime" class="ui_input_txt02"/>
 
-							申请人<input type="text" id="selectperson" name="selectperson" class="ui_input_txt02" />
-						         关键字<input type="text" id="selectkey" name="selectkey" class="ui_input_txt02" />
+							申请人<input type="text" id="selectaccount" name="selectpro" class="ui_input_txt02" />
+						         关键字<input type="text" id="selectkey" name="selectpro" class="ui_input_txt02" />
 						</div>
 						<div id="box_bottom">
 							<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
-							<input type="button" value="通过" class="ui_input_btn01" onclick="pass();" /> 
+							<input type="button" value="通过" class="ui_input_btn01" onclick="batchPass();" /> 
 							<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();" /> 
 						</div>
 					</div>

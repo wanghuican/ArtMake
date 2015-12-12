@@ -211,7 +211,7 @@ public class RegisterAction extends ActionSupport{
 		registerService.register(person);      
         ActionContext.getContext().getSession().put("person", person);
         ActionContext.getContext().getSession().put("auth",loginService.getAuth(person));
-        WebTool.alertMessage("欢迎您加入我们，亲爱的" + person.getAccount(), "forward!goIndex");
+        WebTool.alertMessage("欢迎您加入我们，亲爱的" + person.getAccount(), "article");
         return null;
 	}
 

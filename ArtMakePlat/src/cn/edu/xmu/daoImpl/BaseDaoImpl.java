@@ -5,10 +5,12 @@
 package cn.edu.xmu.daoImpl;
 
 import cn.edu.xmu.dao.BaseDao;
+import cn.edu.xmu.util.WebTool;
 
 import com.mysql.jdbc.Connection;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -94,10 +96,10 @@ public class BaseDaoImpl implements BaseDao {
 	 * java.lang.List)
 	 */
 	@Override
-	public Object loadObject(String nq, List pro) {
+	public Object loadObject(String nq, List<String> pro) {
 		// TODO Auto-generated method stub
 		final String nq1 = nq;
-		final List pro1 = pro;
+		final List<String> pro1 = pro;
 		Object obj = null;
 		List list = hibernateTemplate.executeFind(new HibernateCallback() {
 			// 重写查询方法
@@ -130,6 +132,7 @@ public class BaseDaoImpl implements BaseDao {
 	public void delById(Class clazz, int id) {
 		hibernateTemplate.delete(hibernateTemplate.load(clazz, id));
 	}
+	
 
 	/*
 	 * Title: saveOrUpdate Description:
@@ -254,10 +257,10 @@ public class BaseDaoImpl implements BaseDao {
 	  * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String, java.lang.List)
 	  */
 	@Override
-	public List query(String nq, List pro) {
+	public List query(String nq, List<String> pro) {
 		// TODO Auto-generated method stub
 		final String nq1 = nq;
-		final List pro1 = pro;
+		final List<String> pro1 = pro;
 
 		return hibernateTemplate.executeFind(new HibernateCallback<Object>() {
 
@@ -321,11 +324,11 @@ public class BaseDaoImpl implements BaseDao {
 	  * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String, java.lang.List, int, int)
 	  */
 	@Override
-	public List query(String nq,List pro, int pageNo, int pageSize){
+	public List query(String nq,List<String> pro, int pageNo, int pageSize){
 		final int pNo = pageNo;
 		final int pSize = pageSize;
 		final String nqString = nq;
-		final List pro1 = pro;
+		final List<String> pro1 = pro;
 		List list = hibernateTemplate
 				.executeFind(new HibernateCallback<Object>() {
 					@Override
@@ -383,9 +386,9 @@ public class BaseDaoImpl implements BaseDao {
 	  * @see cn.edu.xmu.dao.BaseDao#countQuery(java.lang.String, java.lang.List)
 	  */
 	@Override
-	public int countQuery(String nq,List pro) {
+	public int countQuery(String nq,List<String> pro) {
 		final String nq1 = nq;
-		final List pro1 = pro;
+		final List<String> pro1 = pro;
 		Long count = (Long) hibernateTemplate.execute(new HibernateCallback() {
 
 			@Override
@@ -427,5 +430,6 @@ public class BaseDaoImpl implements BaseDao {
 	public Connection getConnection() {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
+
 
 }

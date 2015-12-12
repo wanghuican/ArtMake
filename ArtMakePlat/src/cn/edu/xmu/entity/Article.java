@@ -9,7 +9,11 @@
 
 package cn.edu.xmu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import cn.edu.xmu.util.CTool;
+import cn.edu.xmu.util.WebTool;
 
 /**
  * @ClassName: Article
@@ -18,7 +22,7 @@ import java.util.Date;
  * @date 2015年11月25日 下午8:24:58
  */
 
-public class Article {
+public class Article extends JsonEntity{
 
 	/**
 	  * @Fields article_id
@@ -357,7 +361,21 @@ public class Article {
 	public void setType(int type) {
 		this.type = type;
 	}
+
 	
-	
+	/*
+	  * Title: toJsonString
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  */
+	public String toJsonString() {
+		return "{\"article_id\":\"" + article_id + "\",\"title\":\"" + title
+				+ "\",\"content\":\"" + WebTool.htmlEncode(content) + "\",\"type\":\"" + type
+				+ "\",\"image\":\"" + image + "\",\"uptime\":\"" + uptime
+				+ "\",\"person\":\"" + person + "\",\"video\":\"" + video
+				+ "\",\"time\":\"" + time + "\",\"column_id\":\"" + column_id
+				+ "\",\"pass\":\"" + pass + "\"}  ";
+	}
 	
 }

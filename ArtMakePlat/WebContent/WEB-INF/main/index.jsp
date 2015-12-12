@@ -38,11 +38,100 @@ var auth="<s:property value='#session.auth'/>";
  }); 
 
  $(document).ready(function(){
+	 var content = "<s:property value='article.content'/>";
+     $("#contenthtml").html(decodeHtml(content));
+     divobj = document.getElementById('contenthtml');
+     if(divobj.offsetWidth  > divobj.scrollHeight)
+     {
+    	 $("#etc").css("display","block");
+     //overflow
+     }else{
+    	 $("#etc").css("display","none");
+     }
+     $("#title<s:property value='article.article_id'/>").css("color","red");
+     $("#title<s:property value='article.article_id'/>").css("font-weight","600");
        $(".shuffle-me").shuffleImages({
          target: ".images > img"
        });
     });
-
+ 
+ function goPage(d){
+	 var page = parseInt($("#page").html()) + d;
+	 var total = <s:property value="#request.pageTotal"/>;
+	 if(page == 0){
+		 alert('当前是第一页');
+	 }else if(page > total){
+		 alert('当前是最后一页');
+	 }else{
+		 $.ajax({
+		        type: "post",
+		        url: "infoListAjax?goPageInfo",
+		        data:{//设置数据源
+		        	PAGE:page
+		        },
+		        dataType: "json",
+		        success: function(data){
+		        	data = JSON.parse(data); 
+		        	page = data.page;
+		        	$("#page").html(page);
+		        	rows = JSON.parse(data.rows).rows;
+		        	$("#titles").html("");
+		        	for(var i=0;i<rows.length;i++){
+		        		$("#titles").append("<li style='font-size:20px'><span></span><a id='title"+rows[i].article_id +"' href='javascript:changeInfo(" + rows[i].article_id + ")'><div class='fa fa-chevron-right'></div>--"+rows[i].title + "</a></li>");
+		        	}
+		        	changeInfo(rows[0].article_id);
+		        },
+		        error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert("XMLHttpRequest=" + XMLHttpRequest);
+                alert("textStatus=" + textStatus);
+                alert("errorThrown=" + errorThrown);
+                return false;
+          }
+		 });	
+	 }
+ }
+ 
+ function changeInfo(id){
+	 $("li>a").each(function(i ,e){
+		 $(this).css("color","inherit")
+		 $(this).css("font-weight","normal");
+	 })
+     $.ajax({
+	        type: "post",
+	        url: "infoAjax?goInfo",
+	        data:{//设置数据源
+	        	id:id
+	        },
+	        dataType: "json",
+	        success: function(data){
+	        	data = JSON.parse(data);
+	        	$("#infoimg").attr("src","<s:property value='#request.IMGSRC'/>/"+data.image);
+	        	$("#contenthtml").html(decodeHtml(data.content));
+	        	 divobj = document.getElementById('contenthtml');
+	             if(divobj.offsetWidth  > divobj.scrollHeight)
+	             {
+	            	 $("#etc").css("display","block");
+	             //overflow
+	             }else{
+	            	 $("#etc").css("display","none");
+	             }
+	             $("#title" + data.article_id).css("color","red");
+	             $("#title" + data.article_id).css("font-weight","600");
+	             $("#aid").val(data.article_id);
+	        },
+	        error: function(XMLHttpRequest, textStatus, errorThrown){
+         alert("XMLHttpRequest=" + XMLHttpRequest);
+         alert("textStatus=" + textStatus);
+         alert("errorThrown=" + errorThrown);
+         return false;
+   }
+});	
+}
+ function godetail(){
+	 var page = parseInt($("#page").html());
+	 var aid = $("#aid").val();
+	 window.location.href = "article!goDetail?id="+aid + "&PAGE=" +page;
+ }
 </script>
 <!--[if lt IE 8]>
  <div style=' clear: both; text-align:center; position: relative;'>
@@ -139,37 +228,35 @@ var auth="<s:property value='#session.auth'/>";
       <div class="grid_8">
         <h3>资讯
         <img id="addInfo" alt="添加" style="cursor:pointer;width:4%;height:4%;display:none" src="images/add.png"/></h3>
-        <img src="images/page1_img1.jpg" alt="" class="img_inner fleft noresize">
-        <div class="extra_wrapper"><p class="offset__1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;萨尔瓦多•达利(1904-1989)，西班牙超现实主义画家。与毕加索、马蒂斯一起被认为是二十世纪最有代表性的三位画家。他的作品引领整个拉丁美洲的文化进程，将魔幻现实主义刻在西班牙的血液里！现在，这位鬼才艺术家的大批杰作正在魔都上海展出！<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“疯狂达利艺术大展”展品涵盖达利各个时期各个领域的作品包括雕塑、绘画、设计和黄金制品等300余件艺术珍品。其中经典瑰宝作品更是频现真容，如早已蜚声海内外的雕塑《爱丽丝梦游仙境》、《抽屉人》、《时间的轮廓》以及誉满天下的经典设计《红唇沙发》等，以及首次来华展出的5*11米巨幅达利真迹——油画《意乱神迷》！</p></div>
+        <input id="aid" type="hidden" value="<s:property value='article.article_id'/>">
+        <div style="width:25%;height:25%">
+        <img id="infoimg" src="<s:property value='#request.IMGSRC'/>/<s:property value='article.image'/>" alt="" class="img_inner fleft noresize">
+        </div>
+        <div class="extra_wrapper">
+        <div class="offset__1" style="margin-left:25%;width:50%;height:15em;overflow:hidden" id="contenthtml" >
+        
+        </div>
+        <h1 id="etc" align="right" style="display:none">...............</h1>
+        </div>
         <div class="clear"></div>
-        <p><a href=" http://blog.templatemonster.com/free-website-templates/" rel="nofollow" class="color1">1&nbsp;&nbsp;技术向 : 如何识别假冒伪劣的古代瓷器>>></a></p>
-        <p><a href="http://www.templatemonster.com/properties/topic/design-photography/" rel="nofollow" class="color1">2&nbsp;&nbsp;名师向 : 唐寅反应在仕女画的社会风气景象>>></a></p>
-        <p><a href="http://www.templatemonster.com/properties/topic/design-photography/" rel="nofollow" class="color1">3&nbsp;&nbsp;关于徐悲鸿的艺术求学法国之路>>></a></p>
-        [ 获取更多资讯请点击下方按钮 ] <br>
-        <a href="#" class="btn">more</a> 
+       [ 查看详情请点击下方按钮 ] <br>
+        <a href="javascript:godetail()" class="btn">详情</a> 
       </div>
       <div class="grid_4">
-        <h3>热门</h3>
-        <ul class="socials">
-          <li>
-            <a href="#">&nbsp;&nbsp;1&nbsp;&nbsp;这边写点字比较好看</a>
+        <h3>资讯录</h3>
+        <ul class="list-1" id="titles" style="font-weight:normal">
+         <s:iterator value="articleList" id="row">
+          <li style="font-size:20px"><span></span>
+            <a id="title<s:property value='#row.article_id'/>" href="javascript:changeInfo(<s:property value='#row.article_id'/>)">
+            <div class="fa fa-chevron-right"></div>--<s:property value='#row.title'/></a>
           </li>
-          <li>
-            <a href="#">&nbsp;&nbsp;2&nbsp;&nbsp;这边写点字比较好看</a>
-          </li>
-          <li>
-            <a href="#">&nbsp;&nbsp;3&nbsp;&nbsp;这边写点字比较好</a>
-          </li>
-          <li>
-            <a href="#">&nbsp;&nbsp;4&nbsp;&nbsp;这边写点字比较好看</a>
-          </li>
-          <li>
-            <a href="#">&nbsp;&nbsp;5&nbsp;&nbsp;这边写点字比较好看</a>
-          </li>
-          <li>
-            <a href="#">&nbsp;&nbsp;6&nbsp;&nbsp;这边写点字比较好看</a>
-          </li>
+         </s:iterator>
         </ul>
+         <div valign="buttom" style="margin-left:10%;margin-top:20%;font-size:20px;font-weight:600">
+         <label style="cursor:pointer" onclick="goPage(-1)"> << &nbsp;  </label>
+         <label name="page" id="page"><s:property value="#request.pageNo"/></label>
+         <label style="cursor:pointer" onclick="goPage(1)"> &nbsp; >> </label>
+         </div>
       </div>
     </div>
   </div>

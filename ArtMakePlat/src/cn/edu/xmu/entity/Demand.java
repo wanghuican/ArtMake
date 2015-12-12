@@ -9,6 +9,7 @@
 
 package cn.edu.xmu.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  * @date 2015年11月25日 下午9:02:57
  */
 
-public class Demand {
+public class Demand extends JsonEntity{
 
 	/**
 	  * @Fields demand_id
@@ -365,6 +366,22 @@ public class Demand {
 	public void setKeyList(List<Demkey> keyList) {
 		this.keyList = keyList;
 	}
-	
+
+
+
+	/*
+	  * Title: toJsonString
+	  * Description:
+	  * @return
+	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  */
+	public String toJsonString() {
+		return "{\"demand_id\":\"" + demand_id + "\",\"price\":\"" + price
+				+ "\",\"endprice\":\"" + endprice + "\",\"startprice\":\""
+				+ startprice + "\",\"type\":\"" + type + "\",\"describe\":\""
+				+ describe + "\",\"uptime\":\"" + uptime + "\",\"person\":\""
+				+ person + "\",\"lasttime\":\"" + lasttime + "\",\"state\":\""
+				+ state + "\",\"keyList\":\"" + keyList + "\"}  ";
+	}
 	
 }
