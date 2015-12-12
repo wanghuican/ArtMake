@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import cn.edu.xmu.entity.Role;
 import cn.edu.xmu.service.ArticleService;
 import cn.edu.xmu.util.Common;
 import cn.edu.xmu.util.DateUtil;
+import cn.edu.xmu.util.WebTool;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -36,6 +38,7 @@ public class UploadArticleAction extends ActionSupport{
 	private String fileContentType;
 	private String title;
 	private String content;
+	private List<String> time;
 	
 	
 	/**
@@ -147,30 +150,73 @@ public class UploadArticleAction extends ActionSupport{
 	}
 
 
+	/**
+	 * getter method
+	 * @return the articleService
+	 */
+	
+	public ArticleService getArticleService() {
+		return articleService;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param articleService the articleService to set
+	 */
+	
+	public void setArticleService(ArticleService articleService) {
+		this.articleService = articleService;
+	}
+
+
+
+	/**
+	 * getter method
+	 * @return the time
+	 */
+	
+	public List<String> getTime() {
+		return time;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param time the time to set
+	 */
+	
+	public void setTime(List<String> time) {
+		this.time = time;
+	}
+
+
 
 	@Override
     public String execute() throws Exception {
-		
+		/*
 		System.out.println(this.getContent());
 		System.out.println(this.getFile());
 		System.out.println(this.getFileContentType());
 		System.out.println(this.getFileFileName());
 		System.out.println(this.getTitle());
+		*/
+		StringBuilder times = new StringBuilder();
+		for(int i=0;i<this.getTime().size();i++){
+			times.append(this.getTime().get(i));
+			if(i != this.getTime().size()-1){
+				times.append(",");
+			}
+		}
+		
+		System.out.println(times.toString());
 		
 		String path = Common.PLAT_SRC + Common.INFO_SRC;
 		String suffix = getFileFileName().substring(getFileFileName().indexOf("."),getFileFileName().length());
 		String filename = System.currentTimeMillis() + suffix;
-		InputStream is = new FileInputStream(getFile());
-		File fl = new File(path,filename);
-		OutputStream os = new FileOutputStream(fl);
-		byte[] buffer = new byte[1024];
-		int length = 0;
-		while((length = is.read(buffer))>0){
-			os.write(buffer,0,length);
-		}
-		is.close();
-		os.close();
-		
+		File file = getFile();
 		Article article = new Article();
 		article.setContent(getContent());
 		article.setImage(filename);
@@ -182,9 +228,15 @@ public class UploadArticleAction extends ActionSupport{
 		article.setUptime(new Date());
 		article.setType(0);
 		article.setPass(0);
+		article.setTime(times.toString());
 		articleService.saveArticle(article);
-		
-        return SUCCESS;
+		WebTool.upFile(path, filename, file);
+		WebTool.confirmMessage("继续添加资讯？", "forward!goInfo", "uploadinfo!backIndex");
+        return null;
 	}
+	
+	 public String backIndex() throws Exception {
+		 return SUCCESS;
+	 }
 	
 }

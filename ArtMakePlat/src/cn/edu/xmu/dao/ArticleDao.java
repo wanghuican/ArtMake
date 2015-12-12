@@ -23,7 +23,15 @@ import cn.edu.xmu.entity.Article;
 
 public interface ArticleDao {
 	
-	public List<Article> getArticleList();
+	public List<Article> getArticleList(int type);
 	
-	public void saveArticle(Article articlecol);
+	public List<Article> getArticleList(int type,int pageNo,int pageSize);
+	
+	public int countArticle(int type);
+	
+	public void saveArticle(Article article);
+	
+	public Article getArticleById(int id);
+	
+	public void deleteArticleById(int id);
 }

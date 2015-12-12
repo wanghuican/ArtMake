@@ -56,22 +56,22 @@ public class BaseDaoImpl implements BaseDao {
 	/*
 	 * Title: loadObject Description:
 	 * 
-	 * @param hql
+	 * @param nq
 	 * 
 	 * @return
 	 * 
 	 * @see cn.edu.xmu.dao.BaseDao#loadObject(java.lang.String)
 	 */
 	@Override
-	public Object loadObject(String hql) {
-		final String hql1 = hql;
+	public Object loadObject(String nq) {
+		final String nq1 = nq;
 		Object obj = null;
 		List list = hibernateTemplate.executeFind(new HibernateCallback() {
 			// 重写查询方法
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException {
-				Query query = session.createQuery(hql1);
+				Query query = session.getNamedQuery(nq1);
 				return query.list();
 			}
 		});
@@ -84,29 +84,29 @@ public class BaseDaoImpl implements BaseDao {
 	/*
 	 * Title: loadObject Description:
 	 * 
-	 * @param hql
+	 * @param nq
 	 * 
 	 * @param pro
 	 * 
 	 * @return
 	 * 
 	 * @see cn.edu.xmu.dao.BaseDao#loadObject(java.lang.String,
-	 * java.lang.String[])
+	 * java.lang.List)
 	 */
 	@Override
-	public Object loadObject(String hql, String[] pro) {
+	public Object loadObject(String nq, List pro) {
 		// TODO Auto-generated method stub
-		final String hql1 = hql;
-		final String[] pro1 = pro;
+		final String nq1 = nq;
+		final List pro1 = pro;
 		Object obj = null;
 		List list = hibernateTemplate.executeFind(new HibernateCallback() {
 			// 重写查询方法
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException {
-				Query query = session.createQuery(hql1);
-				for (int i = 0; i < pro1.length; i++) {
-					query.setParameter(i, pro1[i]);
+				Query query = session.getNamedQuery(nq1);
+				for (int i = 0; i < pro1.size(); i++) {
+					query.setParameter(i, pro1.get(i));
 				}
 				return query.list();
 			}
@@ -174,7 +174,7 @@ public class BaseDaoImpl implements BaseDao {
 	public List listAll(String clazz, int pageNo, int pageSize) {
 		final int pNo = pageNo;
 		final int pSize = pageSize;
-		final String hqlString = "from " + clazz + " as c order by c.id desc";
+		final String hqlString = "from " + clazz + " as c ";
 		List list = hibernateTemplate
 				.executeFind(new HibernateCallback<Object>() {
 
@@ -206,14 +206,14 @@ public class BaseDaoImpl implements BaseDao {
 	@Override
 	public int countAll(String clazz) {
 		// selcet count(*) from Post 这里不加'Post'
-		final String hql = "select count(*) from  " + clazz + " as c ";
+		final String nq = "select count(*) from  " + clazz + " as c ";
 		Long count = (Long) hibernateTemplate
 				.execute(new HibernateCallback<Object>() {
 
 					@Override
 					public Object doInHibernate(Session sn)
 							throws HibernateException, SQLException {
-						Query query = sn.createQuery(hql);
+						Query query = sn.createQuery(nq);
 						query.setMaxResults(1);
 						return query.uniqueResult();
 					}
@@ -224,22 +224,22 @@ public class BaseDaoImpl implements BaseDao {
 	/*
 	 * Title: query Description:
 	 * 
-	 * @param hql
+	 * @param nq
 	 * 
 	 * @return
 	 * 
 	 * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String)
 	 */
 	@Override
-	public List query(String hql) {
-		final String hql1 = hql;
+	public List query(String nq) {
+		final String nq1 = nq;
 
 		return hibernateTemplate.executeFind(new HibernateCallback<Object>() {
 
 			@Override
 			public Object doInHibernate(Session sn) throws HibernateException,
 					SQLException {
-				Query query = sn.createQuery(hql1);
+				Query query = sn.getNamedQuery(nq1);
 				return query.list();
 			}
 		});
@@ -248,25 +248,25 @@ public class BaseDaoImpl implements BaseDao {
 	/*
 	  * Title: query
 	  * Description:
-	  * @param hql
+	  * @param nq
 	  * @param pro
 	  * @return
-	  * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String, java.lang.String[])
+	  * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String, java.lang.List)
 	  */
 	@Override
-	public List query(String hql, String[] pro) {
+	public List query(String nq, List pro) {
 		// TODO Auto-generated method stub
-		final String hql1 = hql;
-		final String[] pro1 = pro;
+		final String nq1 = nq;
+		final List pro1 = pro;
 
 		return hibernateTemplate.executeFind(new HibernateCallback<Object>() {
 
 			@Override
 			public Object doInHibernate(Session sn) throws HibernateException,
 					SQLException {
-				Query query = sn.createQuery(hql1);
-				for(int i=0;i<pro1.length;i++){
-					query.setParameter(i, pro1[1]);
+				Query query = sn.getNamedQuery(nq1);
+				for(int i=0;i<pro1.size();i++){
+					query.setParameter(i, pro1.get(i));
 				}
 				return query.list();
 			}
@@ -276,7 +276,7 @@ public class BaseDaoImpl implements BaseDao {
 	/*
 	 * Title: query Description:
 	 * 
-	 * @param hql
+	 * @param nq
 	 * 
 	 * @param pageNo
 	 * 
@@ -287,17 +287,17 @@ public class BaseDaoImpl implements BaseDao {
 	 * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String, int, int)
 	 */
 	@Override
-	public List query(String hql, int pageNo, int pageSize) {
+	public List query(String nq, int pageNo, int pageSize) {
 		final int pNo = pageNo;
 		final int pSize = pageSize;
-		final String hqlString = hql;
+		final String nqString = nq;
 		List list = hibernateTemplate
 				.executeFind(new HibernateCallback<Object>() {
 
 					@Override
 					public Object doInHibernate(Session sn)
 							throws HibernateException, SQLException {
-						Query query = sn.createQuery(hqlString);
+						Query query = sn.getNamedQuery(nqString);
 						query.setMaxResults(pSize);
 						query.setFirstResult((pNo - 1) * pSize);
 						List result = query.list();
@@ -313,27 +313,27 @@ public class BaseDaoImpl implements BaseDao {
 	/*
 	  * Title: query
 	  * Description:
-	  * @param hql
+	  * @param nq
 	  * @param pro
 	  * @param pageNo
 	  * @param pageSize
 	  * @return
-	  * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String, java.lang.String[], int, int)
+	  * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String, java.lang.List, int, int)
 	  */
 	@Override
-	public List query(String hql,String[] pro, int pageNo, int pageSize){
+	public List query(String nq,List pro, int pageNo, int pageSize){
 		final int pNo = pageNo;
 		final int pSize = pageSize;
-		final String hqlString = hql;
-		final String[] pro1 = pro;
+		final String nqString = nq;
+		final List pro1 = pro;
 		List list = hibernateTemplate
 				.executeFind(new HibernateCallback<Object>() {
 					@Override
 					public Object doInHibernate(Session sn)
 							throws HibernateException, SQLException {
-						Query query = sn.createQuery(hqlString);
-						for(int i = 0;i<pro1.length;i++){
-							query.setParameter(i, pro1[i]);
+						Query query = sn.getNamedQuery(nqString);
+						for(int i = 0;i<pro1.size();i++){
+							query.setParameter(i, pro1.get(i));
 						}
 						query.setMaxResults(pSize);
 						query.setFirstResult((pNo - 1) * pSize);
@@ -351,21 +351,21 @@ public class BaseDaoImpl implements BaseDao {
 	/*
 	 * Title: countQuery Description:
 	 * 
-	 * @param hql
+	 * @param nq
 	 * 
 	 * @return
 	 * 
 	 * @see cn.edu.xmu.dao.BaseDao#countQuery(java.lang.String)
 	 */
 	@Override
-	public int countQuery(String hql) {
-		final String hql1 = hql;
+	public int countQuery(String nq) {
+		final String nq1 = nq;
 		Long count = (Long) hibernateTemplate.execute(new HibernateCallback() {
 
 			@Override
 			public Object doInHibernate(Session sn) throws HibernateException,
 					SQLException {
-				Query query = sn.createQuery(hql1);
+				Query query = sn.getNamedQuery(nq1);
 				query.setMaxResults(1);
 				return query.uniqueResult();
 			}
@@ -377,23 +377,23 @@ public class BaseDaoImpl implements BaseDao {
 	/*
 	  * Title: countQuery
 	  * Description:
-	  * @param hql
+	  * @param nq
 	  * @param pro
 	  * @return
-	  * @see cn.edu.xmu.dao.BaseDao#countQuery(java.lang.String, java.lang.String[])
+	  * @see cn.edu.xmu.dao.BaseDao#countQuery(java.lang.String, java.lang.List)
 	  */
 	@Override
-	public int countQuery(String hql,String[] pro) {
-		final String hql1 = hql;
-		final String[] pro1 = pro;
+	public int countQuery(String nq,List pro) {
+		final String nq1 = nq;
+		final List pro1 = pro;
 		Long count = (Long) hibernateTemplate.execute(new HibernateCallback() {
 
 			@Override
 			public Object doInHibernate(Session sn) throws HibernateException,
 					SQLException {
-				Query query = sn.createQuery(hql1);
-				for(int i=0;i<pro1.length;i++){
-					query.setParameter("i", pro1[1]);
+				Query query = sn.getNamedQuery(nq1);
+				for(int i=0;i<pro1.size();i++){
+					query.setParameter(i, pro1.get(i));
 				}
 				query.setMaxResults(1);
 				return query.uniqueResult();
@@ -405,14 +405,14 @@ public class BaseDaoImpl implements BaseDao {
 	/*
 	 * Title: update Description:
 	 * 
-	 * @param hql
+	 * @param nq
 	 * 
 	 * @return
 	 * 
 	 * @see cn.edu.xmu.dao.BaseDao#update(java.lang.String)
 	 */
 	@Override
-	public int update(String hql) {
+	public int update(String nq) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

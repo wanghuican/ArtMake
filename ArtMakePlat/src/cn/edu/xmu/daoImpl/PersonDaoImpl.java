@@ -1,5 +1,8 @@
 package cn.edu.xmu.daoImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import cn.edu.xmu.dao.BaseDao;
@@ -11,17 +14,17 @@ public class PersonDaoImpl implements PersonDao {
 	/**
      * @Fields dao : dao组件
      */
-   @Resource(name="dao")
+   @Resource(name="DAOProxy")
     BaseDao dao ;
    
 	@Override
 	public Person getPersonByLogin(Person person) {
 		// TODO Auto-generated method stub
-		String hql = "from " + Common.TABLE_PERSON + " where account = ? and password = ?";
-		String pro[] = new String[2];
-		pro[0] = person.getAccount();
-		pro[1] = person.getPassword();
-		Person p = (Person) dao.loadObject(hql,pro);
+		String nq = Common.HQL_LOGIN;
+		List<String> pro = new ArrayList<String>();
+		pro.add(person.getAccount());
+		pro.add(person.getPassword());
+		Person p = (Person) dao.loadObject(nq,pro);
 		if(p != null)
 			return p;
 		return null;
@@ -30,10 +33,10 @@ public class PersonDaoImpl implements PersonDao {
 	@Override
 	public Person getPersonByAccount(String account) {
 		// TODO Auto-generated method stub
-		String hql = "from " + Common.TABLE_PERSON + " where account = ?";
-		String pro[] = new String[1];
-		pro[0] = account;
-		Person p = (Person) dao.loadObject(hql,pro);
+		String nq = Common.HQL_GET_PERSON_BYACCOUNT;
+		List<String> pro = new ArrayList<String>();
+		pro.add(account);
+		Person p = (Person) dao.loadObject(nq,pro);
 		if(p != null)
 			return p;
 		return null;

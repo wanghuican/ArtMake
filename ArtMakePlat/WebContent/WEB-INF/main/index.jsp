@@ -9,7 +9,7 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
-<script src="js/script.js"></script> 
+<script src="js/common.js"></script> 
 <script src="js/superfish.js"></script>
 <script src="js/jquery.equalheights.js"></script>
 <script src="js/jquery.mobilemenu.js"></script>
@@ -17,10 +17,6 @@
 <script src="js/jquery.ui.totop.js"></script>
 <script src="js/jquery.shuffle-images.js"></script>
 
-<script language="javascript">
-if("<s:actionmessage/>"!="")
-alert("<s:actionmessage/>");
-</script>
 <script>
 var auth="<s:property value='#session.auth'/>";
  $(window).load(function(){

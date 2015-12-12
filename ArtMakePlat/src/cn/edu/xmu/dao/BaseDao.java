@@ -1,7 +1,6 @@
 package cn.edu.xmu.dao;
 
 import com.mysql.jdbc.Connection;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -35,12 +34,12 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: loadObject
 	  * @Description: TODO
-	  * @param @param hql
+	  * @param @param nq
 	  * @param @return    设定文件
 	  * @return Object    返回类型
 	  * @throws
 	  */
-	public Object loadObject( String hql);
+	public Object loadObject( String nq);
 
 	/**
 	  * MethidName: loadObject
@@ -49,13 +48,13 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: loadObject
 	  * @Description: TODO
-	  * @param @param hql
+	  * @param @param nq
 	  * @param @param pro
 	  * @param @return    设定文件
 	  * @return Object    返回类型
 	  * @throws
 	  */
-	public Object loadObject( String hql,String []pro);
+	public Object loadObject( String nq,List pro);
 	
 	/**
 	  * MethidName: delById
@@ -135,12 +134,12 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: query
 	  * @Description: TODO
-	  * @param @param hql
+	  * @param @param nq
 	  * @param @return    设定文件
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List query(String hql);
+	public List query(String nq);
 
 	/**
 	  * MethidName: query
@@ -149,13 +148,13 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: query
 	  * @Description: TODO
-	  * @param @param hql
+	  * @param @param nq
 	  * @param @param pro
 	  * @param @return    设定文件
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List query(String hql,String[] pro);
+	public List query(String nq,List pro);
 
 	
 	/**
@@ -165,14 +164,14 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: query
 	  * @Description: TODO
-	  * @param @param hql
+	  * @param @param nq
 	  * @param @param pageNo
 	  * @param @param pageSize
 	  * @param @return    设定文件
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List query(String hql, int pageNo, int pageSize);
+	public List query(String nq, int pageNo, int pageSize);
 
 	/**
 	  * MethidName: query
@@ -181,7 +180,7 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: query
 	  * @Description: TODO
-	  * @param @param hql
+	  * @param @param nq
 	  * @param @param pro
 	  * @param @param pageNo
 	  * @param @param pageSize
@@ -189,7 +188,7 @@ public interface BaseDao {
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List query(String hql,String[] pro, int pageNo, int pageSize);
+	public List query(String nq,List pro, int pageNo, int pageSize);
 	/**
 	  * MethidName: countQuery
 	  * TODO(这里描述这个方法适用条件 – 可选)
@@ -197,12 +196,12 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: countQuery
 	  * @Description: TODO
-	  * @param @param hql
+	  * @param @param nq
 	  * @param @return    设定文件
 	  * @return int    返回类型
 	  * @throws
 	  */
-	public int countQuery(String hql);
+	public int countQuery(String nq);
 
 	
 	/**
@@ -212,13 +211,13 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: countQuery
 	  * @Description: TODO
-	  * @param @param hql
+	  * @param @param nq
 	  * @param @param pro
 	  * @param @return    设定文件
 	  * @return int    返回类型
 	  * @throws
 	  */
-	public int countQuery(String hql,String[] pro);
+	public int countQuery(String nq,List pro);
 	/**
 	  * MethidName: update
 	  * TODO(这里描述这个方法适用条件 – 可选)
@@ -226,12 +225,12 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: update
 	  * @Description: TODO
-	  * @param @param hql
+	  * @param @param nq
 	  * @param @return    设定文件
 	  * @return int    返回类型
 	  * @throws
 	  */
-	public int update(String hql);
+	public int update(String nq);
 
 	/**
 	  * MethidName: getConnection

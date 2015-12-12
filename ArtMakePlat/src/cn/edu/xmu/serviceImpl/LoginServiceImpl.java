@@ -77,6 +77,7 @@ public class LoginServiceImpl implements LoginService {
 	public int getAuth(Person person) {
 		// TODO Auto-generated method stub
 		int auth = -1;
+		//System.out.println(person.getRole().getRolename());
 		switch(person.getRole().getRolename()){
 		case Common.ROLE_YONGHU: auth = 0;
 	    	break;

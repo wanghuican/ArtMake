@@ -58,7 +58,7 @@ public class LoginFilter implements Filter{
 		String path = servletRequest.getServletPath();
 		if(person == null){
 			System.out.println("我是过滤器：没通过" );
-			servletResponse.sendRedirect(servletRequest.getContextPath()+"/user.jsp");
+			servletResponse.sendRedirect(servletRequest.getContextPath()+"/redirect.jsp");
 			return;
 		}else{
 			chain.doFilter(request,response);

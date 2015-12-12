@@ -84,7 +84,7 @@ public class AdminLoginAction extends ActionSupport {
 		Person p = loginService.login(person);
 		if (p != null) {
 			ActionContext.getContext().getSession().put("person", p);
-			ActionContext.getContext().getSession().put("auth",loginService.getAuth(person));
+			ActionContext.getContext().getSession().put("auth",loginService.getAuth(p));
 			return "loginSuccess";
 		}
 		return INPUT;

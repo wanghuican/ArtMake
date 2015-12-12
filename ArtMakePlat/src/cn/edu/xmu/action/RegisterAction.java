@@ -6,6 +6,7 @@ import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.Role;
 import cn.edu.xmu.service.LoginService;
 import cn.edu.xmu.service.RegisterService;
+import cn.edu.xmu.util.WebTool;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -210,9 +211,11 @@ public class RegisterAction extends ActionSupport{
 		registerService.register(person);      
         ActionContext.getContext().getSession().put("person", person);
         ActionContext.getContext().getSession().put("auth",loginService.getAuth(person));
-        return "registerSuccess";
+        WebTool.alertMessage("欢迎您加入我们，亲爱的" + person.getAccount(), "forward!goIndex");
+        return null;
 	}
 
+	
 	@Override
 	public void validate() {
 		

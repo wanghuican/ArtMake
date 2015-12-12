@@ -42,13 +42,23 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 
 	@Override
-	public List<Article> getArticleList(String pro[]) {
+	public List<Article> getInfoList(List pro,int pageNo,int pageSize) {
 		// TODO Auto-generated method stub
 		List<Article> articleList = new ArrayList<Article>();
-		if(pro == null){
-			articleList = dao.getArticleList();
+		if(pro.size() == 0){
+			articleList = dao.getArticleList(0,pageNo,pageSize);
 		}
 		return articleList;
+	}
+	
+	@Override
+	public int getInfoCount(List pro) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		if(pro.size() == 0){
+			count = dao.countArticle(0);
+		}
+		return count;
 	}
 
 	@Override
@@ -57,4 +67,27 @@ public class ArticleServiceImpl implements ArticleService {
 		dao.saveArticle(article);
 	}
 
+	@Override
+	public Article getArticleById(int id) {
+		// TODO Auto-generated method stub
+		return dao.getArticleById(id);
+	}
+
+	@Override
+	public void deleteArticleById(int id) {
+		// TODO Auto-generated method stub
+		dao.deleteArticleById(id);
+	}
+
+	@Override
+	public void changePass(Article article) {
+		// TODO Auto-generated method stub
+		if(article.getPass() == 0){
+			article.setPass(1);
+		}else{
+			article.setPass(0);
+		}
+		dao.saveArticle(article);
+	}
+	
 }

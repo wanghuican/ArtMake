@@ -10,6 +10,7 @@
 
 package cn.edu.xmu.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -31,7 +32,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	/**
      * @Fields dao : dao组件
      */
-   @Resource(name="dao")
+   @Resource(name="DAOProxy")
     BaseDao dao ;
    
 	
@@ -43,12 +44,50 @@ public class ArticleDaoImpl implements ArticleDao {
 	 */
 
 	@Override
-	public List<Article> getArticleList() {
-		// TODO Auto-generated method stub		
-		List<Article> articleList = dao.listAll(Common.TABLE_ARTICLE);
+	public List<Article> getArticleList(int type) {
+		// TODO Auto-generated method stub	
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(type);
+		List<Article> articleList = dao.query(Common.HQL_ARTICLELIST,pro);
 		return articleList;
 	}
 
+
+
+	/*
+	  * Title: getArticleList
+	  * Description:
+	  * @param type
+	  * @param pageNo
+	  * @param pageSize
+	  * @return
+	  * @see cn.edu.xmu.dao.ArticleDao#getArticleList(int, int, int)
+	  */
+	@Override
+	public List<Article> getArticleList(int type, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(type);
+		List<Article> articleList = dao.query(Common.HQL_ARTICLELIST,pro,pageNo,pageSize);
+		return articleList;
+	}
+
+	/*
+	  * Title: countArticle
+	  * Description:
+	  * @param type
+	  * @return
+	  * @see cn.edu.xmu.dao.ArticleDao#countArticle(int)
+	  */
+	@Override
+	public int countArticle(int type) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(type);
+		int count = dao.countQuery(Common.HQL_COUNT_ARTICLE,pro);
+		return count;
+	}
+	
 	/*
 	  * Title: saveArticle
 	  * Description:
@@ -58,4 +97,21 @@ public class ArticleDaoImpl implements ArticleDao {
 	public void saveArticle(Article article){
 		dao.saveOrUpdate(article);
 	}
+
+
+
+	@Override
+	public Article getArticleById(int id) {
+		// TODO Auto-generated method stub
+		return (Article)dao.loadById(Article.class, id);
+	}
+
+
+
+	@Override
+	public void deleteArticleById(int id) {
+		// TODO Auto-generated method stub
+		dao.delById(Article.class, id);
+	}
+
 }

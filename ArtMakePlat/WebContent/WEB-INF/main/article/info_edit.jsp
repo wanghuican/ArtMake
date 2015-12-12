@@ -22,7 +22,7 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
-<script src="js/script.js"></script> 
+<script src="js/common.js"></script> 
 <script src="js/superfish.js"></script>
 <script src="js/jquery.equalheights.js"></script>
 <script src="js/jquery.mobilemenu.js"></script>
@@ -34,6 +34,7 @@ if("<s:actionmessage/>"!="")
 alert("<s:actionmessage/>");
 </script>
 <script type="text/javascript">
+var num = 1;
 	$(window).load(function() {
 		$().UItoTop({
 			easingType : 'easeOutQuart'
@@ -45,6 +46,23 @@ alert("<s:actionmessage/>");
 		$(".shuffle-me").shuffleImages({
 			target : ".images > img"
 		});
+		$("#addInfo").click(function(){
+			$("#delInfo").css("display","block");
+    		num++;
+			$("#times").append("<input type='date' id='time" + num + "' name='time' placeholder='时间：' value='' data-constraints='' style='border-color: #87858a; border-width: thin; background: none; height: 35px; font-family: 'Microsoft YaHei UI'' /> ");
+		    if(num == 5)
+	    		$("#addInfo").css("display","none");
+		})
+		$("#delInfo").click(function(){
+			$("#addInfo").css("display","block");
+			var node = document.getElementById("time" + num);
+			document.getElementById("times").removeChild(node);
+    		num--;
+		    if(num == 1)
+	    		$("#delInfo").css("display","none");
+		})
+		
+		
 		$("#info").click(function(){
 			if($("#title").val() == ""){
 				alert("标题未填写");
@@ -58,6 +76,11 @@ alert("<s:actionmessage/>");
 			if($("#file").val() == "")
 			{
 				alert("请选择文件");
+				return;
+			}
+			if($("#time1").val() == "")
+			{
+				alert("请选择时间");
 				return;
 			}
 			$("#contact-form").attr("action","uploadinfo");
@@ -94,16 +117,40 @@ alert("<s:actionmessage/>");
 				<form id="contact-form" method="post" enctype="multipart/form-data">
 					<div class="contact-form-loader"></div>
 					<fieldset>
-						<label class="title"> <input type="text" id="title" name="title"
+						<label class="title">标题： 
+						<input type="text" id="title" name="title"
 							placeholder="标题:" value="" data-constraints=""
-							style="border-color: #87858a; border-width: thin; background: none; height: 35px; font-family: 'Microsoft YaHei UI'" />
+							style="border-color: #87858a; border-width: thin; background: none; height: 35px;width:400px; font-family: 'Microsoft YaHei UI'" />
 							
 						</label> <br> <br> 
+						<label class="title">
+						<table>
+						<tr>
+						<td>
+						日期：
+						</td>
+						<td>
+						<img id="delInfo" alt="减少" style="cursor:pointer;height:10%;display:none" src="images/add.png"/>	
+						</td>
+						<td>
+						&nbsp;
+						<span id="times">
+						<input type="date" id="time1" name="time"
+							placeholder="时间：" value="" data-constraints=""
+							style="border-color: #87858a; border-width: thin; background: none; height: 35px; font-family: 'Microsoft YaHei UI'" />
+						</span>
+						&nbsp;
+						</td>
+						<td>
+					     	<img id="addInfo" alt="添加" style="cursor:pointer;height:10%;" src="images/add.png"/>		
+						</td>
+						</tr>
+						</table>
+						</label>
+						<br> <br> 
 						<label class="picture" style="border-color: #87858a; border-width: thin; background: none; height: 35px; font-family: 'Microsoft YaHei UI'" >图片:
 						</label>
-						<div>
 							<input type="file" id="file" name="file" accept="image/jpeg,image/png,image/gif">
-						</div>
 						<br> <br>
 						<div>
 							<script id="editor" type="text/plain"

@@ -23,7 +23,15 @@ import cn.edu.xmu.entity.Article;
 
 public interface ArticleService {
 	
-	public List<Article> getArticleList(String pro[]);
+	public List<Article> getInfoList(List pro,int pageNo,int pageSize);
+	
+	public int getInfoCount(List pro);
 	
 	public void saveArticle(Article article);
+
+	public Article getArticleById(int id);
+	
+	public void deleteArticleById(int id);
+	
+	public void changePass(Article article);
 }

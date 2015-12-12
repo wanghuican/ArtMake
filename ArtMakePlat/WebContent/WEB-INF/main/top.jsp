@@ -5,7 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>top</title>
+<script type="text/javascript">
+function goAdminLogin()
+{
+	window.location.href = "forward!goAdminLogin";
+}
+</script>
+<title>艺术品定制平台</title>
 </head>
 <body>
 <!--==============================

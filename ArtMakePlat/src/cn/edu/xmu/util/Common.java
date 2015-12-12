@@ -19,6 +19,18 @@ public class Common {
 	public final static String ROLE_SUPERADMIN = "超级管理员";
 	
 	//config
-	public final static String PLAT_SRC = "C:/Users/xmu03/Desktop/ArtMake/ArtMakePlat/WebContent";
-	public final static String INFO_SRC = "/images/info";
+	public final static String PLAT_SRC = "L:/ArtMake/ArtMakePlat/WebContent/";
+	public final static String INFO_SRC = "images/info";
+	
+	//query
+	public final static String HQL_LOGIN = "HQL_LOGIN";
+	public final static String HQL_GET_PERSON_BYACCOUNT = "HQL_GET_PERSON_BYACCOUNT";
+	
+	//backstage query
+	public final static String HQL_ARTICLELIST = "HQL_ARTICLELIST";
+	public final static String HQL_COUNT_ARTICLE = "HQL_COUNT_ARTICLE";
+	
+	//common
+	public final static int BACKSTAGE_PAGESIZE = 3;
+
 }
