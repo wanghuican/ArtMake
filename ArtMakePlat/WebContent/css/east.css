@@ -1,0 +1,165 @@
+/* Contact Form SELECT 
+========================================================*/
+#contact-form select {
+  width: 100%;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 6px 27px 5px;
+  outline: none;
+  color: #323045;
+  height: 31px;
+  border: 1px solid #000;
+  border: 1px solid rgba(50, 48, 69, 0.34);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: #e3dfdf;
+}
+
+/****Lists****/
+.list-2 {
+  padding-top: 4px;
+}
+.list-2 li {
+  position: relative;
+  letter-spacing: -2px;
+  font-size: 24px;
+  line-height: 20px;
+}
+.list-2 li a {
+  display: block;
+  position: relative;
+  padding: 13px 30px 18px 60px;
+  color: #323045;
+}
+.list-2 li a .fa {
+  font-size: 20px;
+  position: absolute;
+  left: 20px;
+  top: 17px;
+  right: auto;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+.list-2 li a:active {
+  background-color: #88858a;
+  -webkit-transition: 0s ease;
+  transition: 0s ease;
+}
+.list-2 li a:hover {
+  color: #e8e6b9;
+}
+.list-2 li a:hover .fa {
+  left: 90%;
+}
+.list-2 li span {
+  position: absolute;
+  background-color: #333146;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  -webkit-transition: width 0.5s ease;
+  transition: width 0.5s ease;
+}
+.list-2 li:hover span {
+  width: 100%;
+}
+
+/******uploadadvertise*******/
+#uploadadv input[type='text'] {
+  width: 100%;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 6px 27px 5px;
+  outline: none;
+  color: #323045;
+  height: 31px;
+  border: 1px solid #000;
+  border: 1px solid rgba(50, 48, 69, 0.34);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  border-color:#87858a; 
+  border-width:thin; background:none; 
+  height:35px;
+  font-family:'Microsoft YaHei UI';
+}
+.arttype {
+  width: 100%;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  outline: none;
+  color: #323045;
+  border: 1px solid #000;
+  border: 1px solid rgba(50, 48, 69, 0.34);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 5px;
+  margin-left: 6px;
+  margin-right:6px;
+  margin-top:10px;
+  border-color:#87858a; 
+  border-width:thin; 
+  background:none; 
+  height:35px;
+  font-family:'Microsoft YaHei UI';
+}
+
+.artinformation {
+  width: 100%;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 6px 27px 5px;
+  outline: none;
+  border: 1px solid #000;
+  border: 1px solid rgba(50, 48, 69, 0.34);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  resize: none;
+  color: #323045;
+  height: 221px;
+
+}
+
+.btn {
+  margin-top: 31px;
+  font-size: 16px;
+}
+.btn + .btn {
+  margin-left: 10px;
+}
+
+#uploadadv input[type='date'] {
+  width: 100%;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 6px 27px 5px;
+  outline: none;
+  color: #323045;
+  height: 31px;
+  border: 1px solid #000;
+  border: 1px solid rgba(50, 48, 69, 0.34);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  border-color:#87858a; 
+  border-width:thin; background:none; 
+  height:35px;
+  font-family:'Microsoft YaHei UI';
+}
+

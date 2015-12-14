@@ -173,17 +173,17 @@ var auth="<s:property value='#session.auth'/>";
               <div data-si-mousemove-trigger="100" class="shuffle-me">
                 <a href="gallery.html" class="info" target="_blank"></a>
                 <div class="images">
-                  <img src="images/information_2.jpg" alt="">
-                  <img src="images/information_2-1.jpg" alt="">
-                  <img src="images/information_2-2.jpg" alt="">
-                </div>
-              </div>
-              <div data-si-mousemove-trigger="100" class="shuffle-me offset__1">
-                <a href="gallery.html" class="info" target="_blank"></a>
-                <div class="images">
-                  <img src="images/gall_3.jpg" alt="">
-                  <img src="images/gall_3-1.jpg" alt="">
-                  <img src="images/gall_3-2.jpg" alt="">
+                  <ul class="list-1">
+                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>用抽象派画自画像  ￥300</a></pre></li>
+                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>做一个人头雕塑  ￥300</a></pre></li>
+                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>写一个金榜题名  ￥300</a></pre></li>
+                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>设计好看的签名  ￥300</a></pre></li>
+                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>设计专属印章  ￥300</a></pre></li>
+                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>手工雕刻全身像  ￥300</a></pre></li>
+                 </ul>
+                 <div class="grid_8">
+                   <a href="#" class="btn">more</a>
+                 </div>
                 </div>
               </div>
             </div>
@@ -220,7 +220,7 @@ var auth="<s:property value='#session.auth'/>";
           </div>
       </div>
     </div>
-  </div>
+   </div>
   <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
   <div class="sep-1"></div>
   <div class="container">

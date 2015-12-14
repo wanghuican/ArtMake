@@ -10,6 +10,7 @@
 
 package cn.edu.xmu.backstage.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -204,6 +205,10 @@ public class InfomationAction extends ActionSupport{
 	
 	public void deleteInfo() throws IOException{
 		articleService.deleteArticleById(getId());
+		String imagepath = Common.PLAT_SRC + Common.INFO_SRC + articleService.getArticleById(getId()).getImage();
+		WebTool.printOb(imagepath);
+		File imgfile = new File(imagepath);
+		WebTool.deleteFile(imgfile);
 		WebTool.alertMessage("删除资讯成功", "infoCheck");
 	}
 	

@@ -9,5 +9,10 @@
 <query name="HQL_GET_PERSON_BYACCOUNT">
 <![CDATA[from Person where account = ?]]>
 </query>
+
+<query name="HQL_ARTICLELIST_TODAY">
+<![CDATA[from Article where time like ? and cast(pass as string) = ?
+and cast(type as string) = ? Order by uptime desc]]>
+</query>
 </hibernate-mapping>
 

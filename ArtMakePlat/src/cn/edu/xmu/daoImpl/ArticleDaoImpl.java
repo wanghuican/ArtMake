@@ -90,8 +90,10 @@ public class ArticleDaoImpl implements ArticleDao {
 			pro.remove(pro.size() - 1);
 		} else {
 			pro.add(type + "");
-			articleList = dao.query(Common.HQL_ARTICLELIST_SELECT, pro);
-			;
+			if(type == 0)
+		    	articleList = dao.query(Common.HQL_INFOLIST_SELECT, pro);
+			else
+				articleList = dao.query(Common.HQL_ADLIST_SELECT, pro);
 			pro.remove(pro.size() - 1);
 		}
 		return articleList;
@@ -121,8 +123,12 @@ public class ArticleDaoImpl implements ArticleDao {
 			pro.remove(pro.size() - 1);
 		} else {
 			pro.add(type + "");
-			articleList = dao.query(Common.HQL_ARTICLELIST_SELECT, pro, pageNo,
-					pageSize);
+			if(type == 0)
+	     		articleList = dao.query(Common.HQL_INFOLIST_SELECT, pro, pageNo,
+		    			pageSize);
+			else
+				articleList = dao.query(Common.HQL_ADLIST_SELECT, pro, pageNo,
+		    			pageSize);
 			pro.remove(pro.size() - 1);
 		}
 		return articleList;

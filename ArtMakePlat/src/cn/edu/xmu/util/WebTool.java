@@ -53,7 +53,7 @@ public class WebTool {
 		os.close();
 	}
 	
-	public static final void deleteFile(String path,File file){
+	public static final void deleteFile(File file){
 		file.delete();
 	}
 	

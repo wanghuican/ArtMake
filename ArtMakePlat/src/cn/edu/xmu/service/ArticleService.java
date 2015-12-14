@@ -27,7 +27,11 @@ public interface ArticleService {
 	
 	public List<Article> getInfoList(List<String> pro,int pageNo,int pageSize);
 	
+	public List<Article> getAdList(List<String> pro,int pageNo,int pageSize);
+	
 	public int getInfoCount(List<String> pro);
+	
+	public int getAdCount(List<String> pro);
 	
 	public int getTodayInfoCount();
 	

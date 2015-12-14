@@ -65,11 +65,34 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleList;
 	}
 	
+	/*
+	  * Title: getAdList
+	  * Description:
+	  * @param pro
+	  * @param pageNo
+	  * @param pageSize
+	  * @return
+	  * @see cn.edu.xmu.service.ArticleService#getAdList(java.util.List, int, int)
+	  */
+	public List<Article> getAdList(List<String> pro,int pageNo,int pageSize) {
+		List<Article> articleList = new ArrayList<Article>();
+		articleList = dao.getArticleList(1,pro,pageNo,pageSize);
+		return articleList;
+	}
+		
 	@Override
 	public int getInfoCount(List<String> pro) {
 		// TODO Auto-generated method stub
 		int count = 0;
 		count = dao.countArticle(0,pro);
+		return count;
+	}
+	
+	@Override
+	public int getAdCount(List<String> pro) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = dao.countArticle(1,pro);
 		return count;
 	}
 	

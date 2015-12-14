@@ -29,7 +29,8 @@ public class Common {
 	
 	//backstage query
 	public final static String HQL_ARTICLELIST = "HQL_ARTICLELIST";
-	public final static String HQL_ARTICLELIST_SELECT = "HQL_ARTICLELIST_SELECT";
+	public final static String HQL_INFOLIST_SELECT = "HQL_INFOLIST_SELECT";
+	public final static String HQL_ADLIST_SELECT = "HQL_ADLIST_SELECT";
 	
 	//common
 	public final static int BACKSTAGE_PAGESIZE = 10;
