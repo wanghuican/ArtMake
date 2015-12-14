@@ -56,6 +56,7 @@
 				<value>cn/edu/xmu/entity/Article.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Key.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Product.hbm.xml</value>
+				<value>cn/edu/xmu/entity/ProAction.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Demand.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Proimg.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Prokey.hbm.xml</value>
@@ -106,6 +107,7 @@
 	<bean id="loginService" class="cn.edu.xmu.serviceImpl.LoginServiceImpl"></bean>
 	<bean id="registerService" class="cn.edu.xmu.serviceImpl.RegisterServiceImpl"></bean>
 	<bean id="articleService" class="cn.edu.xmu.serviceImpl.ArticleServiceImpl"></bean>
+	<bean id="personService" class="cn.edu.xmu.serviceImpl.PersonServiceImpl"></bean>
 	<context:annotation-config />
 
 	<!-- 开启Spring的Bean自动扫描机制来查找与管理Bean实例 -->

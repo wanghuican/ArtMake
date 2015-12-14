@@ -9,7 +9,6 @@
 
 package cn.edu.xmu.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +40,17 @@ public class Person extends JsonEntity{
 	  * @Fields email
 	  */
 	private String email;
+	
+	/**
+	  * @Fields qq
+	  */
+	private String qq;
+	
+	/**
+	  * @Fields idcard
+	  */
+	private String idcard;
+	
 	/**
 	  * @Fields tel
 	  */
@@ -54,6 +64,10 @@ public class Person extends JsonEntity{
 	  */
 	private String sex;
 	
+	/**
+	  * @Fields state
+	  */
+	private int state;
 	/**
 	  * @Fields introduce
 	  */
@@ -93,34 +107,6 @@ public class Person extends JsonEntity{
 		super();
 	}
 	
-	
-
-	/**
-	  * 创建一个新的实例 Person. 
-	  * <p>Title: </p>
-	  * <p>Description: </p>
-	  * @param person_id
-	  * @param account
-	  * @param password
-	  * @param realname
-	  * @param introduce
-	  * @param role
-	  */
-	
-	public Person(int person_id, String account, String password,
-			String realname, String introduce, Role role) {
-		super();
-		this.person_id = person_id;
-		this.account = account;
-		this.password = password;
-		this.realname = realname;
-		this.introduce = introduce;
-		this.role = role;
-	}
-	
-	
-
-
 	/**
 	  * 创建一个新的实例 Person. 
 	  * <p>Title: </p>
@@ -130,9 +116,12 @@ public class Person extends JsonEntity{
 	  * @param password
 	  * @param realname
 	  * @param email
+	  * @param qq
+	  * @param idcard
 	  * @param tel
 	  * @param address
 	  * @param sex
+	  * @param state
 	  * @param introduce
 	  * @param role
 	  * @param addressList
@@ -142,8 +131,9 @@ public class Person extends JsonEntity{
 	  */
 	
 	public Person(int person_id, String account, String password,
-			String realname, String email, String tel, String address,
-			String sex, String introduce, Role role, List<Address> addressList,
+			String realname, String email, String qq, String idcard,
+			String tel, String address, String sex, int state,
+			String introduce, Role role, List<Address> addressList,
 			List<Product> productList, List<Demand> demandList,
 			List<Article> articleList) {
 		super();
@@ -152,9 +142,12 @@ public class Person extends JsonEntity{
 		this.password = password;
 		this.realname = realname;
 		this.email = email;
+		this.qq = qq;
+		this.idcard = idcard;
 		this.tel = tel;
 		this.address = address;
 		this.sex = sex;
+		this.state = state;
 		this.introduce = introduce;
 		this.role = role;
 		this.addressList = addressList;
@@ -298,6 +291,50 @@ public class Person extends JsonEntity{
 	
 	/**
 	 * getter method
+	 * @return the qq
+	 */
+	
+	public String getQq() {
+		return qq;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param qq the qq to set
+	 */
+	
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+
+
+
+	/**
+	 * getter method
+	 * @return the idcard
+	 */
+	
+	public String getIdcard() {
+		return idcard;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param idcard the idcard to set
+	 */
+	
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
+	}
+
+
+
+	/**
+	 * getter method
 	 * @return the introduce
 	 */
 	
@@ -313,6 +350,28 @@ public class Person extends JsonEntity{
 	
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
+	}
+
+
+
+	/**
+	 * getter method
+	 * @return the state
+	 */
+	
+	public int getState() {
+		return state;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param state the state to set
+	 */
+	
+	public void setState(int state) {
+		this.state = state;
 	}
 
 
@@ -419,16 +478,19 @@ public class Person extends JsonEntity{
 	  * @return
 	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
 	  */
+	@Override
 	public String toJsonString() {
 		return "{\"person_id\":\"" + person_id + "\",\"account\":\"" + account
 				+ "\",\"password\":\"" + password + "\",\"realname\":\""
-				+ realname + "\",\"email\":\"" + email + "\",\"tel\":\"" + tel
+				+ realname + "\",\"email\":\"" + email + "\",\"qq\":\"" + qq
+				+ "\",\"idcard\":\"" + idcard + "\",\"tel\":\"" + tel
 				+ "\",\"address\":\"" + address + "\",\"sex\":\"" + sex
-				+ "\",\"introduce\":\"" + introduce + "\",\"role\":\"" + role
-				+ "\",\"addressList\":\"" + addressList
-				+ "\",\"productList\":\"" + productList
+				+ "\",\"state\":\"" + state + "\",\"introduce\":\"" + introduce
+				+ "\",\"role\":\"" + role + "\",\"addressList\":\""
+				+ addressList + "\",\"productList\":\"" + productList
 				+ "\",\"demandList\":\"" + demandList + "\",\"articleList\":\""
 				+ articleList + "\"}  ";
 	}
-	
+
+
 }

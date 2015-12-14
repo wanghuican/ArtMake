@@ -20,7 +20,7 @@ public class Common {
 	
 	//config
 	public final static String PLAT_SRC = "L:/ArtMake/ArtMakePlat/WebContent/";
-	public final static String INFO_SRC = "images/info";
+	public final static String ARTICLE_SRC = "images/article";
 	
 	//query
 	public final static String HQL_LOGIN = "HQL_LOGIN";

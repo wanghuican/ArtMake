@@ -33,25 +33,6 @@ public class Product extends JsonEntity{
 	  */
 	private double price;
 	
-	/**
-	  * @Fields fixedprice : 一口价/最高价
-	  */
-	private double fixedprice;
-	
-	/**
-	  * @Fields startprice : 起始价
-	  */
-	private double startprice;
-	
-	/**
-	  * @Fields addprice : 加价限额
-	  */
-	private int addprice;
-	
-	/**
-	  * @Fields type : 1:竞买 2:一口价
-	  */
-	private int type;
 	
 	/**
 	  * @Fields describe
@@ -68,10 +49,6 @@ public class Product extends JsonEntity{
 	  */
 	private Person person;
 	
-	/**
-	  * @Fields lasttime : 持续时间h
-	  */
-	private int lasttime;
 	
 	/**
 	  * @Fields state : 0:未展示 1:未售出 -1:已售出
@@ -89,6 +66,11 @@ public class Product extends JsonEntity{
 	private List<Prokey> keyList = new ArrayList();
 
 	/**
+	  * @Fields actionList :
+	  */
+	private List<ProAction> actionList = new ArrayList();
+	
+	/**
 	  * 创建一个新的实例 Product. 
 	  * <p>Description: 无参构造函数</p>
 	  */
@@ -96,46 +78,36 @@ public class Product extends JsonEntity{
 	public Product() {
 		super();
 	}
-	
+
 	/**
 	  * 创建一个新的实例 Product. 
-	  * <p>Description: 全参构造函数</p>
+	  * <p>Title: </p>
+	  * <p>Description: </p>
 	  * @param product_id
 	  * @param price
-	  * @param fixedprice
-	  * @param startprice
-	  * @param addprice
-	  * @param type
 	  * @param describe
 	  * @param uptime
 	  * @param person
-	  * @param lasttime
 	  * @param state
 	  * @param imageList
 	  * @param keyList
+	  * @param actionList
 	  */
 	
-	public Product(int product_id, double price, double fixedprice,
-			double startprice, int addprice, int type, String describe,
-			Date uptime, Person person, int lasttime, int state,
-			List<Proimg> imageList, List<Prokey> keyList) {
+	public Product(int product_id, double price, String describe, Date uptime,
+			Person person, int state, List<Proimg> imageList,List<Prokey> keyList, 
+			List<ProAction> actionList) {
 		super();
 		this.product_id = product_id;
 		this.price = price;
-		this.fixedprice = fixedprice;
-		this.startprice = startprice;
-		this.addprice = addprice;
-		this.type = type;
 		this.describe = describe;
 		this.uptime = uptime;
 		this.person = person;
-		this.lasttime = lasttime;
 		this.state = state;
 		this.imageList = imageList;
 		this.keyList = keyList;
+		this.actionList = actionList;
 	}
-
-
 
 	/**
 	 * getter method
@@ -171,78 +143,6 @@ public class Product extends JsonEntity{
 	
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-	/**
-	 * getter method
-	 * @return the fixedprice
-	 */
-	
-	public double getFixedprice() {
-		return fixedprice;
-	}
-
-	/**
-	 * setter method
-	 * @param fixedprice the fixedprice to set
-	 */
-	
-	public void setFixedprice(double fixedprice) {
-		this.fixedprice = fixedprice;
-	}
-
-	/**
-	 * getter method
-	 * @return the startprice
-	 */
-	
-	public double getStartprice() {
-		return startprice;
-	}
-
-	/**
-	 * setter method
-	 * @param startprice the startprice to set
-	 */
-	
-	public void setStartprice(double startprice) {
-		this.startprice = startprice;
-	}
-
-	/**
-	 * getter method
-	 * @return the addprice
-	 */
-	
-	public int getAddprice() {
-		return addprice;
-	}
-
-	/**
-	 * setter method
-	 * @param addprice the addprice to set
-	 */
-	
-	public void setAddprice(int addprice) {
-		this.addprice = addprice;
-	}
-
-	/**
-	 * getter method
-	 * @return the type
-	 */
-	
-	public int getType() {
-		return type;
-	}
-
-	/**
-	 * setter method
-	 * @param type the type to set
-	 */
-	
-	public void setType(int type) {
-		this.type = type;
 	}
 
 	/**
@@ -299,23 +199,6 @@ public class Product extends JsonEntity{
 		this.person = person;
 	}
 
-	/**
-	 * getter method
-	 * @return the lasttime
-	 */
-	
-	public int getLasttime() {
-		return lasttime;
-	}
-
-	/**
-	 * setter method
-	 * @param lasttime the lasttime to set
-	 */
-	
-	public void setLasttime(int lasttime) {
-		this.lasttime = lasttime;
-	}
 
 	/**
 	 * getter method
@@ -335,7 +218,6 @@ public class Product extends JsonEntity{
 		this.state = state;
 	}
 
-
 	/**
 	 * getter method
 	 * @return the imageList
@@ -344,7 +226,6 @@ public class Product extends JsonEntity{
 	public List<Proimg> getImageList() {
 		return imageList;
 	}
-
 
 	/**
 	 * setter method
@@ -373,22 +254,39 @@ public class Product extends JsonEntity{
 		this.keyList = keyList;
 	}
 
+	/**
+	 * getter method
+	 * @return the actionList
+	 */
+	
+	public List<ProAction> getActionList() {
+		return actionList;
+	}
 
+	/**
+	 * setter method
+	 * @param actionList the actionList to set
+	 */
+	
+	public void setActionList(List<ProAction> actionList) {
+		this.actionList = actionList;
+	}
+
+	
 	/*
 	  * Title: toJsonString
 	  * Description:
 	  * @return
 	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
 	  */
+	@Override
 	public String toJsonString() {
 		return "{\"product_id\":\"" + product_id + "\",\"price\":\"" + price
-				+ "\",\"fixedprice\":\"" + fixedprice + "\",\"startprice\":\""
-				+ startprice + "\",\"addprice\":\"" + addprice
-				+ "\",\"type\":\"" + type + "\",\"describe\":\"" + describe
-				+ "\",\"uptime\":\"" + uptime + "\",\"person\":\"" + person
-				+ "\",\"lasttime\":\"" + lasttime + "\",\"state\":\"" + state
+				+ "\",\"describe\":\"" + describe + "\",\"uptime\":\"" + uptime
+				+ "\",\"person\":\"" + person + "\",\"state\":\"" + state
 				+ "\",\"imageList\":\"" + imageList + "\",\"keyList\":\""
-				+ keyList + "\"}  ";
+				+ keyList + "\",\"actionList\":\"" + actionList + "\"}  ";
 	}
+
 	
 }

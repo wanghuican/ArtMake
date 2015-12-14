@@ -10,6 +10,7 @@
 
 package cn.edu.xmu.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,10 @@ public class ArticleAction extends ActionSupport {
 	private Article article;
 	
 	private int id;
+	
+	private List<Article> bigarticleList;
+	
+	private List<Article> smallarticleList;
 	
 	private String result;
 	/**
@@ -162,6 +167,50 @@ public class ArticleAction extends ActionSupport {
 
 
 
+	/**
+	 * getter method
+	 * @return the bigarticleList
+	 */
+	
+	public List<Article> getBigarticleList() {
+		return bigarticleList;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param bigarticleList the bigarticleList to set
+	 */
+	
+	public void setBigarticleList(List<Article> bigarticleList) {
+		this.bigarticleList = bigarticleList;
+	}
+
+
+
+	/**
+	 * getter method
+	 * @return the smallarticleList
+	 */
+	
+	public List<Article> getSmallarticleList() {
+		return smallarticleList;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param smallarticleList the smallarticleList to set
+	 */
+	
+	public void setSmallarticleList(List<Article> smallarticleList) {
+		this.smallarticleList = smallarticleList;
+	}
+
+
+
 	/*
 	  * Title: execute
 	  * Description:
@@ -171,6 +220,7 @@ public class ArticleAction extends ActionSupport {
 	  */
 	@Override
 	public String execute() throws Exception {
+		//资讯
 		int page = 1;
 		List<Article> articleList = articleService.getInfoListToday(page,Common.PAGESIZE);
 		int count = articleService.getTodayInfoCount();
@@ -178,7 +228,16 @@ public class ArticleAction extends ActionSupport {
 		setArticleList(articleList);
 		if(articleList.size() != 0)
 	    	setArticle(articleList.get(0));
-		WebTool.goInfoSrc();
+		//广告
+		bigarticleList = new ArrayList<Article>();
+		smallarticleList = new ArrayList<Article>();
+		articleService.getAdListToday(bigarticleList,smallarticleList);
+		
+		if(smallarticleList.size() != 0)
+			setSmallarticleList(smallarticleList);
+		if(bigarticleList.size() != 0)
+			setBigarticleList(bigarticleList);
+		WebTool.getArticleSrc();
 		return SUCCESS;
 	}
 	
@@ -213,7 +272,15 @@ public class ArticleAction extends ActionSupport {
 		setArticle(article);
 		List<Article> articleList = articleService.getInfoListToday(page,Common.PAGESIZE);
 		setArticleList(articleList);
-		WebTool.goInfoSrc();
+		WebTool.getArticleSrc();
 		return "detail";
+	}
+	
+	public String goAdDetail(){
+		int id = getId();
+		Article article = articleService.getArticleById(id);
+		setArticle(article);
+		WebTool.getArticleSrc();
+		return "addetail";
 	}
 }

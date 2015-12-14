@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-11-22 22:11:50 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-	<class name="cn.edu.xmu.entity.Article" table="bn_article" catalog="artmake">
+	<class name="cn.edu.xmu.entity.Article" table="bn_article" catalog="artmake"  lazy="true">
 		<id name="article_id" type="int">
 			<column name="article_id" />
 			<generator class="identity" />
@@ -18,7 +18,7 @@
 			<column name="content" />
 		</property>
 		<property name="image" type="string">
-			<column name="image" length="80" not-null="true" />
+			<column name="image" length="80" />
 		</property>
         <property name="video" type="string">
             <column name="video" length="80" />
@@ -36,7 +36,7 @@
 			<column name="column_id" length="40" />
 		</property>
         <many-to-one name="person" class="cn.edu.xmu.entity.Person" fetch="select">
-			<column name="person_id" not-null="true"></column>
+			<column name="person_id"></column>
 		</many-to-one>
 	</class>
 </hibernate-mapping>

@@ -21,7 +21,7 @@
 	    /**编辑   **/
 	    <s:iterator value="articleList" id="row">
 	    $("#showbtn<s:property value='#row.article_id'/>").fancybox({
-	    	'href' : 'infoCheck!goShow?id=<s:property value='#row.article_id'/>',
+	    	'href' : 'articleCheck!goShow?id=<s:property value='#row.article_id'/>',
 	    	'width' : 733,
 	        'height' : 530,
 	        'type' : 'iframe',
@@ -32,11 +32,25 @@
 	        }
 	    });
 	    </s:iterator>
+	    
+	    var pro = new Array();
+	    pro[0] = "<s:property value='selectpro[0]'/>";
+	    pro[1] = "<s:property value='selectpro[1]'/>";
+	    pro[2] = "<s:property value='selectpro[2]'/>";
+	    pro[3] = "<s:property value='selectpro[3]'/>";
+	    for(var i=0;i<pro.length;i++){
+	    	while(pro[i].indexOf("%")>=0)
+	        	pro[i] = pro[i].replace("%","");
+	    }
+	    $("#selectstate").val(pro[0]);
+	    $("#selecttime").val(pro[1]);
+	    $("#selectaccount").val(pro[2]);
+	    $("#selectkey").val(pro[3]);
 	});
 
 	/** 模糊查询  **/
 	function search(){
-		$("#submitForm").attr("action", "infoCheck").submit();
+		$("#submitForm").attr("action", "articleCheck").submit();
 	}
 
 	 
@@ -44,7 +58,7 @@
 	/** 删除 **/
 	function del(id){
 		if(confirm("您确定要删除吗？")){
-			$("#submitForm").attr("action", "infoCheck!deleteInfo?id=" + id).submit();			
+			$("#submitForm").attr("action", "articleCheck!deleteInfo?id=" + id).submit();			
 		}
 	}
 	
@@ -61,7 +75,7 @@
 			allIDCheck += $(domEle).val() + ",";
 		});
 		//alert(allIDCheck)
-		$("#submitForm").attr("action", "infoCheck!ndelInfo?nid="+allIDCheck).submit();
+		$("#submitForm").attr("action", "articleCheck!ndelInfo?nid="+allIDCheck).submit();
 	}
 	
 	function batchPass(){
@@ -127,7 +141,7 @@
 	
 	function jumpNormalPage(page,key){
 		if(jumpPage(page,key)){
-			window.location.href = "infoCheck?PAGE="+ page;
+			$("#submitForm").attr("action", "articleCheck?PAGE="+ page).submit();
 		}
 	}
 

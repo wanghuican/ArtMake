@@ -163,3 +163,16 @@
   font-family:'Microsoft YaHei UI';
 }
 
+.mainbox{
+    overflow:hidden;
+    position:relative;
+}
+.flashbox{
+   overflow:hidden;
+    position:relative;
+}
+.imagebox{
+    text-align:right;position:relative;z-index:999;
+}
+
+.bitdiv{display:inline-block;width:18px;height:18px;margin:0 10px 10px 0px;cursor:pointer;float:right;}

@@ -31,9 +31,17 @@ public class ForwardAction extends ActionSupport {
 	public String goInfo() throws Exception{
 		return "info";
 	}
+
+	public String goAd() throws Exception{
+		return "ad";
+	}
 	
 	public String goAdminInfo() throws Exception{
 		return "admininfo";
+	}
+	
+	public String goAdminAd() throws Exception{
+		return "adminad";
 	}
 	
 	public String goInfolist() throws Exception{

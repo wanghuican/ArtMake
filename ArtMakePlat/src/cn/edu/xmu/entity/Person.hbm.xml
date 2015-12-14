@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-11-22 22:11:50 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-	<class name="cn.edu.xmu.entity.Person" table="bn_person" catalog="artmake">
+	<class name="cn.edu.xmu.entity.Person" table="bn_person" catalog="artmake"  lazy="true">
 		<id name="person_id" type="int">
 			<column name="person_id" />
 			<generator class="identity" />
@@ -26,11 +26,20 @@
 		<property name="address" type="string">
 			<column name="address" length="40" />
 		</property>
+		<property name="idcard" type="string">
+			<column name="idcard" length="40" />
+		</property>
+		<property name="qq" type="string">
+			<column name="qq" length="20" />
+		</property>
 		<property name="sex" type="string">
 			<column name="sex" length="2" />
 		</property>
 		<property name="introduce" type="string">
 			<column name="introduce" length="80" />
+		</property>
+		<property name="state" type="int">
+			<column name="state" />
 		</property>
 		<many-to-one name="role" class="cn.edu.xmu.entity.Role" fetch="select">
 			<column name="role_id" not-null="true"></column>

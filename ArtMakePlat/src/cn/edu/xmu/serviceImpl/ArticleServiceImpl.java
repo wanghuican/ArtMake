@@ -44,6 +44,28 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleList;
 	}
 	
+
+	/*
+	  * Title: getBigAdListToday
+	  * Description:
+	  * @param pro
+	  * @param articleList1
+	  * @param ListArticle2
+	  * @see cn.edu.xmu.service.ArticleService#getBigAdListToday(java.util.List, java.util.List, java.util.List)
+	  */
+	@Override
+	public void getAdListToday(List<Article> bigarticleList,List<Article> smallarticleList){
+		// TODO Auto-generated method stub
+		List<Article> articleList = dao.getArticleListToday(1);
+		for(int i=0;i<articleList.size();i++)
+			if(articleList.get(i).getColumn_id().equals("big")){
+				bigarticleList.add(articleList.get(i));
+			}else{
+				smallarticleList.add(articleList.get(i));
+			}
+	}
+
+	
 	/**
      * @Fields dao : dao组件
      */

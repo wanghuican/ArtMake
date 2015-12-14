@@ -83,7 +83,7 @@ var num = 1;
 				alert("请选择时间");
 				return;
 			}
-			$("#contact-form").attr("action","uploadinfo");
+			$("#contact-form").attr("action","uploadArticle");
 			$("#contact-form").submit();
 		})
 	});

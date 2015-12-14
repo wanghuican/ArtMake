@@ -189,7 +189,7 @@ public class WebTool {
         return buf.toString();
     }
     
-    public static final void goInfoSrc(){
-    	WebTool.getRequest().setAttribute("IMGSRC", Common.INFO_SRC);
+    public static final void getArticleSrc(){
+    	WebTool.getRequest().setAttribute("IMGSRC", Common.ARTICLE_SRC);
     }
 }

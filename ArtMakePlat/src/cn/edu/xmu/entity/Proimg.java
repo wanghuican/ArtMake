@@ -36,6 +36,10 @@ public class Proimg extends JsonEntity{
 	private String image;
 
 	/**
+	  * @Fields flag : TODO（用一句话描述这个变量表示什么）
+	  */
+	private int flag;	
+	/**
 	  * 创建一个新的实例 Proimg. 
 	  * <p>Description: 无参构造</p>
 	  */
@@ -44,20 +48,29 @@ public class Proimg extends JsonEntity{
 		super();
 	}
 
+
+	
+	
 	/**
 	  * 创建一个新的实例 Proimg. 
-	  * <p>Description: 全信息构造函数</p>
+	  * <p>Title: </p>
+	  * <p>Description: </p>
 	  * @param record_id
 	  * @param product
 	  * @param image
+	  * @param flag
 	  */
 	
-	public Proimg(int record_id, Product product, String image) {
+	public Proimg(int record_id, Product product, String image, int flag) {
 		super();
 		this.record_id = record_id;
 		this.product = product;
 		this.image = image;
+		this.flag = flag;
 	}
+
+
+
 
 	/**
 	 * getter method
@@ -113,6 +126,27 @@ public class Proimg extends JsonEntity{
 		this.image = image;
 	}
 
+	
+
+	/**
+	 * getter method
+	 * @return the flag
+	 */
+	
+	public int getFlag() {
+		return flag;
+	}
+
+
+	/**
+	 * setter method
+	 * @param flag the flag to set
+	 */
+	
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+
 
 	/*
 	  * Title: toJsonString
@@ -120,9 +154,10 @@ public class Proimg extends JsonEntity{
 	  * @return
 	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
 	  */
+	@Override
 	public String toJsonString() {
 		return "{\"record_id\":\"" + record_id + "\",\"product\":\"" + product
-				+ "\",\"image\":\"" + image + "\"}  ";
+				+ "\",\"image\":\"" + image + "\",\"flag\":\"" + flag + "\"}  ";
 	}
 	
 	

@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-11-22 22:11:50 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-	<class name="cn.edu.xmu.entity.Key" table="bn_key" catalog="artmake">
+	<class name="cn.edu.xmu.entity.Key" table="bn_key" catalog="artmake"  lazy="true">
 		<id name="key_id" type="int">
 			<column name="key_id" />
 			<generator class="identity" />

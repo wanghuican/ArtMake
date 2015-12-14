@@ -12,9 +12,9 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
  Order by a.uptime desc]]>
 </query>
 <query name="HQL_ADLIST_SELECT">
-<![CDATA[from Article as a where cast(a.pass as string) like ? and a.time like ? and
-a.person.account like ? and a.title like ? and cast(a.type as string) = ? and a.column_id like = ?
- Order by a.uptime desc]]>
+<![CDATA[from Article as a where  a.column_id like ? and  cast(a.pass as string) like ? 
+ and a.time like ? and a.title like ? 
+ and cast(a.type as string) = ? Order by a.uptime desc]]>
 </query>
 </hibernate-mapping>
 

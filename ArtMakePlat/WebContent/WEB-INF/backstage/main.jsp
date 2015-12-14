@@ -16,7 +16,6 @@
 		/**退出系统**/
 		function logout(){
 				window.location.href = "logout";
-			}
 		}
 		
 		/**获得当前日期**/
@@ -206,10 +205,11 @@
 			});*/
 			if(resourceType == "ZHUBIANMOKUAI"){
 				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"咨询管理","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"infoCheck","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":4,"resourceName":"咨询审核","resourceOrder":0,"resourceType":""},
+			            {"accessPath":"articleCheck","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":4,"resourceName":"咨询审核","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"forward!goAdminInfo","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"添加咨询","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":4,"resourceID":6,"resourceName":"广告管理","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":7,"resourceName":"广告审核","resourceOrder":0,"resourceType":""}
+			            {"accessPath":"articleCheck!goAd","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":7,"resourceName":"广告审核","resourceOrder":0,"resourceType":""},
+			            {"accessPath":"forward!goAdminAd","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":8,"resourceName":"添加广告","resourceOrder":0,"resourceType":""}
 			            ];
 			}else if(resourceType == "PINGTAIGUANLI"){
 				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"艺术品管理","resourceOrder":0,"resourceType":""},

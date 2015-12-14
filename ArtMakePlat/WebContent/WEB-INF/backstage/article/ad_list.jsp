@@ -21,7 +21,7 @@
 	    /**编辑   **/
 	    <s:iterator value="articleList" id="row">
 	    $("#showbtn<s:property value='#row.article_id'/>").fancybox({
-	    	'href' : 'infoCheck!goShow?id=<s:property value='#row.article_id'/>',
+	    	'href' : 'articleCheck!goShow?id=<s:property value='#row.article_id'/>',
 	    	'width' : 733,
 	        'height' : 530,
 	        'type' : 'iframe',
@@ -32,11 +32,24 @@
 	        }
 	    });
 	    </s:iterator>
+	    var pro = new Array();
+	    pro[0] = "<s:property value='selectpro[0]'/>";
+	    pro[1] = "<s:property value='selectpro[1]'/>";
+	    pro[2] = "<s:property value='selectpro[2]'/>";
+	    pro[3] = "<s:property value='selectpro[3]'/>";
+	    for(var i=0;i<pro.length;i++){
+	    	while(pro[i].indexOf("%")>=0)
+	        	pro[i] = pro[i].replace("%","");
+	    }
+	    $("#selectpass").val(pro[0]);
+	    $("#selectstate").val(pro[1]);
+	    $("#selecttime").val(pro[2]);
+	    $("#selectkey").val(pro[3]);
 	});
 
 	/** 模糊查询  **/
 	function search(){
-		$("#submitForm").attr("action", "infoCheck").submit();
+		$("#submitForm").attr("action", "articleCheck!goAd").submit();
 	}
 
 	 
@@ -44,7 +57,7 @@
 	/** 删除 **/
 	function del(id){
 		if(confirm("您确定要删除吗？")){
-			$("#submitForm").attr("action", "infoCheck!deleteInfo?id=" + id).submit();			
+			$("#submitForm").attr("action", "articleCheck!deleteInfo?id=" + id).submit();			
 		}
 	}
 	
@@ -61,7 +74,7 @@
 			allIDCheck += $(domEle).val() + ",";
 		});
 		//alert(allIDCheck)
-		$("#submitForm").attr("action", "infoCheck!ndelInfo?nid="+allIDCheck).submit();
+		$("#submitForm").attr("action", "articleCheck!ndelInfo?nid="+allIDCheck).submit();
 	}
 	
 	function batchPass(){
@@ -87,7 +100,7 @@
 		        	alert(data.message);
 		        	aids = data.aids;
 		        	for(var i=0;i<aids.length;i++){
-		        		$("#passbtn"+aids[i]).html("取消");
+		        		$("#passbtn"+aids[i]).html("");
 		        	}
 		        },
 		        error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -111,7 +124,7 @@
 		        	data = eval('(' + data + ')');
 		        	alert(data.message);
 		        	if(data.pass == 1)
-		            	$("#passbtn"+data.id).html("取消");
+		            	$("#passbtn"+data.id).html("");
 		        	else
 		        		$("#passbtn"+data.id).html("通过");
 		        	$("#pass"+data.id).html(data.pass);
@@ -127,7 +140,7 @@
 	
 	function jumpNormalPage(page,key){
 		if(jumpPage(page,key)){
-			window.location.href = "infoCheck?PAGE="+ page;
+			$("#submitForm").attr("action", "articleCheck!goAd?PAGE="+ page).submit();
 		}
 	}
 
@@ -145,8 +158,15 @@
 					<div id="box_border">
 						<div id="box_top">搜索</div>
 						<div id="box_center">
-							状态
+						          栏位
 							<select name="selectpro" id="selectpass" class="ui_select01">
+                                <option value=""
+                                >--请选择--</option>
+                                <option value="big">大栏位</option>
+                                <option value="small">小栏位</option>
+                            </select>
+							状态
+							<select name="selectpro" id="selectstate" class="ui_select01">
                                 <option value=""
                                 >--请选择--</option>
                                 <option value="1">通过</option>
@@ -155,7 +175,6 @@
 							申请时间
 							<input type="date" name="selectpro" id="selecttime" class="ui_input_txt02"/>
 
-							申请人<input type="text" id="selectaccount" name="selectpro" class="ui_input_txt02" />
 						         关键字<input type="text" id="selectkey" name="selectpro" class="ui_input_txt02" />
 						</div>
 						<div id="box_bottom">
@@ -178,26 +197,30 @@
 							<th width="25%">申请时间</th>
 							<th width="5%">是否通过</th>
 							<th width="10%">申请人</th>
-							<th width="25%">操作</th>
+							<th width="5">栏位</th>
+							<th width="20%">操作</th>
 						</tr>
 						<s:iterator value="articleList" id="row">
 							<tr>
 								<td><input type="checkbox" name="IDCheck" value="<s:property value='#row.article_id'/>" class="acb" /></td>
 								<td><s:property value="#row.title"/></td>
+								<s:if test="#row.column_id != 'demand'">
 								<td><div style="width:50%;height:50%"><img style="left:30%;width:100%;height:100%" src="<s:property value='#request.IMGSRC'/>/<s:property value='#row.image'/>" /></div></td>
+								</s:if>
+								<s:else>
+								<td></td>
+								</s:else>
 								<td><s:property value="#row.uptime"/></td>
 								<td><s:property value="#row.time"/></td>
 								<td id="pass<s:property value='#row.article_id'/>"><s:property value="#row.pass"/></td>
 								<td><s:property value="#row.person.account"/></td>
+								<td><s:property value="#row.column_id"/></td>
 								<td>
 								    <label style="cursor:pointer" id="showbtn<s:property value='#row.article_id'/>">预览</label>
 								    <label style="cursor:pointer" id="passbtn<s:property value='#row.article_id'/>" onclick="changePass(<s:property value='#row.article_id'/>)">
 								    <s:if test="#row.pass == 0">
 							    	   通过  
 								    </s:if>
-								    <s:else>
-							    	     取消
-								    </s:else>
 								    </label>
 									<label style="cursor:pointer" onclick="del(<s:property value='#row.article_id'/>)">删除</label>
 								</td>

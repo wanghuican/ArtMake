@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-11-22 22:11:50 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-	<class name="cn.edu.xmu.entity.Demand" table="bn_demand" catalog="artmake">
+	<class name="cn.edu.xmu.entity.Demand" table="bn_demand" catalog="artmake"  lazy="true">
 		<id name="demand_id" type="int">
 			<column name="demand_id" />
 			<generator class="identity" />

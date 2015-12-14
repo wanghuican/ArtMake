@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/east.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
@@ -16,7 +17,7 @@
 <script src="js/tmStickUp.js"></script>
 <script src="js/jquery.ui.totop.js"></script>
 <script src="js/jquery.shuffle-images.js"></script>
-
+<script src="js/east.js"></script>
 <script>
 var auth="<s:property value='#session.auth'/>";
  $(window).load(function(){
@@ -31,6 +32,16 @@ var auth="<s:property value='#session.auth'/>";
 		 });
 		 $("#addInfo").click(function(){
 			 window.location.href="forward!goInfo";
+		 });
+		 $("#addad").fadeTo(500,0.5);
+		 $("#addad").mouseover(function(){
+			 $("#addad").fadeTo(500,1);
+		 });
+		 $("#addad").mouseout(function(){
+			 $("#addad").fadeTo(500,0.5);
+		 });
+		 $("#addad").click(function(){
+			 window.location.href="forward!goAd";
 		 });
 	 }
   $().UItoTop({ easingType: 'easeOutQuart' });
@@ -132,6 +143,7 @@ var auth="<s:property value='#session.auth'/>";
 	 var aid = $("#aid").val();
 	 window.location.href = "article!goDetail?id="+aid + "&PAGE=" +page;
  }
+
 </script>
 <!--[if lt IE 8]>
  <div style=' clear: both; text-align:center; position: relative;'>
@@ -157,93 +169,65 @@ var auth="<s:property value='#session.auth'/>";
     <div class="row">
       <div class="grid_12">
         <h2 class="ta__center">首页</h2>
-        <div class="shuffle-group">
           <div class="row">
+          	<div class="grid_2"></div>
             <div class="grid_8">
-              <div data-si-mousemove-trigger="100"  class="shuffle-me offset__1">
-                <a href="gallery.html" class="info" target="_blank"></a>
-                <div class="images">
-                  <img src="images/information_1.jpg" alt="">
-                  <img src="images/information_1-1.jpg" alt="">
-                  <img src="images/information_1-2.jpg" alt="">
-                </div>
+              <div>
+                 <script>
+                 var box =new PPTBox();
+                 //box.width = 900; //宽度
+                 //box.height = 500;//高度
+                 box.autoplayer = 5;//自动播放间隔时间
+              
+                 //box.add({"url":"图片地址","title":"悬浮标题","href":"链接地址"})
+                  <s:iterator value="bigarticleList" id="row">
+                   box.add({"url":"<s:property value='#request.IMGSRC'/>/<s:property value='#row.image'/>","href":"article!goAdDetail?id=<s:property value='#row.article_id'/>","title":"<s:property value='#row.title'/>"})
+                 </s:iterator>
+                 box.show();
+                </script>
               </div>
-            </div>
-            <div class="grid_4">
-              <div data-si-mousemove-trigger="100" class="shuffle-me">
-                <a href="gallery.html" class="info" target="_blank"></a>
-                <div class="images">
-                  <ul class="list-1">
-                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>用抽象派画自画像  ￥300</a></pre></li>
-                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>做一个人头雕塑  ￥300</a></pre></li>
-                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>写一个金榜题名  ￥300</a></pre></li>
-                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>设计好看的签名  ￥300</a></pre></li>
-                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>设计专属印章  ￥300</a></pre></li>
-                   <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>手工雕刻全身像  ￥300</a></pre></li>
-                 </ul>
-                 <div class="grid_8">
-                   <a href="#" class="btn">more</a>
-                 </div>
-                </div>
-              </div>
-            </div>
+            </div>  
+            <div class="grid_2"></div>  
+            <div class="grid_12">
+              <h1><pre> </pre></h1>
+            </div>      
             <div class="clear"></div>
-            <div class="grid_4">
-              <div data-si-mousemove-trigger="100" class="shuffle-me">
-                <a href="gallery.html" class="info" target="_blank"></a>
-                <div class="images">
-                  <img src="images/gall_4.jpg" alt="">
-                  <img src="images/gall_4-1.jpg" alt="">
-                  <img src="images/gall_4-2.jpg" alt="">
-                </div>
-              </div>
-              <div data-si-mousemove-trigger="100" class="shuffle-me">
-                <a href="gallery.html" class="info" target="_blank"></a>
-                <div class="images">
-                  <img src="images/gall_5.jpg" alt="">
-                  <img src="images/gall_5-1.jpg" alt="">
-                  <img src="images/gall_5-2.jpg" alt="">
-                </div>
-              </div>
+            <s:iterator value="smallarticleList" id="row">
+            <div class="grid_4" style="height:275px">
+              <a  href="article!goAdDetail?id=<s:property value='#row.article_id'/>" class="info">
+                <img style="height:90%;width:100%" src="<s:property value='#request.IMGSRC'/>/<s:property value='#row.image'/>"></a>
             </div>
-            <div class="grid_8">
-              <div data-si-mousemove-trigger="100"  class="shuffle-me">
-                <a href="gallery.html" class="info" target="_blank"></a>
-                <div class="images">
-                  <img src="images/gall_6.jpg" alt="">
-                  <img src="images/gall_6-1.jpg" alt="">
-                  <img src="images/gall_6-2.jpg" alt="">
-                </div>
-              </div>
-            </div>
-            </div>
+            </s:iterator>
           </div>
-      </div>
-    </div>
-   </div>
-  <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+        </div>
+     </div>
+  </div>
   <div class="sep-1"></div>
   <div class="container">
     <div class="row">
       <div class="grid_8">
         <h3>资讯
-        <img id="addInfo" alt="添加" style="cursor:pointer;width:4%;height:4%;display:none" src="images/add.png"/></h3>
+        <img id="addInfo" alt="添加" style="cursor:pointer;width:5%;height:5%;display:none" src="images/add.png"/></h3>
         <input id="aid" type="hidden" value="<s:property value='article.article_id'/>">
+        <s:if test="#article.article_id != ''">
         <div style="width:25%;height:25%">
         <img id="infoimg" src="<s:property value='#request.IMGSRC'/>/<s:property value='article.image'/>" alt="" class="img_inner fleft noresize">
         </div>
+         </s:if>
         <div class="extra_wrapper">
         <div class="offset__1" style="margin-left:25%;width:50%;height:15em;overflow:hidden" id="contenthtml" >
         
         </div>
         <h1 id="etc" align="right" style="display:none">...............</h1>
         </div>
+        <s:if test="#article.article_id != ''">
         <div class="clear"></div>
        [ 查看详情请点击下方按钮 ] <br>
         <a href="javascript:godetail()" class="btn">详情</a> 
+        </s:if>
       </div>
       <div class="grid_4">
-        <h3>资讯录</h3>
+        <h3></h3>
         <ul class="list-1" id="titles" style="font-weight:normal">
          <s:iterator value="articleList" id="row">
           <li style="font-size:20px"><span></span>
