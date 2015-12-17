@@ -6,17 +6,14 @@ public class Common {
 	public final static String TABLE_ROLE = "Role";
 	public final static String TABLE_ARTICLE = "Article";
 	
-	//ROLE
-	public final static String ROLE_YONGHU = "用户";
-	public final static String ROLE_YISHUJIA1 = "低级艺术家";
-	public final static String ROLE_YISHUJIA2 = "初级艺术家";
-	public final static String ROLE_YISHUJIA3 = "中级级艺术家";
-	public final static String ROLE_YISHUJIA4 = "高级艺术家";
-	public final static String ROLE_YISHUJIA5 = "顶级艺术家";
-	public final static String ROLE_CAIBIAN = "采编人员";
-	public final static String ROLE_ZHUBIAN = "主编人员";
-	public final static String ROLE_ADMIN = "管理员";
-	public final static String ROLE_SUPERADMIN = "超级管理员";
+	
+	//role_code
+	public final static int CODE_USER = 0;
+	public final static int CODE_ARTIST = 5;
+	public final static int CODE_EDITER = 10;
+	public final static int CODE_MAINEDITER = 20;
+	public final static int CODE_ADMIN = 50;
+	public final static int CODE_SUPERARTIST = 100;
 	
 	//config
 	public final static String PLAT_SRC = "L:/ArtMake/ArtMakePlat/WebContent/";
@@ -31,6 +28,9 @@ public class Common {
 	public final static String HQL_ARTICLELIST = "HQL_ARTICLELIST";
 	public final static String HQL_INFOLIST_SELECT = "HQL_INFOLIST_SELECT";
 	public final static String HQL_ADLIST_SELECT = "HQL_ADLIST_SELECT";
+	public final static String HQL_ADCOUNT = "HQL_ADCOUNT";
+	public final static String HQL_PERSONLIST = "HQL_PERSONLIST";
+	public final static String HQL_PERSONLIST_SELECT = "HQL_PERSONLIST_SELECT";
 	
 	//common
 	public final static int BACKSTAGE_PAGESIZE = 10;

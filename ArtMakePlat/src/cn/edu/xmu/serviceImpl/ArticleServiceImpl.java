@@ -19,6 +19,7 @@ import cn.edu.xmu.dao.ArticleDao;
 import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.service.ArticleService;
 import cn.edu.xmu.util.DateHandler;
+import cn.edu.xmu.util.DateUtil;
 import cn.edu.xmu.util.WebTool;
 
 /**
@@ -30,6 +31,16 @@ import cn.edu.xmu.util.WebTool;
 
 public class ArticleServiceImpl implements ArticleService {
 
+	
+	/**
+     * @Fields dao : dao组件
+     */
+   @Resource(name="articledao")
+    ArticleDao dao ;
+	
+
+
+	
 	/*
 	  * Title: getInfoListToday
 	  * Description:
@@ -65,19 +76,6 @@ public class ArticleServiceImpl implements ArticleService {
 			}
 	}
 
-	
-	/**
-     * @Fields dao : dao组件
-     */
-   @Resource(name="articledao")
-    ArticleDao dao ;
-	
-	/*
-	 * Title: getArticleList
-	 * Description:
-	 * @return
-	 * @see cn.edu.xmu.service.ArticleService#getArticleList()
-	 */
 
 	@Override
 	public List<Article> getInfoList(List<String> pro,int pageNo,int pageSize) {
@@ -155,4 +153,24 @@ public class ArticleServiceImpl implements ArticleService {
 		dao.saveArticle(article);
 	}
 	
+	@Override
+	public int getTodayAdCount(String column){
+		List<String> pro = new ArrayList<String>();
+		pro.add(column);
+		pro.add(DateHandler.getToday());
+		pro.add("1");
+		WebTool.dealProList(pro);
+		int count = dao.countColumn(pro);
+		return count;
+	}
+	@Override
+	public int getTomorrowAdCount(String column){
+		List<String> pro = new ArrayList<String>();
+		pro.add(column);
+		pro.add(DateHandler.getTomorrow());
+		pro.add("1");
+		WebTool.dealProList(pro);
+		int count = dao.countColumn(pro);
+		return count;
+	}
 }

@@ -204,24 +204,27 @@
 				}
 			});*/
 			if(resourceType == "ZHUBIANMOKUAI"){
-				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"咨询管理","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"articleCheck","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":4,"resourceName":"咨询审核","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"forward!goAdminInfo","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"添加咨询","resourceOrder":0,"resourceType":""},
+				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"资讯管理","resourceOrder":0,"resourceType":""},
+			            {"accessPath":"articleCheck","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":4,"resourceName":"资讯审核","resourceOrder":0,"resourceType":""},
+			            {"accessPath":"forward!goAdminInfo","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"添加资讯","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":4,"resourceID":6,"resourceName":"广告管理","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"articleCheck!goAd","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":7,"resourceName":"广告审核","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"forward!goAdminAd","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":8,"resourceName":"添加广告","resourceOrder":0,"resourceType":""}
 			            ];
 			}else if(resourceType == "PINGTAIGUANLI"){
-				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"艺术品管理","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":4,"resourceName":"XXXX","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"XXXX","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":4,"resourceID":6,"resourceName":"需求管理","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":7,"resourceName":"XXXX","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":8,"resourceName":"XXXX","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":6,"resourceID":9,"resourceName":"人员管理","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":9,"resourceCode":"","resourceDesc":"","resourceGrade":7,"resourceID":10,"resourceName":"XXXX","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":9,"resourceCode":"","resourceDesc":"","resourceGrade":7,"resourceID":11,"resourceName":"XXXX","resourceOrder":0,"resourceType":""}
-			            ];
+				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"人员管理","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"personManage?role_code=0","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":4,"resourceName":"用户管理","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"personManage?role_code=5","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"艺术家管理","resourceOrder":0,"resourceType":""},
+				        <s:iterator value="roleList" id="row" status="st">
+				        <s:if test="#row.role_code != 5 && #row.role_code != 0 && #session.auth>#row.role_code">
+				        {"accessPath":"personManage?role_code=<s:property value='#row.role_code'/>","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":<s:property value='#st.index + 6'/>,"resourceName":"<s:property value='#row.rolename'/>管理","resourceOrder":0,"resourceType":""},
+				        </s:if>
+				        </s:iterator>
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":4,"resourceID":50,"resourceName":"艺术品管理","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":50,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":51,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":6,"resourceID":60,"resourceName":"需求管理","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":60,"resourceCode":"","resourceDesc":"","resourceGrade":7,"resourceID":61,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""}
+				        ];
 			}else if(resourceType == "XITONGGUANLI"){
 				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"角色管理","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":4,"resourceName":"XXXX","resourceOrder":0,"resourceType":""},

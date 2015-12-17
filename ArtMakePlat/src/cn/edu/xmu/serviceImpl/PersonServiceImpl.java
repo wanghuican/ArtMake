@@ -10,11 +10,15 @@
 
 package cn.edu.xmu.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import cn.edu.xmu.dao.PersonDao;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.service.PersonService;
+import cn.edu.xmu.util.Common;
 
 /**
  * @ClassName: PersonService
@@ -39,6 +43,23 @@ public class PersonServiceImpl implements PersonService {
 			return person;
 		}
 		return null;
+	}
+
+	@Override
+	public List<Person> getPersonList(int role_code,List<String> pro, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		List<Person> personList = new ArrayList<Person>();
+		personList = dao.getPersonList(role_code, pro, pageNo, pageSize);
+		return personList;
+	}
+
+
+	@Override
+	public int getPersonCount(int role_code,List<String> pro) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		count = dao.countPerson(role_code, pro);
+		return count;
 	}
 
 }

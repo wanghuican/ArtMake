@@ -259,7 +259,7 @@ public class UploadArticleAction extends ActionSupport {
 		article.setContent(getContent());
 		article.setImage(filename);
 		Person p = new Person();
-		p = (Person) ActionContext.getContext().getSession().get("person");
+		p = WebTool.getSessionPerson();
 		// System.out.println(p.getAccount());
 		article.setPerson(p);
 		article.setTitle(getTitle());
@@ -281,7 +281,7 @@ public class UploadArticleAction extends ActionSupport {
 	public String backstageUpAd() throws IOException{
 		upAd();
 		return "backUpadSuccess";
-	}
+	}	
 	
 	public void upAd() throws IOException{
 		StringBuilder times = new StringBuilder();

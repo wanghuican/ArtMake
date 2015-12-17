@@ -132,6 +132,7 @@
 									}
 									if($("#column_id").val() == ""){
 										alert("请选择栏位");
+										return;
 									}
 									
 									$("#contact-form").attr("action",

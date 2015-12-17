@@ -44,4 +44,8 @@ public interface ArticleService {
 	public void deleteArticleById(int id);
 	
 	public void changePass(Article article);
+	
+	public int getTodayAdCount(String column);
+	
+	public int getTomorrowAdCount(String column);
 }

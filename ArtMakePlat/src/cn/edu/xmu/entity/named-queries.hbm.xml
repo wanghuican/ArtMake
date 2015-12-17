@@ -14,5 +14,7 @@
 <![CDATA[from Article where time like ? and cast(pass as string) = ?
 and cast(type as string) = ? Order by uptime desc]]>
 </query>
+
+
 </hibernate-mapping>
 

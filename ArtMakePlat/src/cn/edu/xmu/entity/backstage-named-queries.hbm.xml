@@ -16,5 +16,20 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
  and a.time like ? and a.title like ? 
  and cast(a.type as string) = ? Order by a.uptime desc]]>
 </query>
+
+<query name="HQL_ADCOUNT">
+<![CDATA[select count(*) from Article as a where column_id like ? and time like ?
+ and cast(pass as string) like ?]]>
+</query>
+
+
+<query name="HQL_PERSONLIST">
+<![CDATA[from Person as p where cast(p.role.role_code as string) = ?]]>
+</query>
+
+<query name="HQL_PERSONLIST_SELECT">
+<![CDATA[from Person as p where cast(p.state as string) like ? and p.account like ?
+ and cast(p.role.role_code as string) = ?]]>
+</query>
 </hibernate-mapping>
 

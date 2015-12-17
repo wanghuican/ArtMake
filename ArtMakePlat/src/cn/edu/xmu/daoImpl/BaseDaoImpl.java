@@ -157,7 +157,7 @@ public class BaseDaoImpl implements BaseDao {
 	 */
 	@Override
 	public List listAll(String clazz) {
-		return hibernateTemplate.find("from " + clazz + " as c ");
+		return hibernateTemplate.find("from " + clazz + " as c");
 	}
 
 	/*

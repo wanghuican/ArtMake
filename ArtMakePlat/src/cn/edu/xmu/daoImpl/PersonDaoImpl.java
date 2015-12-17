@@ -42,4 +42,42 @@ public class PersonDaoImpl implements PersonDao {
 		return null;
 	}
 
+	@Override
+	public List<Person> getPersonList(int role_code, List<String> pro) {
+		// TODO Auto-generated method stub
+		List<Person> personList = new ArrayList<Person>();
+		if(pro.size() == 0){
+	    	pro.add(role_code + "");
+	    	personList = dao.query(Common.HQL_PERSONLIST,pro);
+	    	pro.remove(pro.size() - 1);
+	    }else{
+	    	pro.add(role_code + "");
+	    	personList = dao.query(Common.HQL_PERSONLIST_SELECT,pro);
+	    	pro.remove(pro.size() - 1);
+	    }
+		return personList;
+	}
+	
+	@Override
+	public List<Person> getPersonList(int role_code,List<String> pro,int pageNo,int pageSize) {
+		// TODO Auto-generated method stub
+		List<Person> personList = new ArrayList<Person>();
+		if(pro.size() == 0){
+	    	pro.add(role_code + "");
+	    	personList = dao.query(Common.HQL_PERSONLIST,pro,pageNo, pageSize);
+	    	pro.remove(pro.size() - 1);
+	    }else{
+	    	pro.add(role_code + "");
+	    	personList = dao.query(Common.HQL_PERSONLIST_SELECT,pro,pageNo, pageSize);
+	    	pro.remove(pro.size() - 1);
+	    }
+		return personList;
+	}
+
+	@Override
+	public int countPerson(int role_code,List<String> pro){
+		int count = getPersonList(role_code,pro).size();
+		return count;
+	}
+
 }

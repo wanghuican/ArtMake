@@ -28,7 +28,17 @@
 	        'hideOnOverlayClick' : true,
 	        'showCloseButton' : true,
 	        'onClosed' : function() { 
-	        	
+	        }
+	    });
+	    $("#updatebtn<s:property value='#row.article_id'/>").fancybox({
+	    	'href' : 'articleCheck!goUpdate?id=<s:property value='#row.article_id'/>',
+	    	'width' : 733,
+	        'height' : 530,
+	        'type' : 'iframe',
+	        'hideOnOverlayClick' : true,
+	        'showCloseButton' : true,
+	        'onClosed' : function() { 
+	        	window.location.reload();
 	        }
 	    });
 	    </s:iterator>
@@ -45,6 +55,8 @@
 	    $("#selectstate").val(pro[1]);
 	    $("#selecttime").val(pro[2]);
 	    $("#selectkey").val(pro[3]);
+	    
+	    checkCount();
 	});
 
 	/** 模糊查询  **/
@@ -98,6 +110,13 @@
 		        success: function(data){
 		        	data = eval('(' + data + ')');
 		        	alert(data.message);
+		        	var counts = data.counts;
+		        	$("#tdbig").html("big(" + counts[0] + ")");
+		        	$("#tdsmall").html("small(" + counts[1] + ")");
+		        	$("#tmbig").html("big(" + counts[2] + ")");
+		        	$("#tmsmall").html("small(" + counts[3] + ")");
+		        	checkCount();
+		        	
 		        	aids = data.aids;
 		        	for(var i=0;i<aids.length;i++){
 		        		$("#passbtn"+aids[i]).html("");
@@ -123,6 +142,13 @@
 		        success: function(data){
 		        	data = eval('(' + data + ')');
 		        	alert(data.message);
+		        	var counts = data.counts;
+		        	$("#tdbig").html("big(" + counts[0] + ")");
+		        	$("#tdsmall").html("small(" + counts[1] + ")");
+		        	$("#tmbig").html("big(" + counts[2] + ")");
+		        	$("#tmsmall").html("small(" + counts[3] + ")");
+		        	checkCount();
+		        	
 		        	if(data.pass == 1)
 		            	$("#passbtn"+data.id).html("");
 		        	else
@@ -144,6 +170,33 @@
 		}
 	}
 
+	function checkCount(){
+		<s:if test="countList[0]>4">
+ 		$("#tdbig").css("color","red");
+		</s:if>
+		<s:else>
+		$("#tdbig").css("color","black");
+		</s:else>
+		<s:if test="countList[1]>6">
+ 		$("#tdsmall").css("color","red");
+		</s:if>
+		<s:else>
+		$("#tdsmall").css("color","black");
+		</s:else>
+		<s:if test="countList[2]>4">
+ 		$("#tmbig").css("color","red");
+		</s:if>
+		<s:else>
+		$("#tmbig").css("color","black");
+		</s:else>
+		<s:if test="countList[3]>6">
+ 		$("#tmsmall").css("color","red");
+		</s:if>
+		<s:else>
+		$("#tmsmall").css("color","black");
+		</s:else>
+	}
+	
 </script>
 <style>
 	.alt td{ background:black !important;}
@@ -178,9 +231,24 @@
 						         关键字<input type="text" id="selectkey" name="selectpro" class="ui_input_txt02" />
 						</div>
 						<div id="box_bottom">
+						<table  width="100%">
+						<tr>
+						<td width="70%">
+						<div style="font-size:16px;font-weight:600" align="left">
+						<em>Today:</em>
+						<label id="tdbig">big(<s:property value="countList[0]"/>)</label>,
+						<label id="tdsmall">small(<s:property value="countList[1]"/>)</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<em>Tomorrow:</em>
+						<label id="tmbig">big(<s:property value="countList[2]"/>)</label>,
+						<label id="tmsmall">small(<s:property value="countList[3]"/>)</label>
+						</div>
+						</td>
+						<td width="30%">
 							<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
 							<input type="button" value="通过" class="ui_input_btn01" onclick="batchPass();" /> 
 							<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();" /> 
+						</td>
+						</table>
 						</div>
 					</div>
 				</div>
@@ -216,6 +284,7 @@
 								<td><s:property value="#row.person.account"/></td>
 								<td><s:property value="#row.column_id"/></td>
 								<td>
+							    	<label style="cursor:pointer" id="updatebtn<s:property value='#row.article_id'/>">修改</label>
 								    <label style="cursor:pointer" id="showbtn<s:property value='#row.article_id'/>">预览</label>
 								    <label style="cursor:pointer" id="passbtn<s:property value='#row.article_id'/>" onclick="changePass(<s:property value='#row.article_id'/>)">
 								    <s:if test="#row.pass == 0">
@@ -229,7 +298,6 @@
 					</table>
 				</div>
 				<jsp:include page="../page.jsp"></jsp:include>
-				
 			</div>
 		</div>
 	</form>

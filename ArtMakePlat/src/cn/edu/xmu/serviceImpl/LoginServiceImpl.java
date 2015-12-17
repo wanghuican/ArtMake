@@ -78,6 +78,7 @@ public class LoginServiceImpl implements LoginService {
 		// TODO Auto-generated method stub
 		int auth = -1;
 		//System.out.println(person.getRole().getRolename());
+		/*
 		switch(person.getRole().getRolename()){
 		case Common.ROLE_YONGHU: auth = 0;
 	    	break;
@@ -100,7 +101,7 @@ public class LoginServiceImpl implements LoginService {
 		case Common.ROLE_SUPERADMIN: auth = 100;
 		    break;	
 		default : auth = -1;
-		}
-		return auth;
+		}*/
+		return person.getRole().getRole_code();
 	}
 }

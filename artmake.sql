@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2015-12-15 02:54:28
+Date: 2015-12-17 21:47:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,15 +42,13 @@ CREATE TABLE `bn_article` (
 INSERT INTO `bn_article` VALUES ('16', '大广告2', null, '1449944620157.jpg', '1', '2015-12-14 10:59:22', '2', '2015-12-14,2015-12-15', '1', 'big', null);
 INSERT INTO `bn_article` VALUES ('23', '第一次大广告', '<p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p>', '1450105816162.jpg', '1', '2015-12-14 23:10:16', '2', '2015-12-14,2015-12-15,2015-12-16', '1', 'small', null);
 INSERT INTO `bn_article` VALUES ('24', '第二个广告了', '<p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad<img src=\"http://img.baidu.com/hi/jx2/j_0059.gif\"/></p>', '1450105916038.jpg', '1', '2015-12-14 23:11:56', '2', '2015-12-15,2015-12-17', '1', 'big', null);
-INSERT INTO `bn_article` VALUES ('25', '你猜是什么广告', '<p><br/></p><p>大大大</p><blockquote><p>大大大</p></blockquote><p>大大大</p><blockquote><p>大大大</p></blockquote>', '1450112369538.jpg', '1', '2015-12-15 00:59:29', '2', '2015-12-15', '1', 'big', null);
+INSERT INTO `bn_article` VALUES ('25', '你猜是什么广告', '<p><br/></p><p>大大大</p><blockquote><p>大大大</p></blockquote><p>大大大</p><blockquote><p>大大大</p></blockquote>', '1450112369538.jpg', '1', '2015-12-15 00:59:29', '2', '2015-12-15', '1', 'small', null);
 INSERT INTO `bn_article` VALUES ('26', '这是一篇咨询', '<p>打第三大的</p><p>dasd爱的</p><p><br/></p><p>大大大</p><p><br/></p><p><br/></p><p>大苏打</p>', '1450112487855.jpg', '0', '2015-12-15 01:01:27', '1', '2015-12-16,2015-12-16,', '0', null, null);
 INSERT INTO `bn_article` VALUES ('27', 'lalala', '<p>111</p>', '1450113047790.jpg', '1', '2015-12-15 01:10:47', '2', '2015-12-15,2015-12-15', '1', 'big', null);
-INSERT INTO `bn_article` VALUES ('28', 'wwww', '<p>dsadadd.ad</p><p>asd</p><p>a</p><p>d</p><p>a</p><p>sd</p><p>asd</p><p>sad</p>', '1450113069525.jpg', '1', '2015-12-15 01:11:09', '2', '2015-12-15,2015-12-17', '1', 'small', null);
-INSERT INTO `bn_article` VALUES ('29', 'adsadffsdfsa', '<p>dsadad</p><p>ads</p><p>d</p><p>a</p><p>sd</p><p>ad</p><p>a</p><p>d</p><p>ad</p><p>a</p><p><br/></p>', '1450113105733.jpg', '1', '2015-12-15 01:11:45', '2', '2015-12-15', '1', 'small', null);
-INSERT INTO `bn_article` VALUES ('30', 'wanghuicandsadad', '<p>dasdasd</p><p>ad</p><p>sa</p><p>d</p><p>ad</p><p>a</p><p>sd</p><p>ad</p><p>a</p>', '1450113165841.jpg', '1', '2015-12-15 01:12:45', '2', '2015-12-15', '0', 'small', null);
-INSERT INTO `bn_article` VALUES ('31', 'wada', '<p>dsadasjdlkajdslada</p><p>d</p><p>sad</p><p>a</p><p>d</p><p>asd</p><p>a</p><p>d</p><p>asd</p><p><br/></p><p>asd</p><p>a</p>', '1450113186043.jpg', '1', '2015-12-15 01:13:06', '2', '2015-12-15', '0', 'small', null);
-INSERT INTO `bn_article` VALUES ('32', 'fddhsgkhdkfgsfds', '<p>dsadadadwdasdaw</p><p>ds</p><p>a</p><p>d</p><p>ad</p><p>ad</p><p>asd</p><p>a</p><p>d</p><p>as</p><p>d</p><p>ad</p><p>a</p>', '1450113217212.jpg', '1', '2015-12-15 01:13:37', '2', '2015-12-15', '0', 'small', null);
-INSERT INTO `bn_article` VALUES ('33', '十大啊啊啊啊啊啊啊啊', '<p>湿哒哒</p>', '1450113888170.jpg', '1', '2015-12-15 01:24:48', null, '2015-12-15', '1', 'big', null);
+INSERT INTO `bn_article` VALUES ('29', 'adsadffsdfsa', '<p>dsadad</p><p>ads</p><p>d</p><p>a</p><p>sd</p><p>ad</p><p>a</p><p>d</p><p>ad</p><p>a</p><p><br/></p>', '1450113105733.jpg', '1', '2015-12-15 01:11:45', '2', '2015-12-15', '1', 'big', null);
+INSERT INTO `bn_article` VALUES ('30', 'wanghuicandsadad', '<p>dasdasd</p><p>ad</p><p>sa</p><p>d</p><p>ad</p><p>a</p><p>sd</p><p>ad</p><p>a</p>', '1450113165841.jpg', '1', '2015-12-15 01:12:45', '2', '2015-12-15', '1', 'small', null);
+INSERT INTO `bn_article` VALUES ('31', 'wada', '<p>dsadasjdlkajdslada</p><p>d</p><p>sad</p><p>a</p><p>d</p><p>asd</p><p>a</p><p>d</p><p>asd</p><p><br/></p><p>asd</p><p>a</p>', '1450113186043.jpg', '1', '2015-12-15 01:13:06', '2', '2015-12-15', '1', 'small', null);
+INSERT INTO `bn_article` VALUES ('33', '十大啊啊啊啊啊啊啊啊', '<p>湿哒哒</p>', '1450113888170.jpg', '1', '2015-12-15 01:24:48', null, '2015-12-16', '1', 'big', null);
 
 -- ----------------------------
 -- Table structure for `bn_cart`
@@ -167,7 +165,7 @@ CREATE TABLE `bn_person` (
   `qq` varchar(20) DEFAULT NULL,
   `idcard` varchar(20) DEFAULT NULL,
   `introduce` varchar(80) DEFAULT NULL,
-  `state` int(1) DEFAULT NULL COMMENT '0:未完善；1:已经完善',
+  `state` int(1) DEFAULT NULL COMMENT '0:未完善；1:已经完善-1:已经被禁用',
   `role_id` int(12) NOT NULL,
   PRIMARY KEY (`person_id`),
   KEY `role_id` (`role_id`),
@@ -177,13 +175,13 @@ CREATE TABLE `bn_person` (
 -- ----------------------------
 -- Records of bn_person
 -- ----------------------------
-INSERT INTO `bn_person` VALUES ('1', 'admin', 'admin', '王辉灿', null, null, null, null, null, null, '超级管理员', '1', '10');
-INSERT INTO `bn_person` VALUES ('2', 'wanghuican', 'wanghuican', '王辉灿', '329669642@qq.com', '15659824572', '福建泉州南安水头', '男', null, null, null, '1', '1');
-INSERT INTO `bn_person` VALUES ('3', 'whcart', '1234567890', '王艺术', null, null, null, null, null, null, '艺术家', '1', '2');
-INSERT INTO `bn_person` VALUES ('10', 'whccb', '1234567890', '王采编', null, null, null, null, null, null, '采编', '1', '7');
-INSERT INTO `bn_person` VALUES ('11', 'wanghuican3', 'wanghuican', '王辉灿', null, null, null, null, null, null, '只是测试', '1', '1');
-INSERT INTO `bn_person` VALUES ('12', 'wanghuican4', '1234567890', '王辉灿', null, null, null, null, null, null, '测试3', '1', '1');
-INSERT INTO `bn_person` VALUES ('13', 'wanghuican5', 'wanghuican', '王辉灿', null, null, null, null, null, null, '测试', '1', '1');
+INSERT INTO `bn_person` VALUES ('1', 'admin', 'admin', '王辉灿', null, null, null, null, null, null, '超级管理员', '0', '10');
+INSERT INTO `bn_person` VALUES ('2', 'wanghuican', 'wanghuican', '王辉灿', '329669642@qq.com', '15659824572', '福建泉州南安水头', '男', null, '350583199501234358', null, '1', '1');
+INSERT INTO `bn_person` VALUES ('3', 'whcart', '1234567890', '王艺术', null, null, null, null, null, null, '艺术家', '0', '2');
+INSERT INTO `bn_person` VALUES ('10', 'whccb', '1234567890', '王采编', null, null, null, null, null, null, '采编', '0', '7');
+INSERT INTO `bn_person` VALUES ('11', 'wanghuican3', 'wanghuican', '王辉灿', null, null, null, null, null, null, '只是测试', '0', '1');
+INSERT INTO `bn_person` VALUES ('12', 'whczb', '1234567890', '王辉灿', null, null, null, null, null, null, '测试3', '0', '8');
+INSERT INTO `bn_person` VALUES ('13', 'whcad', '1234567890', '王辉灿', null, null, null, null, null, null, '测试', '0', '9');
 
 -- ----------------------------
 -- Table structure for `bn_proaction`
@@ -248,10 +246,10 @@ CREATE TABLE `bn_role` (
 -- Records of bn_role
 -- ----------------------------
 INSERT INTO `bn_role` VALUES ('1', '0', '用户');
-INSERT INTO `bn_role` VALUES ('2', '1', '低级艺术家');
-INSERT INTO `bn_role` VALUES ('3', '2', '初级艺术家');
-INSERT INTO `bn_role` VALUES ('4', '3', '中级艺术家');
-INSERT INTO `bn_role` VALUES ('5', '4', '高级艺术家');
+INSERT INTO `bn_role` VALUES ('2', '5', '低级艺术家');
+INSERT INTO `bn_role` VALUES ('3', '5', '初级艺术家');
+INSERT INTO `bn_role` VALUES ('4', '5', '中级艺术家');
+INSERT INTO `bn_role` VALUES ('5', '5', '高级艺术家');
 INSERT INTO `bn_role` VALUES ('6', '5', '顶级艺术家');
 INSERT INTO `bn_role` VALUES ('7', '10', '采编人员');
 INSERT INTO `bn_role` VALUES ('8', '20', '主编人员');

@@ -134,6 +134,12 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articleList;
 	}
 
+
+	public int countColumn(List<String> pro){
+		int count = dao.countQuery(Common.HQL_ADCOUNT, pro);
+		return count;
+	}
+	
 	/*
 	 * Title: countArticle Description:
 	 * 

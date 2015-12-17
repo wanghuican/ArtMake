@@ -1,5 +1,7 @@
 package cn.edu.xmu.service;
 
+import java.util.List;
+
 import cn.edu.xmu.entity.Person;
 
 /**
@@ -10,4 +12,9 @@ import cn.edu.xmu.entity.Person;
   */
 public interface PersonService {
 	public Person checkAccount(String account);
+	
+	public List<Person> getPersonList(int role_code,List<String> pro,int pageNo,int pageSize);
+	
+	public int getPersonCount(int role_code,List<String> pro);
+
 }

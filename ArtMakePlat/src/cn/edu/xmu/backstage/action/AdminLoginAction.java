@@ -1,7 +1,13 @@
 package cn.edu.xmu.backstage.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.edu.xmu.entity.Person;
+import cn.edu.xmu.entity.Role;
 import cn.edu.xmu.service.LoginService;
+import cn.edu.xmu.service.RoleService;
+import cn.edu.xmu.util.WebTool;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -20,7 +26,15 @@ public class AdminLoginAction extends ActionSupport {
 	 */
 	@Resource(name = "loginService")
 	LoginService loginService;
+	
+	/**
+	  * @Fields roleService : TODO（用一句话描述这个变量表示什么）
+	  */
+	@Resource(name = "roleService")
+	RoleService roleService;
 
+	List<Role> roleList = new ArrayList<Role>();
+	
 	/**
 	 * @Fields person
 	 */
@@ -47,6 +61,26 @@ public class AdminLoginAction extends ActionSupport {
 		this.loginService = loginService;
 	}
 
+	
+	
+	/**
+	 * getter method
+	 * @return the roleService
+	 */
+	
+	public RoleService getRoleService() {
+		return roleService;
+	}
+
+	/**
+	 * setter method
+	 * @param roleService the roleService to set
+	 */
+	
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
+	}
+
 	/**
 	 * getter method
 	 * 
@@ -68,6 +102,26 @@ public class AdminLoginAction extends ActionSupport {
 		this.person = person;
 	}
 
+	
+	
+	/**
+	 * getter method
+	 * @return the roleList
+	 */
+	
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+
+	/**
+	 * setter method
+	 * @param roleList the roleList to set
+	 */
+	
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
+	}
+
 	/*
 	 * Title: execute Description:
 	 * 
@@ -85,6 +139,7 @@ public class AdminLoginAction extends ActionSupport {
 		if (p != null) {
 			ActionContext.getContext().getSession().put("person", p);
 			ActionContext.getContext().getSession().put("auth",loginService.getAuth(p));
+			setRoleList(roleService.getAllRole());
 			return "loginSuccess";
 		}
 		return INPUT;

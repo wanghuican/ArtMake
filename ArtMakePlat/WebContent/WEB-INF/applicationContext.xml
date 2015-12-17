@@ -78,7 +78,7 @@
 	<bean id="dao" class="cn.edu.xmu.daoImpl.BaseDaoImpl"></bean>
 	<bean id="persondao" class="cn.edu.xmu.daoImpl.PersonDaoImpl"></bean>
 	<bean id="articledao" class="cn.edu.xmu.daoImpl.ArticleDaoImpl"></bean>
-
+	<bean id="roledao" class="cn.edu.xmu.daoImpl.RoleDaoImpl"></bean>
 	<!-- 配置事务 -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -108,6 +108,7 @@
 	<bean id="registerService" class="cn.edu.xmu.serviceImpl.RegisterServiceImpl"></bean>
 	<bean id="articleService" class="cn.edu.xmu.serviceImpl.ArticleServiceImpl"></bean>
 	<bean id="personService" class="cn.edu.xmu.serviceImpl.PersonServiceImpl"></bean>
+	<bean id="roleService" class="cn.edu.xmu.serviceImpl.RoleServiceImpl"></bean>
 	<context:annotation-config />
 
 	<!-- 开启Spring的Bean自动扫描机制来查找与管理Bean实例 -->

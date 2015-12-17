@@ -26,4 +26,10 @@ public interface PersonDao {
 	public Person getPersonByLogin(Person person);
 	
 	public Person getPersonByAccount(String account);
+	
+	public List<Person> getPersonList(int role_code,List<String> pro);
+	
+	public List<Person> getPersonList(int role_code,List<String> pro,int pageNo,int pageSize);
+
+	public int countPerson(int role_code,List<String> pro);
 }

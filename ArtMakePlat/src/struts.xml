@@ -50,6 +50,14 @@
 			<result name="input">/WEB-INF/backstage/article/info_list.jsp</result>
 			<result name="show">/WEB-INF/backstage/article/show.jsp</result>
 			<result name="ad">/WEB-INF/backstage/article/ad_list.jsp</result>
+			<result name="update">/WEB-INF/backstage/article/ad_update.jsp</result>
+     	</action>
+     	<action name="personManage" class="cn.edu.xmu.backstage.action.PersonAction">
+         	<result name="user">/WEB-INF/backstage/person/user_list.jsp</result>
+         	<result name="artist">/WEB-INF/backstage/person/artist_list.jsp</result>
+         	<result name="editer">/WEB-INF/backstage/person/editer_list.jsp</result>
+         	<result name="mainediter">/WEB-INF/backstage/person/mainediter_list.jsp</result>
+         	<result name="admin">/WEB-INF/backstage/person/admin_list.jsp</result>
      	</action>
 	</package>
 	<package name="ajax" extends="struts-default,json-default">

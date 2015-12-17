@@ -287,6 +287,24 @@ public class DateHandler {
     	days = "0" + String.valueOf(intDay);
     return String.valueOf(cld.get(Calendar.YEAR)) + "-" + mons + "-" + days;
   }
+  /**
+   * 获取昨天的日期的字符串
+   */
+  public static String getTomorrow(){
+	    Calendar cld = Calendar.getInstance();
+	    java.util.Date date = new Date();
+	    cld.setTime(date);
+	    cld.add(Calendar.DATE,+1);
+	    int intMon = cld.get(Calendar.MONTH)+1;
+	    int intDay = cld.get(Calendar.DAY_OF_MONTH);
+	    String mons = String.valueOf(intMon);
+	    String days = String.valueOf(intDay);
+	    if(intMon < 10)
+	    	mons="0" + String.valueOf(intMon);
+	    if(intDay < 10)
+	    	days = "0" + String.valueOf(intDay);
+	    return String.valueOf(cld.get(Calendar.YEAR)) + "-" + mons + "-" + days;
+	  }
 
   /**
    * 此函数用来计算员工的工作天数，如在使用期和离职期该月份的工作日

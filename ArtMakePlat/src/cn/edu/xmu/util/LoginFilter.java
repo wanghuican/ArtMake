@@ -53,8 +53,7 @@ public class LoginFilter implements Filter{
 		System.out.println("我是过滤器" );
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		HttpServletResponse servletResponse = (HttpServletResponse) response;
-		HttpSession session = servletRequest.getSession();
-		Person person = (Person) session.getAttribute("person");
+		Person person = WebTool.getSessionPerson();
 		String path = servletRequest.getServletPath();
 		if(person == null){
 			System.out.println("我是过滤器：没通过" );

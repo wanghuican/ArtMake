@@ -31,6 +31,8 @@ public interface ArticleDao {
 	
 	public List<Article> getArticleList(int type,List<String> pro, int pageNo, int pageSize);
 	
+	public int countColumn(List<String> pro);
+	
 	public int countArticle(int type,List<String> pro);
 	
 	public int countTodayArticle(int type);

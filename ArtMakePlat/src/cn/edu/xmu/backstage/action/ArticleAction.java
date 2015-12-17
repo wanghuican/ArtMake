@@ -21,14 +21,10 @@ import javax.annotation.Resource;
 
 import net.sf.json.JSONObject;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import cn.edu.xmu.entity.Article;
-import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.service.ArticleService;
-import cn.edu.xmu.service.LoginService;
-import cn.edu.xmu.util.CTool;
 import cn.edu.xmu.util.Common;
 import cn.edu.xmu.util.WebTool;
 
@@ -55,8 +51,11 @@ public class ArticleAction extends ActionSupport{
 
 	private String result;
 
+	private List<String> time;
+	
 	private List<String> selectpro;
 	
+	private List<Integer> countList;
 	/**
 	 * getter method
 	 * @return the articleService
@@ -116,6 +115,24 @@ public class ArticleAction extends ActionSupport{
 	
 	/**
 	 * getter method
+	 * @return the time
+	 */
+	
+	public List<String> getTime() {
+		return time;
+	}
+
+	/**
+	 * setter method
+	 * @param time the time to set
+	 */
+	
+	public void setTime(List<String> time) {
+		this.time = time;
+	}
+
+	/**
+	 * getter method
 	 * @return the article
 	 */
 	
@@ -169,6 +186,26 @@ public class ArticleAction extends ActionSupport{
 	
 	public void setSelectpro(List<String> selectpro) {
 		this.selectpro = selectpro;
+	}
+
+	
+	
+	/**
+	 * getter method
+	 * @return the countList
+	 */
+	
+	public List<Integer> getCountList() {
+		return countList;
+	}
+
+	/**
+	 * setter method
+	 * @param countList the countList to set
+	 */
+	
+	public void setCountList(List<Integer> countList) {
+		this.countList = countList;
 	}
 
 	/*
@@ -225,6 +262,7 @@ public class ArticleAction extends ActionSupport{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("message", message[article.getPass()]);
 		map.put("pass", article.getPass());
+		map.put("counts", getCount());
 		map.put("id", getId());
 		JSONObject json = JSONObject.fromObject(map);
 		result = json.toString();
@@ -254,6 +292,7 @@ public class ArticleAction extends ActionSupport{
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("message", "通过成功");
 		map.put("aids", aids);
+		map.put("counts", getCount());
 		JSONObject json = JSONObject.fromObject(map);
 		result = json.toString();
 		//System.out.println(result);
@@ -273,6 +312,42 @@ public class ArticleAction extends ActionSupport{
 		page = WebTool.dealPage(count,page,Common.BACKSTAGE_PAGESIZE);
 		setArticleList(articleService.getAdList(selectpro,page,Common.BACKSTAGE_PAGESIZE));
 		WebTool.getArticleSrc();
+		
+		this.setCountList(getCount());
+		
 		return "ad";
 	}	
+
+	public String goUpdate(){
+		Article article = articleService.getArticleById(getId());
+		setArticle(article);
+		return "update";
+	}
+	
+	public String updateAd() throws IOException{
+		Article article = articleService.getArticleById(getId());
+		article.setColumn_id(WebTool.getRequest().getParameter("column_id"));
+		article.setTitle(WebTool.getRequest().getParameter("title"));
+		StringBuilder times = new StringBuilder();
+		for (int i = 0; i < this.getTime().size(); i++) {
+			if(!WebTool.StringisNullOrEmpty(this.getTime().get(i))){
+	    		times.append(this.getTime().get(i));
+	    		times.append(",");
+			}
+		}
+		article.setTime(times.substring(0,times.lastIndexOf(",")).toString());
+		articleService.saveArticle(article);
+		WebTool.alertMessage("保存成功", "articleCheck!goUpdate?id=" + getId());
+		return null;
+	}
+	
+	public List<Integer> getCount(){
+		List<Integer> counts = new ArrayList<Integer>();
+		counts.add(articleService.getTodayAdCount("big"));
+		counts.add(articleService.getTodayAdCount("small"));
+		counts.add(articleService.getTomorrowAdCount("big"));
+		counts.add(articleService.getTomorrowAdCount("small"));
+		return counts;
+	}
+	
 }

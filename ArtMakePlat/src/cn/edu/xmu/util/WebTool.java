@@ -24,12 +24,16 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
+
 import cn.edu.xmu.entity.JsonEntity;
+import cn.edu.xmu.entity.Person;
 
 /**
  * @ClassName: WebTool
@@ -191,5 +195,9 @@ public class WebTool {
     
     public static final void getArticleSrc(){
     	WebTool.getRequest().setAttribute("IMGSRC", Common.ARTICLE_SRC);
+    }
+    
+    public static final Person getSessionPerson(){
+		return (Person) ActionContext.getContext().getSession().get("person");
     }
 }
