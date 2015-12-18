@@ -32,4 +32,10 @@ public interface PersonDao {
 	public List<Person> getPersonList(int role_code,List<String> pro,int pageNo,int pageSize);
 
 	public int countPerson(int role_code,List<String> pro);
+	
+	public void savePerson(Person person);
+	
+	public Person getPersonById(int id);
+	
+	public void deletePersonById(int id);
 }

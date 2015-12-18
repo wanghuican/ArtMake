@@ -27,6 +27,19 @@
 	    }
 	    $("#selectstate").val(pro[0]);
 	    $("#selectaccount").val(pro[1]);
+	    
+	    $("#newbtn").fancybox({
+			'href':'personManage!goCreateEditor',
+			'width':'75%',
+			'height':'75%',
+			'autoScale':false,
+			'transitionIn':'none',
+			'transitionOut':'none',
+			'type':'iframe',
+			 'onClosed' : function() { 
+			        window.location.reload();	
+			    }
+		});
 	});
 
 	/** 模糊查询  **/
@@ -39,7 +52,7 @@
 	/** 删除 **/
 	function del(id){
 		if(confirm("您确定要删除吗？")){
-			$("#submitForm").attr("action", "?id=" + id).submit();			
+			$("#submitForm").attr("action", "personManage!deletePerson?id=" + id).submit();			
 		}
 	}
 	
@@ -56,7 +69,7 @@
 			allIDCheck += $(domEle).val() + ",";
 		});
 		//alert(allIDCheck)
-		$("#submitForm").attr("action", "?nid="+allIDCheck).submit();
+		$("#submitForm").attr("action", "personManage!ndelPerson?nid="+allIDCheck).submit();
 	}
 	
 	function batchPass(){
@@ -101,7 +114,7 @@
 						</div>
 						<div id="box_bottom">
 				    		<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
-							<input type="button" value="新建" class="ui_input_btn01" onclick="new();" /> 
+							<input id="newbtn" type="button" value="新建" class="ui_input_btn01"/> 
 							<input type="button" value="禁用" class="ui_input_btn01" onclick="batchBid();" /> 
 							<s:if test="#session.auth == 100">
 							<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();" /> 
@@ -129,7 +142,7 @@
 						</tr>
 						<s:iterator value="personList" id="row">
 							<tr>
-								<td><input type="checkbox" name="IDCheck" value="<s:property value='#row.article_id'/>" class="acb" /></td>
+								<td><input type="checkbox" name="IDCheck" value="<s:property value='#row.person_id'/>" class="acb" /></td>
 								<td><s:property value="#row.account"/></td>
 								<td><s:property value="#row.realname"/></td>
 								<td><s:property value="#row.sex"/></td>
@@ -157,7 +170,7 @@
 								    </s:if>
 								    <label style="cursor:pointer" id="bidbtn<s:property value='#row.person_id'/>" onclick="toBid(<s:property value='#row.person_id'/>)">禁用</label>
 									<s:if test="#session.auth == 100">
-						    			<label style="cursor:pointer" onclick="del(<s:property value='#row.article_id'/>)">删除</label>
+						    			<label style="cursor:pointer" onclick="del(<s:property value='#row.person_id'/>)">删除</label>
 								    </s:if>
 								</td>
 							</tr>

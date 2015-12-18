@@ -17,4 +17,9 @@ public interface PersonService {
 	
 	public int getPersonCount(int role_code,List<String> pro);
 
+	public void savePerson(Person person);
+
+	public Person getPersonById(int id);
+	
+	public void deletePersonById(int id);
 }

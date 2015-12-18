@@ -62,4 +62,23 @@ public class PersonServiceImpl implements PersonService {
 		return count;
 	}
 
+	@Override
+	public void savePerson(Person person) {
+		// TODO Auto-generated method stub
+		dao.savePerson(person);
+	}
+
+	@Override
+	public Person getPersonById(int id) {
+		// TODO Auto-generated method stub
+		return dao.getPersonById(id);
+	}
+
+	@Override
+	public void deletePersonById(int id) {
+		// TODO Auto-generated method stub
+		dao.deletePersonById(id);
+	}
+
+	
 }

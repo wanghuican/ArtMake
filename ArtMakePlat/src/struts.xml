@@ -58,6 +58,11 @@
          	<result name="editer">/WEB-INF/backstage/person/editer_list.jsp</result>
          	<result name="mainediter">/WEB-INF/backstage/person/mainediter_list.jsp</result>
          	<result name="admin">/WEB-INF/backstage/person/admin_list.jsp</result>
+         	<result name="gocreateadmin">/WEB-INF/backstage/person/new_admin.jsp</result>
+         	<result name="gocreatemaineditor">/WEB-INF/backstage/person/new_maineditor.jsp</result>
+         	<result name="gocreateeditor">/WEB-INF/backstage/person/new_editor.jsp</result>
+         	<result name="gocreateartist">/WEB-INF/backstage/person/new_artist.jsp</result>
+         	<result name="gocreateuser">/WEB-INF/backstage/person/new_user.jsp</result>
      	</action>
 	</package>
 	<package name="ajax" extends="struts-default,json-default">

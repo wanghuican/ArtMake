@@ -80,4 +80,22 @@ public class PersonDaoImpl implements PersonDao {
 		return count;
 	}
 
+	@Override
+	public void savePerson(Person person) {
+		// TODO Auto-generated method stub
+		dao.saveOrUpdate(person);
+	}
+
+	@Override
+	public Person getPersonById(int id) {
+		// TODO Auto-generated method stub
+		return (Person)dao.loadById(Person.class, id);
+	}
+
+	@Override
+	public void deletePersonById(int id) {
+		// TODO Auto-generated method stub
+		dao.delById(Person.class, id);
+	}
+
 }
