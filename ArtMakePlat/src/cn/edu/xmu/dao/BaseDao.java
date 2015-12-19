@@ -56,7 +56,7 @@ public interface BaseDao {
 	  * @return Object    返回类型
 	  * @throws
 	  */
-	public Object loadObject( String nq,List<String> pro);
+	public Object loadObject( String nq,List pro);
 	
 	/**
 	  * MethidName: delById
@@ -92,13 +92,13 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的使用方法 – 可选)
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: listAll
-	  * @Description: TODO
-	  * @param @param clazz
+	  * @Description: nq
+	  * @param @param nq
 	  * @param @return    设定文件
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List listAll(String clazz);
+	public List listAll(String nq);
 
 	/**
 	  * MethidName: listAll
@@ -107,28 +107,15 @@ public interface BaseDao {
 	  * TODO(这里描述这个方法的注意事项 – 可选)
 	  * @Title: listAll
 	  * @Description: TODO
-	  * @param @param clazz
+	  * @param @param nq
 	  * @param @param pageNo
 	  * @param @param pageSize
 	  * @param @return    设定文件
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List listAll(String clazz, int pageNo, int pageSize);
+	public List listAll(String nq, int pageNo, int pageSize);
 
-	/**
-	  * MethidName: countAll
-	  * TODO(这里描述这个方法适用条件 – 可选)
-	  * TODO(这里描述这个方法的使用方法 – 可选)
-	  * TODO(这里描述这个方法的注意事项 – 可选)
-	  * @Title: countAll
-	  * @Description: TODO
-	  * @param @param clazz
-	  * @param @return    设定文件
-	  * @return int    返回类型
-	  * @throws
-	  */
-	public int countAll(String clazz);
 
 	/**
 	  * MethidName: query
@@ -157,7 +144,7 @@ public interface BaseDao {
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List query(String nq,List<String> pro);
+	public List query(String nq,List pro);
 
 	
 	/**
@@ -191,7 +178,7 @@ public interface BaseDao {
 	  * @return List    返回类型
 	  * @throws
 	  */
-	public List query(String nq,List<String> pro, int pageNo, int pageSize);
+	public List query(String nq,List pro, int pageNo, int pageSize);
 	/**
 	  * MethidName: countQuery
 	  * TODO(这里描述这个方法适用条件 – 可选)
@@ -220,7 +207,7 @@ public interface BaseDao {
 	  * @return int    返回类型
 	  * @throws
 	  */
-	public int countQuery(String nq,List<String> pro);
+	public int countQuery(String nq,List pro);
 	/**
 	  * MethidName: update
 	  * TODO(这里描述这个方法适用条件 – 可选)

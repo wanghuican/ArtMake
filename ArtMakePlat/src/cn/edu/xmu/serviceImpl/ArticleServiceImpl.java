@@ -159,7 +159,7 @@ public class ArticleServiceImpl implements ArticleService {
 		pro.add(column);
 		pro.add(DateHandler.getToday());
 		pro.add("1");
-		WebTool.dealProList(pro);
+		WebTool.dealStrProList(pro);
 		int count = dao.countColumn(pro);
 		return count;
 	}
@@ -169,7 +169,7 @@ public class ArticleServiceImpl implements ArticleService {
 		pro.add(column);
 		pro.add(DateHandler.getTomorrow());
 		pro.add("1");
-		WebTool.dealProList(pro);
+		WebTool.dealStrProList(pro);
 		int count = dao.countColumn(pro);
 		return count;
 	}

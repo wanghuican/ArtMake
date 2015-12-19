@@ -6,6 +6,7 @@ import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.Role;
 import cn.edu.xmu.service.LoginService;
 import cn.edu.xmu.service.RegisterService;
+import cn.edu.xmu.service.RoleService;
 import cn.edu.xmu.util.WebTool;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -19,7 +20,8 @@ public class RegisterAction extends ActionSupport{
 	private RegisterService registerService;
     @Resource(name="loginService")
     private LoginService loginService;
-      
+    @Resource(name="roleService")
+    private RoleService roleService;
     /**
 	  * @Fields account
 	  */
@@ -207,7 +209,7 @@ public class RegisterAction extends ActionSupport{
 		person.setPassword(getPassword());
 		person.setRealname(getRealname());
 		person.setIntroduce(getIntroduce());
-        person.setRole(new Role(1, 0, "用户"));//这句话需要改进
+        person.setRole(roleService.getRoleById(1));//这句话需要改进
 		registerService.register(person);      
         ActionContext.getContext().getSession().put("person", person);
         ActionContext.getContext().getSession().put("auth",loginService.getAuth(person));

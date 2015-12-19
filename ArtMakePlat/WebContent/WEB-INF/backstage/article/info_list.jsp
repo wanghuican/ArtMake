@@ -75,7 +75,9 @@
 			allIDCheck += $(domEle).val() + ",";
 		});
 		//alert(allIDCheck)
-		$("#submitForm").attr("action", "articleCheck!ndelInfo?nid="+allIDCheck).submit();
+		if(confirm("您确定要删除吗？")){
+	    	$("#submitForm").attr("action", "articleCheck!ndelInfo?nid="+allIDCheck).submit();
+		}
 	}
 	
 	function batchPass(){

@@ -8,6 +8,9 @@
 			<column name="key_id" />
 			<generator class="identity" />
 		</id>
+		<property name="times" type="int">
+			<column name="times" default="0" not-null="true" />
+		</property>
 		<property name="keyname" type="string">
 			<column name="keyname" length="20" not-null="true" />
 		</property>

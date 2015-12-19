@@ -29,16 +29,16 @@
 	    $("#selectaccount").val(pro[1]);
 	    
 	    $("#newbtn").fancybox({
-			'href':'personManage!goCreateEditor',
-			'width':'75%',
-			'height':'75%',
+			'href':'personManage!goEdit?role_code='+$("#role_code").val(),
+			'width' : 733,
+	        'height' : 530,
 			'autoScale':false,
 			'transitionIn':'none',
 			'transitionOut':'none',
 			'type':'iframe',
 			 'onClosed' : function() { 
-			        window.location.reload();	
-			    }
+		        window.location.reload();	
+		    }
 		});
 	});
 
@@ -69,17 +69,66 @@
 			allIDCheck += $(domEle).val() + ",";
 		});
 		//alert(allIDCheck)
-		$("#submitForm").attr("action", "personManage!ndelPerson?nid="+allIDCheck).submit();
+		if(confirm("您确定要删除吗？")){
+	    	$("#submitForm").attr("action", "personManage!ndelPerson?nid="+allIDCheck).submit();
+	    }
 	}
 	
-	function batchPass(){
-		
+	
+	function toBid(id){
+		if(confirm("您确定要禁用此人员吗？")){
+			$.ajax({
+		        type: "post",
+		        url: "changeBidAjax?changeBid",
+		        data:{//设置数据源
+		        	id:id
+		        },
+		        dataType: "json",
+		        success: function(data){
+		        	data = eval('(' + data + ')');
+		        	alert(data.message);
+		        	if(data.state == -1){
+		            	$("#bidbtn"+data.id).html("解禁");
+		            	$("#bid" + data.id).html("禁用中")
+		        	}
+		        	else{
+		        		$("#bidbtn"+data.id).html("禁用");
+		        		$("#bid" + data.id).html("正常")
+		        	}
+		        	$("passbtn" + data.id).html("");
+		        },
+		        error: function(XMLHttpRequest, textStatus, errorThrown){
+                    alert("XMLHttpRequest=" + XMLHttpRequest);
+                    alert("textStatus=" + textStatus);
+                    alert("errorThrown=" + errorThrown);
+                    return false;
+                }
+		   });	
+		}
 	}
 	
-	function toPass(){
-		
+	function toRenew(id){
+		if(confirm("您确定重置此人员密码吗？")){
+			$.ajax({
+		        type: "post",
+		        url: "changePasswordAjax?changePassword",
+		        data:{//设置数据源
+		        	id:id
+		        },
+		        dataType: "json",
+		        success: function(data){
+		        	data = eval('(' + data + ')');
+		        	alert(data.message);
+		        },
+		        error: function(XMLHttpRequest, textStatus, errorThrown){
+                    alert("XMLHttpRequest=" + XMLHttpRequest);
+                    alert("textStatus=" + textStatus);
+                    alert("errorThrown=" + errorThrown);
+                    return false;
+                }
+		   });	
+		}
 	}
-
 	
 	function jumpNormalPage(page,key){
 		if(jumpPage(page,key)){
@@ -94,7 +143,7 @@
 </head>
 <body>
 	<form id="submitForm" name="submitForm" action="" method="post">
-	    <input type="hidden" name="role_code" value="<s:property value='role_code'/>">
+	    <input type="hidden" id="role_code" name="role_code" value="<s:property value='role_code'/>">
 		<input type="hidden" name="allIDCheck" value="" id="allIDCheck"/>
 		<div id="container">
 			<div class="ui_content">
@@ -102,20 +151,19 @@
 					<div id="box_border">
 						<div id="box_top">搜索</div>
 						<div id="box_center">
-							状态
-							<select name="selectpro" id="selectstate" class="ui_select01">
+						状态<select name="selectpro" id="selectstate" class="ui_select01">
                                 <option value=""
                                 >--请选择--</option>
-                                <option value="1">申请中</option>
                                 <option value="0">正常</option>
                                 <option value="-1">禁用</option>
-                            </select>					
-						         账号<input type="text" id="selectaccount" name="selectpro" class="ui_input_txt02" />
+                            </select>	
+						   账号<input type="text" id="selectaccount" name="selectpro" class="ui_input_txt02" />
+						   <input type="hidden" id="selectrolename" name="selectpro" value="<s:property value='role.rolename'/>" />
+						   <input type="hidden" id="selectrolename" name="selectpro" value="<s:property value='role.rolename'/>" />
 						</div>
 						<div id="box_bottom">
 				    		<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
-							<input id="newbtn" type="button" value="新建" class="ui_input_btn01"/> 
-							<input type="button" value="禁用" class="ui_input_btn01" onclick="batchBid();" /> 
+							<input id="newbtn" type="button" value="新建" class="ui_input_btn01" /> 
 							<s:if test="#session.auth == 100">
 							<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();" /> 
 						    </s:if>
@@ -151,26 +199,26 @@
 								<td><s:property value="#row.address"/></td>
 								<td><s:property value="#row.qq"/></td>
 								<td><s:property value="#row.idcard"/></td>
-								<td>
+								<td id="bid<s:property value='#row.person_id'/>">
 								<s:if test="#row.state == -1">
 								禁用
 								</s:if>
-								<s:elseif test="#row.state == 0">
+								<s:else>
 								正常
-								</s:elseif>
-								<s:elseif test="#row.state == 1">
-								申请中
-								</s:elseif>
+								</s:else>
 								</td>
 								<td>
-							    	<s:if test="#row.state == 1">
-							    	<label style="cursor:pointer" id="passbtn<s:property value='#row.person_id'/>" onclick="toPass(<s:property value='#row.person_id'/>)">
-							    	 通过
-								    </label>
+								<label style="cursor:pointer" id="bidbtn<s:property value='#row.person_id'/>" onclick="toBid(<s:property value='#row.person_id'/>)">
+								   <s:if test="#row.state != -1">  
+								          禁用
 								    </s:if>
-								    <label style="cursor:pointer" id="bidbtn<s:property value='#row.person_id'/>" onclick="toBid(<s:property value='#row.person_id'/>)">禁用</label>
+								    <s:else>
+								         解禁
+								    </s:else>
+								    </label>
 									<s:if test="#session.auth == 100">
-						    			<label style="cursor:pointer" onclick="del(<s:property value='#row.person_id'/>)">删除</label>
+									 <label style="cursor:pointer"  onclick="toRenew(<s:property value='#row.person_id'/>)">重置</label>
+						    		<label style="cursor:pointer" onclick="del(<s:property value='#row.person_id'/>)">删除</label>
 								    </s:if>
 								</td>
 							</tr>

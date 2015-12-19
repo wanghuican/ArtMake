@@ -29,7 +29,39 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
 
 <query name="HQL_PERSONLIST_SELECT">
 <![CDATA[from Person as p where cast(p.state as string) like ? and p.account like ?
- and cast(p.role.role_code as string) = ?]]>
+ and p.role.rolename like ? and cast(p.role.role_code as string) = ?]]>
+</query>
+
+<query name="HQL_ROLELIST">
+<![CDATA[from Role as r]]>
+</query>
+
+<query name="HQL_ROLELIST_SELECT">
+<![CDATA[from Role as r where cast(r.role_code as string) like ? and r.rolename like ?]]>
+</query>
+
+<query name="HQL_ROLELIST_CODE">
+<![CDATA[from Role as r where r.role_code = ?]]>
+</query>
+
+<query name="HQL_ROLELIST_ROLENAME">
+<![CDATA[from Role as r where r.rolename = ?]]>
+</query>
+
+<query name="HQL_AUTHLIST">
+<![CDATA[from Auth as a]]>
+</query>
+
+<query name="HQL_AUTHLIST_SELECT">
+<![CDATA[from Auth as a where a.upnum >= ? and a.upnum <=? and a.lasttime >= ? and a.lasttime <=? ]]>
+</query>
+
+<query name="HQL_KEYLIST">
+<![CDATA[from Key as k]]>
+</query>
+
+<query name="HQL_KEYLIST_SELECT">
+<![CDATA[from Key as k where k.times >= ? and k.times <= ? ]]>
 </query>
 </hibernate-mapping>
 

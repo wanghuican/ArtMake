@@ -5,9 +5,9 @@ public class Common {
 	public final static String TABLE_PERSON = "Person";
 	public final static String TABLE_ROLE = "Role";
 	public final static String TABLE_ARTICLE = "Article";
+	public final static String TABLE_AUTH = "Auth";
 	
-	
-	//role_code
+	//role
 	public final static int CODE_USER = 0;
 	public final static int CODE_ARTIST = 5;
 	public final static int CODE_EDITER = 10;
@@ -31,8 +31,19 @@ public class Common {
 	public final static String HQL_ADCOUNT = "HQL_ADCOUNT";
 	public final static String HQL_PERSONLIST = "HQL_PERSONLIST";
 	public final static String HQL_PERSONLIST_SELECT = "HQL_PERSONLIST_SELECT";
+	public final static String HQL_ROLELIST = "HQL_ROLELIST";
+	public final static String HQL_ROLELIST_SELECT = "HQL_ROLELIST_SELECT";
+	public final static String HQL_AUTHLIST = "HQL_AUTHLIST";
+	public final static String HQL_AUTHLIST_SELECT = "HQL_AUTHLIST_SELECT";
+	public final static String HQL_KEYLIST = "HQL_KEYLIST";
+	public final static String HQL_KEYLIST_SELECT = "HQL_KEYLIST_SELECT";
+	public final static String HQL_ROLELIST_CODE = "HQL_ROLELIST_CODE";
+	public final static String HQL_ROLELIST_ROLENAME = "HQL_ROLELIST_ROLENAME";
 	
 	//common
-	public final static int BACKSTAGE_PAGESIZE = 10;
+	public final static int BACKSTAGE_PAGESIZE = 3;
 	public final static int PAGESIZE = 6;
+	public final static int MIN = -999999;
+	public final static int MAX = 999999;
+	public final static String DEFAULT_PASSWORD = "666666";
 }

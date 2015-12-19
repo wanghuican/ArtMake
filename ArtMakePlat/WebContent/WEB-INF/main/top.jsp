@@ -10,6 +10,11 @@ function goAdminLogin()
 {
 	window.location.href = "forward!goAdminLogin";
 }
+
+function goInfo(){
+	window.location.href = "person!goInfo"
+}
+
 </script>
 <title>艺术品定制平台</title>
 </head>
@@ -18,7 +23,7 @@ function goAdminLogin()
               header
 =================================-->
 <header>
-<div onclick="goAdminLogin()" style="cursor:pointer;position:absolute;z-index:100;top:1%;left:95%;color:black;width:30%">管理员登陆</div>
+<div onclick="goAdminLogin()" style="cursor:pointer;position:absolute;z-index:100;top:1%;left:95%;color:black;width:5%">管理员登陆</div>
   <div class="header_top">
     <div class="container">
       <div class="row">
@@ -52,13 +57,12 @@ function goAdminLogin()
 						<a href="forward!goUser">                             
                                                         登录/注册</a>
                         </s:if> <s:else>
-                                                        亲爱的<s:property value="#session.person.role.rolename" />:
-                          <s:property value="#session.person.realname" />
-                          <a href="logout"
-								class="btn" data-type="submit"
-								style="font-family: 'Microsoft YaHei UI'">登出</a>
-								</s:else>
-								</li>
+                        <div style="cursor:pointer" onclick="goInfo()">
+                        <s:property value="#session.person.role.rolename" />:
+                        <s:property value="#session.person.realname" />
+                        </div>
+						</s:else>
+						</li>
              </ul>
             </nav>
             <div class="clear"></div>

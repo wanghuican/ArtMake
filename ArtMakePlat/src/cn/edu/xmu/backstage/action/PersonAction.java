@@ -1,17 +1,20 @@
 package cn.edu.xmu.backstage.action;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import net.sf.json.JSONObject;
 import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.Role;
 import cn.edu.xmu.service.LoginService;
 import cn.edu.xmu.service.PersonService;
+import cn.edu.xmu.service.RoleService;
 import cn.edu.xmu.util.Common;
 import cn.edu.xmu.util.WebTool;
 
@@ -25,7 +28,16 @@ public class PersonAction extends ActionSupport {
 	 */
 	@Resource(name = "personService")
 	PersonService personService;
+	
+	/**
+	  * @Fields roleService : TODO（用一句话描述这个变量表示什么）
+	  */
+	@Resource(name = "roleService")
+	RoleService roleService;
+	
 	List<Person> personList;
+	
+	List<Role> roleList;
 	
 	List<String> selectpro;
 	
@@ -33,16 +45,11 @@ public class PersonAction extends ActionSupport {
 	
 	private Person person;
 	
+	private Role role;
+	
 	private int id;
 	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	private String result;
 	/**
 	 * getter method
 	 * @return the personService
@@ -83,6 +90,24 @@ public class PersonAction extends ActionSupport {
 	
 	/**
 	 * getter method
+	 * @return the role
+	 */
+	
+	public Role getRole() {
+		return role;
+	}
+
+	/**
+	 * setter method
+	 * @param role the role to set
+	 */
+	
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	/**
+	 * getter method
 	 * @return the selectpro
 	 */
 	
@@ -100,14 +125,6 @@ public class PersonAction extends ActionSupport {
 	}
 	
 	
-
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
 
 	/**
 	 * getter method
@@ -127,10 +144,105 @@ public class PersonAction extends ActionSupport {
 		this.role_code = role_code;
 	}
 
+	
+	/**
+	 * getter method
+	 * @return the person
+	 */
+	
+	public Person getPerson() {
+		return person;
+	}
+
+	/**
+	 * setter method
+	 * @param person the person to set
+	 */
+	
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	/**
+	 * getter method
+	 * @return the id
+	 */
+	
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * setter method
+	 * @param id the id to set
+	 */
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+
+	/**
+	 * getter method
+	 * @return the roleService
+	 */
+	
+	public RoleService getRoleService() {
+		return roleService;
+	}
+
+	/**
+	 * setter method
+	 * @param roleService the roleService to set
+	 */
+	
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
+	}
+
+	/**
+	 * getter method
+	 * @return the roleList
+	 */
+	
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+
+	/**
+	 * setter method
+	 * @param roleList the roleList to set
+	 */
+	
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
+	}
+	
+	
+
+	/**
+	 * getter method
+	 * @return the result
+	 */
+	
+	public String getResult() {
+		return result;
+	}
+
+	/**
+	 * setter method
+	 * @param result the result to set
+	 */
+	
+	public void setResult(String result) {
+		this.result = result;
+	}
+
 	public String execute() throws Exception {
 		if(getSelectpro() != null){
 			setSelectpro(getSelectpro());
-			selectpro = WebTool.dealProList(selectpro);
+			selectpro = WebTool.dealStrProList(selectpro);
 			//WebTool.printList(selectpro);
 		}else{
 			selectpro = new ArrayList<String>();
@@ -140,21 +252,19 @@ public class PersonAction extends ActionSupport {
 		int count = personService.getPersonCount(getRole_code(),selectpro);
 		page = WebTool.dealPage(count,page,Common.BACKSTAGE_PAGESIZE);
 		setPersonList(personService.getPersonList(getRole_code(),selectpro, page, Common.BACKSTAGE_PAGESIZE));
+		if(getRole_code() == 5){
+	    	setRoleList(roleService.getRoleByCode(getRole_code()));
+		}else{
+			setRole(roleService.getRoleByCode(getRole_code()).get(0));
+		}
 		switch(getRole_code()){
 	    	case 0: 
 	    		return "user";
 	    	case 5:
 	    		return "artist";
-	    	case 10:
-	    		return "editer";
-	    	case 20:
-	     		return "mainediter";
-	     	case 50:
-	    		return "admin";
 	    	default:
-	    		break;
+	    		return "common";
 	   	}
-	    	return null;
 	}
 	
 	public void deletePerson() throws IOException{
@@ -171,59 +281,69 @@ public class PersonAction extends ActionSupport {
 	    WebTool.alertMessage("删除人员成功", "personManage?role_code=" + getRole_code());
 	}
 	
-	public String createAdmin() throws Exception{
-		//person.setRole(new Role(1, 0, "用户"));
-		person.setRole(new Role(9, 50, "管理员"));
+	public String goEdit(){
+		setRole_code(getRole_code());
+		if(getRole_code() == 5){
+	    	setRoleList(roleService.getRoleByCode(getRole_code()));
+		}else{
+			setRole(roleService.getRoleByCode(getRole_code()).get(0));
+		}
+		return "edit";
+	}
+	
+	public String savePerson() throws IOException{
+		Role role = roleService.getRoleById(getPerson().getRole().getRole_id());
+		personService.savePerson(getPerson());
+		WebTool.alertMessage("新建"+ role.getRolename() +"成功！", 
+				"personManage!goEdit?role_code=" + role.getRole_code());
+		return null;	
+	}
+	
+	public String toPass() throws IOException{
+		Person person = personService.getPersonById(getId());
+		Role role = roleService.getRoleByRoleName(person.getRole().getFrolename());
+		person.setRole(role);
+		person.setState(0);
 		personService.savePerson(person);
-		WebTool.alertMessage("新建管理员成功！", "personManage!goCreateAdmin");
-		return "createAdminSuccess";
+		WebTool.alertMessage("通过审核成功,此人员成为" + role.getRolename(),
+				"personManage?role_code=" + getRole_code());
+		return null;
 	}
 	
-	public String goCreateAdmin(){
-		return "gocreateadmin";
+	public String toNpass() throws IOException{
+		String[] pids = WebTool.getNids();
+		for(String pid:pids){
+			Person person = personService.getPersonById(Integer.parseInt(pid));
+			Role role = roleService.getRoleByRoleName(person.getRole().getFrolename());
+			person.setRole(role);
+			person.setState(0);
+			personService.savePerson(person);
+		}
+		WebTool.alertMessage("批量通过审核成功","personManage?role_code=" + getRole_code());
+		return null;
 	}
 	
-	public String createMainEditor() throws Exception{
-		person.setRole(new Role(8, 20, "主编人员"));
+	public String changeBid(){
+		Person person = personService.getPersonById(getId());
+		personService.changeBid(person);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("message",person.getState() == -1?"禁用成功":"取消禁用成功");
+		map.put("state", person.getState());
+		map.put("id", getId());
+		JSONObject json = JSONObject.fromObject(map);
+		result = json.toString();
+		return SUCCESS;
+	}
+	
+	public String changePassword(){
+		Person person = personService.getPersonById(getId());
+		person.setPassword(Common.DEFAULT_PASSWORD);
 		personService.savePerson(person);
-		WebTool.alertMessage("新建主编人员成功!", "personManage!goCreateMainEditor");
-		return "createMainEditorSuccess";
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("message","重置密码成功,充值后密码为" + Common.DEFAULT_PASSWORD);
+		JSONObject json = JSONObject.fromObject(map);
+		result = json.toString();
+		return SUCCESS;
 	}
 	
-	public String goCreateMainEditor(){
-		return "gocreatemaineditor";
-	}
-	
-	public String createEditor() throws Exception{
-		person.setRole(new Role(7, 10, "采编人员"));
-		personService.savePerson(person);
-		WebTool.alertMessage("新建采编人员成功！", "personManage!goCreateEditor");
-		return "createEditorSuccess";
-	}
-	
-	public String goCreateEditor(){
-		return "gocreateeditor";
-	}
-	
-	public String createArtist() throws Exception{
-		person.setRole(new Role(2, 5, "低级艺术家"));
-		personService.savePerson(person);
-		WebTool.alertMessage("新建低级艺术家成功！", "personManage!goCreateArtist");
-		return "createArtistSuccess";
-	}
-	
-	public String goCreateArtist(){
-		return "gocreateartist";
-	}
-	
-	public String createUser() throws Exception{
-		person.setRole(new Role(1, 0, "用户"));
-		personService.savePerson(person);
-		WebTool.alertMessage("新建用户成功！", "personManage!goCreateUser");
-		return "createUserSuccess";
-	}
-	
-	public String goCreateUser(){
-		return "gocreateuser";
-	}
 }

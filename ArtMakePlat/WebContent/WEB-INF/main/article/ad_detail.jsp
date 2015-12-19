@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
+<title>个人中心</title>
 <link rel="stylesheet" href="css/style.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
@@ -56,7 +56,7 @@
           
           </div>
           <s:if test="article.person.person_id != ''">
-          <div align="right"><h2><a href="#">>>>>前往：<s:property value='article.person.realname'/></a></h2></div>
+          <div align="right"><h2><a href="person!goInfo?id=<s:property value='article.person.person_id'/>">>>>>前往：<s:property value='article.person.realname'/></a></h2></div>
           </s:if>
           <br>
         </div>

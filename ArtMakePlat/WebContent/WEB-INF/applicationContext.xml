@@ -30,7 +30,7 @@
 		</property>
 		<!-- 指定连接数据库的密码 -->
 		<property name="password">
-			<value>7502111</value>
+			<value>root</value>
 		</property>
 	</bean>
 	<!-- 定义Hibernate的SessionFactory -->
@@ -60,7 +60,9 @@
 				<value>cn/edu/xmu/entity/Demand.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Proimg.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Prokey.hbm.xml</value>
+				<value>cn/edu/xmu/entity/Perkey.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Demkey.hbm.xml</value>
+				<value>cn/edu/xmu/entity/Auth.hbm.xml</value>
 
 				<value>cn/edu/xmu/entity/named-queries.hbm.xml</value>
 				<value>cn/edu/xmu/entity/backstage-named-queries.hbm.xml</value>
@@ -79,6 +81,8 @@
 	<bean id="persondao" class="cn.edu.xmu.daoImpl.PersonDaoImpl"></bean>
 	<bean id="articledao" class="cn.edu.xmu.daoImpl.ArticleDaoImpl"></bean>
 	<bean id="roledao" class="cn.edu.xmu.daoImpl.RoleDaoImpl"></bean>
+	<bean id="authdao" class="cn.edu.xmu.daoImpl.AuthDaoImpl"></bean>
+	<bean id="keydao" class="cn.edu.xmu.daoImpl.KeyDaoImpl"></bean>
 	<!-- 配置事务 -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -109,6 +113,8 @@
 	<bean id="articleService" class="cn.edu.xmu.serviceImpl.ArticleServiceImpl"></bean>
 	<bean id="personService" class="cn.edu.xmu.serviceImpl.PersonServiceImpl"></bean>
 	<bean id="roleService" class="cn.edu.xmu.serviceImpl.RoleServiceImpl"></bean>
+	<bean id="authService" class="cn.edu.xmu.serviceImpl.AuthServiceImpl"></bean>
+	<bean id="keyService" class="cn.edu.xmu.serviceImpl.KeyServiceImpl"></bean>
 	<context:annotation-config />
 
 	<!-- 开启Spring的Bean自动扫描机制来查找与管理Bean实例 -->

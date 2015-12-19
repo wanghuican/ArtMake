@@ -96,10 +96,10 @@ public class BaseDaoImpl implements BaseDao {
 	 * java.lang.List)
 	 */
 	@Override
-	public Object loadObject(String nq, List<String> pro) {
+	public Object loadObject(String nq, List pro) {
 		// TODO Auto-generated method stub
 		final String nq1 = nq;
-		final List<String> pro1 = pro;
+		final List pro1 = pro;
 		Object obj = null;
 		List list = hibernateTemplate.executeFind(new HibernateCallback() {
 			// 重写查询方法
@@ -156,8 +156,8 @@ public class BaseDaoImpl implements BaseDao {
 	 * @see cn.edu.xmu.dao.BaseDao#listAll(java.lang.String)
 	 */
 	@Override
-	public List listAll(String clazz) {
-		return hibernateTemplate.find("from " + clazz + " as c");
+	public List listAll(String nq) {
+		return hibernateTemplate.find(nq);
 	}
 
 	/*
@@ -174,10 +174,10 @@ public class BaseDaoImpl implements BaseDao {
 	 * @see cn.edu.xmu.dao.BaseDao#listAll(java.lang.String, int, int)
 	 */
 	@Override
-	public List listAll(String clazz, int pageNo, int pageSize) {
+	public List listAll(String nq, int pageNo, int pageSize) {
 		final int pNo = pageNo;
 		final int pSize = pageSize;
-		final String hqlString = "from " + clazz + " as c ";
+		final String hqlString = nq;
 		List list = hibernateTemplate
 				.executeFind(new HibernateCallback<Object>() {
 
@@ -197,32 +197,6 @@ public class BaseDaoImpl implements BaseDao {
 		return list;
 	}
 
-	/*
-	 * Title: countAll Description:
-	 * 
-	 * @param clazz
-	 * 
-	 * @return
-	 * 
-	 * @see cn.edu.xmu.dao.BaseDao#countAll(java.lang.String)
-	 */
-	@Override
-	public int countAll(String clazz) {
-		// selcet count(*) from Post 这里不加'Post'
-		final String nq = "select count(*) from  " + clazz + " as c ";
-		Long count = (Long) hibernateTemplate
-				.execute(new HibernateCallback<Object>() {
-
-					@Override
-					public Object doInHibernate(Session sn)
-							throws HibernateException, SQLException {
-						Query query = sn.createQuery(nq);
-						query.setMaxResults(1);
-						return query.uniqueResult();
-					}
-				});
-		return count.intValue();
-	}
 
 	/*
 	 * Title: query Description:
@@ -257,10 +231,10 @@ public class BaseDaoImpl implements BaseDao {
 	  * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String, java.lang.List)
 	  */
 	@Override
-	public List query(String nq, List<String> pro) {
+	public List query(String nq, List pro) {
 		// TODO Auto-generated method stub
 		final String nq1 = nq;
-		final List<String> pro1 = pro;
+		final List pro1 = pro;
 
 		return hibernateTemplate.executeFind(new HibernateCallback<Object>() {
 
@@ -324,11 +298,11 @@ public class BaseDaoImpl implements BaseDao {
 	  * @see cn.edu.xmu.dao.BaseDao#query(java.lang.String, java.lang.List, int, int)
 	  */
 	@Override
-	public List query(String nq,List<String> pro, int pageNo, int pageSize){
+	public List query(String nq,List pro, int pageNo, int pageSize){
 		final int pNo = pageNo;
 		final int pSize = pageSize;
 		final String nqString = nq;
-		final List<String> pro1 = pro;
+		final List pro1 = pro;
 		List list = hibernateTemplate
 				.executeFind(new HibernateCallback<Object>() {
 					@Override
@@ -386,9 +360,9 @@ public class BaseDaoImpl implements BaseDao {
 	  * @see cn.edu.xmu.dao.BaseDao#countQuery(java.lang.String, java.lang.List)
 	  */
 	@Override
-	public int countQuery(String nq,List<String> pro) {
+	public int countQuery(String nq,List pro) {
 		final String nq1 = nq;
-		final List<String> pro1 = pro;
+		final List pro1 = pro;
 		Long count = (Long) hibernateTemplate.execute(new HibernateCallback() {
 
 			@Override

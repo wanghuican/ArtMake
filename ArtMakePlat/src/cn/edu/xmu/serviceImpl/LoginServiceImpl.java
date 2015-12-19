@@ -55,6 +55,9 @@ public class LoginServiceImpl implements LoginService {
 		if(p==null){
 			return 1;//不存在
 		}else{
+			if(p.getState() == -1){
+				return -1;
+			}
 			if(getAuth(p)<=10){
 				if(p.getPassword().equals(person.getPassword()))
 				{

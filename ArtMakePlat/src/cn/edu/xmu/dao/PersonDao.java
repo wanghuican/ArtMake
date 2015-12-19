@@ -33,7 +33,7 @@ public interface PersonDao {
 
 	public int countPerson(int role_code,List<String> pro);
 	
-	public void savePerson(Person person);
+    public void savePerson(Person person);
 	
 	public Person getPersonById(int id);
 	

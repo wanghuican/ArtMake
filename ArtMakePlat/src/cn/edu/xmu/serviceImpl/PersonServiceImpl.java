@@ -79,6 +79,24 @@ public class PersonServiceImpl implements PersonService {
 		// TODO Auto-generated method stub
 		dao.deletePersonById(id);
 	}
-
 	
+	public void changeBid(Person person){
+		if(person.getState() == -1)
+			person.setState(0);
+		else{
+			person.setState(-1);
+		}
+		dao.savePerson(person);
+	}
+
+	@Override
+	public void changeIdentify(Person person) {
+		// TODO Auto-generated method stub
+		if(person.getState() == 1)
+			person.setState(0);
+		else{
+			person.setState(1);
+		}
+		dao.savePerson(person);
+	}
 }

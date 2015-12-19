@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2015-12-17 21:47:24
+Date: 2015-12-20 06:22:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `bn_article` (
   PRIMARY KEY (`article_id`),
   KEY `pid` (`person_id`),
   CONSTRAINT `pid` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_article
@@ -43,12 +43,37 @@ INSERT INTO `bn_article` VALUES ('16', '大广告2', null, '1449944620157.jpg', 
 INSERT INTO `bn_article` VALUES ('23', '第一次大广告', '<p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p><p>吾问无为谓吾问无为谓呜呜呜呜呜呜呜呜呜</p>', '1450105816162.jpg', '1', '2015-12-14 23:10:16', '2', '2015-12-14,2015-12-15,2015-12-16', '1', 'small', null);
 INSERT INTO `bn_article` VALUES ('24', '第二个广告了', '<p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad</p><p>wadasdad<img src=\"http://img.baidu.com/hi/jx2/j_0059.gif\"/></p>', '1450105916038.jpg', '1', '2015-12-14 23:11:56', '2', '2015-12-15,2015-12-17', '1', 'big', null);
 INSERT INTO `bn_article` VALUES ('25', '你猜是什么广告', '<p><br/></p><p>大大大</p><blockquote><p>大大大</p></blockquote><p>大大大</p><blockquote><p>大大大</p></blockquote>', '1450112369538.jpg', '1', '2015-12-15 00:59:29', '2', '2015-12-15', '1', 'small', null);
-INSERT INTO `bn_article` VALUES ('26', '这是一篇咨询', '<p>打第三大的</p><p>dasd爱的</p><p><br/></p><p>大大大</p><p><br/></p><p><br/></p><p>大苏打</p>', '1450112487855.jpg', '0', '2015-12-15 01:01:27', '1', '2015-12-16,2015-12-16,', '0', null, null);
+INSERT INTO `bn_article` VALUES ('26', '这是一篇咨询', '<p>打第三大的</p><p>dasd爱的</p><p><br/></p><p>大大大</p><p><br/></p><p><br/></p><p>大苏打</p>', '1450112487855.jpg', '1', '2015-12-15 01:01:27', '1', '2015-12-16,2015-12-16,', '1', null, null);
 INSERT INTO `bn_article` VALUES ('27', 'lalala', '<p>111</p>', '1450113047790.jpg', '1', '2015-12-15 01:10:47', '2', '2015-12-15,2015-12-15', '1', 'big', null);
 INSERT INTO `bn_article` VALUES ('29', 'adsadffsdfsa', '<p>dsadad</p><p>ads</p><p>d</p><p>a</p><p>sd</p><p>ad</p><p>a</p><p>d</p><p>ad</p><p>a</p><p><br/></p>', '1450113105733.jpg', '1', '2015-12-15 01:11:45', '2', '2015-12-15', '1', 'big', null);
 INSERT INTO `bn_article` VALUES ('30', 'wanghuicandsadad', '<p>dasdasd</p><p>ad</p><p>sa</p><p>d</p><p>ad</p><p>a</p><p>sd</p><p>ad</p><p>a</p>', '1450113165841.jpg', '1', '2015-12-15 01:12:45', '2', '2015-12-15', '1', 'small', null);
 INSERT INTO `bn_article` VALUES ('31', 'wada', '<p>dsadasjdlkajdslada</p><p>d</p><p>sad</p><p>a</p><p>d</p><p>asd</p><p>a</p><p>d</p><p>asd</p><p><br/></p><p>asd</p><p>a</p>', '1450113186043.jpg', '1', '2015-12-15 01:13:06', '2', '2015-12-15', '1', 'small', null);
 INSERT INTO `bn_article` VALUES ('33', '十大啊啊啊啊啊啊啊啊', '<p>湿哒哒</p>', '1450113888170.jpg', '1', '2015-12-15 01:24:48', null, '2015-12-16', '1', 'big', null);
+INSERT INTO `bn_article` VALUES ('34', '这是广告', '<p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p>', '1450369290051.jpg', '1', '2015-12-18 00:21:30', null, '2015-12-18,2015-12-19', '1', 'big', null);
+INSERT INTO `bn_article` VALUES ('35', '今天的广告', '<p><br/></p><p>asfdada</p><p>asfdada</p><p>asfdada</p><p>asfdada</p><p>asfdada</p><p>asfdada</p>', '1450558906854.jpg', '1', '2015-12-20 05:01:46', '2', '2015-12-20', '1', 'small', null);
+
+-- ----------------------------
+-- Table structure for `bn_auth`
+-- ----------------------------
+DROP TABLE IF EXISTS `bn_auth`;
+CREATE TABLE `bn_auth` (
+  `auth_id` int(12) NOT NULL AUTO_INCREMENT,
+  `role_id` int(12) DEFAULT NULL,
+  `upnum` int(12) DEFAULT NULL,
+  `lasttime` int(12) DEFAULT NULL,
+  PRIMARY KEY (`auth_id`),
+  KEY `authrole` (`role_id`),
+  CONSTRAINT `authrole` FOREIGN KEY (`role_id`) REFERENCES `bn_role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bn_auth
+-- ----------------------------
+INSERT INTO `bn_auth` VALUES ('1', '2', '5', '48');
+INSERT INTO `bn_auth` VALUES ('2', '3', '8', '72');
+INSERT INTO `bn_auth` VALUES ('3', '4', '12', '120');
+INSERT INTO `bn_auth` VALUES ('4', '5', '18', '196');
+INSERT INTO `bn_auth` VALUES ('5', '6', '30', '360');
 
 -- ----------------------------
 -- Table structure for `bn_cart`
@@ -97,17 +122,22 @@ INSERT INTO `bn_demand` VALUES ('2', '22', '33', '11', '2', '1', '很好的需�
 DROP TABLE IF EXISTS `bn_key`;
 CREATE TABLE `bn_key` (
   `key_id` int(12) NOT NULL AUTO_INCREMENT,
+  `times` int(10) NOT NULL DEFAULT '0' COMMENT '使用次数',
   `keyname` varchar(20) NOT NULL,
   PRIMARY KEY (`key_id`),
   KEY `keyname` (`keyname`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_key
 -- ----------------------------
-INSERT INTO `bn_key` VALUES ('3', '肖像');
-INSERT INTO `bn_key` VALUES ('1', '陶瓷');
-INSERT INTO `bn_key` VALUES ('2', '青花瓷');
+INSERT INTO `bn_key` VALUES ('1', '0', '陶器');
+INSERT INTO `bn_key` VALUES ('2', '11', '青花');
+INSERT INTO `bn_key` VALUES ('3', '12', '字');
+INSERT INTO `bn_key` VALUES ('4', '13', '木雕');
+INSERT INTO `bn_key` VALUES ('5', '12', '玉器');
+INSERT INTO `bn_key` VALUES ('6', '14', '根雕');
+INSERT INTO `bn_key` VALUES ('7', '15', '画');
 
 -- ----------------------------
 -- Table structure for `bn_message`
@@ -170,18 +200,21 @@ CREATE TABLE `bn_person` (
   PRIMARY KEY (`person_id`),
   KEY `role_id` (`role_id`),
   CONSTRAINT `role_id` FOREIGN KEY (`role_id`) REFERENCES `bn_role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_person
 -- ----------------------------
 INSERT INTO `bn_person` VALUES ('1', 'admin', 'admin', '王辉灿', null, null, null, null, null, null, '超级管理员', '0', '10');
-INSERT INTO `bn_person` VALUES ('2', 'wanghuican', 'wanghuican', '王辉灿', '329669642@qq.com', '15659824572', '福建泉州南安水头', '男', null, '350583199501234358', null, '1', '1');
-INSERT INTO `bn_person` VALUES ('3', 'whcart', '1234567890', '王艺术', null, null, null, null, null, null, '艺术家', '0', '2');
+INSERT INTO `bn_person` VALUES ('2', 'wanghuican', '666666', '王辉灿', '329669642@qq.com', '15659824572', '福建泉州南安水头', '男', '329669642', '350583199501234358', '啊啊啊啊', '0', '1');
+INSERT INTO `bn_person` VALUES ('3', 'whcart', '1234567890', '王艺术', '', '', '', '男', '777', '', '                                                                艺术家\r\n           ', '0', '6');
+INSERT INTO `bn_person` VALUES ('4', 'whcart2', '1234567890', '王艺术2', null, null, null, null, null, null, null, '0', '5');
 INSERT INTO `bn_person` VALUES ('10', 'whccb', '1234567890', '王采编', null, null, null, null, null, null, '采编', '0', '7');
-INSERT INTO `bn_person` VALUES ('11', 'wanghuican3', 'wanghuican', '王辉灿', null, null, null, null, null, null, '只是测试', '0', '1');
 INSERT INTO `bn_person` VALUES ('12', 'whczb', '1234567890', '王辉灿', null, null, null, null, null, null, '测试3', '0', '8');
 INSERT INTO `bn_person` VALUES ('13', 'whcad', '1234567890', '王辉灿', null, null, null, null, null, null, '测试', '0', '9');
+INSERT INTO `bn_person` VALUES ('19', '55', '66', '', '', '', '', '', '', '', null, '0', '2');
+INSERT INTO `bn_person` VALUES ('20', '66', '77', '', '', '', '', '', '', '', null, '0', '2');
+INSERT INTO `bn_person` VALUES ('21', '77', '88', '', '', '', '', '', '', '', null, '0', '2');
 
 -- ----------------------------
 -- Table structure for `bn_proaction`
@@ -239,22 +272,24 @@ CREATE TABLE `bn_role` (
   `role_id` int(12) NOT NULL AUTO_INCREMENT,
   `role_code` int(4) NOT NULL COMMENT '0:代表普通用户,1-5:代表5个级别的艺术家；10：代表管理员;99:代表超级管理员',
   `rolename` varchar(20) NOT NULL,
-  PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `frolename` varchar(20) DEFAULT NULL COMMENT '下一级角色',
+  PRIMARY KEY (`role_id`),
+  KEY `frole` (`frolename`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_role
 -- ----------------------------
-INSERT INTO `bn_role` VALUES ('1', '0', '用户');
-INSERT INTO `bn_role` VALUES ('2', '5', '低级艺术家');
-INSERT INTO `bn_role` VALUES ('3', '5', '初级艺术家');
-INSERT INTO `bn_role` VALUES ('4', '5', '中级艺术家');
-INSERT INTO `bn_role` VALUES ('5', '5', '高级艺术家');
-INSERT INTO `bn_role` VALUES ('6', '5', '顶级艺术家');
-INSERT INTO `bn_role` VALUES ('7', '10', '采编人员');
-INSERT INTO `bn_role` VALUES ('8', '20', '主编人员');
-INSERT INTO `bn_role` VALUES ('9', '50', '管理员');
-INSERT INTO `bn_role` VALUES ('10', '100', '超级管理员');
+INSERT INTO `bn_role` VALUES ('1', '0', '用户', '低级艺术家');
+INSERT INTO `bn_role` VALUES ('2', '5', '低级艺术家', '初级艺术家');
+INSERT INTO `bn_role` VALUES ('3', '5', '初级艺术家', '中级艺术家');
+INSERT INTO `bn_role` VALUES ('4', '5', '中级艺术家', '高级艺术家');
+INSERT INTO `bn_role` VALUES ('5', '5', '高级艺术家', '顶级艺术家');
+INSERT INTO `bn_role` VALUES ('6', '5', '顶级艺术家', '');
+INSERT INTO `bn_role` VALUES ('7', '10', '采编人员', '');
+INSERT INTO `bn_role` VALUES ('8', '20', '主编人员', '');
+INSERT INTO `bn_role` VALUES ('9', '50', '管理员', '');
+INSERT INTO `bn_role` VALUES ('10', '100', '超级管理员', '');
 
 -- ----------------------------
 -- Table structure for `rl_address`
@@ -353,6 +388,31 @@ CREATE TABLE `rl_demrecord` (
 -- ----------------------------
 -- Records of rl_demrecord
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `rl_perkey`
+-- ----------------------------
+DROP TABLE IF EXISTS `rl_perkey`;
+CREATE TABLE `rl_perkey` (
+  `record_id` int(12) NOT NULL AUTO_INCREMENT,
+  `person_id` int(12) NOT NULL,
+  `key_id` int(12) NOT NULL,
+  PRIMARY KEY (`record_id`),
+  KEY `keyperson` (`key_id`),
+  KEY `personkey` (`person_id`),
+  CONSTRAINT `keyperson` FOREIGN KEY (`key_id`) REFERENCES `bn_key` (`key_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `personkey` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rl_perkey
+-- ----------------------------
+INSERT INTO `rl_perkey` VALUES ('1', '3', '1');
+INSERT INTO `rl_perkey` VALUES ('2', '3', '2');
+INSERT INTO `rl_perkey` VALUES ('3', '3', '3');
+INSERT INTO `rl_perkey` VALUES ('4', '4', '1');
+INSERT INTO `rl_perkey` VALUES ('5', '4', '4');
+INSERT INTO `rl_perkey` VALUES ('6', '4', '5');
 
 -- ----------------------------
 -- Table structure for `rl_procart`
@@ -455,26 +515,3 @@ CREATE TABLE `rl_prorecord` (
 -- ----------------------------
 -- Records of rl_prorecord
 -- ----------------------------
-
--- ----------------------------
--- Table structure for `rl_roleauth`
--- ----------------------------
-DROP TABLE IF EXISTS `rl_roleauth`;
-CREATE TABLE `rl_roleauth` (
-  `record_id` int(12) NOT NULL,
-  `role_id` int(12) NOT NULL,
-  `upnum` int(12) NOT NULL,
-  `lasttime` int(12) NOT NULL,
-  PRIMARY KEY (`record_id`),
-  KEY `roleart` (`role_id`),
-  CONSTRAINT `roleart` FOREIGN KEY (`role_id`) REFERENCES `bn_role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of rl_roleauth
--- ----------------------------
-INSERT INTO `rl_roleauth` VALUES ('1', '1', '3', '48');
-INSERT INTO `rl_roleauth` VALUES ('2', '2', '5', '72');
-INSERT INTO `rl_roleauth` VALUES ('3', '3', '8', '120');
-INSERT INTO `rl_roleauth` VALUES ('4', '4', '12', '196');
-INSERT INTO `rl_roleauth` VALUES ('5', '5', '20', '360');

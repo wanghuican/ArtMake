@@ -41,7 +41,7 @@ public class ArticleDaoImpl implements ArticleDao {
 				List<Article> articleList  = new ArrayList<Article>();
 				List<String> pro = new ArrayList<String>();
 				pro.add(DateHandler.getToday());
-				WebTool.dealProList(pro);
+				WebTool.dealStrProList(pro);
 				pro.add("1");
 				pro.add(type+"");
 			    articleList = dao.query(Common.HQL_ARTICLELIST_TODAY,pro);
@@ -64,7 +64,7 @@ public class ArticleDaoImpl implements ArticleDao {
 				List<Article> articleList  = new ArrayList<Article>();
 				List<String> pro = new ArrayList<String>();
 				pro.add(DateHandler.getToday());
-				WebTool.dealProList(pro);
+				WebTool.dealStrProList(pro);
 				pro.add("1");
 				pro.add(type+"");
 			    articleList = dao.query(Common.HQL_ARTICLELIST_TODAY,pro,pageNo, pageSize);

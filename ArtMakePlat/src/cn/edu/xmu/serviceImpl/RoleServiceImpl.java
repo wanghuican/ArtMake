@@ -10,6 +10,7 @@
 
 package cn.edu.xmu.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -44,9 +45,61 @@ public class RoleServiceImpl implements RoleService {
 	 */
 
 	@Override
-	public List<Role> getAllRole() {
+	public List<Role> getAllRole(List<String> pro) {
 		// TODO Auto-generated method stub
-		return dao.getAllRole();
+		return dao.getAllRole(pro);
+	}
+	
+	/*
+	  * Title: getAllRole
+	  * Description:
+	  * @param pro
+	  * @param pageNo
+	  * @param pageSize
+	  * @return
+	  * @see cn.edu.xmu.service.RoleService#getAllRole(java.util.List, int, int)
+	  */
+	@Override
+	public List<Role> getAllRole(List<String> pro,int pageNo,int pageSize){
+		return dao.getAllRole(pro, pageNo, pageSize);
 	}
 
+	@Override
+	public int countRole(List<String> pro) {
+		// TODO Auto-generated method stub
+		return dao.countRole(pro);
+	}
+
+	@Override
+	public void deleteRoleById(int id) {
+		// TODO Auto-generated method stub
+		dao.deleteRoleById(id);
+	}
+
+	@Override
+	public void saveRole(Role role) {
+		// TODO Auto-generated method stub
+		dao.saveRole(role);
+	}
+	
+	@Override
+	public Role getRoleById(int id){
+		return dao.getRoleById(id);
+	}
+	
+	@Override
+	public List<Role> getRoleByCode(int code){
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(code);
+		return dao.getRoleByCode(pro);
+	}
+
+	@Override
+	public Role getRoleByRoleName(String rolename) {
+		// TODO Auto-generated method stub
+		List<String> pro = new ArrayList<String>();
+		pro.add(rolename);
+		return dao.getRoleByRoleName(pro);
+	}
+	
 }

@@ -139,7 +139,7 @@ public class AdminLoginAction extends ActionSupport {
 		if (p != null) {
 			ActionContext.getContext().getSession().put("person", p);
 			ActionContext.getContext().getSession().put("auth",loginService.getAuth(p));
-			setRoleList(roleService.getAllRole());
+			setRoleList(roleService.getAllRole(new ArrayList<String>()));
 			return "loginSuccess";
 		}
 		return INPUT;
@@ -156,7 +156,10 @@ public class AdminLoginAction extends ActionSupport {
 			addFieldError("account", getText("account is required"));
 		}
 		int type = loginService.check(person);
-		if ((type != 4 && type !=5 || type == 1) && person.getPassword().length() != 0) {
+		if(type == -1 && person.getPassword().length() != 0){
+			addFieldError("bidaccount", getText("account has been bidden"));
+		}
+		if ((type != 4 && type !=5 && type !=-1 || type == 1) && person.getPassword().length() != 0) {
 			addFieldError("noaccount", getText("account is not exist"));
 		}else if (type == 5 && person.getPassword().length() != 0) {
 			addFieldError("wrongpassword", getText("password is wrong"));

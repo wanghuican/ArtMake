@@ -30,6 +30,11 @@ public class Key extends JsonEntity{
 	  */
 	private String keyname;
 	
+	
+	/**
+	  * @Fields times
+	  */
+	private int times;
 	/**
 	  * 创建一个新的实例 Key. 
 	  * <p>Description: 无参构造函数</p>
@@ -38,19 +43,48 @@ public class Key extends JsonEntity{
 	public Key() {
 		super();
 	}
+	
+	
 
 	/**
 	  * 创建一个新的实例 Key. 
-	  * <p>Description: 全参构造函数</p>
+	  * <p>Title: </p>
+	  * <p>Description: </p>
 	  * @param key_id
 	  * @param keyname
+	  * @param times
 	  */
 	
-	public Key(int key_id, String keyname) {
+	public Key(int key_id, String keyname, int times) {
 		super();
 		this.key_id = key_id;
 		this.keyname = keyname;
+		this.times = times;
 	}
+
+
+
+	/**
+	 * getter method
+	 * @return the times
+	 */
+	
+	public int getTimes() {
+		return times;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param times the times to set
+	 */
+	
+	public void setTimes(int times) {
+		this.times = times;
+	}
+
+
 
 	/**
 	 * getter method
@@ -88,6 +122,7 @@ public class Key extends JsonEntity{
 		this.keyname = keyname;
 	}
 
+
 	
 	/*
 	  * Title: toJsonString
@@ -95,10 +130,11 @@ public class Key extends JsonEntity{
 	  * @return
 	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
 	  */
+	@Override
 	public String toJsonString() {
 		return "{\"key_id\":\"" + key_id + "\",\"keyname\":\"" + keyname
-				+ "\"}  ";
+				+ "\",\"times\":\"" + times + "\"}  ";
 	}
-
+	
 	
 }

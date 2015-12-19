@@ -22,5 +22,19 @@ import cn.edu.xmu.entity.Role;
  */
 
 public interface RoleService {
-	public List<Role> getAllRole();
+	public List<Role> getAllRole(List<String> pro);
+	
+	public List<Role> getAllRole(List<String> pro,int pageNo,int pageSize);
+	
+	public int countRole(List<String> pro);
+	
+	public void deleteRoleById(int id);
+	
+	public void saveRole(Role role);
+	
+	public Role getRoleById(int id);
+	
+	public List<Role> getRoleByCode(int code);
+	
+	public Role getRoleByRoleName(String rolename);
 }

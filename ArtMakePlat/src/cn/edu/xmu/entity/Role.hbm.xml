@@ -8,6 +8,9 @@
 			<column name="role_id" />
 			<generator class="identity" />
 		</id>
+		<property name="frolename" type="string">
+			<column name="frolename" not-null="true" />
+		</property>
 		<property name="role_code" type="int">
 			<column name="role_code" not-null="true" />
 		</property>
@@ -16,7 +19,7 @@
 		</property>
 		<bag name="personList" order-by="person_id asc">
 			<key>
-				<column name="person_id" not-null="true" />
+				<column name="role_id" not-null="true" />
 			</key>
 			<one-to-many class="cn.edu.xmu.entity.Person" />
 		</bag>

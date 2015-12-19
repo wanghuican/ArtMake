@@ -104,7 +104,10 @@ public class LoginAction extends ActionSupport {
 			addFieldError("account", getText("account is required"));
 		}
 		int type = loginService.check(person);
-		if ((type != 2 && type !=3 || type == 1) && person.getPassword().length() != 0) {
+		if(type == -1 && person.getPassword().length() != 0){
+			addFieldError("bidaccount", getText("account has been bidden"));
+		}
+		if ((type != 2 && type !=3 && type != -1 || type == 1) && person.getPassword().length() != 0) {
 			addFieldError("noaccount", getText("account is not exist"));
 		} else if (type == 3 && person.getPassword().length() != 0) {
 			addFieldError("wrongpassword", getText("password is wrong"));

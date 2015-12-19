@@ -40,6 +40,11 @@
 	    	<result name="detail">/WEB-INF/main/article/info_detail.jsp</result>
 	    	<result name="addetail">/WEB-INF/main/article/ad_detail.jsp</result>
 	    </action>
+	    <action name="person" class="cn.edu.xmu.action.PersonAction">
+	    	<result name="userinfo">/WEB-INF/main/person/user.jsp</result>
+	    	<result name="artistinfo">/WEB-INF/main/person/artist.jsp</result>
+	    	<result name="improve">/WEB-INF/main/person/improve_info.jsp</result>
+	    </action>
 	</package>
 	<package name="backstage" extends="struts-default">
 		<action name="adminLogin" class="cn.edu.xmu.backstage.action.AdminLoginAction">
@@ -55,14 +60,21 @@
      	<action name="personManage" class="cn.edu.xmu.backstage.action.PersonAction">
          	<result name="user">/WEB-INF/backstage/person/user_list.jsp</result>
          	<result name="artist">/WEB-INF/backstage/person/artist_list.jsp</result>
-         	<result name="editer">/WEB-INF/backstage/person/editer_list.jsp</result>
-         	<result name="mainediter">/WEB-INF/backstage/person/mainediter_list.jsp</result>
-         	<result name="admin">/WEB-INF/backstage/person/admin_list.jsp</result>
-         	<result name="gocreateadmin">/WEB-INF/backstage/person/new_admin.jsp</result>
-         	<result name="gocreatemaineditor">/WEB-INF/backstage/person/new_maineditor.jsp</result>
-         	<result name="gocreateeditor">/WEB-INF/backstage/person/new_editor.jsp</result>
-         	<result name="gocreateartist">/WEB-INF/backstage/person/new_artist.jsp</result>
-         	<result name="gocreateuser">/WEB-INF/backstage/person/new_user.jsp</result>
+            <result name="common">/WEB-INF/backstage/person/common_list.jsp</result>
+            <result name="edit">/WEB-INF/backstage/person/person_edit.jsp</result>
+     	</action>
+     	<action name="roleManage" class="cn.edu.xmu.backstage.action.RoleAction">
+         	<result name="input">/WEB-INF/backstage/roleauth/role_list.jsp</result>
+         	<result name="edit">/WEB-INF/backstage/roleauth/role_edit.jsp</result>
+     	</action>
+     	<action name="authManage" class="cn.edu.xmu.backstage.action.AuthAction">
+         	<result name="input">/WEB-INF/backstage/roleauth/auth_list.jsp</result>
+         	<result name="edit">/WEB-INF/backstage/roleauth/auth_edit.jsp</result>
+         	<result name="set">/WEB-INF/backstage/roleauth/auth_set.jsp</result>
+     	</action>
+     	<action name="keyManage" class="cn.edu.xmu.backstage.action.KeyAction">
+         	<result name="input">/WEB-INF/backstage/other/key_list.jsp</result>
+         	<result name="edit">/WEB-INF/backstage/other/key_edit.jsp</result>
      	</action>
 	</package>
 	<package name="ajax" extends="struts-default,json-default">
@@ -91,6 +103,24 @@
 		</result>
 	</action>
 	<action name="accountAjax" method="checkAccount" class="cn.edu.xmu.action.PersonAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="changeBidAjax" method="changeBid" class="cn.edu.xmu.backstage.action.PersonAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="changeIdentifyAjax" method="changeIdentify" class="cn.edu.xmu.action.PersonAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="changePasswordAjax" method="changePassword" class="cn.edu.xmu.backstage.action.PersonAction">
 		<!-- 返回json类型数据 -->
 		<result type="json">
 			<param name="root">result</param>

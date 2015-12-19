@@ -12,6 +12,7 @@ package cn.edu.xmu.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @ClassName: Role
@@ -27,6 +28,7 @@ public class Role extends JsonEntity{
 	  */
 	private int role_id;
 	
+	
 	/**
 	  * @Fields role_code : 角色代码
 	  */
@@ -36,19 +38,17 @@ public class Role extends JsonEntity{
 	  * @Fields rolename
 	  */
 	private String rolename;
-
-	/**
-	 * getter method
-	 * @return the role_id
-	 */
 	
 	/**
-	  * @Fields person
+	  * @Fields frolename
 	  */
-	private List<Person> personList = new ArrayList();
+	private String frolename;
 	
-
-
+	/**
+	  * @Fields personList : TODO（用一句话描述这个变量表示什么）
+	  */
+	private List<Person> personList;
+	
 	/**
 	  * 创建一个新的实例 Role. 
 	  * <p>Description: 无参构造函数</p>
@@ -57,43 +57,55 @@ public class Role extends JsonEntity{
 	public Role() {
 		super();
 	}
-	
-	
 
-	/**
-	  * 创建一个新的实例 Role. 
-	  * <p>Description: 全信息构造函数</p>
-	  * @param role_id
-	  * @param role_code
-	  * @param rolename
-	  */
 	
-	public Role(int role_id, int role_code, String rolename) {
-		super();
-		this.role_id = role_id;
-		this.role_code = role_code;
-		this.rolename = rolename;
-	}
-
 	
 	
 	/**
 	  * 创建一个新的实例 Role. 
-	  * <p>Description:全参构造函数 </p>
+	  * <p>Title: </p>
+	  * <p>Description: </p>
 	  * @param role_id
 	  * @param role_code
 	  * @param rolename
+	  * @param frolename
 	  * @param personList
 	  */
 	
-	public Role(int role_id, int role_code, String rolename,
-			List<Person> personList) {
+	public Role(int role_id, int role_code, String rolename, String frolename,
+			 List<Person> personList) {
 		super();
 		this.role_id = role_id;
 		this.role_code = role_code;
 		this.rolename = rolename;
+		this.frolename = frolename;
 		this.personList = personList;
 	}
+
+
+
+
+	/**
+	 * getter method
+	 * @return the personList
+	 */
+	
+	public List<Person> getPersonList() {
+		return personList;
+	}
+
+
+
+
+	/**
+	 * setter method
+	 * @param personList the personList to set
+	 */
+	
+	public void setPersonList(List<Person> personList) {
+		this.personList = personList;
+	}
+
 
 
 
@@ -114,6 +126,7 @@ public class Role extends JsonEntity{
 	public void setRole_id(int role_id) {
 		this.role_id = role_id;
 	}
+
 
 	/**
 	 * getter method
@@ -151,36 +164,43 @@ public class Role extends JsonEntity{
 		this.rolename = rolename;
 	}
 	
+
 	
 	/**
 	 * getter method
-	 * @return the personList
+	 * @return the frolename
 	 */
 	
-	public List<Person> getPersonList() {
-		return personList;
+	public String getFrolename() {
+		return frolename;
 	}
 
 	/**
 	 * setter method
-	 * @param personList the personList to set
+	 * @param frolename the frolename to set
 	 */
 	
-	public void setPersonList(List<Person> personList) {
-		this.personList = personList;
+	public void setFrolename(String frolename) {
+		this.frolename = frolename;
 	}
 
+
+
+
+	
 	/*
 	  * Title: toJsonString
 	  * Description:
 	  * @return
 	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
 	  */
+	@Override
 	public String toJsonString() {
 		return "{\"role_id\":\"" + role_id + "\",\"role_code\":\"" + role_code
-				+ "\",\"rolename\":\"" + rolename + "\",\"personList\":\""
-				+ personList + "\"}  ";
+				+ "\",\"rolename\":\"" + rolename + "\",\"frolename\":\""
+				+ frolename +  "\",\"personList\":\"" + personList + "\"}  ";
 	}
-		
-}
 
+	
+
+}

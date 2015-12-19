@@ -220,7 +220,7 @@ public class ArticleAction extends ActionSupport{
 		// 登录前清空所有session	
 		if(getSelectpro() != null){
 			setSelectpro(getSelectpro());
-			selectpro = WebTool.dealProList(selectpro);
+			selectpro = WebTool.dealStrProList(selectpro);
 			//WebTool.printList(selectpro);
 		}else{
 			selectpro = new ArrayList<String>();
@@ -302,7 +302,7 @@ public class ArticleAction extends ActionSupport{
 	public String goAd(){
 		if(getSelectpro() != null){
 			setSelectpro(getSelectpro());
-			selectpro = WebTool.dealProList(selectpro);
+			selectpro = WebTool.dealStrProList(selectpro);
 			//WebTool.printList(selectpro);
 		}else{
 			selectpro = new ArrayList<String>();

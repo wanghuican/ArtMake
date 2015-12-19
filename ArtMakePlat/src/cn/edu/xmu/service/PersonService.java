@@ -22,4 +22,8 @@ public interface PersonService {
 	public Person getPersonById(int id);
 	
 	public void deletePersonById(int id);
+	
+	public void changeBid(Person person);
+	
+	public void changeIdentify(Person person);
 }

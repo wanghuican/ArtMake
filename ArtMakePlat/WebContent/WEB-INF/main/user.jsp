@@ -55,6 +55,9 @@
 									<p class="empty-message">
 										<s:param>account</s:param>
 									</p>
+									<p class="empty-message">
+										<s:param>bidaccount</s:param>
+									</p>
 									<p class="error-message">
 										<s:param>noaccount</s:param>
 									</p>

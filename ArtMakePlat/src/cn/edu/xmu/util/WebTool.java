@@ -118,11 +118,27 @@ public class WebTool {
 		return nid.split(",");
 	}
 
-	public static final List<String> dealProList(List<String> list){
+	public static final List<String> dealStrProList(List<String> list){
 		List<String> strList = list;
 		for(int i=0;i<strList.size();i++){
 			strList.set(i,"%" + strList.get(i) + "%");
 		}
+		return strList;
+	}
+	
+	public static final List<Integer> dealIntProList(List<Integer> list){
+		List<Integer> strList = list;
+		for(int i=0;i<strList.size();i++){
+			if(strList.get(i) == null){
+				if(i%2 == 0){
+					strList.set(i, Common.MIN);
+				}else{
+					strList.set(i, Common.MAX);
+				}
+			}
+		}	
+		WebTool.getRequest().setAttribute("min",Common.MIN);
+		WebTool.getRequest().setAttribute("max",Common.MAX);	
 		return strList;
 	}
 	

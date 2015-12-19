@@ -93,9 +93,13 @@ public class Person extends JsonEntity{
 	  */
 	private List<Demand> demandList = new ArrayList();
 	
+	/**
+	  * @Fields keyList : 关键词列表
+	  */
+	private List<Perkey> keyList = new ArrayList();
 	
 	/**
-	  * @Fields articleList : TODO（用一句话描述这个变量表示什么）
+	  * @Fields articleList
 	  */
 	private List<Article> articleList = new ArrayList();
 	
@@ -107,6 +111,7 @@ public class Person extends JsonEntity{
 		super();
 	}
 	
+
 	/**
 	  * 创建一个新的实例 Person. 
 	  * <p>Title: </p>
@@ -127,15 +132,15 @@ public class Person extends JsonEntity{
 	  * @param addressList
 	  * @param productList
 	  * @param demandList
+	  * @param keyList
 	  * @param articleList
 	  */
-	
 	public Person(int person_id, String account, String password,
 			String realname, String email, String qq, String idcard,
 			String tel, String address, String sex, int state,
 			String introduce, Role role, List<Address> addressList,
 			List<Product> productList, List<Demand> demandList,
-			List<Article> articleList) {
+			List<Perkey> keyList, List<Article> articleList) {
 		super();
 		this.person_id = person_id;
 		this.account = account;
@@ -153,10 +158,9 @@ public class Person extends JsonEntity{
 		this.addressList = addressList;
 		this.productList = productList;
 		this.demandList = demandList;
+		this.keyList = keyList;
 		this.articleList = articleList;
 	}
-
-
 
 	/**
 	 * getter method
@@ -472,6 +476,27 @@ public class Person extends JsonEntity{
 	}
 
 
+	/**
+	 * getter method
+	 * @return the keyList
+	 */
+	
+	public List<Perkey> getKeyList() {
+		return keyList;
+	}
+
+
+	/**
+	 * setter method
+	 * @param keyList the keyList to set
+	 */
+	
+	public void setKeyList(List<Perkey> keyList) {
+		this.keyList = keyList;
+	}
+
+
+	
 	/*
 	  * Title: toJsonString
 	  * Description:
@@ -488,9 +513,10 @@ public class Person extends JsonEntity{
 				+ "\",\"state\":\"" + state + "\",\"introduce\":\"" + introduce
 				+ "\",\"role\":\"" + role + "\",\"addressList\":\""
 				+ addressList + "\",\"productList\":\"" + productList
-				+ "\",\"demandList\":\"" + demandList + "\",\"articleList\":\""
-				+ articleList + "\"}  ";
+				+ "\",\"demandList\":\"" + demandList + "\",\"keyList\":\""
+				+ keyList + "\",\"articleList\":\"" + articleList + "\"}  ";
 	}
 
+	
 
 }
