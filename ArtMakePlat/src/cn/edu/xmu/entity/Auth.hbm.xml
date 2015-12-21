@@ -11,6 +11,9 @@
 		<property name="upnum" type="int">
 			<column name="upnum" not-null="true" />
 		</property>
+		<property name="totalnum" type="int">
+			<column name="totalnum" not-null="true" />
+		</property>
 		<property name="lasttime" type="int">
 			<column name="lasttime" not-null="true" />
 		</property>

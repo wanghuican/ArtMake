@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/contact-form.css">
+<link rel="stylesheet" href="css/east.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
@@ -17,6 +17,8 @@
 <script src="js/jquery.mobilemenu.js"></script>
 <script src="js/tmStickUp.js"></script>
 <script src="js/jquery.ui.totop.js"></script>
+<script src="js/TMForm.js"></script>
+<script src="js/modal.js"></script>
 <script>
  $(window).load(function(){
 	 var content = "<s:property value='article.content'/>";
@@ -79,6 +81,58 @@
                  value="<s:property value='person.address'/>"/>
                 <span class="empty-message">*This field is required.</span>
                 <span class="error-message">*This is not a valid address.</span>
+              </label>
+              
+              <br>
+              <br>
+              <label class="address">
+              <input type="text" name="address" placeholder="关键字:" value="" data-constraints="" />
+              <br>
+              <br>
+              <input type="button" value="+玉器"/>
+              <input type="button" value="+瓷器"/>
+    		  <input type="button" value="+木雕"/>
+              <input type="button" value="+根雕"/>
+              <input type="button" value="+青花"/>
+    		  <input type="button" value="+字画"/>
+    		  <input type="button" value="+玉器"/>
+              <input type="button" value="+瓷器"/>
+    		  <input type="button" value="+木雕"/>
+              <input type="button" value="+根雕"/>
+              <input type="button" value="+青花"/>
+    		  <input type="button" value="+字画"/>
+    		  <input type="button" value="+玉器"/>
+              <input type="button" value="+瓷器"/>
+    		  <input type="button" value="+木雕"/>
+              <input type="button" value="+根雕"/>
+              <input type="button" value="+青花"/>
+    		  <input type="button" value="+字画"/>
+    		  <input type="button" value="+玉器"/>
+              <input type="button" value="+瓷器"/>
+    		  <input type="button" value="+木雕"/>
+              <input type="button" value="+根雕"/>
+              <input type="button" value="+青花"/>
+    		  <input type="button" value="+字画"/>
+    		  <input type="button" value="+玉器"/>
+              <input type="button" value="+瓷器"/>
+    		  <input type="button" value="+木雕"/>
+              <input type="button" value="+根雕"/>
+              <input type="button" value="+青花"/>
+    		  <input type="button" value="+字画"/>
+    		  <input type="button" value="+玉器"/>
+              <input type="button" value="+瓷器"/>
+    		  <input type="button" value="+木雕"/>
+              <input type="button" value="+根雕"/>
+              <input type="button" value="+青花"/>
+    		  <input type="button" value="+字画"/>
+    		  <input type="button" value="+玉器"/>
+              <input type="button" value="+瓷器"/>
+    		  <input type="button" value="+木雕"/>
+              <input type="button" value="+根雕"/>
+              <input type="button" value="+青花"/>
+    		  <input type="button" value="+字画"/>
+              <br>
+              <br>
               </label>
               
               <label class="sex" >

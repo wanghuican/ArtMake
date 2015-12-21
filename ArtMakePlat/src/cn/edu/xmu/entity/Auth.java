@@ -25,6 +25,8 @@ public class Auth extends JsonEntity {
 	private int upnum;
 	
 	private int lasttime;
+	
+	private int totalnum;
 
 	
 	
@@ -39,24 +41,56 @@ public class Auth extends JsonEntity {
 	}
 
 
-
 	/**
-	  * 创建一个新的实例 RoleAuth. 
+	  * 创建一个新的实例 Auth. 
 	  * <p>Title: </p>
 	  * <p>Description: </p>
 	  * @param auth_id
 	  * @param role
 	  * @param upnum
 	  * @param lasttime
+	  * @param totalnum
 	  */
 	
-	public Auth(int auth_id, Role role, int upnum, int lasttime) {
+	public Auth(int auth_id, Role role, int upnum, int lasttime, int totalnum) {
 		super();
 		this.auth_id = auth_id;
 		this.role = role;
 		this.upnum = upnum;
 		this.lasttime = lasttime;
+		this.totalnum = totalnum;
 	}
+
+
+
+
+
+
+	/**
+	 * getter method
+	 * @return the totalnum
+	 */
+	
+	public int getTotalnum() {
+		return totalnum;
+	}
+
+
+
+
+
+
+	/**
+	 * setter method
+	 * @param totalnum the totalnum to set
+	 */
+	
+	public void setTotalnum(int totalnum) {
+		this.totalnum = totalnum;
+	}
+
+
+
 
 
 
@@ -146,7 +180,7 @@ public class Auth extends JsonEntity {
 		this.lasttime = lasttime;
 	}
 
-	
+
 	/*
 	  * Title: toJsonString
 	  * Description:
@@ -157,9 +191,8 @@ public class Auth extends JsonEntity {
 	public String toJsonString() {
 		return "{\"auth_id\":\"" + auth_id + "\",\"role\":\"" + role
 				+ "\",\"upnum\":\"" + upnum + "\",\"lasttime\":\"" + lasttime
-				+ "\"}  ";
+				+ "\",\"totalnum\":\"" + totalnum + "\"}  ";
 	}
-	
-	
+
 
 }

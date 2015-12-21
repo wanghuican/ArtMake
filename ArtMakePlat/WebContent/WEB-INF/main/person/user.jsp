@@ -88,18 +88,6 @@
 		});
 	}
 
-	/**获得当前日期**/
-	function getDate01() {
-		var time = new Date();
-		var myYear = time.getFullYear();
-		var myMonth = time.getMonth() + 1;
-		var myDay = time.getDate();
-		if (myMonth < 10) {
-			myMonth = "0" + myMonth;
-		}
-		document.getElementById("day_day").innerHTML = myYear + "." + myMonth
-				+ "." + myDay;
-	}
 </script>
 <!--[if lt IE 8]>
  <div style=' clear: both; text-align:center; position: relative;'>
@@ -130,14 +118,18 @@
 				<table>
 					<tbody>
 						<tr>
-							<td><span class="fa fa-calendar"></span> <span id="day_day"></span>
-							</td>
-							<td><div class="fa fa-user"></div> <s:if
+							<td>
+						    	<div class="fa fa-user"></div> <s:if
 									test="person.realname == ''">
 									<s:property value="person.account" />
 								</s:if> <s:else>
 									<s:property value="person.realname" />
-								</s:else></td>
+								</s:else>
+							</td>
+							<td>
+							<span class="fa fa-calendar"></span>
+                                                                  修改密码>>   
+							</td>
 							<td><s:if
 									test="#session.person.person_id == person.person_id">
 									<a href="logout"><span class="fa fa-link"></span> Logout >></a>
