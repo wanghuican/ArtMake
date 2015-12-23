@@ -53,14 +53,14 @@ function goInfo(){
                <li><a href="about.html">关于</a></li>
                <li><a href="gallery.html">拍卖</a></li>
                <li><a href="blog.html">定制</a></li>
-               <li><s:if test="#session.person==null">      
+               <li class="current"><s:if test="#session.person==null">      
 						<a href="forward!goUser">                             
                                                         登录/注册</a>
                         </s:if> <s:else>
-                        <a href="javascript:goInfo()">
+                        <div style="cursor:pointer" onclick="goInfo()">
                         <s:property value="#session.person.role.rolename" />:
                         <s:property value="#session.person.realname" />
-                        </a>
+                        </div>
 						</s:else>
 						</li>
              </ul>
