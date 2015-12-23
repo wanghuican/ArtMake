@@ -70,6 +70,18 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	  <servlet>  
+	<servlet-name>websocket</servlet-name>  
+	<servlet-class>cn.jess.websocket.EchoServlet</servlet-class>  
+	<load-on-startup>1</load-on-startup>  
+	</servlet> 
+<servlet-mapping>    
+        <servlet-name>websocket</servlet-name>    
+        <url-pattern>/websocket</url-pattern>    
+    </servlet-mapping> 	
+	
+	
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
