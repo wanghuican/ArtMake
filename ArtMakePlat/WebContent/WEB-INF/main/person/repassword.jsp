@@ -19,27 +19,55 @@
 <script src="js/jquery.ui.totop.js"></script>
 <script src="js/modal.js"></script>
 <script>
+
+var chPass = false;
+var chOldPa = false;
+var chPaAg = false;
+
 function checkPassword(value){
-	if(value.length<6 || value.length>30){document.getElementById("passwordError").value="请输入有效的密码";}
-	else document.getElementById("passwordError").value="";
+	chPass = false;
+	if(value.length<6 || value.length>30){
+		document.getElementById("passwordError").value="请输入有效的密码";
+		chPass = false;
+	}
+	else {
+		document.getElementById("passwordError").value="";
+		chPass = true;
+	}
 }
 
 function checkPasswordAgain(value){
+	chPaAg = false;
 	var password = document.getElementById("password").value;
-	if(value != password){document.getElementById("passwordagainError").value="两次密码不相同";}
-	else document.getElementById("passwordagainError").value="";
+	if(value != password){
+		document.getElementById("passwordagainError").value="两次密码不相同";
+		chPaAg = false;
+	}
+	else {
+		document.getElementById("passwordagainError").value="";
+		chPaAg = true;
+	}
 }
 function checkOldPassword(){
+	chOldPa = false;
 	var old = "<s:property value='person.password'/>";
 	var password = document.getElementById("oldpassword").value;
 	if(old != password)
+	{
 		document.getElementById("oldpasswordError").value = "原密码错误";
-	else
+		chOldPa = false;
+	}else{
 		document.getElementById("oldpasswordError").value = "";
-	
+		chOldPa = true;
+	}
 }
 function repassword(){
-	$("#userinfo-form").attr("action","person!repassword").submit();
+	if (chPass && chPaAg && chOldPa)
+	{
+		$("#userinfo-form").attr("action","person!repassword").submit();
+	}else{
+		alert("请输入有效信息！");
+	}
 }
  $(window).load(function(){
   $().UItoTop({ easingType: 'easeOutQuart' });
@@ -95,17 +123,17 @@ function repassword(){
             <fieldset>
             <input type="hidden" name="id" value="<s:property value='person.person_id'/>"/>
               <label class="oldpassword">
-                <input type="text" id="oldpassword" name="oldpassword" placeholder="原密码：" onBlur="checkOldPassword(value)"/>
+                <input type="password" id="oldpassword" name="oldpassword" placeholder="原密码：" onBlur="checkOldPassword(value)"/>
                 <input type="text" class="errorinfo" id="oldpasswordError" readonly height="0px" style="background-color:transparent;border:none;color:red;"/>
               </label>
              
               <label class="password">
-                <input type="text" id="password" name="person.password" placeholder="修改密码:" onBlur="checkPassword(value)"/>
+                <input type="password" id="password" name="person.password" placeholder="修改密码:" onBlur="checkPassword(value)"/>
                 <input type="text" class="errorinfo" id="passwordError" readonly height="0px" style="background-color:transparent;border:none;color:red;"/>
               </label>
               
               <label class="passwordagain">
-                <input type="text" id="passwordagain" name="passwordagain" placeholder="确认密码:" onBlur="checkPasswordAgain(value)"/>
+                <input type="password" id="passwordagain" name="passwordagain" placeholder="确认密码:" onBlur="checkPasswordAgain(value)"/>
                 <input type="text" class="errorinfo" id="passwordagainError" readonly height="0px" style="background-color:transparent;border:none;color:red;"/>
               </label>
               

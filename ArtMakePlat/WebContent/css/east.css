@@ -85,6 +85,24 @@
   margin: 0;
   background-color:transparent;
 }
+#userinfo-form input[type='password'] {
+  width: 100%;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 6px 27px 5px;
+  outline: none;
+  color: #323045;
+  height: 31px;
+  border: 1px solid #000;
+  border: 1px solid rgba(50, 48, 69, 0.34);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  background-color:transparent;
+}
 #userinfo-form input[type='button'] {
   width: 15%;
   border-radius: 4px;

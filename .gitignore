@@ -87,3 +87,4 @@ hs_err_pid*
 
 ### Custom
 src/test/
+ArtMakePlat/WebContent/WEB-INF/applicationContext.xml
