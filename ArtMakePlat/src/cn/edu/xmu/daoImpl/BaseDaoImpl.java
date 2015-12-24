@@ -145,6 +145,18 @@ public class BaseDaoImpl implements BaseDao {
 	public void saveOrUpdate(Object obj) {
 		hibernateTemplate.saveOrUpdate(obj);
 	}
+	
+	/*
+	 * Title: saveOrUpdate Description:
+	 * 
+	 * @param obj
+	 * 
+	 * @see cn.edu.xmu.dao.BaseDao#saveOrUpdate(java.lang.Object)
+	 */
+	@Override
+	public void saveOrUpdateAll(List list) {
+		hibernateTemplate.saveOrUpdateAll(list);
+	}
 
 	/*
 	 * Title: listAll Description:

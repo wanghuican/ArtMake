@@ -10,6 +10,7 @@
 
 package cn.edu.xmu.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 import cn.edu.xmu.dao.AuthDao;
 import cn.edu.xmu.dao.KeyDao;
 import cn.edu.xmu.entity.Key;
+import cn.edu.xmu.entity.Perkey;
 import cn.edu.xmu.service.KeyService;
 
 /**
@@ -116,6 +118,17 @@ public class KeyServiceImpl implements KeyService {
 	public Key getKeyById(int id) {
 		// TODO Auto-generated method stub
 		return dao.getKeyById(id);
+	}
+	
+	/*
+	  * Title: deletePerkeyById
+	  * Description:
+	  * @param id
+	  * @see cn.edu.xmu.service.KeyService#deletePerkeyById(int)
+	  */
+	@Override
+	public void deletePerkeyById(int id){
+		dao.deletePerkeyById(id);
 	}
 
 }

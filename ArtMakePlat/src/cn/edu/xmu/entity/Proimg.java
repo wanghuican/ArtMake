@@ -9,7 +9,6 @@
 
 package cn.edu.xmu.entity;
 
-import java.io.Serializable;
 
 /**
  * @ClassName: Proimg

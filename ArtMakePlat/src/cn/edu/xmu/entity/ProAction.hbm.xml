@@ -14,8 +14,8 @@
 		<property name="addprice" type="double">
 			<column name="addprice"/>
 		</property>
-		<property name="describe" type="string">
-			<column name="describe" length="80"/>
+		<property name="introduce" type="string">
+			<column name="introduce" length="80"/>
 		</property>
 		 <property name="recordtime" type="timestamp">
             <column name="recordtime" length="19" />

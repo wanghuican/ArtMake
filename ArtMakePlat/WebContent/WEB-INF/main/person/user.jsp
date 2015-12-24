@@ -18,7 +18,6 @@
 <script src="js/jquery.ui.totop.js"></script>
 <script>
 	$(window).load(function() {
-		getDate01();
 		var content = "<s:property value='article.content'/>";
 		$("#contenthtml").html(decodeHtml(content));
 	});

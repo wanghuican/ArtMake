@@ -20,8 +20,8 @@
 		<property name="type" type="int">
 			<column name="type" not-null="true"/>
 		</property>
-		<property name="describe" type="string">
-			<column name="describe" length="80"/>
+		<property name="introduce" type="string">
+			<column name="introduce" length="80"/>
 		</property>
 		 <property name="uptime" type="timestamp">
             <column name="uptime" length="19" />

@@ -3,6 +3,7 @@ package cn.edu.xmu.service;
 import java.util.List;
 
 import cn.edu.xmu.entity.Key;
+import cn.edu.xmu.entity.Perkey;
 
 
 /**
@@ -23,4 +24,6 @@ public interface KeyService {
 	public void saveKey(Key Key);
 	
 	public Key getKeyById(int id);
+	
+	public void deletePerkeyById(int id);
 }

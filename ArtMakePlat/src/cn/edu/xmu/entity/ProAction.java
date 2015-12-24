@@ -44,9 +44,9 @@ public class ProAction extends JsonEntity{
 	private Date recordtime;
 
 	/**
-	  * @Fields describe
+	  * @Fields introduce
 	  */
-	private String describe;
+	private String introduce;
 	
 	/**
 	  * 创建一个新的实例 ProAction. 
@@ -70,11 +70,11 @@ public class ProAction extends JsonEntity{
 	  * @param addprice
 	  * @param lasttime
 	  * @param recordtime
-	  * @param describe
+	  * @param introduce
 	  */
 	
 	public ProAction(int action_id, Product product, double startprice,
-			double addprice, int lasttime, Date recordtime, String describe) {
+			double addprice, int lasttime, Date recordtime, String introduce) {
 		super();
 		this.action_id = action_id;
 		this.product = product;
@@ -82,7 +82,7 @@ public class ProAction extends JsonEntity{
 		this.addprice = addprice;
 		this.lasttime = lasttime;
 		this.recordtime = recordtime;
-		this.describe = describe;
+		this.introduce = introduce;
 	}
 
 
@@ -199,22 +199,22 @@ public class ProAction extends JsonEntity{
 
 	/**
 	 * getter method
-	 * @return the describe
+	 * @return the introduce
 	 */
 	
-	public String getDescribe() {
-		return describe;
+	public String getIntroduce() {
+		return introduce;
 	}
 
 
 
 	/**
 	 * setter method
-	 * @param describe the describe to set
+	 * @param introduce the introduce to set
 	 */
 	
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
 	}
 
 
@@ -231,8 +231,8 @@ public class ProAction extends JsonEntity{
 		return "{\"action_id\":\"" + action_id + "\",\"product\":\"" + product
 				+ "\",\"startprice\":\"" + startprice + "\",\"addprice\":\""
 				+ addprice + "\",\"lasttime\":\"" + lasttime
-				+ "\",\"recordtime\":\"" + recordtime + "\",\"describe\":\""
-				+ describe + "\"}  ";
+				+ "\",\"recordtime\":\"" + recordtime + "\",\"introduce\":\""
+				+ introduce + "\"}  ";
 	}
 
 	

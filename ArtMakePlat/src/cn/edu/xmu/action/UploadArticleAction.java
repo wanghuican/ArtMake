@@ -236,7 +236,8 @@ public class UploadArticleAction extends ActionSupport {
 
 	public String backstageUp() throws Exception {
 		upInfo();
-		return "backUpSuccess";
+		WebTool.alertMessage("保存资讯成功", "forward!goAdminInfo");
+		return null;
 	}
 
 	public void upInfo() throws IOException{
@@ -280,6 +281,7 @@ public class UploadArticleAction extends ActionSupport {
 	
 	public String backstageUpAd() throws IOException{
 		upAd();
+		WebTool.alertMessage("保存广告成功", "forward!goAdminAd");
 		return "backUpadSuccess";
 	}	
 	

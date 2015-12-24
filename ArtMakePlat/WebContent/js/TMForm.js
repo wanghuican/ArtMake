@@ -1,6 +1,6 @@
 //TMForm 1.0.1
 $(window).load(function(){
-	$('#contact-form').TMForm({
+	$('#userinfo-form').TMForm({
 		recaptchaPublicKey:'6LeZwukSAAAAAG8HbIAE0XeNvCon_cXThgu9afkj'		
 	})
 })
@@ -73,8 +73,6 @@ $(window).load(function(){
 						})
 						.on('validate.form',fieldValidate)
 					
-				
-				$('[placeholder]',form).TMPlaceholder()
 				
 				$('[data-type=submit]',form)
 					.click(function(){						
@@ -229,78 +227,6 @@ $(window).load(function(){
 })(jQuery)
 
 ;(function($){
-	$.fn.TMPlaceholder=function(opt){
-		return this.each(function(){
-			var th=$(this)
-				,placeholder_text
-				,placeholder
-						
-			opt=$.extend({
-					placeholderClass:'_placeholder'
-					,placeholderFocusedClass:'focused'
-					,placeholderHiddenClass:'hidden'
-				},opt)
-				
-			init()
-			
-			function init(){				
-				placeholder_text=th.attr('placeholder')
-				placeholder=$(document.createElement('span'))
-				placeholder
-					.addClass(opt.placeholderClass)
-					.css({				
-						left:th.prop('offsetLeft')
-						,top:th.prop('offsetTop')
-						,width:th.width()
-						,height:th.outerHeight()				
-					})
-					.text(placeholder_text)
-					.appendTo(th.parent())				
-					.click(function(){
-						th.focus()
-						return false
-					})
-					.on('contextmenu',function(){						
-						th.trigger('hide.placeholder').focus()						
-					})
-
-				th
-					.val('')
-					.removeAttr('placeholder')
-					.on('hide.placeholder',function(){
-						placeholder.addClass(opt.placeholderHiddenClass)
-					})
-					.on('show.placeholder',function(){
-						placeholder.removeClass(opt.placeholderHiddenClass)
-					})
-					.on('focus',function(){
-						placeholder.addClass(opt.placeholderFocusedClass)
-					})
-					.on('blur',function(){
-						var val=th.val()
-						if(val===''||val===placeholder_text)
-							th.val('')							
-							,th.trigger('show.placeholder')
-						placeholder.removeClass(opt.placeholderFocusedClass)
-					})
-					.on('keydown',function(e){												
-						if(e.keyCode===32||e.keyCode>46)
-							th.trigger('hide.placeholder')							
-					})
-					.on('keyup',function(){						
-						if(th.val()===''){							
-							th.trigger('show.placeholder')
-							return false
-						}else{							
-							th.trigger('hide.placeholder')
-						}
-					})
-					.parents('form').on('reset',function(){
-						th.trigger('show.placeholder')						
-					})
-			}			
-		})
-	}
 })(jQuery)
 //using suggested jQuery practice by passing jQuery into a function
 //in order to have $ notation without conflicting with other libraries

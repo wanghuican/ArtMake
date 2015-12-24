@@ -17,7 +17,7 @@
 		<property name="rolename" type="string">
 			<column name="rolename" length="20" not-null="true" />
 		</property>
-		<bag name="personList" order-by="person_id asc">
+		<bag name="personList" order-by="person_id asc" cascade="all" inverse= "true" lazy= "true">
 			<key>
 				<column name="role_id" not-null="true" />
 			</key>

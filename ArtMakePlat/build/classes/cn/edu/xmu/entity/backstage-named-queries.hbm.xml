@@ -53,7 +53,7 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
 </query>
 
 <query name="HQL_AUTHLIST_SELECT">
-<![CDATA[from Auth as a where a.upnum >= ? and a.upnum <=? and a.lasttime >= ? and a.lasttime <=? ]]>
+<![CDATA[from Auth as a where a.upnum >= ? and a.upnum <=? and a.totalnum >= ? and a.totalnum <=? and a.lasttime >= ? and a.lasttime <=? ]]>
 </query>
 
 <query name="HQL_KEYLIST">
@@ -62,6 +62,15 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
 
 <query name="HQL_KEYLIST_SELECT">
 <![CDATA[from Key as k where k.times >= ? and k.times <= ? ]]>
+</query>
+
+<query name="HQL_PRODUCTLIST">
+<![CDATA[from Product as p]]>
+</query>
+
+<query name="HQL_PRODUCTLIST_SELECT">
+<![CDATA[from Product as p where p.productname like ? and cast(p.state as string) like ? 
+ and cast(p.pass as string) like ? and p.person.realname like ? ]]>
 </query>
 </hibernate-mapping>
 

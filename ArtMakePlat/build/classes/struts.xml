@@ -25,6 +25,7 @@
 			<result name="about">/WEB-INF/backstage/about.jsp</result>
 			<result name="admininfo">/WEB-INF/backstage/article/info_edit.jsp</result>
 			<result name="adminad">/WEB-INF/backstage/article/ad_edit.jsp</result>
+			<result name="repassword">/WEB-INF/backstage/other/repassword.jsp</result>
 		</action>
 		<action name="register" class="cn.edu.xmu.action.RegisterAction">
 			<result name="registerSuccess">/WEB-INF/main/index.jsp</result>
@@ -32,9 +33,11 @@
 		</action>
 		<action name="uploadArticle" class="cn.edu.xmu.action.UploadArticleAction">
 			<result name="success" type= "redirect">article</result>
-			<result name="backUpSuccess">/WEB-INF/backstage/article/info_edit.jsp</result>
-			<result name="backUpadSuccess">/WEB-INF/backstage/article/ad_edit.jsp</result>
 		</action>
+		<action name="uploadProduct" class="cn.edu.xmu.action.UploadProductAction">
+			<result name="success" type= "redirect">article</result>
+		</action>
+		
 		<action name="article" class="cn.edu.xmu.action.ArticleAction">
 	    	<result name="success">/WEB-INF/main/index.jsp</result>
 	    	<result name="detail">/WEB-INF/main/article/info_detail.jsp</result>
@@ -44,6 +47,11 @@
 	    	<result name="userinfo">/WEB-INF/main/person/user.jsp</result>
 	    	<result name="artistinfo">/WEB-INF/main/person/artist.jsp</result>
 	    	<result name="improve">/WEB-INF/main/person/improve_info.jsp</result>
+	    	<result name="repassword">/WEB-INF/main/person/repassword.jsp</result>
+	    </action>
+	     <action name="product" class="cn.edu.xmu.action.ProductAction">
+	    	<result name="edit">/WEB-INF/main/product/product_edit.jsp</result>
+	    	<result name="detail">/WEB-INF/main/product/product_detail.jsp</result>
 	    </action>
 	</package>
 	<package name="backstage" extends="struts-default">
@@ -76,6 +84,13 @@
          	<result name="input">/WEB-INF/backstage/other/key_list.jsp</result>
          	<result name="edit">/WEB-INF/backstage/other/key_edit.jsp</result>
      	</action>
+     	<action name="productManage" class="cn.edu.xmu.backstage.action.ProductAction">
+         	<result name="input">/WEB-INF/backstage/product/product_list.jsp</result>
+     	</action>
+     	<action name="upInfo" class="cn.edu.xmu.backstage.action.UpdateInfoAction">
+         	<result name="success">/WEB-INF/backstage/other/improve_info.jsp</result>
+         	<result name="repassword">/WEB-INF/backstage/other/repassword.jsp</result>
+     	</action>
 	</package>
 	<package name="ajax" extends="struts-default,json-default">
 	<action name="changePassAjax" method="changePass" class="cn.edu.xmu.backstage.action.ArticleAction">
@@ -85,6 +100,18 @@
 		</result>
 	</action>
 	<action name="nchangePassAjax" method="nchangePass" class="cn.edu.xmu.backstage.action.ArticleAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="prochangePassAjax" method="changeproPass" class="cn.edu.xmu.backstage.action.ProductAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="pronchangePassAjax" method="nchangeproPass" class="cn.edu.xmu.backstage.action.ProductAction">
 		<!-- 返回json类型数据 -->
 		<result type="json">
 			<param name="root">result</param>
@@ -121,6 +148,30 @@
 		</result>
 	</action>
 	<action name="changePasswordAjax" method="changePassword" class="cn.edu.xmu.backstage.action.PersonAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="productIngAjax" method="toProductIngList" class="cn.edu.xmu.action.ProductAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="productNotIngAjax" method="toProductNotIngList" class="cn.edu.xmu.action.ProductAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="delProductAjax" method="delProduct" class="cn.edu.xmu.action.ProductAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="getPriceAjax" method="getPrice" class="cn.edu.xmu.action.ProductAction">
 		<!-- 返回json类型数据 -->
 		<result type="json">
 			<param name="root">result</param>

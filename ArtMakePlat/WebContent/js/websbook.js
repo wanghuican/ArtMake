@@ -96,6 +96,7 @@ function autoiFocus() {
  }
  if (currentNum==0 && listLength!=1 ){
   classNormal('ifocus_btn','ifocus_tx');
+  moveElement('ifocus_piclist',0,-450,5);
   classCurrent('ifocus_btn','ifocus_tx',1);
  }
  if (currentNum==1 && listLength!=2 ){

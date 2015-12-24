@@ -49,9 +49,9 @@ public class Demand extends JsonEntity{
 	private int type;
 	
 	/**
-	  * @Fields describe
+	  * @Fields introduce
 	  */
-	private String describe;
+	private String introduce;
 	
 	/**
 	  * @Fields uptime : TODO（用一句话描述这个变量表示什么）
@@ -100,7 +100,7 @@ public class Demand extends JsonEntity{
 	  * @param endprice
 	  * @param startprice
 	  * @param type
-	  * @param describe
+	  * @param introduce
 	  * @param uptime
 	  * @param person
 	  * @param lasttime
@@ -109,7 +109,7 @@ public class Demand extends JsonEntity{
 	  */
 	
 	public Demand(int demand_id, double price, double endprice,
-			double startprice, int type, String describe, Date uptime,
+			double startprice, int type, String introduce, Date uptime,
 			Person person, int lasttime, int state, List<Demkey> keyList) {
 		super();
 		this.demand_id = demand_id;
@@ -117,7 +117,7 @@ public class Demand extends JsonEntity{
 		this.endprice = endprice;
 		this.startprice = startprice;
 		this.type = type;
-		this.describe = describe;
+		this.introduce = introduce;
 		this.uptime = uptime;
 		this.person = person;
 		this.lasttime = lasttime;
@@ -239,22 +239,22 @@ public class Demand extends JsonEntity{
 
 	/**
 	 * getter method
-	 * @return the describe
+	 * @return the introduce
 	 */
 	
-	public String getDescribe() {
-		return describe;
+	public String getIntroduce() {
+		return introduce;
 	}
 
 
 
 	/**
 	 * setter method
-	 * @param describe the describe to set
+	 * @param introduce the introduce to set
 	 */
 	
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
 	}
 
 
@@ -378,8 +378,8 @@ public class Demand extends JsonEntity{
 	public String toJsonString() {
 		return "{\"demand_id\":\"" + demand_id + "\",\"price\":\"" + price
 				+ "\",\"endprice\":\"" + endprice + "\",\"startprice\":\""
-				+ startprice + "\",\"type\":\"" + type + "\",\"describe\":\""
-				+ describe + "\",\"uptime\":\"" + uptime + "\",\"person\":\""
+				+ startprice + "\",\"type\":\"" + type + "\",\"introduce\":\""
+				+ introduce + "\",\"uptime\":\"" + uptime + "\",\"person\":\""
 				+ person + "\",\"lasttime\":\"" + lasttime + "\",\"state\":\""
 				+ state + "\",\"keyList\":\"" + keyList + "\"}  ";
 	}

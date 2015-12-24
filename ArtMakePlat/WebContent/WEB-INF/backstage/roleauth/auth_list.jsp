@@ -23,12 +23,16 @@
 	    pro[1] = "<s:property value='selectpro[1]'/>";
 	    pro[2] = "<s:property value='selectpro[2]'/>";
 	    pro[3] = "<s:property value='selectpro[3]'/>";
+	    pro[4] = "<s:property value='selectpro[4]'/>";
+	    pro[5] = "<s:property value='selectpro[5]'/>";
 	    var min = "<s:property value='#request.min'/>";
 	    var max = "<s:property value='#request.max'/>";
 	    $("#selectnummin").val(pro[0] == min ? "" : pro[0]);
 	    $("#selectnummax").val(pro[1] == max ? "" : pro[1]);
-	    $("#selecttimemin").val(pro[2] == min ? "" : pro[2]);
-	    $("#selecttimemax").val(pro[3] == max ? "" : pro[3]);
+	    $("#selecttotalmin").val(pro[2] == min ? "" : pro[2]);
+	    $("#selecttotalmax").val(pro[3] == max ? "" : pro[3]);
+	    $("#selecttimemin").val(pro[4] == min ? "" : pro[4]);
+	    $("#selecttimemax").val(pro[5] == max ? "" : pro[5]);
 	    
 	    <s:iterator value="authList" id="row">
 	    $("#update<s:property value='#row.auth_id'/>").fancybox({
@@ -121,11 +125,14 @@
 					<div id="box_border">
 						<div id="box_top">搜索</div>
 						<div id="box_center">
-							上传个数
-							<input type="text" id="selectnummin" name="selectpro" class="ui_input_txt02" />~			
-						   <input type="text" id="selectnummax" name="selectpro" class="ui_input_txt02" />	     
-						       拍卖时间<input type="text" id="selecttimemin" name="selectpro" class="ui_input_txt02" />~
-						       <input type="text" id="selecttimemax" name="selectpro" class="ui_input_txt02" />
+							上架个数
+							<input type="text" id="selectnummin" name="selectpro" class="ui_input_txt02" style="width:10%"/>~			
+						   <input type="text" id="selectnummax" name="selectpro" class="ui_input_txt02" style="width:10%"/>	 
+						      上传个数
+							<input type="text" id="selecttotalmin" name="selectpro" class="ui_input_txt02" style="width:10%"/>~			
+						   <input type="text" id="selecttotalmax" name="selectpro" class="ui_input_txt02" style="width:10%"/>	         
+						       拍卖时间<input type="text" id="selecttimemin" name="selectpro" class="ui_input_txt02" style="width:10%"/>~
+						       <input type="text" id="selecttimemax" name="selectpro" class="ui_input_txt02" style="width:10%"/>
 						</div>
 						<div id="box_bottom">
 				    		<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
@@ -141,9 +148,10 @@
 						<tr>
 							<th width="10%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);" />
 							</th>
-							<th width="25%">角色名</th>
-							<th width="10%">上传最大个数</th>
-							<th width="10%">上传最大持续时间(h)</th>
+							<th width="20%">角色名</th>
+							<th width="8%">上架最大个数</th>
+							<th width="8%">上传最大个数</th>
+							<th width="9%">上传最大持续时间(h)</th>
 							<th width="20%">下一级</th>
 							<th width="25%">操作</th>
 						</tr>
@@ -152,6 +160,7 @@
 								<td><input type="checkbox" name="IDCheck" value="<s:property value='#row.auth_id'/>" class="acb" /></td>
 								<td><s:property value="#row.role.rolename"/></td>
 								<td><s:property value="#row.upnum"/></td>
+								<td><s:property value="#row.totalnum"/></td>
 								<td><s:property value="#row.lasttime"/></td>
 								<td><s:property value="#row.role.frolename"/></td>
 								<td>

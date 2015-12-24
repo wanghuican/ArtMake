@@ -18,11 +18,14 @@ public class Common {
 	//config
 	public final static String PLAT_SRC = "L:/ArtMake/ArtMakePlat/WebContent/";
 	public final static String ARTICLE_SRC = "images/article";
+	public final static String PRODUCT_SRC = "images/product";
 	
 	//query
 	public final static String HQL_LOGIN = "HQL_LOGIN";
 	public final static String HQL_GET_PERSON_BYACCOUNT = "HQL_GET_PERSON_BYACCOUNT";
 	public final static String HQL_ARTICLELIST_TODAY = "HQL_ARTICLELIST_TODAY";
+	public final static String HQL_PRODUCTLIST_ING = "HQL_PRODUCTLIST_ING";
+	public final static String HQL_PRODUCTLIST_NOTING = "HQL_PRODUCTLIST_NOTING";
 	
 	//backstage query
 	public final static String HQL_ARTICLELIST = "HQL_ARTICLELIST";
@@ -39,6 +42,8 @@ public class Common {
 	public final static String HQL_KEYLIST_SELECT = "HQL_KEYLIST_SELECT";
 	public final static String HQL_ROLELIST_CODE = "HQL_ROLELIST_CODE";
 	public final static String HQL_ROLELIST_ROLENAME = "HQL_ROLELIST_ROLENAME";
+	public final static String HQL_PRODUCTLIST = "HQL_PRODUCTLIST";
+	public final static String HQL_PRODUCTLIST_SELECT = "HQL_PRODUCTLIST_SELECT";
 	
 	//common
 	public final static int BACKSTAGE_PAGESIZE = 3;

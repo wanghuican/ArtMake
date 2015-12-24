@@ -95,6 +95,21 @@ public class WebTool {
 		return page;
 	}
 	
+	public static final int dealPage(int count,int page,int pagesize,String pageName){
+		HttpServletRequest request = WebTool.getRequest();
+		String pageNo = request.getParameter(pageName);
+		if(!WebTool.StringisNullOrEmpty(pageNo)){
+			page = Integer.parseInt(pageNo);
+		}
+		int pageTotal = (int)(count-1)/pagesize + 1;
+		if(page > pageTotal)
+			page = 1;
+		request.setAttribute(pageName, page);
+		request.setAttribute(pageName+"count", count);
+		request.setAttribute(pageName+"Total", pageTotal);
+		return page;
+	}
+	
 	public static final boolean StringisNullOrEmpty(String str){
 		return (str == null || str.equals(""));
 	}
@@ -211,6 +226,10 @@ public class WebTool {
     
     public static final void getArticleSrc(){
     	WebTool.getRequest().setAttribute("IMGSRC", Common.ARTICLE_SRC);
+    }
+    
+    public static final void getProductSrc(){
+    	WebTool.getRequest().setAttribute("IMGSRC", Common.PRODUCT_SRC);
     }
     
     public static final Person getSessionPerson(){

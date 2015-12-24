@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2015-12-20 06:22:01
+Date: 2015-12-24 18:11:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `bn_article` (
   PRIMARY KEY (`article_id`),
   KEY `pid` (`person_id`),
   CONSTRAINT `pid` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_article
@@ -51,6 +51,14 @@ INSERT INTO `bn_article` VALUES ('31', 'wada', '<p>dsadasjdlkajdslada</p><p>d</p
 INSERT INTO `bn_article` VALUES ('33', '十大啊啊啊啊啊啊啊啊', '<p>湿哒哒</p>', '1450113888170.jpg', '1', '2015-12-15 01:24:48', null, '2015-12-16', '1', 'big', null);
 INSERT INTO `bn_article` VALUES ('34', '这是广告', '<p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p><p>这是广告</p>', '1450369290051.jpg', '1', '2015-12-18 00:21:30', null, '2015-12-18,2015-12-19', '1', 'big', null);
 INSERT INTO `bn_article` VALUES ('35', '今天的广告', '<p><br/></p><p>asfdada</p><p>asfdada</p><p>asfdada</p><p>asfdada</p><p>asfdada</p><p>asfdada</p>', '1450558906854.jpg', '1', '2015-12-20 05:01:46', '2', '2015-12-20', '1', 'small', null);
+INSERT INTO `bn_article` VALUES ('36', '11111', '<p>13221</p>', '1450708535267.jpg', '0', '2015-12-21 22:35:35', '1', '2015-12-21', '1', null, null);
+INSERT INTO `bn_article` VALUES ('37', '1111', '<p>2312</p>', '1450708543558.jpg', '0', '2015-12-21 22:35:43', '1', '2015-12-21', '1', null, null);
+INSERT INTO `bn_article` VALUES ('38', '232312', '<p>3213123</p>', '1450708569617.jpg', '1', '2015-12-21 22:36:09', null, '2015-12-21', '1', 'big', null);
+INSERT INTO `bn_article` VALUES ('39', '323123343', '<p>dsadad</p>', '1450708583350.jpg', '1', '2015-12-21 22:36:23', '2', '2015-12-21', '1', 'small', null);
+INSERT INTO `bn_article` VALUES ('40', 'esadsada', '<p>gfdsgd&nbsp;</p>', '1450708593399.jpg', '1', '2015-12-21 22:36:33', null, '2015-12-21', '1', 'big', null);
+INSERT INTO `bn_article` VALUES ('41', '2222', '<p>adadada</p>', '1450709898358.jpg', '1', '2015-12-21 22:58:18', null, '2015-12-21', '1', 'big', null);
+INSERT INTO `bn_article` VALUES ('42', '4343', '<p>4543</p>', '1450709948549.png', '1', '2015-12-21 22:59:08', null, '2015-12-21', '1', 'big', null);
+INSERT INTO `bn_article` VALUES ('43', 'dsada', '<p>dsadad</p>', '1450722487466.jpg', '0', '2015-12-22 02:28:07', '1', '2015-12-22,2015-12-23,2015-12-24', '1', null, null);
 
 -- ----------------------------
 -- Table structure for `bn_auth`
@@ -60,20 +68,21 @@ CREATE TABLE `bn_auth` (
   `auth_id` int(12) NOT NULL AUTO_INCREMENT,
   `role_id` int(12) DEFAULT NULL,
   `upnum` int(12) DEFAULT NULL,
+  `totalnum` int(12) DEFAULT NULL,
   `lasttime` int(12) DEFAULT NULL,
   PRIMARY KEY (`auth_id`),
   KEY `authrole` (`role_id`),
   CONSTRAINT `authrole` FOREIGN KEY (`role_id`) REFERENCES `bn_role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_auth
 -- ----------------------------
-INSERT INTO `bn_auth` VALUES ('1', '2', '5', '48');
-INSERT INTO `bn_auth` VALUES ('2', '3', '8', '72');
-INSERT INTO `bn_auth` VALUES ('3', '4', '12', '120');
-INSERT INTO `bn_auth` VALUES ('4', '5', '18', '196');
-INSERT INTO `bn_auth` VALUES ('5', '6', '30', '360');
+INSERT INTO `bn_auth` VALUES ('1', '2', '5', '10', '48');
+INSERT INTO `bn_auth` VALUES ('2', '3', '8', '16', '72');
+INSERT INTO `bn_auth` VALUES ('3', '4', '12', '24', '120');
+INSERT INTO `bn_auth` VALUES ('4', '5', '18', '36', '196');
+INSERT INTO `bn_auth` VALUES ('5', '6', '30', '60', '360');
 
 -- ----------------------------
 -- Table structure for `bn_cart`
@@ -102,7 +111,7 @@ CREATE TABLE `bn_demand` (
   `startprice` double DEFAULT NULL,
   `person_id` int(12) NOT NULL,
   `type` int(1) NOT NULL COMMENT '1:价格区间 2:固定价格',
-  `describe` varchar(80) DEFAULT NULL,
+  `introduce` varchar(80) DEFAULT NULL,
   `uptime` datetime NOT NULL,
   `state` int(1) DEFAULT NULL COMMENT '1:未完成 -1:已完成',
   PRIMARY KEY (`demand_id`),
@@ -126,18 +135,19 @@ CREATE TABLE `bn_key` (
   `keyname` varchar(20) NOT NULL,
   PRIMARY KEY (`key_id`),
   KEY `keyname` (`keyname`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_key
 -- ----------------------------
-INSERT INTO `bn_key` VALUES ('1', '0', '陶器');
+INSERT INTO `bn_key` VALUES ('1', '0', '无');
 INSERT INTO `bn_key` VALUES ('2', '11', '青花');
 INSERT INTO `bn_key` VALUES ('3', '12', '字');
 INSERT INTO `bn_key` VALUES ('4', '13', '木雕');
 INSERT INTO `bn_key` VALUES ('5', '12', '玉器');
 INSERT INTO `bn_key` VALUES ('6', '14', '根雕');
 INSERT INTO `bn_key` VALUES ('7', '15', '画');
+INSERT INTO `bn_key` VALUES ('8', '0', '陶器');
 
 -- ----------------------------
 -- Table structure for `bn_message`
@@ -200,15 +210,15 @@ CREATE TABLE `bn_person` (
   PRIMARY KEY (`person_id`),
   KEY `role_id` (`role_id`),
   CONSTRAINT `role_id` FOREIGN KEY (`role_id`) REFERENCES `bn_role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_person
 -- ----------------------------
-INSERT INTO `bn_person` VALUES ('1', 'admin', 'admin', '王辉灿', null, null, null, null, null, null, '超级管理员', '0', '10');
+INSERT INTO `bn_person` VALUES ('1', 'admin', '1', '王辉灿', '329669642@qq.com', '15659824572', '福建', '男', '329669642', '350583199501234358', '超级管理员', '0', '10');
 INSERT INTO `bn_person` VALUES ('2', 'wanghuican', '666666', '王辉灿', '329669642@qq.com', '15659824572', '福建泉州南安水头', '男', '329669642', '350583199501234358', '啊啊啊啊', '0', '1');
-INSERT INTO `bn_person` VALUES ('3', 'whcart', '1234567890', '王艺术', '', '', '', '男', '777', '', '                                                                艺术家\r\n           ', '0', '6');
-INSERT INTO `bn_person` VALUES ('4', 'whcart2', '1234567890', '王艺术2', null, null, null, null, null, null, null, '0', '5');
+INSERT INTO `bn_person` VALUES ('3', 'whcart', '1', '王艺术', '', '', '', '男', '777', '', '艺术家', '0', '6');
+INSERT INTO `bn_person` VALUES ('4', 'whcart2', '1234567890', '王艺术2', '1', '1', '1', '男', '1', '1', '                \r\n            1    ', '0', '5');
 INSERT INTO `bn_person` VALUES ('10', 'whccb', '1234567890', '王采编', null, null, null, null, null, null, '采编', '0', '7');
 INSERT INTO `bn_person` VALUES ('12', 'whczb', '1234567890', '王辉灿', null, null, null, null, null, null, '测试3', '0', '8');
 INSERT INTO `bn_person` VALUES ('13', 'whcad', '1234567890', '王辉灿', null, null, null, null, null, null, '测试', '0', '9');
@@ -226,7 +236,7 @@ CREATE TABLE `bn_proaction` (
   `startprice` double NOT NULL,
   `addprice` double(11,0) NOT NULL,
   `lasttime` int(10) NOT NULL,
-  `describe` varchar(80) DEFAULT NULL,
+  `introduce` varchar(80) DEFAULT NULL,
   `recordtime` datetime NOT NULL,
   PRIMARY KEY (`action_id`),
   KEY `rproid` (`product_id`),
@@ -236,6 +246,8 @@ CREATE TABLE `bn_proaction` (
 -- ----------------------------
 -- Records of bn_proaction
 -- ----------------------------
+INSERT INTO `bn_proaction` VALUES ('1', '1', '11', '11', '11', '11', '2015-12-22 04:50:50');
+INSERT INTO `bn_proaction` VALUES ('2', '1', '222', '22', '22', '22', '2015-12-22 04:50:58');
 
 -- ----------------------------
 -- Table structure for `bn_product`
@@ -243,26 +255,29 @@ CREATE TABLE `bn_proaction` (
 DROP TABLE IF EXISTS `bn_product`;
 CREATE TABLE `bn_product` (
   `product_id` int(12) NOT NULL AUTO_INCREMENT,
+  `productname` varchar(40) NOT NULL,
   `price` double DEFAULT NULL COMMENT '现在的价格',
-  `fixedprice` double DEFAULT NULL,
-  `startprice` double DEFAULT NULL,
-  `addprice` int(11) DEFAULT NULL,
-  `type` int(1) NOT NULL COMMENT '1:竞买 2:一口价',
-  `describe` varchar(80) DEFAULT NULL,
+  `introduce` varchar(80) DEFAULT NULL,
   `uptime` datetime NOT NULL,
-  `person_id` int(12) NOT NULL,
-  `lasttime` int(10) NOT NULL,
-  `state` int(1) NOT NULL DEFAULT '0' COMMENT '0:未展示 1:未售出 -1:已售出',
+  `person_id` int(12) DEFAULT NULL,
+  `state` int(1) NOT NULL COMMENT '0:展示；1拍卖中；-1:已售出',
+  `pass` int(1) NOT NULL DEFAULT '0' COMMENT '0:未通过；1：已通过',
   PRIMARY KEY (`product_id`),
   KEY `person_id` (`person_id`),
   CONSTRAINT `person_id` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_product
 -- ----------------------------
-INSERT INTO `bn_product` VALUES ('1', '30', '55.5', '20.5', '5', '1', '美丽的东西', '2015-11-25 21:15:34', '2', '72', '0');
-INSERT INTO `bn_product` VALUES ('2', '44', '55', '22', '5', '1', '漂亮的东西', '2015-11-25 21:16:02', '2', '72', '0');
+INSERT INTO `bn_product` VALUES ('1', 'lala', '10', 'lalala', '2015-12-22 03:30:57', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('2', 'lele', '23', '33dads', '2015-12-22 03:31:08', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('3', 'meme', '23', 'adsas', '2015-12-22 03:31:20', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('4', 'adas', '22', 'asda', '2015-12-22 22:12:27', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('5', 'asda', '33', '11', '2015-12-22 22:12:42', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('6', 'dadsa', '55', 'dada', '2015-12-24 00:06:18', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('7', 'dasda222', '33', '2dsada222', '2015-12-24 02:26:25', '3', '0', '1');
+INSERT INTO `bn_product` VALUES ('13', 'wwww', '0', '', '2015-12-24 17:41:57', '3', '0', '0');
 
 -- ----------------------------
 -- Table structure for `bn_role`
@@ -275,7 +290,7 @@ CREATE TABLE `bn_role` (
   `frolename` varchar(20) DEFAULT NULL COMMENT '下一级角色',
   PRIMARY KEY (`role_id`),
   KEY `frole` (`frolename`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_role
@@ -368,7 +383,7 @@ CREATE TABLE `rl_demkey` (
 -- ----------------------------
 -- Records of rl_demkey
 -- ----------------------------
-INSERT INTO `rl_demkey` VALUES ('1', '1', '1');
+INSERT INTO `rl_demkey` VALUES ('1', '1', '8');
 INSERT INTO `rl_demkey` VALUES ('2', '2', '2');
 INSERT INTO `rl_demkey` VALUES ('3', '1', '3');
 
@@ -396,23 +411,23 @@ DROP TABLE IF EXISTS `rl_perkey`;
 CREATE TABLE `rl_perkey` (
   `record_id` int(12) NOT NULL AUTO_INCREMENT,
   `person_id` int(12) NOT NULL,
-  `key_id` int(12) NOT NULL,
+  `key_id` int(12) DEFAULT NULL,
   PRIMARY KEY (`record_id`),
   KEY `keyperson` (`key_id`),
   KEY `personkey` (`person_id`),
   CONSTRAINT `keyperson` FOREIGN KEY (`key_id`) REFERENCES `bn_key` (`key_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `personkey` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rl_perkey
 -- ----------------------------
-INSERT INTO `rl_perkey` VALUES ('1', '3', '1');
-INSERT INTO `rl_perkey` VALUES ('2', '3', '2');
-INSERT INTO `rl_perkey` VALUES ('3', '3', '3');
-INSERT INTO `rl_perkey` VALUES ('4', '4', '1');
+INSERT INTO `rl_perkey` VALUES ('4', '4', '8');
 INSERT INTO `rl_perkey` VALUES ('5', '4', '4');
 INSERT INTO `rl_perkey` VALUES ('6', '4', '5');
+INSERT INTO `rl_perkey` VALUES ('10', '3', '1');
+INSERT INTO `rl_perkey` VALUES ('11', '3', '7');
+INSERT INTO `rl_perkey` VALUES ('12', '3', '6');
 
 -- ----------------------------
 -- Table structure for `rl_procart`
@@ -438,21 +453,30 @@ CREATE TABLE `rl_procart` (
 -- ----------------------------
 DROP TABLE IF EXISTS `rl_proimg`;
 CREATE TABLE `rl_proimg` (
-  `record_id` int(12) NOT NULL,
+  `record_id` int(12) NOT NULL AUTO_INCREMENT,
   `product_id` int(12) NOT NULL,
   `flag` int(1) DEFAULT '0' COMMENT '1:主图 0:次图',
   `image` varchar(80) NOT NULL,
   PRIMARY KEY (`record_id`),
   KEY `img_product_Id` (`product_id`),
   CONSTRAINT `img_product_Id` FOREIGN KEY (`product_id`) REFERENCES `bn_product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rl_proimg
 -- ----------------------------
-INSERT INTO `rl_proimg` VALUES ('1', '1', null, 'picture1');
-INSERT INTO `rl_proimg` VALUES ('2', '1', null, 'picture2');
-INSERT INTO `rl_proimg` VALUES ('3', '2', null, 'picture3');
+INSERT INTO `rl_proimg` VALUES ('1', '1', '1', '1.jpg');
+INSERT INTO `rl_proimg` VALUES ('2', '2', '1', '1.jpg');
+INSERT INTO `rl_proimg` VALUES ('3', '3', '1', '1.jpg');
+INSERT INTO `rl_proimg` VALUES ('4', '4', '1', '1.jpg');
+INSERT INTO `rl_proimg` VALUES ('5', '5', '1', '1450950117663.jpg');
+INSERT INTO `rl_proimg` VALUES ('6', '6', '1', '1450950117663.jpg');
+INSERT INTO `rl_proimg` VALUES ('7', '7', '1', '1450950117663.jpg');
+INSERT INTO `rl_proimg` VALUES ('19', '13', '0', '1450950117663.jpg');
+INSERT INTO `rl_proimg` VALUES ('20', '13', '0', '1450950117699.jpg');
+INSERT INTO `rl_proimg` VALUES ('21', '13', '1', '1450950117708.jpg');
+INSERT INTO `rl_proimg` VALUES ('22', '5', '0', '1450950117663.jpg');
+INSERT INTO `rl_proimg` VALUES ('23', '5', '0', '1450950117663.jpg');
 
 -- ----------------------------
 -- Table structure for `rl_prokey`
@@ -467,14 +491,15 @@ CREATE TABLE `rl_prokey` (
   KEY `product_key` (`key_id`),
   CONSTRAINT `key_product` FOREIGN KEY (`product_id`) REFERENCES `bn_product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_key` FOREIGN KEY (`key_id`) REFERENCES `bn_key` (`key_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rl_prokey
 -- ----------------------------
-INSERT INTO `rl_prokey` VALUES ('1', '1', '1');
-INSERT INTO `rl_prokey` VALUES ('2', '2', '2');
-INSERT INTO `rl_prokey` VALUES ('3', '2', '3');
+INSERT INTO `rl_prokey` VALUES ('1', '1', '8');
+INSERT INTO `rl_prokey` VALUES ('2', '1', '2');
+INSERT INTO `rl_prokey` VALUES ('3', '2', '8');
+INSERT INTO `rl_prokey` VALUES ('4', '2', '2');
 
 -- ----------------------------
 -- Table structure for `rl_proorder`

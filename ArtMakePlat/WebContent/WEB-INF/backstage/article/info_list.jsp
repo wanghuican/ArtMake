@@ -93,7 +93,7 @@
 		}
 		 $.ajax({
 		        type: "post",
-		        url: "nchangePassAjax?nchangePass",
+		        url: "nchangePassAjax!nchangePass",
 		        data:{//设置数据源
 		        	nid:allIDCheck
 		        },

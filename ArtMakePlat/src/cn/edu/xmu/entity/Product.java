@@ -35,9 +35,9 @@ public class Product extends JsonEntity{
 	
 	
 	/**
-	  * @Fields describe
+	  * @Fields introduce
 	  */
-	private String describe;
+	private String introduce;
 	
 	/**
 	  * @Fields uptime : TODO（用一句话描述这个变量表示什么）
@@ -49,11 +49,20 @@ public class Product extends JsonEntity{
 	  */
 	private Person person;
 	
+	/**
+	  * @Fields productname : TODO（用一句话描述这个变量表示什么）
+	  */
+	private String productname;
 	
 	/**
 	  * @Fields state : 0:未展示 1:未售出 -1:已售出
 	  */
 	private int state;
+	
+	/**
+	  * @Fields pass : TODO（用一句话描述这个变量表示什么）
+	  */
+	private int pass;
 	
 	/**
 	  * @Fields imageList : 图片列表
@@ -79,35 +88,66 @@ public class Product extends JsonEntity{
 		super();
 	}
 
+	
+
 	/**
 	  * 创建一个新的实例 Product. 
 	  * <p>Title: </p>
 	  * <p>Description: </p>
 	  * @param product_id
 	  * @param price
-	  * @param describe
+	  * @param introduce
 	  * @param uptime
 	  * @param person
+	  * @param productname
 	  * @param state
+	  * @param pass
 	  * @param imageList
 	  * @param keyList
 	  * @param actionList
 	  */
 	
-	public Product(int product_id, double price, String describe, Date uptime,
-			Person person, int state, List<Proimg> imageList,List<Prokey> keyList, 
+	public Product(int product_id, double price, String introduce, Date uptime,
+			Person person, String productname, int state, int pass,
+			List<Proimg> imageList, List<Prokey> keyList,
 			List<ProAction> actionList) {
 		super();
 		this.product_id = product_id;
 		this.price = price;
-		this.describe = describe;
+		this.introduce = introduce;
 		this.uptime = uptime;
 		this.person = person;
+		this.productname = productname;
 		this.state = state;
+		this.pass = pass;
 		this.imageList = imageList;
 		this.keyList = keyList;
 		this.actionList = actionList;
 	}
+
+
+
+	/**
+	 * getter method
+	 * @return the productname
+	 */
+	
+	public String getProductname() {
+		return productname;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param productname the productname to set
+	 */
+	
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+
+
 
 	/**
 	 * getter method
@@ -145,22 +185,24 @@ public class Product extends JsonEntity{
 		this.price = price;
 	}
 
+	
+	
 	/**
 	 * getter method
-	 * @return the describe
+	 * @return the introduce
 	 */
 	
-	public String getDescribe() {
-		return describe;
+	public String getIntroduce() {
+		return introduce;
 	}
 
 	/**
 	 * setter method
-	 * @param describe the describe to set
+	 * @param introduce the introduce to set
 	 */
 	
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
 	}
 
 	/**
@@ -273,6 +315,28 @@ public class Product extends JsonEntity{
 	}
 
 	
+	
+	/**
+	 * getter method
+	 * @return the pass
+	 */
+	
+	public int getPass() {
+		return pass;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param pass the pass to set
+	 */
+	
+	public void setPass(int pass) {
+		this.pass = pass;
+	}
+
+
 	/*
 	  * Title: toJsonString
 	  * Description:
@@ -282,11 +346,15 @@ public class Product extends JsonEntity{
 	@Override
 	public String toJsonString() {
 		return "{\"product_id\":\"" + product_id + "\",\"price\":\"" + price
-				+ "\",\"describe\":\"" + describe + "\",\"uptime\":\"" + uptime
-				+ "\",\"person\":\"" + person + "\",\"state\":\"" + state
-				+ "\",\"imageList\":\"" + imageList + "\",\"keyList\":\""
-				+ keyList + "\",\"actionList\":\"" + actionList + "\"}  ";
+				+ "\",\"introduce\":\"" + introduce + "\",\"uptime\":\"" + uptime
+				+ "\",\"person\":\"" + person + "\",\"productname\":\""
+				+ productname + "\",\"state\":\"" + state + "\",\"pass\":\""
+				+ pass + "\",\"imageList\":\"" + imageList + "\",\"image\":\"" 
+				+ imageList.get(0).getImage() + "\",\"keyList\":\"" + keyList + "\",\"actionList\":\""
+				+ actionList + "\"}  ";
 	}
+
+	
 
 	
 }

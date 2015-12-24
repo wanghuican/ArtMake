@@ -9,25 +9,50 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/east.css">
 <script src="js/jquery.js"></script>
-<script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/common.js"></script> 
 <script src="js/superfish.js"></script>
-<script src="js/jquery.equalheights.js"></script>
-<script src="js/jquery.mobilemenu.js"></script>
-<script src="js/tmStickUp.js"></script>
-<script src="js/jquery.ui.totop.js"></script>
-<script src="js/TMForm.js"></script>
-<script src="js/modal.js"></script>
 <script>
- $(window).load(function(){
-	 var content = "<s:property value='article.content'/>";
-     $("#contenthtml").html(decodeHtml(content));
-     $("#improvebtn").click(function(){
-    	 $("#userinfo-form").attr("action","person!improvePerson").submit();
-     });
- }); 
+var num = 0;
+$(document).ready(function(){
+	 <s:iterator value="person.keyList" id="row">
+	 <s:if test="#row.key.key_id != 1">
+	 $("#key<s:property value='#row.key.key_id'/>").css("background-color","rgb(0,0,0)");
+	 $("#key<s:property value='#row.key.key_id'/>").val("-<s:property value='#row.key.keyname'/>");
+	 num++;
+	 </s:if>
+	 </s:iterator>
+});
 
+function addKey(id,name){
+	if($("#key" + id).val().indexOf("-")>=0){
+		$("#key" + id).css("background-color","rgba(0,0,0,0)");
+		$("#key" + id).val("+"+name);
+		num--;
+	}else if(num<3){
+		$("#key" + id).css("background-color","rgb(0,0,0)");
+		$("#key" + id).val("-"+name);
+		num++;
+	}else{
+		alert("关键词不能超过三个");
+	}
+}
+
+ function toSubmit(){
+	 var keys = "";
+	 <s:if test="person.role.role_code == 5">
+	 <s:iterator value="keyList" id="row">
+	 <s:if test="#row.key_id != 1">
+       if($("#key<s:property value='#row.key_id'/>").val().indexOf("-")>=0){
+		 keys += "<s:property value='#row.key_id'/>,";
+	   }
+     </s:if>
+	 </s:iterator>
+	 keys = keys.substring(0,keys.lastIndexOf(","));
+	 </s:if>
+	 $("#userinfo-form").attr("action","person!improvePerson?keys="+keys).submit();
+ }
+ 
 </script>
 <!--[if lt IE 8]>
  <div style=' clear: both; text-align:center; position: relative;'>
@@ -56,7 +81,7 @@
             <div class="userinfo-form-loader"></div>
             <fieldset>
               <label class="realname">
-                <input type="text" name="person.realname" placeholder="真实姓名:" data-constraints=""
+                <input type="text" name="person.realname" placeholder="真实姓名:" data-constraints="@Length(min=2,max=999999)"
                 value="<s:property value='person.realname'/>" />
                 <span class="empty-message">*This field is required.</span>
                 <span class="error-message">*This is not a valid realname.</span>
@@ -70,7 +95,7 @@
               </label>
               
               <label class="phone">
-                <input type="text" name="person.tel" placeholder="电话号码:" data-constraints="@JustNumbers" 
+                <input type="text" name="person.tel" placeholder="电话号码:" data-constraints="@JustNumbers"
                 value="<s:property value='person.tel'/>" />
                 <span class="empty-message">*This field is required.</span>
                 <span class="error-message">*This is not a valid phone.</span>
@@ -85,56 +110,22 @@
               
               <br>
               <br>
-              <label class="address">
-              <input type="text" name="address" placeholder="关键字:" value="" data-constraints="" />
+              <s:if test="person.role.role_code == 5">
+              <label class="address" id="nkey">
+                                 关键字：
               <br>
               <br>
-              <input type="button" value="+玉器"/>
-              <input type="button" value="+瓷器"/>
-    		  <input type="button" value="+木雕"/>
-              <input type="button" value="+根雕"/>
-              <input type="button" value="+青花"/>
-    		  <input type="button" value="+字画"/>
-    		  <input type="button" value="+玉器"/>
-              <input type="button" value="+瓷器"/>
-    		  <input type="button" value="+木雕"/>
-              <input type="button" value="+根雕"/>
-              <input type="button" value="+青花"/>
-    		  <input type="button" value="+字画"/>
-    		  <input type="button" value="+玉器"/>
-              <input type="button" value="+瓷器"/>
-    		  <input type="button" value="+木雕"/>
-              <input type="button" value="+根雕"/>
-              <input type="button" value="+青花"/>
-    		  <input type="button" value="+字画"/>
-    		  <input type="button" value="+玉器"/>
-              <input type="button" value="+瓷器"/>
-    		  <input type="button" value="+木雕"/>
-              <input type="button" value="+根雕"/>
-              <input type="button" value="+青花"/>
-    		  <input type="button" value="+字画"/>
-    		  <input type="button" value="+玉器"/>
-              <input type="button" value="+瓷器"/>
-    		  <input type="button" value="+木雕"/>
-              <input type="button" value="+根雕"/>
-              <input type="button" value="+青花"/>
-    		  <input type="button" value="+字画"/>
-    		  <input type="button" value="+玉器"/>
-              <input type="button" value="+瓷器"/>
-    		  <input type="button" value="+木雕"/>
-              <input type="button" value="+根雕"/>
-              <input type="button" value="+青花"/>
-    		  <input type="button" value="+字画"/>
-    		  <input type="button" value="+玉器"/>
-              <input type="button" value="+瓷器"/>
-    		  <input type="button" value="+木雕"/>
-              <input type="button" value="+根雕"/>
-              <input type="button" value="+青花"/>
-    		  <input type="button" value="+字画"/>
+              	
+              <s:iterator value="keyList" id="row">
+              <s:if test="#row.key_id != 1">
+              <input type="button" id="key<s:property value='#row.key_id'/>" style="cursor:pointer" value="+<s:property value='#row.keyname'/>" onclick="addKey('<s:property value='#row.key_id'/>','<s:property value='#row.keyname'/>')"/>
+              </s:if>
+              </s:iterator>
+              
               <br>
               <br>
               </label>
-              
+              </s:if>
               <label class="sex" >
                 <select name="person.sex">
                 <option value="男">男</option>
@@ -165,8 +156,8 @@
               </label>
               
               <label align="right">
-                <input style="cursor:pointer" type="reset" class="btn" data-type="reset" value="清除">
-                <input style="cursor:pointer" type="button" id="improvebtn" class="btn" data-type="submit" value="确认">
+                 <a href="#" class="btn" data-type="reset">清除</a>
+                 <a href="javascript:toSubmit()" class="btn" data-type="submit">确认</a>
               </label>
             </fieldset>
             <div class="modal fade response-message">
@@ -190,6 +181,6 @@
 <!--==============================
               footer
 =================================-->
-
+<jsp:include page="../bottom.jsp" />
 </body>
 </html>

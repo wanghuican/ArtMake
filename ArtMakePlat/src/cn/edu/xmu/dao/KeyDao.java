@@ -3,6 +3,7 @@ package cn.edu.xmu.dao;
 import java.util.List;
 
 import cn.edu.xmu.entity.Key;
+import cn.edu.xmu.entity.Perkey;
 
 /**
   * @ClassName: KeyDao
@@ -23,4 +24,6 @@ public interface KeyDao {
 	public void deleteKeyById(int id);
 	
 	public Key getKeyById(int id);
+	
+	public void deletePerkeyById(int id);
 }

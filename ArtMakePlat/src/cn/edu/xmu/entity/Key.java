@@ -10,6 +10,7 @@
 package cn.edu.xmu.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @ClassName: Key
@@ -40,6 +41,11 @@ public class Key extends JsonEntity{
 	  * <p>Description: 无参构造函数</p>
 	  */
 	
+	/**
+	  * @Fields perkeyList : TODO（用一句话描述这个变量表示什么）
+	  */
+	private List<Perkey> perkeyList;
+	
 	public Key() {
 		super();
 	}
@@ -53,13 +59,38 @@ public class Key extends JsonEntity{
 	  * @param key_id
 	  * @param keyname
 	  * @param times
+	  * @param perkeyList
 	  */
 	
-	public Key(int key_id, String keyname, int times) {
+	public Key(int key_id, String keyname, int times, List<Perkey> perkeyList) {
 		super();
 		this.key_id = key_id;
 		this.keyname = keyname;
 		this.times = times;
+		this.perkeyList = perkeyList;
+	}
+
+
+
+
+	/**
+	 * getter method
+	 * @return the perkeyList
+	 */
+	
+	public List<Perkey> getPerkeyList() {
+		return perkeyList;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param perkeyList the perkeyList to set
+	 */
+	
+	public void setPerkeyList(List<Perkey> perkeyList) {
+		this.perkeyList = perkeyList;
 	}
 
 

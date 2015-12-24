@@ -57,10 +57,10 @@ function goInfo(){
 						<a href="forward!goUser">                             
                                                         登录/注册</a>
                         </s:if> <s:else>
-                        <div style="cursor:pointer" onclick="goInfo()">
+                        <a href="javascript:goInfo()">
                         <s:property value="#session.person.role.rolename" />:
                         <s:property value="#session.person.realname" />
-                        </div>
+                        </a>
 						</s:else>
 						</li>
              </ul>

@@ -58,7 +58,7 @@
 				<value>cn/edu/xmu/entity/Product.hbm.xml</value>
 				<value>cn/edu/xmu/entity/ProAction.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Demand.hbm.xml</value>
-				<value>cn/edu/xmu/entity/Proimg.hbm.xml</value>
+		    	<value>cn/edu/xmu/entity/Proimg.hbm.xml</value>	
 				<value>cn/edu/xmu/entity/Prokey.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Perkey.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Demkey.hbm.xml</value>
@@ -83,6 +83,7 @@
 	<bean id="roledao" class="cn.edu.xmu.daoImpl.RoleDaoImpl"></bean>
 	<bean id="authdao" class="cn.edu.xmu.daoImpl.AuthDaoImpl"></bean>
 	<bean id="keydao" class="cn.edu.xmu.daoImpl.KeyDaoImpl"></bean>
+	<bean id="productdao" class="cn.edu.xmu.daoImpl.ProductDaoImpl"></bean>
 	<!-- 配置事务 -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -115,6 +116,7 @@
 	<bean id="roleService" class="cn.edu.xmu.serviceImpl.RoleServiceImpl"></bean>
 	<bean id="authService" class="cn.edu.xmu.serviceImpl.AuthServiceImpl"></bean>
 	<bean id="keyService" class="cn.edu.xmu.serviceImpl.KeyServiceImpl"></bean>
+	<bean id="productService" class="cn.edu.xmu.serviceImpl.ProductServiceImpl"></bean>
 	<context:annotation-config />
 
 	<!-- 开启Spring的Bean自动扫描机制来查找与管理Bean实例 -->

@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 import cn.edu.xmu.dao.BaseDao;
 import cn.edu.xmu.dao.KeyDao;
 import cn.edu.xmu.entity.Key;
+import cn.edu.xmu.entity.Perkey;
 import cn.edu.xmu.util.Common;
 
 /**
@@ -130,5 +131,10 @@ public class KeyDaoImpl implements KeyDao {
 	public Key getKeyById(int id) {
 		// TODO Auto-generated method stub
 		return (Key)dao.loadById(Key.class, id);
+	}
+	
+	@Override
+	public void deletePerkeyById(int id){
+		dao.delById(Perkey.class, id);
 	}
 }

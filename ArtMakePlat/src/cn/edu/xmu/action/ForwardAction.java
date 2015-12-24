@@ -44,11 +44,4 @@ public class ForwardAction extends ActionSupport {
 		return "adminad";
 	}
 	
-	public String goInfolist() throws Exception{
-		return "infolist";
-	}
-	
-	public String goInfoedit() throws Exception{
-		return "infoedit";
-	}
 }

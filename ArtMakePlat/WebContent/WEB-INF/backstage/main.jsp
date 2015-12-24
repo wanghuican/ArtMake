@@ -221,9 +221,11 @@
 				        </s:if>
 				        </s:iterator>
 				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":4,"resourceID":50,"resourceName":"艺术品管理","resourceOrder":0,"resourceType":""},
-				        {"accessPath":"","checked":false,"delFlag":0,"parentID":50,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":51,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"productManage","checked":false,"delFlag":0,"parentID":50,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":51,"resourceName":"艺术品列表","resourceOrder":0,"resourceType":""},
 				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":6,"resourceID":60,"resourceName":"需求管理","resourceOrder":0,"resourceType":""},
-				        {"accessPath":"","checked":false,"delFlag":0,"parentID":60,"resourceCode":"","resourceDesc":"","resourceGrade":7,"resourceID":61,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""}
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":60,"resourceCode":"","resourceDesc":"","resourceGrade":7,"resourceID":61,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":8,"resourceID":70,"resourceName":"消息管理","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":70,"resourceCode":"","resourceDesc":"","resourceGrade":9,"resourceID":71,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""}
 				        ];
 			}else if(resourceType == "XITONGGUANLI"){
 				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"角色和权限","resourceOrder":0,"resourceType":""},
@@ -231,7 +233,8 @@
 			            {"accessPath":"authManage","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"艺术家权限","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":4,"resourceID":6,"resourceName":"其他","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"keyManage","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":7,"resourceName":"关键词管理","resourceOrder":0,"resourceType":""},
-			            {"accessPath":"","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":8,"resourceName":"修改个人信息","resourceOrder":0,"resourceType":""}
+			            {"accessPath":"upInfo","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":8,"resourceName":"修改个人信息","resourceOrder":0,"resourceType":""},
+			            {"accessPath":"upInfo!goRepassword","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":9,"resourceName":"修改密码","resourceOrder":0,"resourceType":""}
 			            ];
 			}
             // 如果返回数据不为空，加载"业务模块"目录

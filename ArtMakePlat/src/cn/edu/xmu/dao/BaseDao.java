@@ -86,6 +86,20 @@ public interface BaseDao {
 	  */
 	public void saveOrUpdate(Object obj);
 
+	
+	/**
+	  * MethidName: saveOrUpdateAll
+	  * TODO(这里描述这个方法适用条件 – 可选)
+	  * TODO(这里描述这个方法的使用方法 – 可选)
+	  * TODO(这里描述这个方法的注意事项 – 可选)
+	  * @Title: saveOrUpdateAll
+	  * @Description: TODO
+	  * @param @param list    设定文件
+	  * @return void    返回类型
+	  * @throws
+	  */
+	public void saveOrUpdateAll(List list);
+	
 	/**
 	  * MethidName: listAll
 	  * TODO(这里描述这个方法适用条件 – 可选)
