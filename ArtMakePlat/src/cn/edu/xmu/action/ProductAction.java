@@ -13,6 +13,8 @@ package cn.edu.xmu.action;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,10 +22,14 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import net.sf.json.JSONObject;
+import cn.edu.xmu.entity.Auth;
 import cn.edu.xmu.entity.Person;
+import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.Product;
 import cn.edu.xmu.entity.Role;
+import cn.edu.xmu.service.AuthService;
 import cn.edu.xmu.service.LoginService;
+import cn.edu.xmu.service.ProActionService;
 import cn.edu.xmu.service.ProductService;
 import cn.edu.xmu.util.Common;
 import cn.edu.xmu.util.WebTool;
@@ -44,7 +50,17 @@ public class ProductAction extends ActionSupport{
 	@Resource(name = "productService")
 	ProductService productService;
 	
+	@Resource(name = "proActionService")
+	ProActionService proActionService;
+	
+	@Resource(name = "authService")
+	AuthService authService;
+	
 	private Product product;
+	
+	private Auth auth;
+	
+	private ProAction proAction;
 	
 	private String result;
 	
@@ -164,6 +180,67 @@ public class ProductAction extends ActionSupport{
 		return productNotIngList;
 	}
 
+	
+
+	/**
+	 * getter method
+	 * @return the authService
+	 */
+	
+	public AuthService getAuthService() {
+		return authService;
+	}
+
+
+	/**
+	 * getter method
+	 * @return the auth
+	 */
+	
+	public Auth getAuth() {
+		return auth;
+	}
+
+
+	/**
+	 * setter method
+	 * @param auth the auth to set
+	 */
+	
+	public void setAuth(Auth auth) {
+		this.auth = auth;
+	}
+
+
+	/**
+	 * setter method
+	 * @param authService the authService to set
+	 */
+	
+	public void setAuthService(AuthService authService) {
+		this.authService = authService;
+	}
+
+
+	/**
+	 * getter method
+	 * @return the proAction
+	 */
+	
+	public ProAction getProAction() {
+		return proAction;
+	}
+
+
+	/**
+	 * setter method
+	 * @param proAction the proAction to set
+	 */
+	
+	public void setProAction(ProAction proAction) {
+		this.proAction = proAction;
+	}
+
 
 	/**
 	 * setter method
@@ -173,6 +250,28 @@ public class ProductAction extends ActionSupport{
 	public void setProductNotIngList(List<Product> productNotIngList) {
 		this.productNotIngList = productNotIngList;
 	}
+
+	
+	
+	/**
+	 * getter method
+	 * @return the proActionService
+	 */
+	
+	public ProActionService getProActionService() {
+		return proActionService;
+	}
+
+
+	/**
+	 * setter method
+	 * @param proActionService the proActionService to set
+	 */
+	
+	public void setProActionService(ProActionService proActionService) {
+		this.proActionService = proActionService;
+	}
+
 
 	public String toProductIngList(){
 		if(getId() == 0){
@@ -244,12 +343,36 @@ public class ProductAction extends ActionSupport{
 		return "edit";
 	}
 	
+	public String goPutProduct(){
+		Product product = productService.getProductById(getId());
+		setProduct(product);
+		setAuth(authService.getAuthByRole_id(WebTool.getSessionPerson().getRole().getRole_id()));;
+		return "put";
+	}
+	
 	public String editProduct() throws IOException{
 		Product product = productService.getProductById(getId());
 		product.setProductname(WebTool.getRequest().getParameter("pname"));
 		product.setIntroduce(WebTool.getRequest().getParameter("introduce"));
 		productService.saveProduct(product);
 		WebTool.alertMessage("修改艺术品成功", "person!goInfo");
+		return null;
+	}
+	
+	public String putProduct() throws IOException{
+		ProAction pa = getProAction();
+		Product product = productService.getProductById(getId());
+		product.setState(1);
+		product.setPrice(pa.getStartprice());
+		pa.setProduct(product);
+		Date now = new Date();
+		pa.setRecordtime(now);
+		Calendar ca=Calendar.getInstance();
+		ca.setTime(now);
+		ca.add(Calendar.HOUR_OF_DAY, pa.getLasttime());
+		pa.setEndtime(ca.getTime());
+		proActionService.saveProAction(pa);
+		WebTool.alertMessage("上架艺术品成功", "person!goInfo");
 		return null;
 	}
 	

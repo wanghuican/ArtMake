@@ -44,6 +44,11 @@ public class ProAction extends JsonEntity{
 	private Date recordtime;
 
 	/**
+	  * @Fields endtime : TODO（用一句话描述这个变量表示什么）
+	  */
+	private Date endtime;
+	
+	/**
 	  * @Fields introduce
 	  */
 	private String introduce;
@@ -70,11 +75,13 @@ public class ProAction extends JsonEntity{
 	  * @param addprice
 	  * @param lasttime
 	  * @param recordtime
+	  * @param endtime
 	  * @param introduce
 	  */
 	
 	public ProAction(int action_id, Product product, double startprice,
-			double addprice, int lasttime, Date recordtime, String introduce) {
+			double addprice, int lasttime, Date recordtime, Date endtime,
+			String introduce) {
 		super();
 		this.action_id = action_id;
 		this.product = product;
@@ -82,7 +89,33 @@ public class ProAction extends JsonEntity{
 		this.addprice = addprice;
 		this.lasttime = lasttime;
 		this.recordtime = recordtime;
+		this.endtime = endtime;
 		this.introduce = introduce;
+	}
+
+
+
+
+
+
+	/**
+	 * getter method
+	 * @return the endtime
+	 */
+	
+	public Date getEndtime() {
+		return endtime;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param endtime the endtime to set
+	 */
+	
+	public void setEndtime(Date endtime) {
+		this.endtime = endtime;
 	}
 
 
@@ -217,8 +250,6 @@ public class ProAction extends JsonEntity{
 		this.introduce = introduce;
 	}
 
-
-
 	
 	/*
 	  * Title: toJsonString
@@ -231,12 +262,8 @@ public class ProAction extends JsonEntity{
 		return "{\"action_id\":\"" + action_id + "\",\"product\":\"" + product
 				+ "\",\"startprice\":\"" + startprice + "\",\"addprice\":\""
 				+ addprice + "\",\"lasttime\":\"" + lasttime
-				+ "\",\"recordtime\":\"" + recordtime + "\",\"introduce\":\""
-				+ introduce + "\"}  ";
+				+ "\",\"recordtime\":\"" + recordtime + "\",\"endtime\":\""
+				+ endtime + "\",\"introduce\":\"" + introduce + "\"}  ";
 	}
 
-	
-	
-	
-	
 }

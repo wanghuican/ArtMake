@@ -35,12 +35,6 @@
 			</key>
 			<one-to-many class="cn.edu.xmu.entity.Proimg" />
 		</bag>
-		<bag name="keyList" order-by="record_id desc" cascade="all" inverse= "true" lazy= "true">
-			<key>
-				<column name="product_id" not-null="true" />
-			</key>
-			<one-to-many class="cn.edu.xmu.entity.Prokey" />
-		</bag>
 		<bag name="actionList" order-by="action_id desc" cascade="all" inverse= "true" lazy= "true">
 			<key>
 				<column name="product_id" not-null="true" />

@@ -19,10 +19,12 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import net.sf.json.JSONObject;
+import cn.edu.xmu.entity.Auth;
 import cn.edu.xmu.entity.Key;
 import cn.edu.xmu.entity.Perkey;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.Role;
+import cn.edu.xmu.service.AuthService;
 import cn.edu.xmu.service.KeyService;
 import cn.edu.xmu.service.LoginService;
 import cn.edu.xmu.service.PersonService;
@@ -44,6 +46,12 @@ public class PersonAction extends ActionSupport {
 	 */
 	@Resource(name = "personService")
 	PersonService personService;
+	
+	/**
+	 * @Fields authService
+	 */
+	@Resource(name = "authService")
+	AuthService authService;
 
 	/**
 	 * @Fields keyService : 登录业务逻辑组件
@@ -61,6 +69,8 @@ public class PersonAction extends ActionSupport {
 
 	private Person person;
 
+	private Auth auth;
+	
 	private String result;
 
 	private int id;
@@ -138,6 +148,25 @@ public class PersonAction extends ActionSupport {
 		this.id = id;
 	}
 
+	
+	/**
+	 * getter method
+	 * @return the auth
+	 */
+	
+	public Auth getAuth() {
+		return auth;
+	}
+
+	/**
+	 * setter method
+	 * @param auth the auth to set
+	 */
+	
+	public void setAuth(Auth auth) {
+		this.auth = auth;
+	}
+
 	/**
 	 * getter method
 	 * 
@@ -211,6 +240,26 @@ public class PersonAction extends ActionSupport {
 	public void setPersonService(PersonService personService) {
 		this.personService = personService;
 	}
+	
+	
+
+	/**
+	 * getter method
+	 * @return the authService
+	 */
+	
+	public AuthService getAuthService() {
+		return authService;
+	}
+
+	/**
+	 * setter method
+	 * @param authService the authService to set
+	 */
+	
+	public void setAuthService(AuthService authService) {
+		this.authService = authService;
+	}
 
 	public String checkAccount() {
 		String account = WebTool.getRequest().getParameter("account");
@@ -234,6 +283,7 @@ public class PersonAction extends ActionSupport {
 		if (person.getRole().getRole_code() == Common.CODE_USER) {
 			return "userinfo";
 		} else {
+			setAuth(authService.getAuthByRole_id(person.getRole().getRole_id()));
 			int pageing = 0, pagenoting = 0;
 			int counting = productService.countProductByIng(pro);
 			int countnoting = productService.countProductByNotIng(pro);

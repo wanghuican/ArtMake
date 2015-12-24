@@ -11,6 +11,8 @@
 		<many-to-one name="demand" class="cn.edu.xmu.entity.Demand" fetch="select">
 			<column name="demand_id" not-null="true"></column>
 		</many-to-one>
-		<one-to-one name="key" class="cn.edu.xmu.entity.Key"/>
+		<many-to-one name="key" class="cn.edu.xmu.entity.Key"  fetch="select">
+		   <column name="key_id"></column>
+		</many-to-one>
 	</class>
 </hibernate-mapping>

@@ -222,4 +222,11 @@ public class ProductAction extends ActionSupport {
 		//System.out.println(result);
 		return SUCCESS;
 	}
+	
+	public String goDetail(){
+		Product product = productService.getProductById(getId());
+		setProduct(product);
+		WebTool.getProductSrc();
+		return "detail";
+	}
 }

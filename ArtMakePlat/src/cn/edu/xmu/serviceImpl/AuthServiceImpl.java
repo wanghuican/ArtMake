@@ -10,6 +10,7 @@
 
 package cn.edu.xmu.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -81,6 +82,14 @@ public class AuthServiceImpl implements AuthService {
 
 	public Auth getAuthById(int id){
 		return dao.getAuthById(id);
+	}
+
+	@Override
+	public Auth getAuthByRole_id(int role_id) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(role_id);
+		return dao.getAuthByRole_id(pro);
 	}
 	
 }

@@ -42,7 +42,7 @@
 			dataType : "json",
 			success : function(data) {
 				data = JSON.parse(data);
-				$("#nowprice").html(data.price);
+				$("#nowprice").html(parseFloat(data.price));
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				alert("XMLHttpRequest=" + XMLHttpRequest);
@@ -58,14 +58,14 @@
 
 <body class="page_uploadart" id="uploadart">
 
-<jsp:include page="../top.jsp" />
 <section id="content">
 <form id="infoform" method="post">
 	<div class="container">
 	<input type="hidden" id="id" name="id" value="<s:property value='product.product_id'/>"/>
 		<div class="row">
 			<div class="grid_12">
-            <h2><b><s:property value="product.productname"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h2><b><s:property value="product.productname"/></b></h2>
+            <h2><b>
             <s:if test="product.state == 1">  当前价格：<label id="nowprice"><s:property value="product.price"/></label>
 			</s:if></b></h2>
 			</div>
@@ -79,7 +79,7 @@
             <div class="grid_12">
             <s:iterator value="product.imageList" id="row">
               <div class="grid_4" style="width:30%">
-                <div class="images" style="width:100%;height:300px">
+                <div class="images" style="width:100%;height:100px">
                   <img style="width:100%;height:100%" src="<s:property value='#request.IMGSRC'/>/<s:property value='#row.image'/>" alt="">
                 </div>
                </div>
@@ -92,12 +92,6 @@
                   <s:property value='product.introduce'/>
                 </label>
                 <br><br>
-                <s:if test="product.state == 1">
-                <div class="ta__right">
-                      <input type="text" width="20%" id="price" name="price"/>元
-	                  <a href="javascript:toSubmit()" class="btn" data-type="submit" style="border-color:#87858a; border-width:thin; background:none;">出价</a>
-	            </div>
-	            </s:if>
       		</div>
 			</div>
 		</div>
@@ -108,7 +102,6 @@
 <!--==============================
               footer
 =================================-->
-<jsp:include page="../bottom.jsp" />
 <a href="#" id="toTop" class="fa fa-chevron-up"></a>
 </body>
 </html>

@@ -126,8 +126,11 @@
 								</s:else>
 							</td>
 							<td>
-							<span class="fa fa-calendar"></span>
-                                                                  修改密码>>   
+							<s:if test="#session.person.person_id == person.person_id">
+							<a href="person!goRepassword">
+							<span class="fa fa-calendar"></span> 修改密码>>
+							</a>
+							</s:if>
 							</td>
 							<td><s:if
 									test="#session.person.person_id == person.person_id">

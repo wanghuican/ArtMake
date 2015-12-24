@@ -26,6 +26,7 @@ public class Common {
 	public final static String HQL_ARTICLELIST_TODAY = "HQL_ARTICLELIST_TODAY";
 	public final static String HQL_PRODUCTLIST_ING = "HQL_PRODUCTLIST_ING";
 	public final static String HQL_PRODUCTLIST_NOTING = "HQL_PRODUCTLIST_NOTING";
+	public final static String HQL_AUTH = "HQL_AUTH";
 	
 	//backstage query
 	public final static String HQL_ARTICLELIST = "HQL_ARTICLELIST";
@@ -44,7 +45,10 @@ public class Common {
 	public final static String HQL_ROLELIST_ROLENAME = "HQL_ROLELIST_ROLENAME";
 	public final static String HQL_PRODUCTLIST = "HQL_PRODUCTLIST";
 	public final static String HQL_PRODUCTLIST_SELECT = "HQL_PRODUCTLIST_SELECT";
-	
+	public final static String HQL_DEMANDLIST = "HQL_DEMANDLIST";
+	public final static String HQL_DEMANDLIST_SELECT = "HQL_DEMANDLIST_SELECT";
+	public final static String HQL_PROACTIONLIST = "HQL_PROACTIONLIST";
+	public final static String HQL_PROACTIONLIST_SELECT = "HQL_PROACTIONLIST_SELECT";
 	//common
 	public final static int BACKSTAGE_PAGESIZE = 3;
 	public final static int PAGESIZE = 6;

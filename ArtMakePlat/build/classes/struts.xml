@@ -52,6 +52,7 @@
 	     <action name="product" class="cn.edu.xmu.action.ProductAction">
 	    	<result name="edit">/WEB-INF/main/product/product_edit.jsp</result>
 	    	<result name="detail">/WEB-INF/main/product/product_detail.jsp</result>
+	    	<result name="put">/WEB-INF/main/product/product_put.jsp</result>
 	    </action>
 	</package>
 	<package name="backstage" extends="struts-default">
@@ -86,6 +87,13 @@
      	</action>
      	<action name="productManage" class="cn.edu.xmu.backstage.action.ProductAction">
          	<result name="input">/WEB-INF/backstage/product/product_list.jsp</result>
+         	<result name="detail">/WEB-INF/backstage/product/product_detail.jsp</result>
+     	</action>
+     	<action name="demandManage" class="cn.edu.xmu.backstage.action.DemandAction">
+         	<result name="input">/WEB-INF/backstage/demand/demand_list.jsp</result>
+     	</action>
+     	<action name="proActionManage" class="cn.edu.xmu.backstage.action.ProActionAction">
+         	<result name="input">/WEB-INF/backstage/product/proAction_list.jsp</result>
      	</action>
      	<action name="upInfo" class="cn.edu.xmu.backstage.action.UpdateInfoAction">
          	<result name="success">/WEB-INF/backstage/other/improve_info.jsp</result>
@@ -112,6 +120,18 @@
 		</result>
 	</action>
 	<action name="pronchangePassAjax" method="nchangeproPass" class="cn.edu.xmu.backstage.action.ProductAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="demchangePassAjax" method="changedemPass" class="cn.edu.xmu.backstage.action.DemandAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="demnchangePassAjax" method="nchangedemPass" class="cn.edu.xmu.backstage.action.DemandAction">
 		<!-- 返回json类型数据 -->
 		<result type="json">
 			<param name="root">result</param>

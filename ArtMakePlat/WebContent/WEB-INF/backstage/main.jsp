@@ -222,8 +222,9 @@
 				        </s:iterator>
 				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":4,"resourceID":50,"resourceName":"艺术品管理","resourceOrder":0,"resourceType":""},
 				        {"accessPath":"productManage","checked":false,"delFlag":0,"parentID":50,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":51,"resourceName":"艺术品列表","resourceOrder":0,"resourceType":""},
-				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":6,"resourceID":60,"resourceName":"需求管理","resourceOrder":0,"resourceType":""},
-				        {"accessPath":"","checked":false,"delFlag":0,"parentID":60,"resourceCode":"","resourceDesc":"","resourceGrade":7,"resourceID":61,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"proActionManage","checked":false,"delFlag":0,"parentID":50,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":52,"resourceName":"竞拍列表","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":6,"resourceID":60,"resourceName":"定制服务管理","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"demandManage","checked":false,"delFlag":0,"parentID":60,"resourceCode":"","resourceDesc":"","resourceGrade":7,"resourceID":61,"resourceName":"定制服务列表","resourceOrder":0,"resourceType":""},
 				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":8,"resourceID":70,"resourceName":"消息管理","resourceOrder":0,"resourceType":""},
 				        {"accessPath":"","checked":false,"delFlag":0,"parentID":70,"resourceCode":"","resourceDesc":"","resourceGrade":9,"resourceID":71,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""}
 				        ];
@@ -265,7 +266,7 @@
 <body onload="getDate01()">
     <div id="top">
 		<div id="top_logo">
-			<img alt="logo" src="images/backstage/common/logo.jpg" width="274" height="49" style="vertical-align:middle;">
+			<img alt="logo" style="margin-top:7%" src="images/backstage/common/logo.png" width="250" height="30" style="vertical-align:middle;">
 		</div>
 		<div id="top_links">
 			<div id="top_op">

@@ -70,11 +70,6 @@ public class Product extends JsonEntity{
 	private List<Proimg> imageList = new ArrayList();
 	
 	/**
-	  * @Fields keyList : 关键词列表
-	  */
-	private List<Prokey> keyList = new ArrayList();
-
-	/**
 	  * @Fields actionList :
 	  */
 	private List<ProAction> actionList = new ArrayList();
@@ -90,6 +85,7 @@ public class Product extends JsonEntity{
 
 	
 
+
 	/**
 	  * 创建一个新的实例 Product. 
 	  * <p>Title: </p>
@@ -103,14 +99,12 @@ public class Product extends JsonEntity{
 	  * @param state
 	  * @param pass
 	  * @param imageList
-	  * @param keyList
 	  * @param actionList
 	  */
 	
 	public Product(int product_id, double price, String introduce, Date uptime,
 			Person person, String productname, int state, int pass,
-			List<Proimg> imageList, List<Prokey> keyList,
-			List<ProAction> actionList) {
+			List<Proimg> imageList, List<ProAction> actionList) {
 		super();
 		this.product_id = product_id;
 		this.price = price;
@@ -121,9 +115,9 @@ public class Product extends JsonEntity{
 		this.state = state;
 		this.pass = pass;
 		this.imageList = imageList;
-		this.keyList = keyList;
 		this.actionList = actionList;
 	}
+
 
 
 
@@ -280,24 +274,6 @@ public class Product extends JsonEntity{
 
 	/**
 	 * getter method
-	 * @return the keyList
-	 */
-	
-	public List<Prokey> getKeyList() {
-		return keyList;
-	}
-
-	/**
-	 * setter method
-	 * @param keyList the keyList to set
-	 */
-	
-	public void setKeyList(List<Prokey> keyList) {
-		this.keyList = keyList;
-	}
-
-	/**
-	 * getter method
 	 * @return the actionList
 	 */
 	
@@ -350,7 +326,7 @@ public class Product extends JsonEntity{
 				+ "\",\"person\":\"" + person + "\",\"productname\":\""
 				+ productname + "\",\"state\":\"" + state + "\",\"pass\":\""
 				+ pass + "\",\"imageList\":\"" + imageList + "\",\"image\":\"" 
-				+ imageList.get(0).getImage() + "\",\"keyList\":\"" + keyList + "\",\"actionList\":\""
+				+ imageList.get(0).getImage()  + "\",\"actionList\":\""
 				+ actionList + "\"}  ";
 	}
 

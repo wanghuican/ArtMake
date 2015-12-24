@@ -32,21 +32,7 @@ public class Demand extends JsonEntity{
 	  * @Fields price : 一口价
 	  */
 	private double price;
-	
-	/**
-	  * @Fields endprice 
-	  */
-	private double endprice;
-	
-	/**
-	  * @Fields startprice 
-	  */
-	private double startprice;
 
-	/**
-	  * @Fields type : 1:价格区间 2:固定价格
-	  */
-	private int type;
 	
 	/**
 	  * @Fields introduce
@@ -75,21 +61,28 @@ public class Demand extends JsonEntity{
 
 
 	/**
+	  * @Fields pass 
+	  */
+	private int pass;
+	
+	/**
 	  * @Fields keyList : 关键词列表
 	  */
 	private List<Demkey> keyList = new ArrayList();
-
+	
 	
 	/**
 	  * 创建一个新的实例 Demand. 
-	  * <p>Description: 无参构造函数</p>
+	  * <p>Title: </p>
+	  * <p>Description: </p>
 	  */
 	
 	public Demand() {
 		super();
 	}
+
 	
-	
+
 
 	/**
 	  * 创建一个新的实例 Demand. 
@@ -97,33 +90,30 @@ public class Demand extends JsonEntity{
 	  * <p>Description: </p>
 	  * @param demand_id
 	  * @param price
-	  * @param endprice
-	  * @param startprice
-	  * @param type
 	  * @param introduce
 	  * @param uptime
 	  * @param person
 	  * @param lasttime
 	  * @param state
+	  * @param pass
 	  * @param keyList
 	  */
 	
-	public Demand(int demand_id, double price, double endprice,
-			double startprice, int type, String introduce, Date uptime,
-			Person person, int lasttime, int state, List<Demkey> keyList) {
+	public Demand(int demand_id, double price, String introduce, Date uptime,
+			Person person, int lasttime, int state, int pass,
+			List<Demkey> keyList) {
 		super();
 		this.demand_id = demand_id;
 		this.price = price;
-		this.endprice = endprice;
-		this.startprice = startprice;
-		this.type = type;
 		this.introduce = introduce;
 		this.uptime = uptime;
 		this.person = person;
 		this.lasttime = lasttime;
 		this.state = state;
+		this.pass = pass;
 		this.keyList = keyList;
 	}
+
 
 
 
@@ -137,7 +127,6 @@ public class Demand extends JsonEntity{
 	}
 
 
-
 	/**
 	 * setter method
 	 * @param demand_id the demand_id to set
@@ -146,7 +135,6 @@ public class Demand extends JsonEntity{
 	public void setDemand_id(int demand_id) {
 		this.demand_id = demand_id;
 	}
-
 
 
 	/**
@@ -159,7 +147,6 @@ public class Demand extends JsonEntity{
 	}
 
 
-
 	/**
 	 * setter method
 	 * @param price the price to set
@@ -168,73 +155,6 @@ public class Demand extends JsonEntity{
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
-
-	
-	/**
-	 * getter method
-	 * @return the endprice
-	 */
-	
-	public double getEndprice() {
-		return endprice;
-	}
-
-
-
-	/**
-	 * setter method
-	 * @param endprice the endprice to set
-	 */
-	
-	public void setEndprice(double endprice) {
-		this.endprice = endprice;
-	}
-
-
-
-	/**
-	 * getter method
-	 * @return the startprice
-	 */
-	
-	public double getStartprice() {
-		return startprice;
-	}
-
-
-
-	/**
-	 * setter method
-	 * @param startprice the startprice to set
-	 */
-	
-	public void setStartprice(double startprice) {
-		this.startprice = startprice;
-	}
-
-
-
-	/**
-	 * getter method
-	 * @return the type
-	 */
-	
-	public int getType() {
-		return type;
-	}
-
-
-
-	/**
-	 * setter method
-	 * @param type the type to set
-	 */
-	
-	public void setType(int type) {
-		this.type = type;
-	}
-
 
 
 	/**
@@ -247,7 +167,6 @@ public class Demand extends JsonEntity{
 	}
 
 
-
 	/**
 	 * setter method
 	 * @param introduce the introduce to set
@@ -256,7 +175,6 @@ public class Demand extends JsonEntity{
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-
 
 
 	/**
@@ -269,7 +187,6 @@ public class Demand extends JsonEntity{
 	}
 
 
-
 	/**
 	 * setter method
 	 * @param uptime the uptime to set
@@ -278,7 +195,6 @@ public class Demand extends JsonEntity{
 	public void setUptime(Date uptime) {
 		this.uptime = uptime;
 	}
-
 
 
 	/**
@@ -291,7 +207,6 @@ public class Demand extends JsonEntity{
 	}
 
 
-
 	/**
 	 * setter method
 	 * @param person the person to set
@@ -300,7 +215,6 @@ public class Demand extends JsonEntity{
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-
 
 
 	/**
@@ -313,7 +227,6 @@ public class Demand extends JsonEntity{
 	}
 
 
-
 	/**
 	 * setter method
 	 * @param lasttime the lasttime to set
@@ -322,7 +235,6 @@ public class Demand extends JsonEntity{
 	public void setLasttime(int lasttime) {
 		this.lasttime = lasttime;
 	}
-
 
 
 	/**
@@ -335,7 +247,6 @@ public class Demand extends JsonEntity{
 	}
 
 
-
 	/**
 	 * setter method
 	 * @param state the state to set
@@ -346,7 +257,6 @@ public class Demand extends JsonEntity{
 	}
 
 
-
 	/**
 	 * getter method
 	 * @return the keyList
@@ -355,7 +265,6 @@ public class Demand extends JsonEntity{
 	public List<Demkey> getKeyList() {
 		return keyList;
 	}
-
 
 
 	/**
@@ -369,19 +278,44 @@ public class Demand extends JsonEntity{
 
 
 
+
+	/**
+	 * getter method
+	 * @return the pass
+	 */
+	
+	public int getPass() {
+		return pass;
+	}
+
+
+
+
+	/**
+	 * setter method
+	 * @param pass the pass to set
+	 */
+	
+	public void setPass(int pass) {
+		this.pass = pass;
+	}
+
+
+	
 	/*
 	  * Title: toJsonString
 	  * Description:
 	  * @return
 	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
 	  */
+	@Override
 	public String toJsonString() {
 		return "{\"demand_id\":\"" + demand_id + "\",\"price\":\"" + price
-				+ "\",\"endprice\":\"" + endprice + "\",\"startprice\":\""
-				+ startprice + "\",\"type\":\"" + type + "\",\"introduce\":\""
-				+ introduce + "\",\"uptime\":\"" + uptime + "\",\"person\":\""
-				+ person + "\",\"lasttime\":\"" + lasttime + "\",\"state\":\""
-				+ state + "\",\"keyList\":\"" + keyList + "\"}  ";
+				+ "\",\"introduce\":\"" + introduce + "\",\"uptime\":\""
+				+ uptime + "\",\"person\":\"" + person + "\",\"lasttime\":\""
+				+ lasttime + "\",\"state\":\"" + state + "\",\"pass\":\""
+				+ pass + "\",\"keyList\":\"" + keyList + "\"}  ";
 	}
+
 	
 }

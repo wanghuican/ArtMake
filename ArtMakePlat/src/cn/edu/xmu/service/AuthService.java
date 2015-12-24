@@ -33,4 +33,6 @@ public interface AuthService {
 	public void saveAuth(Auth Auth);
 	
 	public Auth getAuthById(int id);
+	
+	public Auth getAuthByRole_id(int role_id);
 }

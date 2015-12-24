@@ -48,12 +48,26 @@ var flag;
 	});
 	
 	function goUpProduct(){
+		var totalnum = <s:property value="auth.totalnum"/>
+		var count = $("#sizenoting").val();
 		<s:if test="#session.person.person_id == person.person_id">
+		if(count < totalnum)
 	    	window.location.href = "product!goEditProduct";
+		else
+			alert("达到上传上限");
 	    </s:if>
 	    <s:else>
 	      alert("您没有上传权限");
 	    </s:else>
+	}
+	
+	function goPutProduct(id){
+		var upnum = <s:property value="auth.upnum"/>
+		var count = $("#sizeing").val();
+		if(count < upnum)
+	    	window.location.href = "product!goPutProduct?id="+id;
+		else
+			alert("达到上架上限");
 	}
 	
 	function goProductDetail(id){
@@ -113,6 +127,7 @@ var flag;
 				dataType : "json",
 				success : function(data) {
 					data = JSON.parse(data);
+					$("#sizeing").val(data.size);
 					page = data.page;
 					src = data.imagesrc;
 					rows = JSON.parse(data.rows).rows;
@@ -180,7 +195,7 @@ var flag;
 						$("#delpro" + i).attr("href","javascript:delPro(" + rows[i].product_id + ")");
 						if(rows[i].state == 0){
 							$("#uppro" + i).css("display","block");
-							$("#uppro" + i).attr("href","");
+							$("#uppro" + i).attr("href","javascript:goPutProduct("+rows[i].product_id+")");
 							$("#state" + i).css("display","none");
 						}else{
 							$("#state" + i).css("display","block");
@@ -288,6 +303,7 @@ var flag;
 ======================-->
 	<section id="content" class="gallery">
 	<input type="hidden" id="sizenoting"/>
+	<input type="hidden" id="sizeing"/>
 	<input type="hidden" id="pagenotingtotal" value="<s:property value='#request.PAGENOTINGTotal'/>"/>
 	<div class="ic">More Website Templates @ TemplateMonster.com -
 		August11, 2014!</div>

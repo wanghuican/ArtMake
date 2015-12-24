@@ -22,19 +22,17 @@
 	    pro[0] = "<s:property value='selectpro[0]'/>";
 	    pro[1] = "<s:property value='selectpro[1]'/>";
 	    pro[2] = "<s:property value='selectpro[2]'/>";
-	    pro[3] = "<s:property value='selectpro[3]'/>";
 	    for(var i=0;i<pro.length;i++){
 	    	while(pro[i].indexOf("%")>=0)
 	        	pro[i] = pro[i].replace("%","");
 	    }
-	    $("#selectpname").val(pro[0]);
-	    $("#selectstate").val(pro[1]);
-	    $("#selectpass").val(pro[2]);
-	    $("#selectname").val(pro[3]);
+	    $("#selectstate").val(pro[0]);
+	    $("#selectpass").val(pro[1]);
+	    $("#selectname").val(pro[2]);
 	    
-	    <s:iterator value="productList" id="row">
-	    $("#showbtn<s:property value='#row.product_id'/>").fancybox({
-	    	'href' : 'productManage!goDetail?id=<s:property value='#row.product_id'/>',
+	    <s:iterator value="demandList" id="row">
+	    $("#showbtn<s:property value='#row.demand_id'/>").fancybox({
+	    	'href' : 'demandManage!goDetail?id=<s:property value='#row.demand_id'/>',
 	    	'width' : 733,
 	        'height' : 530,
 	        'type' : 'iframe',
@@ -49,7 +47,7 @@
 
 	/** 模糊查询  **/
 	function search(){
-		$("#submitForm").attr("action", "productManage").submit();
+		$("#submitForm").attr("action", "demandManage").submit();
 	}
 
 	 
@@ -57,7 +55,7 @@
 	/** 删除 **/
 	function del(id){
 		if(confirm("您确定要删除吗？")){
-			$("#submitForm").attr("action", "productManage!delProduct?id=" + id).submit();			
+			$("#submitForm").attr("action", "demandManage!delDemand?id=" + id).submit();			
 		}
 	}
 	
@@ -75,7 +73,7 @@
 		});
 		//alert(allIDCheck)
 		if(confirm("您确定要删除吗？")){
-    		$("#submitForm").attr("action", "productManage!ndelProduct?nid="+allIDCheck).submit();
+    		$("#submitForm").attr("action", "demandManage!ndelDemand?nid="+allIDCheck).submit();
 		}
 	}
 	
@@ -84,7 +82,7 @@
 		
 		 $.ajax({
 		        type: "post",
-		        url: "prochangePassAjax!changeproPass",
+		        url: "demchangePassAjax!changedemPass",
 		        data:{//设置数据源
 		        	id:id
 		        },
@@ -118,7 +116,7 @@
 		}
 		 $.ajax({
 		        type: "post",
-		        url: "pronchangePassAjax!nchangeproPass",
+		        url: "demnchangePassAjax!nchangedemPass",
 		        data:{//设置数据源
 		        	nid:allIDCheck
 		        },
@@ -142,7 +140,7 @@
 	
 	function jumpNormalPage(page,key){
 		if(jumpPage(page,key)){
-			$("#submitForm").attr("action", "productManage?PAGE="+ page).submit();
+			$("#submitForm").attr("action", "demandManage?PAGE="+ page).submit();
 		}
 	}
 
@@ -160,14 +158,12 @@
 					<div id="box_border">
 						<div id="box_top">搜索</div>
 						<div id="box_center">
-						         艺术品名称<input type="text" id="selectpname" name="selectpro" class="ui_input_txt02" />
-							艺术品状态
+							定制服务状态
 							<select name="selectpro" id="selectstate" class="ui_select01">
                                 <option value=""
                                 >--请选择--</option>
-                                <option value="1">拍卖中</option>
-                                <option value="0">展示中</option>
-                                <option value="-1">已售出</option>
+                                <option value="1">未完成</option>
+                                <option value="-1">已完成</option>
                             </select>	
                                                                      通过状态          
                            <select name="selectpro" id="selectpass" class="ui_select01">
@@ -176,7 +172,7 @@
                                 <option value="0">未通过</option>
                                 <option value="1">已通过</option>
                             </select>	                       
-						        艺术家名称<input type="text" id="selectname" name="selectpro" class="ui_input_txt02" />
+						        用户名称<input type="text" id="selectname" name="selectpro" class="ui_input_txt02" />
 						</div>
 						<div id="box_bottom">
 				    		<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
@@ -194,44 +190,38 @@
 						<tr>
 							<th width="5%"><input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);" />
 							</th>
-							<th width="15%">艺术品名</th>
-							<th width="5">展示图片</th>
-							<th width="15%">艺术家名</th>
-							<th width="10%">当前价格</th>
+							<th width="10%">用户名</th>
+							<th width="5%">价格</th>
 							<th width="5%">通过</th>
 							<th width="5%">状态</th>
 							<th width="15%">上传时间</th>
+							<th width="30%">详情</th>
 							<th width="25%">操作</th>
 						</tr>
-						<s:iterator value="productList" id="row">
+						<s:iterator value="demandList" id="row">
 							<tr>
-								<td><input type="checkbox" name="IDCheck" value="<s:property value='#row.product_id'/>" class="acb" /></td>
-								<td><s:property value="#row.productname"/></td>
-								<td><div style="width:50%;height:50%"><img style="left:30%;width:100%;height:100%" src="<s:property value='#request.IMGSRC'/>/<s:property value='#row.imageList[0].image'/>" /></div></td>
+								<td><input type="checkbox" name="IDCheck" value="<s:property value='#row.demand_id'/>" class="acb" /></td>
 								<td><s:property value="#row.person.realname"/></td>
 								<td><s:property value="#row.price"/></td>
-								<td id="pass<s:property value='#row.product_id'/>"><s:property value="#row.pass"/></td>
+								<td id="pass<s:property value='#row.demand_id'/>"><s:property value="#row.pass"/></td>
 								<td>
-								<s:if test="#row.state == 0">
-								展示中
+								<s:if test="#row.state == 1">
+								未完成
 								</s:if>
 								<s:elseif test="#row.state == -1">
-								已售出
+								已完成
 								</s:elseif>
-								<s:else>
-								拍卖中
-								</s:else>
 								</td>
 								<td><s:property value="#row.uptime"/></td>
+								<td><s:property value="#row.introduce"/></td>
 								<td>
-								    <label style="cursor:pointer" id="showbtn<s:property value='#row.product_id'/>">详情</label>
 									<s:if test="#session.auth == 100">
-									<label style="cursor:pointer" id="passbtn<s:property value='#row.product_id'/>" onclick="changePass(<s:property value='#row.product_id'/>)">
+									<label style="cursor:pointer" id="passbtn<s:property value='#row.demand_id'/>" onclick="changePass(<s:property value='#row.demand_id'/>)">
 								    <s:if test="#row.pass == 0">
 							    	   通过  
 								    </s:if>
 								    </label>
-						    			<label style="cursor:pointer" onclick="del(<s:property value='#row.product_id'/>)">删除</label>
+						    			<label style="cursor:pointer" onclick="del(<s:property value='#row.demand_id'/>)">删除</label>
 								    </s:if>
 								</td>
 							</tr>

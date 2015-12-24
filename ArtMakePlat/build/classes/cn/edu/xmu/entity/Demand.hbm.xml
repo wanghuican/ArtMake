@@ -11,15 +11,6 @@
 		<property name="price" type="double">
 			<column name="price"/>
 		</property>
-		<property name="endprice" type="double">
-			<column name="endprice"/>
-		</property>
-		<property name="startprice" type="double">
-			<column name="startprice"/>
-		</property>
-		<property name="type" type="int">
-			<column name="type" not-null="true"/>
-		</property>
 		<property name="introduce" type="string">
 			<column name="introduce" length="80"/>
 		</property>
@@ -32,7 +23,10 @@
 		<property name="state" type="int">
 			<column name="state" not-null="true"/>
 		</property>
-		<bag name="keyList" order-by="record_id desc">
+		<property name="pass" type="int">
+			<column name="pass" not-null="true"/>
+		</property>
+		<bag name="keyList" order-by="record_id desc"  cascade="all" inverse= "true" lazy= "true">
 			<key>
 				<column name="demand_id" not-null="true" />
 			</key>

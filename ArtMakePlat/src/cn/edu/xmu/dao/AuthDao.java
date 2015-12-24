@@ -26,4 +26,6 @@ public interface AuthDao {
 	public void deleteAuthById(int id);
 	
 	public Auth getAuthById(int id);
+	
+	public Auth getAuthByRole_id(List<Integer> pro);
 }

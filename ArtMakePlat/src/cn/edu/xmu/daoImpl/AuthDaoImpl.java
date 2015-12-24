@@ -133,4 +133,10 @@ public class AuthDaoImpl implements AuthDao {
 		return (Auth) dao.loadById(Auth.class, id);
 	}
 
+	@Override
+	public Auth getAuthByRole_id(List<Integer> pro) {
+		// TODO Auto-generated method stub
+		return (Auth) dao.query(Common.HQL_AUTH,pro).get(0);
+	}
+
 }

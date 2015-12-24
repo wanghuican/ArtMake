@@ -72,5 +72,23 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
 <![CDATA[from Product as p where p.productname like ? and cast(p.state as string) like ? 
  and cast(p.pass as string) like ? and p.person.realname like ? ]]>
 </query>
+
+<query name="HQL_PROACTIONLIST">
+<![CDATA[from ProAction as pa]]>
+</query>
+
+<query name="HQL_PROACTIONLIST_SELECT">
+<![CDATA[from ProAction as pa where pa.product.productname like ? 
+and pa.product.person.realname like ?]]>
+</query>
+
+<query name="HQL_DEMANDLIST">
+<![CDATA[from Demand as d]]>
+</query>
+
+<query name="HQL_DEMANDLIST_SELECT">
+<![CDATA[from Demand as d where cast(d.state as string) like ?
+ and cast(d.pass as string) like ? and d.person.realname like ?]]>
+</query>
 </hibernate-mapping>
 
