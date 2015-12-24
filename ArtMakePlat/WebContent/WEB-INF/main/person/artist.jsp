@@ -25,6 +25,26 @@ var flag;
 		goIngPage(0);
 		goNotIngPage(0);
 		flag = false;
+		
+		 $("#msgbtn").fancybox({
+		    	'href' : 'roleManage!goEdit',
+		    	'width' : 733,
+		        'height' : 530,
+		        'type' : 'iframe',
+		        'hideOnOverlayClick' : true,
+		        'showCloseButton' : true,
+		        'onClosed' : function() {	
+		        	window.location.reload();
+		        }
+			<s:if test="#session.person.person_id == person.person_id">
+			
+			</s:if>
+			<s:else>
+			
+			</s:else>
+		 
+		    });
+		
 	});
 	
 	function goUpProduct(){
@@ -222,6 +242,7 @@ var flag;
 				});
 	}
 
+	
 	function upAuth() {
 		$.ajax({
 			type : "post",
@@ -317,7 +338,11 @@ var flag;
 							</td>
 						</tr>
 						<tr>
-							<td><div class="fa fa-comments"></div> 信息(5)</td>
+							<td><div class="fa fa-comments"></div> 
+							<a id="#msgbtn">
+							信息(5)
+							</a>
+							</td>
 							<td colspan="2"><s:if
 									test="#session.person.person_id == person.person_id">
 									<a href="person!goImprove"><div class="fa fa-eye"></div>
