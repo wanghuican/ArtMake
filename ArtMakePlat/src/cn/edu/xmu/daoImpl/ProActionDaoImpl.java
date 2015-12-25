@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import cn.edu.xmu.dao.BaseDao;
 import cn.edu.xmu.dao.ProActionDao;
 import cn.edu.xmu.entity.ProAction;
+import cn.edu.xmu.entity.Prorecord;
 import cn.edu.xmu.util.Common;
 
 public class ProActionDaoImpl implements ProActionDao {
@@ -108,6 +109,12 @@ public class ProActionDaoImpl implements ProActionDao {
 	public ProAction getProActionById(int id) {
 		// TODO Auto-generated method stub
 		return (ProAction) dao.loadById(ProAction.class, id);
+	}
+
+	@Override
+	public List<Prorecord> getRecordList(List<Integer> pro) {
+		// TODO Auto-generated method stub
+		return dao.query(Common.HQL_PRORECORDLIST_BYID, pro);
 	}
 
 }

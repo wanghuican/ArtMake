@@ -280,7 +280,7 @@ public class PersonAction extends ActionSupport {
 		setPerson(personService.getPersonById(getId()));
 		List<Integer> pro = new ArrayList<Integer>();
 		pro.add(getId());
-		if (person.getRole().getRole_code() == Common.CODE_USER) {
+		if (person.getRole().getRole_code() != Common.CODE_ARTIST) {
 			return "userinfo";
 		} else {
 			setAuth(authService.getAuthByRole_id(person.getRole().getRole_id()));

@@ -4,6 +4,7 @@ package cn.edu.xmu.service;
 import java.util.List;
 
 import cn.edu.xmu.entity.ProAction;
+import cn.edu.xmu.entity.Prorecord;
 
 /**
   * @ClassName: ProActionService
@@ -24,4 +25,7 @@ public interface ProActionService {
 	
 	public ProAction getProActionById(int id);
 	
+	public List<Prorecord> getRecordList(int action_id);
+	
+	public Prorecord getFirstRecord(int action_id);
 }

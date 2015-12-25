@@ -225,8 +225,11 @@
 				        {"accessPath":"proActionManage","checked":false,"delFlag":0,"parentID":50,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":52,"resourceName":"竞拍列表","resourceOrder":0,"resourceType":""},
 				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":6,"resourceID":60,"resourceName":"定制服务管理","resourceOrder":0,"resourceType":""},
 				        {"accessPath":"demandManage","checked":false,"delFlag":0,"parentID":60,"resourceCode":"","resourceDesc":"","resourceGrade":7,"resourceID":61,"resourceName":"定制服务列表","resourceOrder":0,"resourceType":""},
-				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":8,"resourceID":70,"resourceName":"消息管理","resourceOrder":0,"resourceType":""},
-				        {"accessPath":"","checked":false,"delFlag":0,"parentID":70,"resourceCode":"","resourceDesc":"","resourceGrade":9,"resourceID":71,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""}
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":8,"resourceID":70,"resourceName":"订单管理","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"orderManage!goPro","checked":false,"delFlag":0,"parentID":70,"resourceCode":"","resourceDesc":"","resourceGrade":9,"resourceID":71,"resourceName":"艺术品订单列表","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"orderManage!goDem","checked":false,"delFlag":0,"parentID":70,"resourceCode":"","resourceDesc":"","resourceGrade":9,"resourceID":72,"resourceName":"定制服务订单列表","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":10,"resourceID":80,"resourceName":"消息管理","resourceOrder":0,"resourceType":""},
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":80,"resourceCode":"","resourceDesc":"","resourceGrade":11,"resourceID":81,"resourceName":"XXXXX","resourceOrder":0,"resourceType":""}
 				        ];
 			}else if(resourceType == "XITONGGUANLI"){
 				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"角色和权限","resourceOrder":0,"resourceType":""},

@@ -23,11 +23,20 @@
         <property name="endtime" type="timestamp">
             <column name="endtime" length="19" />
         </property>
+        <property name="state" type="int">
+            <column name="state" />
+        </property>
        <many-to-one name="product" class="cn.edu.xmu.entity.Product" fetch="select">
 			<column name="product_id" not-null="true"></column>
 		</many-to-one>
 		<property name="lasttime" type="int">
 			<column name="lasttime" not-null="true"/>
 		</property>
+		<bag name="recordList" order-by="recordtime desc" cascade="all" inverse= "true" lazy= "true">
+			<key>
+				<column name="action_id" not-null="true" />
+			</key>
+			<one-to-many class="cn.edu.xmu.entity.Prorecord" />
+		</bag>
 	</class>
 </hibernate-mapping>

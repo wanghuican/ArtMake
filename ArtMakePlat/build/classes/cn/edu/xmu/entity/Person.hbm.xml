@@ -74,5 +74,11 @@
 			</key>
 			<one-to-many class="cn.edu.xmu.entity.Article" />
 		</bag>
+		<bag name="recordList" order-by="recordtime desc" cascade="all" inverse= "true" lazy= "true">
+			<key>
+				<column name="action_id" not-null="true" />
+			</key>
+			<one-to-many class="cn.edu.xmu.entity.Prorecord" />
+		</bag>
 	</class>
 </hibernate-mapping>

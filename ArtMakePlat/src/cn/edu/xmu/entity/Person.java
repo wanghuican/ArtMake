@@ -104,6 +104,16 @@ public class Person extends JsonEntity{
 	private List<Article> articleList = new ArrayList();
 	
 	/**
+	  * @Fields orderList
+	  */
+	private List<Order> orderList = new ArrayList();
+	
+	/**
+	  * @Fields recordList
+	  */
+	private List<Prorecord> recordList = new ArrayList();
+	
+	/**
 	  * 创建一个新的实例 Person. 
 	  * Description: 无参构造函数
 	  */
@@ -111,6 +121,7 @@ public class Person extends JsonEntity{
 		super();
 	}
 	
+
 
 	/**
 	  * 创建一个新的实例 Person. 
@@ -134,13 +145,17 @@ public class Person extends JsonEntity{
 	  * @param demandList
 	  * @param keyList
 	  * @param articleList
+	  * @param orderList
+	  * @param recordList
 	  */
+	
 	public Person(int person_id, String account, String password,
 			String realname, String email, String qq, String idcard,
 			String tel, String address, String sex, int state,
 			String introduce, Role role, List<Address> addressList,
 			List<Product> productList, List<Demand> demandList,
-			List<Perkey> keyList, List<Article> articleList) {
+			List<Perkey> keyList, List<Article> articleList,
+			List<Order> orderList, List<Prorecord> recordList) {
 		super();
 		this.person_id = person_id;
 		this.account = account;
@@ -160,7 +175,33 @@ public class Person extends JsonEntity{
 		this.demandList = demandList;
 		this.keyList = keyList;
 		this.articleList = articleList;
+		this.orderList = orderList;
+		this.recordList = recordList;
 	}
+
+
+
+	/**
+	 * getter method
+	 * @return the recordList
+	 */
+	
+	public List<Prorecord> getRecordList() {
+		return recordList;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param recordList the recordList to set
+	 */
+	
+	public void setRecordList(List<Prorecord> recordList) {
+		this.recordList = recordList;
+	}
+
+
 
 	/**
 	 * getter method
@@ -496,7 +537,29 @@ public class Person extends JsonEntity{
 	}
 
 
+
+	/**
+	 * getter method
+	 * @return the orderList
+	 */
 	
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param orderList the orderList to set
+	 */
+	
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+
+
+
 	/*
 	  * Title: toJsonString
 	  * Description:
@@ -514,9 +577,10 @@ public class Person extends JsonEntity{
 				+ "\",\"role\":\"" + role + "\",\"addressList\":\""
 				+ addressList + "\",\"productList\":\"" + productList
 				+ "\",\"demandList\":\"" + demandList + "\",\"keyList\":\""
-				+ keyList + "\",\"articleList\":\"" + articleList + "\"}  ";
+				+ keyList + "\",\"articleList\":\"" + articleList
+				+ "\",\"orderList\":\"" + orderList + "\",\"recordList\":\""
+				+ recordList + "\"}  ";
 	}
 
 	
-
 }

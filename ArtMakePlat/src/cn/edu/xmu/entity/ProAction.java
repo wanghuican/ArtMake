@@ -2,6 +2,7 @@
 package cn.edu.xmu.entity;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -54,6 +55,16 @@ public class ProAction extends JsonEntity{
 	private String introduce;
 	
 	/**
+	  * @Fields state : TODO（用一句话描述这个变量表示什么）
+	  */
+	private int state;
+	
+	/**
+	  * @Fields recordList : TODO（用一句话描述这个变量表示什么）
+	  */
+	private List<Prorecord> recordList;
+	
+	/**
 	  * 创建一个新的实例 ProAction. 
 	  * <p>Title: </p>
 	  * <p>Description: </p>
@@ -77,11 +88,13 @@ public class ProAction extends JsonEntity{
 	  * @param recordtime
 	  * @param endtime
 	  * @param introduce
+	  * @param state
+	  * @param recordList
 	  */
 	
 	public ProAction(int action_id, Product product, double startprice,
 			double addprice, int lasttime, Date recordtime, Date endtime,
-			String introduce) {
+			String introduce, int state, List<Prorecord> recordList) {
 		super();
 		this.action_id = action_id;
 		this.product = product;
@@ -91,10 +104,31 @@ public class ProAction extends JsonEntity{
 		this.recordtime = recordtime;
 		this.endtime = endtime;
 		this.introduce = introduce;
+		this.state = state;
+		this.recordList = recordList;
 	}
 
 
 
+	/**
+	 * getter method
+	 * @return the recordList
+	 */
+	
+	public List<Prorecord> getRecordList() {
+		return recordList;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param recordList the recordList to set
+	 */
+	
+	public void setRecordList(List<Prorecord> recordList) {
+		this.recordList = recordList;
+	}
 
 
 
@@ -251,19 +285,46 @@ public class ProAction extends JsonEntity{
 	}
 
 	
+	/**
+	 * getter method
+	 * @return the state
+	 */
+	
+	public int getState() {
+		return state;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param state the state to set
+	 */
+	
+	public void setState(int state) {
+		this.state = state;
+	}
+
+
+
 	/*
 	  * Title: toJsonString
 	  * Description:
 	  * @return
-	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  * @see java.lang.Object#toJsonString()
 	  */
+	
 	@Override
 	public String toJsonString() {
 		return "{\"action_id\":\"" + action_id + "\",\"product\":\"" + product
 				+ "\",\"startprice\":\"" + startprice + "\",\"addprice\":\""
 				+ addprice + "\",\"lasttime\":\"" + lasttime
 				+ "\",\"recordtime\":\"" + recordtime + "\",\"endtime\":\""
-				+ endtime + "\",\"introduce\":\"" + introduce + "\"}  ";
+				+ endtime + "\",\"introduce\":\"" + introduce
+				+ "\",\"state\":\"" + state + "\",\"recordList\":\""
+				+ recordList + "\"}  ";
 	}
+
+	
 
 }

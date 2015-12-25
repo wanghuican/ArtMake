@@ -4,6 +4,7 @@ package cn.edu.xmu.dao;
 import java.util.List;
 
 import cn.edu.xmu.entity.Demand;
+import cn.edu.xmu.entity.Prorecord;
 
 
 /**

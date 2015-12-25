@@ -30,7 +30,7 @@
 		</property>
 		<!-- 指定连接数据库的密码 -->
 		<property name="password">
-			<value>7502111</value>
+			<value>root</value>
 		</property>
 	</bean>
 	<!-- 定义Hibernate的SessionFactory -->
@@ -62,6 +62,8 @@
 				<value>cn/edu/xmu/entity/Perkey.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Demkey.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Auth.hbm.xml</value>
+				<value>cn/edu/xmu/entity/Order.hbm.xml</value>
+				<value>cn/edu/xmu/entity/Prorecord.hbm.xml</value>
 
 				<value>cn/edu/xmu/entity/named-queries.hbm.xml</value>
 				<value>cn/edu/xmu/entity/backstage-named-queries.hbm.xml</value>
@@ -85,6 +87,7 @@
 	<bean id="productdao" class="cn.edu.xmu.daoImpl.ProductDaoImpl"></bean>
 	<bean id="demanddao" class="cn.edu.xmu.daoImpl.DemandDaoImpl"></bean>
 	<bean id="proActiondao" class="cn.edu.xmu.daoImpl.ProActionDaoImpl"></bean>
+	<bean id="orderdao" class="cn.edu.xmu.daoImpl.OrderDaoImpl"></bean>
 	<!-- 配置事务 -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -120,6 +123,7 @@
 	<bean id="productService" class="cn.edu.xmu.serviceImpl.ProductServiceImpl"></bean>
 	<bean id="demandService" class="cn.edu.xmu.serviceImpl.DemandServiceImpl"></bean>
 	<bean id="proActionService" class="cn.edu.xmu.serviceImpl.ProActionServiceImpl"></bean>
+	<bean id="orderService" class="cn.edu.xmu.serviceImpl.OrderServiceImpl"></bean>
 	<context:annotation-config />
 
 	<!-- 开启Spring的Bean自动扫描机制来查找与管理Bean实例 -->

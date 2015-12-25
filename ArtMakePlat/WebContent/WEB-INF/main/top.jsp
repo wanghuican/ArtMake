@@ -12,7 +12,7 @@ function goAdminLogin()
 }
 
 function goInfo(){
-	window.location.href = "person!goInfo"
+	window.location.href = "person!goInfo";
 }
 
 </script>
@@ -62,7 +62,7 @@ function goInfo(){
                         <s:property value="#session.person.realname" />
                         </a>
 						</s:else>
-						</li>
+				</li>
              </ul>
             </nav>
             <div class="clear"></div>

@@ -90,5 +90,26 @@ and pa.product.person.realname like ?]]>
 <![CDATA[from Demand as d where cast(d.state as string) like ?
  and cast(d.pass as string) like ? and d.person.realname like ?]]>
 </query>
+
+<query name="HQL_ORDERLIST">
+<![CDATA[from Order as o where cast(o.type as string) like ? Order by buytime desc]]>
+</query>
+
+<query name="HQL_PROORDERLIST_SELECT">
+<![CDATA[from Order as o where cast(o.state as string) like ?
+  and o.person.account like ? and o.product.productname like ?
+  and cast(o.type as string) = ? Order by buytime desc]]>
+</query>
+
+<query name="HQL_DEMORDERLIST_SELECT">
+<![CDATA[from Order as o where  cast(o.state as string) like ?
+  and o.person.realname like ? and o.demand.introduce like ?
+  and cast(o.type as string) = ? Order by buytime desc]]>
+</query>
+
+<query name="HQL_PRORECORDLIST_BYID">
+<![CDATA[from Prorecord where action_id = ? order by recordtime desc]]>
+</query>
+
 </hibernate-mapping>
 

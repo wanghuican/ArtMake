@@ -110,4 +110,5 @@ public class DemandDaoImpl implements DemandDao {
 		return (Demand) dao.loadById(Demand.class, id);
 	}
 
+
 }

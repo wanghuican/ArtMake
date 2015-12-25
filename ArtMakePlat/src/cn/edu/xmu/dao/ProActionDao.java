@@ -4,6 +4,7 @@ package cn.edu.xmu.dao;
 import java.util.List;
 
 import cn.edu.xmu.entity.ProAction;
+import cn.edu.xmu.entity.Prorecord;
 
 
 /**
@@ -17,6 +18,8 @@ public interface ProActionDao {
 	public List<ProAction> getAllProAction(List<String> pro);
 	
 	public List<ProAction> getAllProAction(List<String> pro,int pageNo,int pageSize);
+	
+	public List<Prorecord> getRecordList(List<Integer> pro);
 	
 	public int countProAction(List<String> pro);
 	

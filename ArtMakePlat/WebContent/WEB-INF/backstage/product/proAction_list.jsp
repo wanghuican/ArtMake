@@ -75,6 +75,34 @@
     		$("#submitForm").attr("action", "proActionManage!ndelProAction?nid="+allIDCheck).submit();
 		}
 	}
+	
+	
+	function complete(id){
+		$.ajax({
+	        type: "post",
+	        url: "completeAjax!complete",
+	        data:{//设置数据源
+	        	id:id
+	        },
+	        dataType: "json",
+	        success: function(data){
+	        	data = eval('(' + data + ')');
+	        	alert(data.message + " " + data.error);
+	        	if(data.state == 1)
+	            	$("#complete"+data.id).html("已完成");
+	        	else
+	        		$("#complete"+data.id).html("未完成");
+	        	if(data.error == "")
+	               $("#completbtn"+data.id).html("");
+	        },
+	        error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert("XMLHttpRequest=" + XMLHttpRequest);
+                alert("textStatus=" + textStatus);
+                alert("errorThrown=" + errorThrown);
+                return false;
+            }
+	   });	
+	}
 
 	function jumpNormalPage(page,key){
 		if(jumpPage(page,key)){
@@ -101,7 +129,6 @@
 						</div>
 						<div id="box_bottom">
 				    		<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
-				    		<input type="button" value="生成订单" class="ui_input_btn01" onclick="batchComplete();" /> 
 							<s:if test="#session.auth == 100">
 						    	<input type="button" value="删除" class="ui_input_btn01" onclick="batchDel();" /> 
 						    </s:if>
@@ -117,10 +144,11 @@
 							</th>
 							<th width="10%">艺术品名</th>
 							<th width="10%">艺术家名</th>
-							<th width="10%">开始价格</th>
-							<th width="10%">最低增额</th>
+							<th width="5%">开始价格</th>
+							<th width="5%">最低增额</th>
 							<th width="5%">持续时间</th>
 							<th width="10%">是否结束</th>
+							<th width="10%">是否已经生成订单</th>
 							<th width="15%">上传时间</th>
 							<th width="25%">操作</th>
 						</tr>
@@ -134,22 +162,32 @@
 								<td><s:property value="#row.lasttime"/></td>
 								<td>
 								<s:if test="nowDate > #row.endtime">
-								完成
+								已结束
 								</s:if>
 								<s:else>
-								未完成
+								未结束
+								</s:else>
+								</td>
+								<td id="complete<s:property value='#row.action_id'/>">
+								<s:if test="#row.state == 0">
+								未生成
+								</s:if>
+								<s:else>
+								已生成
 								</s:else>
 								</td>
 								<td><s:property value="#row.recordtime"/></td>
 								<td>
 								    <label style="cursor:pointer" id="showbtn<s:property value='#row.action_id'/>">详情</label>
 									<s:if test="#session.auth == 100">
-									<s:if test="nowDate > #row.endtime">
+									<s:if test="nowDate > #row.endtime && #row.state == 0">
 									<label style="cursor:pointer" id="completbtn<s:property value='#row.action_id'/>" onclick="complete(<s:property value='#row.action_id'/>)">
 							    	  生成订单
 								    </label>
 								    </s:if>
+								    <s:if test="#row.state == 1">
 						    			<label style="cursor:pointer" onclick="del(<s:property value='#row.action_id'/>)">删除</label>
+								    </s:if>
 								    </s:if>
 								</td>
 							</tr>

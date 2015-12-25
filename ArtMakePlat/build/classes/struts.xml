@@ -66,6 +66,10 @@
 			<result name="ad">/WEB-INF/backstage/article/ad_list.jsp</result>
 			<result name="update">/WEB-INF/backstage/article/ad_update.jsp</result>
      	</action>
+     	<action name="orderManage" class="cn.edu.xmu.backstage.action.OrderAction">
+			<result name="dem">/WEB-INF/backstage/order/dem_list.jsp</result>
+			<result name="pro">/WEB-INF/backstage/order/pro_list.jsp</result>
+     	</action>
      	<action name="personManage" class="cn.edu.xmu.backstage.action.PersonAction">
          	<result name="user">/WEB-INF/backstage/person/user_list.jsp</result>
          	<result name="artist">/WEB-INF/backstage/person/artist_list.jsp</result>
@@ -94,6 +98,7 @@
      	</action>
      	<action name="proActionManage" class="cn.edu.xmu.backstage.action.ProActionAction">
          	<result name="input">/WEB-INF/backstage/product/proAction_list.jsp</result>
+         	<result name="detail">/WEB-INF/backstage/product/proAction_detail.jsp</result>
      	</action>
      	<action name="upInfo" class="cn.edu.xmu.backstage.action.UpdateInfoAction">
          	<result name="success">/WEB-INF/backstage/other/improve_info.jsp</result>
@@ -192,6 +197,12 @@
 		</result>
 	</action>
 	<action name="getPriceAjax" method="getPrice" class="cn.edu.xmu.action.ProductAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="completeAjax" method="complete" class="cn.edu.xmu.backstage.action.ProActionAction">
 		<!-- 返回json类型数据 -->
 		<result type="json">
 			<param name="root">result</param>

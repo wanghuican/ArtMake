@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 import cn.edu.xmu.dao.ProActionDao;
 import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.entity.ProAction;
+import cn.edu.xmu.entity.Prorecord;
 import cn.edu.xmu.service.ProActionService;
 
 /**
@@ -85,6 +86,23 @@ public class ProActionServiceImpl implements ProActionService {
 	@Override
 	public ProAction getProActionById(int id){
 		return dao.getProActionById(id);
+	}
+
+	@Override
+	public List<Prorecord> getRecordList(int action_id) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(action_id);
+		return dao.getRecordList(pro);
+	}
+
+	@Override
+	public Prorecord getFirstRecord(int action_id) {
+		// TODO Auto-generated method stub
+		if(getRecordList(action_id).size() == 0)
+	    	return null;
+		else 
+			return getRecordList(action_id).get(0);
 	}
 
 	

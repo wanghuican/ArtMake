@@ -49,6 +49,11 @@ public class Common {
 	public final static String HQL_DEMANDLIST_SELECT = "HQL_DEMANDLIST_SELECT";
 	public final static String HQL_PROACTIONLIST = "HQL_PROACTIONLIST";
 	public final static String HQL_PROACTIONLIST_SELECT = "HQL_PROACTIONLIST_SELECT";
+	public final static String HQL_ORDERLIST = "HQL_ORDERLIST";
+	public final static String HQL_PROORDERLIST_SELECT = "HQL_PROORDERLIST_SELECT";
+	public final static String HQL_DEMORDERLIST_SELECT = "HQL_DEMORDERLIST_SELECT";
+	public final static String HQL_PRORECORDLIST_BYID = "HQL_PRORECORDLIST_BYID";
+
 	//common
 	public final static int BACKSTAGE_PAGESIZE = 3;
 	public final static int PAGESIZE = 6;
