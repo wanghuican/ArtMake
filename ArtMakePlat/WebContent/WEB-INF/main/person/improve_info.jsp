@@ -29,7 +29,11 @@ var chTe = false;
 var chID = false;
 
 function checkEmail(str){
-	chEm = false;
+	chEm = true;
+	if (str == ""){
+		document.getElementById("emailError").value = "";
+		return;
+	}
 	var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
 	if (!reg.test(str)){
 		document.getElementById("emailError").value = "请输入有效的邮箱地址";
@@ -41,7 +45,11 @@ function checkEmail(str){
 }
 
 function checkTell(str){
-	chTe = false;
+	chTe = true;
+	if (str == ""){
+		document.getElementById("tellError").value = "";
+		return;
+	}
     if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(str))){ 
     	document.getElementById("tellError").value = "请输入有效的电话号码";
     	chTe = false;
@@ -60,6 +68,10 @@ var aCity={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",
 
 function checkIDCard(sId){
 	chID = true;
+	if (sId == ""){
+		document.getElementById("IDCardError").value = "";
+		return;
+	}
 	document.getElementById("IDCardError").value = "";
 	var iSum=0 ;
 	 var info="" ;
