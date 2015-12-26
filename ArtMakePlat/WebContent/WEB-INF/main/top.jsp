@@ -50,9 +50,9 @@ function goInfo(){
             <nav>
               <ul class="sf-menu" id="sel_menu">
                <li class="current"><a href="article">首页</a></li>
-               <li><a href="mall.html">商城</a></li>
-               <li><a href="gallery.html">拍卖</a></li>
-               <li><a href="blog.html">定制</a></li>
+               <li><a href="mall.jsp">商城</a></li>
+               <li><a href="auction.jsp">拍卖</a></li>
+               <li><a href="demand.jsp">定制</a></li>
                <li class="current"><s:if test="#session.person==null">      
 						<a href="forward!goUser">                             
                                                         登录/注册</a>
