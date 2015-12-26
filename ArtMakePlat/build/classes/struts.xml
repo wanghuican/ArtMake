@@ -46,6 +46,7 @@
 	    <action name="person" class="cn.edu.xmu.action.PersonAction">
 	    	<result name="userinfo">/WEB-INF/main/person/user.jsp</result>
 	    	<result name="artistinfo">/WEB-INF/main/person/artist.jsp</result>
+	    	<result name="gocastmsg">/WEB-INF/main/person/message.jsp</result>
 	    	<result name="improve">/WEB-INF/main/person/improve_info.jsp</result>
 	    	<result name="repassword">/WEB-INF/main/person/repassword.jsp</result>
 	    </action>

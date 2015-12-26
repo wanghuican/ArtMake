@@ -16,6 +16,9 @@
 <script src="js/jquery.mobilemenu.js"></script>
 <script src="js/tmStickUp.js"></script>
 <script src="js/jquery.ui.totop.js"></script>
+<script type="text/javascript" src="js/backstage/fancybox/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="js/backstage/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="css/backstage/authority/jquery.fancybox-1.3.4.css" media="screen"></link>
 <script>
 var flag;
 	$(window).load(function() {	
@@ -25,7 +28,25 @@ var flag;
 		goIngPage(0);
 		goNotIngPage(0);
 		flag = false;
+		
+		
 	});
+	
+$(document).ready(function(){
+	    
+	$("#castmsg").fancybox({
+		'href':'person!goCastMsg',
+		'width' : 733,
+        'height' : 530,
+		'autoScale':false,
+		'transitionIn':'none',
+		'transitionOut':'none',
+		'type':'iframe',
+		 'onClosed' : function() { 
+	        window.location.reload();	
+	    }
+	});
+});
 	
 	function goUpProduct(){
 		var totalnum = <s:property value="auth.totalnum"/>
@@ -333,7 +354,7 @@ var flag;
 							</td>
 						</tr>
 						<tr>
-							<td><div class="fa fa-comments"></div> 信息(5)</td>
+							<td><div class="fa fa-comments"></div> <a href="" id="castmsg">信息(5)</a></td>
 							<td colspan="2"><s:if
 									test="#session.person.person_id == person.person_id">
 									<a href="person!goImprove"><div class="fa fa-eye"></div>
