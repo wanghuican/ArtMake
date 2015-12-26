@@ -64,6 +64,15 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
 <![CDATA[from Key as k where k.times >= ? and k.times <= ? ]]>
 </query>
 
+<query name="HQL_MESSAGELIST">
+<![CDATA[from Message as m order by messagetime desc]]>
+</query>
+
+<query name="HQL_MESSAGELIST_SELECT">
+<![CDATA[from Message as m where m.fromperson.realname like ? 
+and m.toperson.realname like ? and m.content like ? order by messagetime desc]]>
+</query>
+
 <query name="HQL_PRODUCTLIST">
 <![CDATA[from Product as p]]>
 </query>

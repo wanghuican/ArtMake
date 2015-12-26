@@ -26,11 +26,14 @@
 		<property name="pass" type="int">
 			<column name="pass" not-null="true"/>
 		</property>
-		<bag name="keyList" order-by="record_id desc"  cascade="all" inverse= "true" lazy= "true">
+		 <many-to-one name="key" class="cn.edu.xmu.entity.Key" fetch="select">
+			<column name="key_id" not-null="true"></column>
+		</many-to-one>
+		<bag name="recordList" order-by="recordtime desc" cascade="all" inverse= "true" lazy= "true">
 			<key>
-				<column name="demand_id" not-null="true" />
+				<column name="demand_id" />
 			</key>
-			<one-to-many class="cn.edu.xmu.entity.Demkey" />
+			<one-to-many class="cn.edu.xmu.entity.Demrecord" />
 		</bag>
 	</class>
 </hibernate-mapping>

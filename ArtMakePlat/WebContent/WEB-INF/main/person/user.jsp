@@ -17,10 +17,356 @@
 <script src="js/tmStickUp.js"></script>
 <script src="js/jquery.ui.totop.js"></script>
 <script>
+var flag;
 	$(window).load(function() {
+		flag = true;
 		var content = "<s:property value='article.content'/>";
 		$("#contenthtml").html(decodeHtml(content));
+		goIngPage(0);
+		goOIngPage(0);
+		goDOIngPage(0);
+		goNotIngPage(0);
+		flag = false;
 	});
+	function goDemand(){
+		<s:if test="#session.person.person_id == person.person_id">
+	    	window.location.href = "demand!goEditDemand";
+		</s:if>
+		<s:else>
+	    	 alert("您没有上传权限");
+		</s:else>
+	}
+	function goProductDetail(id){
+		window.location.href = "product!goEditProduct?id=" + id;
+	}
+
+	function goIngPage(d) {
+		var pageing =  parseInt($("#pageing").html()) + d;
+		var totaling = <s:property value="#request.PAGEINGTotal"/>;
+		if (pageing == 0 && !flag) {
+			alert('当前是第一页');
+		} else if (pageing > totaling) {
+			alert('当前是最后一页');
+		} else {
+			$.ajax({
+				type : "post",
+				url : "productJoinAjax!toProductJoinList",
+				data : {//设置数据源
+					PAGEING : pageing,
+					id:<s:property value="person.person_id"/>
+				},
+				dataType : "json",
+				success : function(data) {
+					data = JSON.parse(data);
+					$("#sizeing").val(data.size);
+					page = data.page;
+					src = data.imagesrc;
+					rows = JSON.parse(data.rows).rows;
+					for (var i = 0; i < rows.length; i++) {
+						$("#editing" + i).attr("href","javascript:goProductDetail(" + rows[i].product_id + ")");
+						$("#imageing" + i).attr("src",src + "/" + rows[i].image);
+						$("#priceing" + i).html("当前最高价为" + rows[i].price + "元");
+						$("#introducting" + i).html(rows[i].introduce);
+						$("#pnameing" + i).html(rows[i].productname);
+					}
+					for(var i=rows.length;i<6;i++){
+						$("#imageing" + i).attr("src","images/transparent.png");
+						$("#introducting" + i).html("");
+						$("#pnameing" + i).html("");
+						$("#priceing" + i).html("");
+					}
+					$("#pageing").html(pageing);
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("XMLHttpRequest=" + XMLHttpRequest);
+					alert("textStatus=" + textStatus);
+					alert("errorThrown=" + errorThrown);
+					return false;
+				}
+			});
+		}
+	}
+	
+	function delOrder(id){
+		var size = $("#sizeoing").val();
+		var pageoing = parseInt($("#pageoing").html());
+		$.ajax({
+			type : "post",
+			url : "delOrderAjax!delOrder",
+			data : {//设置数据源
+				id:id
+			},
+			dataType : "json",
+			success : function(data) {
+				flag = true;
+				data = JSON.parse(data);
+				alert(data.message);
+				if(size%6 ==  1){
+					if($("#pageoingtotal").val() != 1)
+			    		$("#pageoingtotal").val($("#pageoingtotal").val()-1);
+					if(pageoing != 1)
+			        	goOIngPage(-1);
+					else
+						goOIngPage(0);
+				}else{
+					goOIngPage(0);
+				}
+				flag = false;
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("XMLHttpRequest=" + XMLHttpRequest);
+				alert("textStatus=" + textStatus);
+				alert("errorThrown=" + errorThrown);
+				return false;
+			}
+		});
+	}
+	
+	function delOrder2(id){
+		var size = $("#sizedoing").val();
+		var pageoing = parseInt($("#pagedoing").html());
+		$.ajax({
+			type : "post",
+			url : "delOrderAjax!delOrder",
+			data : {//设置数据源
+				id:id
+			},
+			dataType : "json",
+			success : function(data) {
+				flag = true;
+				data = JSON.parse(data);
+				alert(data.message);
+				if(size%6 ==  1){
+					if($("#pagedoingtotal").val() != 1)
+			    		$("#pagedoingtotal").val($("#pagedoingtotal").val()-1);
+					if(pageoing != 1)
+			        	goDOIngPage(-1);
+					else
+						goDOIngPage(0);
+				}else{
+					goDOIngPage(0);
+				}
+				flag = false;
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("XMLHttpRequest=" + XMLHttpRequest);
+				alert("textStatus=" + textStatus);
+				alert("errorThrown=" + errorThrown);
+				return false;
+			}
+		});
+	}
+	
+	function goPutDemand(id){
+	    	window.location.href = "demand!goPutDemand?id="+id;
+	}
+	
+	function goDemandDetail(id){
+		window.location.href = "demand!goEditDemand?id=" + id;
+	}
+	
+	function delDem(id){
+		var size = $("#sizenoting").val();
+		var pagenoting = parseInt($("#pagenoting").html());
+		$.ajax({
+			type : "post",
+			url : "demandAjax!delDemand",
+			data : {//设置数据源
+				id:id
+			},
+			dataType : "json",
+			success : function(data) {
+				flag = true;
+				data = JSON.parse(data);
+				alert(data.message);
+				if(size%5 ==  1){
+					if($("#pagenotingtotal").val() != 1)
+			    		$("#pagenotingtotal").val($("#pagenotingtotal").val()-1);
+					if(pagenoting != 1)
+			        	goNotIngPage(-1);
+					else
+						goNotIngPage(0);
+				}else{
+					goNotIngPage(0);
+				}
+				flag = false;
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("XMLHttpRequest=" + XMLHttpRequest);
+				alert("textStatus=" + textStatus);
+				alert("errorThrown=" + errorThrown);
+				return false;
+			}
+		});
+	}
+	
+	function goNotIngPage(d) {
+		var pagenoting = parseInt($("#pagenoting").html()) + d;
+		var totalnoting = $("#pagenotingtotal").val();
+		if (pagenoting == 0 && !flag) {
+			alert('当前是第一页');
+		} else if (pagenoting > totalnoting) {
+			alert('当前是最后一页');
+		} else {
+			$.ajax({
+				type : "post",
+				url : "demandAjax!toDemandIngList",
+				data : {//设置数据源
+					PAGENOTING : pagenoting,
+					id:<s:property value="person.person_id"/>
+				},
+				dataType : "json",
+				success : function(data) {
+					data = JSON.parse(data);
+					$("#sizenoting").val(data.size);
+					page = data.page;
+					src = data.imagesrc;
+					rows = JSON.parse(data.rows).rows;
+					for(var i=rows.length;i<5;i++){
+						$("#delpro" + i).css("display","none");
+						$("#introductning" + i).html("");
+						$("#pricening" + i).html("");
+						$("#uppro" + i).css("display","none");
+						$("#state" + i).css("display","none");
+					}
+					for (var i = 0; i < rows.length; i++) {
+						$("#editning" + i).attr("href","javascript:goDemandDetail(" + rows[i].demand_id + ")")
+						$("#introductning" + i).html(rows[i].introduce);
+						$("#pricening" + i).html(rows[i].price + "元");
+						$("#delpro" + i).css("display","block");
+						$("#delpro" + i).attr("href","javascript:delDem(" + rows[i].demand_id + ")");
+						if(rows[i].state == 1){
+							$("#uppro" + i).css("display","block");
+							$("#uppro" + i).attr("href","javascript:goPutDemand("+rows[i].demand_id+")");
+						}else{
+							$("#uppro" + i).css("display","none");
+						}
+					}
+					;
+					$("#pagenoting").html(pagenoting);
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("XMLHttpRequest=" + XMLHttpRequest);
+					alert("textStatus=" + textStatus);
+					alert("errorThrown=" + errorThrown);
+					return false;
+				}
+			});
+		}
+	}
+	
+	function goOIngPage(d) {
+		var pageing =  parseInt($("#pageoing").html()) + d;
+		var totaling = $("#pageoingtotal").val();
+		if (pageing == 0 && !flag) {
+			alert('当前是第一页');
+		} else if (pageing > totaling) {
+			alert('当前是最后一页');
+		} else {
+			$.ajax({
+				type : "post",
+				url : "proorderAjax!toProOrderList",
+				data : {//设置数据源
+					PAGEOING : pageing,
+					id:<s:property value="person.person_id"/>
+				},
+				dataType : "json",
+				success : function(data) {
+					data = JSON.parse(data);
+					$("#sizeoing").val(data.size);
+					page = data.page;
+					src = data.imagesrc;
+					rows = JSON.parse(data.rows).rows;
+					orows = JSON.parse(data.orows).rows;
+					for (var i = 0; i < rows.length; i++) {
+						$("#imageoing" + i).attr("src",src + "/" + rows[i].image);
+						$("#priceoing" + i).html("当前最高价为" + rows[i].price + "元");
+						$("#introductoing" + i).html(rows[i].introduce);
+						$("#pnameoing" + i).html(rows[i].productname);
+						if(orows[i].state == 0){
+							$("#deloing" + i).css("display","none");
+							$("#payoing" + i).css("display","block");
+							$("#payoing" + i).attr("href","order!payOrder?id="+orows[i].order_id);
+						}else{
+							$("#payoing" + i).css("display","none");
+							$("#deloing" + i).css("display","block");
+							$("#deloing" + i).attr("href","javascript:delOrder("+ orows[i].order_id +")");
+						}
+					}
+					for(var i=rows.length;i<6;i++){
+						$("#imageoing" + i).attr("src","images/transparent.png");
+						$("#introductoing" + i).html("");
+						$("#pnameoing" + i).html("");
+						$("#priceoing" + i).html("");
+						$("#payoing" + i).css("display","none");
+						$("#deloing" + i).css("display","none");
+					}
+					$("#pageoing").html(pageing);
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("XMLHttpRequest=" + XMLHttpRequest);
+					alert("textStatus=" + textStatus);
+					alert("errorThrown=" + errorThrown);
+					return false;
+				}
+			});
+		}
+	}
+	
+	function goDOIngPage(d) {
+		var pageing =  parseInt($("#pagedoing").html()) + d;
+		var totaling = $("#pagedoingtotal").val();
+		if (pageing == 0 && !flag) {
+			alert('当前是第一页');
+		} else if (pageing > totaling) {
+			alert('当前是最后一页');
+		} else {
+			$.ajax({
+				type : "post",
+				url : "demandIngAjax!toDemIngOrderList",
+				data : {//设置数据源
+					PAGEDOING : pageing,
+					id:<s:property value="person.person_id"/>
+				},
+				dataType : "json",
+				success : function(data) {
+					data = JSON.parse(data);
+					$("#sizedoing").val(data.size);
+					page = data.page;
+					rows = JSON.parse(data.rows).rows;
+					orows = JSON.parse(data.orows).rows;
+					for (var i = 0; i < rows.length; i++) {
+						$("#pricedoing" + i).html("当前价格为：" + rows[i].price + "元");
+						$("#introductdoing" + i).html(rows[i].introduce);
+						if(orows[i].state == 0){
+							$("#editdoing" + i).attr("href","order!goDoingEditDemand?id="+orows[i].order_id);
+							$("#deldoing" + i).css("display","none");
+							$("#paydoing" + i).css("display","block");
+							$("#paydoing" + i).attr("href","order!payOrder?id="+orows[i].order_id);
+						}else{
+							$("#paydoing" + i).css("display","none");
+							$("#deldoing" + i).css("display","block");
+							$("#deldoing" + i).attr("href","javascript:delOrder2("+ orows[i].order_id +")");
+						}
+					}
+					for(var i=rows.length;i<6;i++){
+						$("#introductdoing" + i).html("");
+						$("#pricedoing" + i).html("");
+						$("#paydoing" + i).css("display","none");
+						$("#deldoing" + i).css("display","none");
+					}
+					$("#pageoing").html(pageing);
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("XMLHttpRequest=" + XMLHttpRequest);
+					alert("textStatus=" + textStatus);
+					alert("errorThrown=" + errorThrown);
+					return false;
+				}
+			});
+		}
+	}
+	
 	function goshow() {
 		$
 				.ajax({
@@ -106,6 +452,13 @@
           Content
 ======================-->
 	<section id="content" class="gallery">
+	<input type="hidden" id="sizeing"/>
+	<input type="hidden" id="sizeoing"/>
+	<input type="hidden" id="sizedoing"/>
+	<input type="hidden" id="sizenoting"/>
+	<input type="hidden" id="pageoingtotal"  value="<s:property value='#request.PAGEOINGTotal'/>"/>
+	<input type="hidden" id="pagedoingtotal"  value="<s:property value='#request.PAGEDOINGTotal'/>"/>
+	<input type="hidden" id="pagenotingtotal"  value="<s:property value='#request.PAGENOTINGTotal'/>"/>
 	<div class="ic">More Website Templates @ TemplateMonster.com -
 		August11, 2014!</div>
 	<div class="container">
@@ -171,104 +524,104 @@
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big1.jpg" class="gall_item"><img
-						src="images/page3_img1.jpg" alt=""></a>
+				<div id="diving0"  style="width:100%;height:200px;">
+					<a id="editing0" href="" class="gall_item">			
+					<img id="imageing0" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+				</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">拍卖艺术品1</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">加价</a>
-						<p>当前竞拍最高价为:1000元</p>
+						<div id="pnameing0" class="box_bot_title"></div>
+						<p id="introducting0"></p>
+						<p id="priceing0"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big2.jpg" class="gall_item"><img
-						src="images/page3_img2.jpg" alt=""></a>
-					<div class="box_bot">
-						<div class="box_bot_title">拍卖艺术品2</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">加价</a>
-						<p>当前竞拍最高价为:1000元</p>
+					<div  id="diving1" style="width:100%;height:200px;">
+					<a id="editing1" href="" class="gall_item">			
+					<img id="imageing1" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>						
+			    	<div class="box_bot">
+						<div id="pnameing1" class="box_bot_title"></div>
+						<p id="introducting1"></p>
+						<p id="priceing1"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big3.jpg" class="gall_item"><img
-						src="images/page3_img3.jpg" alt=""></a>
+					<div id="diving2"  style="width:100%;height:200px;">
+					<a id="editing2" href="" class="gall_item">			
+					<img id="imageing2" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">拍卖艺术品3</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">加价</a>
-						<p>当前竞拍最高价为:1000元</p>
+						<div id="pnameing2" class="box_bot_title"></div>
+						<p id="introducting2"></p>
+						<p id="priceing2"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big4.jpg" class="gall_item"><img
-						src="images/page3_img4.jpg" alt=""></a>
+					<div id="diving3"  style="width:100%;height:200px;">
+					<a id="editing3" href="" class="gall_item">			
+					<img id="imageing3" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+				</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">拍卖艺术品4</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">加价</a>
-						<p>当前竞拍最高价为:1000元</p>
+						<div id="pnameing3" class="box_bot_title"></div>
+						<p id="introducting3"></p>
+						<p id="priceing3"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big5.jpg" class="gall_item"><img
-						src="images/page3_img5.jpg" alt=""></a>
+					<div id="diving4"  style="width:100%;height:200px;">
+					<a id="editing4" href="" class="gall_item">			
+					<img id="imageing4" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">拍卖艺术品5</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">加价</a>
-						<p>当前竞拍最高价为:1000元</p>
+						<div id="pnameing4" class="box_bot_title"></div>
+						<p id="introducting4"></p>
+						<p id="priceing4"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big6.jpg" class="gall_item"><img
-						src="images/page3_img6.jpg" alt=""></a>
+					<div id="diving5"  style="width:100%;height:200px;">
+					<a id="editing5" href="" class="gall_item">			
+					<img id="imageing5" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">拍卖艺术品6</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">加价</a>
-						<p>当前竞拍最高价为:1000元</p>
+						<div id="pnameing5" class="box_bot_title"></div>
+						<p id="introducting5"></p>
+						<p id="priceing5"></p>
 					</div>
 				</div>
 			</div>
-			<div align="center" style="font-size: 20px">
-				&lt;&lt;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;</div>
-
+			<div class="grid_12" align="center" style="font-size: 20px">
+				<a href="javascript:goIngPage(-1)">&lt;&lt;</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label id="pageing">
+				<s:property value="#request.PAGEING + 1"/></label> &nbsp;&nbsp;&nbsp;&nbsp;<a
+					href="javascript:goIngPage(1)">&gt;&gt;</a>
+			</div>
+			
 			<div class="grid_12" align="center">
 				<h2>私人定制</h2>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="定制.html" class="gall_item"><img
+			    	<div  id="" style="width:100%;height:200px;">
+					<a style="width:100%;height:100%" href="javascript:goDemand()" class="gall_item"><img
 						src="images/transparent.png" alt=""><span></span></a>
+					</div>
 					<div class="box_bot">
 						<div class="box_bot_title">定制艺术品</div>
 						<p>一些注意事项</p>
@@ -277,254 +630,302 @@
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big2.jpg" class="gall_item"><img
-						src="images/page3_img2.jpg" alt=""></a>
+				<div id="divnoting0"  style="width:100%;height:200px;">
+					<a id="editning0" href="" style="width:100%;height:100%" class="gall_item"><img id="imagening0" src="images/transparent.png" alt=""></a>
+				</div>
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品1</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">修改</a> <a href="#" class="btn">删除</a>
+						<div id="pricening0" class="box_bot_title"></div>
+						<p id="introductning0"></p>
+						<s:if test="#session.person.person_id == person.person_id">
+						<a id="uppro0" href="#" class="btn" style="display:none">委任</a> 
+						<a id="delpro0" href="#" class="btn" style="display:none">删除</a>
+						</s:if>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big3.jpg" class="gall_item"><img
-						src="images/page3_img3.jpg" alt=""></a>
+					<div id="divnoting1" style="width:100%;height:200px;">
+					<a id="editning1" href="" style="width:100%;height:100%" class="gall_item"><img id="imagening1" src="images/transparent.png" alt=""></a>
+			    	</div>
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品2</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">修改</a> <a href="#" class="btn">删除</a>
+						<div id="pricening1" class="box_bot_title"></div>
+						<p id="introductning1"></p>
+						<s:if test="#session.person.person_id == person.person_id">
+						<a id="uppro1" href="#" class="btn" style="display:none">委任</a> 
+						<a id="delpro1" href="#" class="btn" style="display:none">删除</a>
+						</s:if>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big4.jpg" class="gall_item"><img
-						src="images/page3_img4.jpg" alt=""></a>
+					<div id="divnoting2" style="width:100%;height:200px;">
+					<a id="editning2" href="" style="width:100%;height:100%" class="gall_item"><img id="imagening2" src="images/transparent.png" alt=""></a>
+			    	</div>
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品3</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">修改</a> <a href="#" class="btn">删除</a>
+						<div id="pricening2" class="box_bot_title"></div>
+						<p id="introductning2"></p>
+						<s:if test="#session.person.person_id == person.person_id">
+						<a id="uppro2" href="#" class="btn" style="display:none">委任</a> 
+						<a id="delpro2" href="#" class="btn" style="display:none">删除</a>
+						</s:if>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big5.jpg" class="gall_item"><img
-						src="images/page3_img5.jpg" alt=""></a>
+					<div id="divnoting3" style="width:100%;height:200px;">
+					<a  id="editning3" href="" style="width:100%;height:100%" class="gall_item"><img id="imagening3" src="images/transparent.png" alt=""></a>
+			    	</div>   
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品4</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">修改</a> <a href="#" class="btn">删除</a>
+						<div id="pricening3" class="box_bot_title"></div>
+						<p id="introductning3"></p>
+						<s:if test="#session.person.person_id == person.person_id">
+						<a id="uppro3" href="#" class="btn" style="display:none">委任</a> 
+						<a id="delpro3" href="#" class="btn" style="display:none">删除</a>
+						</s:if>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big6.jpg" class="gall_item"><img
-						src="images/page3_img6.jpg" alt=""></a>
+					<div id="divnoting4" style="width:100%;height:200px;">
+					<a id="editning4" href="" style="width:100%;height:100%" class="gall_item"><img id="imagening4" src="images/transparent.png" alt=""></a>
+				    </div>
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品5</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">修改</a> <a href="#" class="btn">删除</a>
+						<div id="pricening4" class="box_bot_title"></div>
+						<p id="introductning4"></p>
+						<s:if test="#session.person.person_id == person.person_id">
+						<a id="uppro4" href="" class="btn" style="display:none">委任</a> 
+						<a id="delpro4" href="" class="btn" style="display:none">删除</a>
+						</s:if>
 					</div>
 				</div>
 			</div>
-			<div align="center" style="font-size: 20px">
-				&lt;&lt;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;</div>
-
+			<div class="grid_12" align="center" style="font-size: 20px">
+				<a href="javascript:goNotIngPage(-1)">&lt;&lt;</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label id="pagenoting">
+				<s:property value="#request.PAGENOTING + 1"/></label>&nbsp;&nbsp;&nbsp;&nbsp; <a
+					href="javascript:goNotIngPage(1)">&gt;&gt;</a>
+			</div>
 			<div class="grid_12" align="center">
 				<h2>拍得艺术品</h2>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big1.jpg" class="gall_item"><img
-						src="images/page3_img1.jpg" alt=""></a>
+				<div id="divoing0"  style="width:100%;height:200px;">
+					<a id="editoing0" class="gall_item">			
+					<img id="imageoing0" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+				</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">艺术品1</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">支付</a>
+						<div id="pnameoing0" class="box_bot_title"></div>
+						<p id="introductoing0"></p>
+						<p id="priceoing0"></p>
+						<a href="#" id="payoing0" style="display:none" class="btn">支付</a>
+						<a href="#" id="deloing0" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big2.jpg" class="gall_item"><img
-						src="images/page3_img2.jpg" alt=""></a>
-					<div class="box_bot">
-						<div class="box_bot_title">艺术品2</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">支付</a>
+					<div  id="divoing1" style="width:100%;height:200px;">
+					<a id="editoing1" class="gall_item">			
+					<img id="imageoing1" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>						
+			    	<div class="box_bot">
+						<div id="pnameoing1" class="box_bot_title"></div>
+						<p id="introductoing1"></p>
+						<p id="priceoing1"></p>
+						<a href="#" id="payoing1" style="display:none" class="btn">支付</a>
+						<a href="#" id="deloing1" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big3.jpg" class="gall_item"><img
-						src="images/page3_img3.jpg" alt=""></a>
+					<div id="divoing2"  style="width:100%;height:200px;">
+					<a id="editoing2" class="gall_item">			
+					<img id="imageoing2" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">艺术品3</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">支付</a>
+						<div id="pnameoing2" class="box_bot_title"></div>
+						<p id="introductoing2"></p>
+						<p id="priceoing2"></p>
+						<a href="#" id="payoing2" style="display:none" class="btn">支付</a>
+						<a href="#" id="deloing2" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big4.jpg" class="gall_item"><img
-						src="images/page3_img4.jpg" alt=""></a>
+					<div id="divoing3"  style="width:100%;height:200px;">
+					<a id="editoing3" class="gall_item">			
+					<img id="imageoing3" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+				</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">艺术品4</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">支付</a>
+						<div id="pnameoing3" class="box_bot_title"></div>
+						<p id="introductoing3"></p>
+						<p id="priceoing3"></p>
+						<a href="#" id="payoing3" style="display:none" class="btn">支付</a>
+						<a href="#" id="deloing3" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big5.jpg" class="gall_item"><img
-						src="images/page3_img5.jpg" alt=""></a>
+					<div id="divoing4"  style="width:100%;height:200px;">
+					<a id="editoing4" class="gall_item">			
+					<img id="imageoing4" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">艺术品5</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">支付</a>
+						<div id="pnameoing4" class="box_bot_title"></div>
+						<p id="introductoing4"></p>
+						<p id="priceoing4"></p>
+						<a href="#" id="payoing4" style="display:none" class="btn">支付</a>
+						<a href="#" id="deloing4" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big6.jpg" class="gall_item"><img
-						src="images/page3_img6.jpg" alt=""></a>
+					<div id="divoing5"  style="width:100%;height:200px;">
+					<a id="editoing5" class="gall_item">			
+					<img id="imageoing5" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">艺术品6</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">支付</a>
+						<div id="pnameoing5" class="box_bot_title"></div>
+						<p id="introductoing5"></p>
+						<p id="priceoing5"></p>
+						<a href="#" id="payoing5" style="display:none" class="btn">支付</a>
+						<a href="#" id="deloing5" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
-			<div align="center" style="font-size: 20px">
-				&lt;&lt;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;</div>
-
+			<div class="grid_12" align="center" style="font-size: 20px">
+				<a href="javascript:goOIngPage(-1)">&lt;&lt;</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label id="pageoing">
+				<s:property value="#request.PAGEOING + 1"/></label> &nbsp;&nbsp;&nbsp;&nbsp;<a
+					href="javascript:goOIngPage(1)">&gt;&gt;</a>
+			</div>
+			
 			<div class="grid_12" align="center">
 				<h2>正在定制</h2>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big1.jpg" class="gall_item"><img
-						src="images/page3_img1.jpg" alt=""></a>
+				<div id="divdoing0"  style="width:100%;height:200px;">
+					<a id="editdoing0" class="gall_item">			
+					<img id="imagedoing0" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+				</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品</div>
-						<a href="#" class="btn">联系艺术家</a> <a href="#" class="btn">终止</a>
-						<p>一些注意事项</p>
+						<div id="pnamedoing0" class="box_bot_title"></div>
+						<p id="introductdoing0"></p>
+						<p id="pricedoing0"></p>
+						<p id="textdoing0"></p>
+						<a href="#" id="paydoing0" style="display:none" class="btn">支付</a>
+						<a href="#" id="deldoing0" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big2.jpg" class="gall_item"><img
-						src="images/page3_img2.jpg" alt=""></a>
-					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品1</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系艺术家</a> <a href="#" class="btn">终止</a>
+					<div  id="divdoing1" style="width:100%;height:200px;">
+					<a id="editdoing1" class="gall_item">			
+					<img id="imagedoing1" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>						
+			    	<div class="box_bot">
+						<div id="pnamedoing1" class="box_bot_title"></div>
+						<p id="introductdoing1"></p>
+						<p id="pricedoing1"></p>
+						<p id="textdoing1"></p>
+						<a href="#" id="paydoing1" style="display:none" class="btn">支付</a>
+						<a href="#" id="deldoing1" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big3.jpg" class="gall_item"><img
-						src="images/page3_img3.jpg" alt=""></a>
+					<div id="divdoing2"  style="width:100%;height:200px;">
+					<a id="editdoing2" class="gall_item">			
+					<img id="imagedoing2" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品2</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系艺术家</a> <a href="#" class="btn">终止</a>
+						<div id="pnamedoing2" class="box_bot_title"></div>
+						<p id="introductdoing2"></p>
+						<p id="pricedoing2"></p>
+						<p id="textdoing2"></p>
+						<a href="#" id="paydoing2" style="display:none" class="btn">支付</a>
+						<a href="#" id="deldoing2" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big4.jpg" class="gall_item"><img
-						src="images/page3_img4.jpg" alt=""></a>
+					<div id="divdoing3"  style="width:100%;height:200px;">
+					<a id="editdoing3" class="gall_item">			
+					<img id="imagedoing3" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+				</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品3</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系艺术家</a> <a href="#" class="btn">终止</a>
+						<div id="pnamedoing3" class="box_bot_title"></div>
+						<p id="introductdoing3"></p>
+						<p id="pricedoing3"></p>
+						<p id="textdoing3"></p>
+						<a href="#" id="paydoing3" style="display:none" class="btn">支付</a>
+						<a href="#" id="deldoing3" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big5.jpg" class="gall_item"><img
-						src="images/page3_img5.jpg" alt=""></a>
+					<div id="divdoing4"  style="width:100%;height:200px;">
+					<a id="editdoing4" class="gall_item">			
+					<img id="imagedoing4" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品4</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系艺术家</a> <a href="#" class="btn">终止</a>
+						<div id="pnamedoing4" class="box_bot_title"></div>
+						<p id="introductdoing4"></p>
+						<p id="pricedoing4"></p>
+						<p id="textdoing4"></p>
+						<a href="#" id="paydoing4" style="display:none" class="btn">支付</a>
+						<a href="#" id="deldoing4" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big6.jpg" class="gall_item"><img
-						src="images/page3_img6.jpg" alt=""></a>
+					<div id="divdoing5"  style="width:100%;height:200px;">
+					<a id="editdoing5" class="gall_item">			
+					<img id="imagedoing5" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品5</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系艺术家</a> <a href="#" class="btn">终止</a>
+						<div id="pnamedoing5" class="box_bot_title"></div>
+						<p id="introductdoing5"></p>
+						<p id="pricedoing5"></p>
+						<p id="textdoing5"></p>
+						<a href="#" id="paydoing5" style="display:none" class="btn">支付</a>
+						<a href="#" id="deldoing5" style="display:none" class="btn">删除</a>
 					</div>
 				</div>
 			</div>
-			<div align="center" style="font-size: 20px">
-				&lt;&lt;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;</div>
-		</div>
+			<div class="grid_12" align="center" style="font-size: 20px">
+				<a href="javascript:goDOIngPage(-1)">&lt;&lt;</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label id="pagedoing">
+				<s:property value="#request.PAGEDOING + 1"/></label> &nbsp;&nbsp;&nbsp;&nbsp;<a
+					href="javascript:goDOIngPage(1)">&gt;&gt;</a>
+			</div>
 	</div>
 	</section>
 	<!--==============================

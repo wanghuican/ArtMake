@@ -79,6 +79,28 @@ public class OrderServiceImpl implements OrderService {
 		return count;
 	}
 	
+	@Override
+	public int getForProCount(int pid) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(pid);
+		pro.add(0);
+		count = dao.getOrderList(pro).size();
+		return count;
+	}
+
+	@Override
+	public int getForDemCount(int pid) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(pid);
+		pro.add(1);
+		count = dao.getOrderList(pro).size();
+		return count;
+	}
+	
 
 	@Override
 	public void saveOrder(Order order) {
@@ -96,6 +118,44 @@ public class OrderServiceImpl implements OrderService {
 	public void deleteOrderById(int id) {
 		// TODO Auto-generated method stub
 		dao.deleteOrderById(id);
+	}
+
+	@Override
+	public List<Order> getForProList(int pid,int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(pid);
+		pro.add(0);
+		return dao.getOrderList(pro, pageNo, pageSize);
+	}
+
+	@Override
+	public List<Order> getForDemList(int pid,int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(pid);
+		pro.add(1);
+		return dao.getOrderList(pro, pageNo, pageSize);
+	}
+
+	@Override
+	public List<Order> getForIngDemList(int pid, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(pid);
+		pro.add(1);
+		return dao.getOrderIngList(pro, pageNo, pageSize);
+	}
+
+	@Override
+	public int getForIngDemCount(int pid) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		int count = 0;
+		pro.add(pid);
+		pro.add(1);
+		count = dao.getOrderIngList(pro).size();
+		return count;
 	}
 
 	

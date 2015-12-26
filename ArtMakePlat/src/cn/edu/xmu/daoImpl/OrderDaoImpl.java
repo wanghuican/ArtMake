@@ -131,4 +131,38 @@ public class OrderDaoImpl implements OrderDao {
 		dao.delById(Order.class, id);
 	}
 
+	@Override
+	public List<Order> getOrderList(List<Integer> pro) {
+		// TODO Auto-generated method stub
+		List<Order> orderList = new ArrayList<Order>();
+		 orderList = dao.query(Common.HQL_ORDER_PERSON, pro);
+		return orderList;
+	}
+
+	@Override
+	public List<Order> getOrderList(List<Integer> pro, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		List<Order> orderList = new ArrayList<Order>();
+		orderList = dao.query(Common.HQL_ORDER_PERSON, pro,pageNo, pageSize);
+		return orderList;
+	}
+
+	@Override
+	public List<Order> getOrderIngList(List<Integer> pro) {
+		// TODO Auto-generated method stub
+		List<Order> orderList = new ArrayList<Order>();
+		 orderList = dao.query(Common.HQL_ORDER_DEMAND, pro);
+		return orderList;
+	}
+
+	@Override
+	public List<Order> getOrderIngList(List<Integer> pro, int pageNo,
+			int pageSize) {
+		// TODO Auto-generated method stub
+		List<Order> orderList = new ArrayList<Order>();
+		 orderList = dao.query(Common.HQL_ORDER_DEMAND, pro,pageNo, pageSize);
+		return orderList;
+	}
+
+
 }

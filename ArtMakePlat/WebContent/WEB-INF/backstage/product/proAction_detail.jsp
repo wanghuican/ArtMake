@@ -44,7 +44,7 @@
 		<div class="row">
 		 <h2><b><s:property value="recordList[0].action.product.productname"/></b></h2>
 			<div class="grid_12" align="center">
-			<table>
+			<table style="width:100%" border="1">
              <s:iterator value="recordList" id="row">
              <tr>
              <td>

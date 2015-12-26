@@ -27,6 +27,7 @@ var flag;
 		$("#contenthtml").html(decodeHtml(content));
 		goIngPage(0);
 		goNotIngPage(0);
+		goDOIngPage(0);
 		flag = false;
 		
 		
@@ -146,6 +147,49 @@ $(document).ready(function(){
 						$("#priceing" + i).html("");
 					}
 					$("#pageing").html(pageing);
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert("XMLHttpRequest=" + XMLHttpRequest);
+					alert("textStatus=" + textStatus);
+					alert("errorThrown=" + errorThrown);
+					return false;
+				}
+			});
+		}
+	}
+	
+	function goDOIngPage(d) {
+		var pageing =  parseInt($("#pagedoing").html()) + d;
+		var totaling = $("#pagedoingtotal").val();
+		if (pageing == 0 && !flag) {
+			alert('当前是第一页');
+		} else if (pageing > totaling) {
+			alert('当前是最后一页');
+		} else {
+			$.ajax({
+				type : "post",
+				url : "demorderAjax!toDemOrderList",
+				data : {//设置数据源
+					PAGEDOING : pageing,
+					id:<s:property value="person.person_id"/>
+				},
+				dataType : "json",
+				success : function(data) {
+					data = JSON.parse(data);
+					$("#sizedoing").val(data.size);
+					page = data.page;
+					rows = JSON.parse(data.rows).rows;
+					orows = JSON.parse(data.orows).rows;
+					for (var i = 0; i < rows.length; i++) {
+						$("#editdoing" + i).attr("href","order!goDoingEditDemand?id="+orows[i].order_id);
+						$("#pricedoing" + i).html("当前价格为：" + rows[i].price + "元");
+						$("#introductdoing" + i).html(rows[i].introduce);
+					}
+					for(var i=rows.length;i<6;i++){
+						$("#introductdoing" + i).html("");
+						$("#pricedoing" + i).html("");
+					}
+					$("#pageoing").html(pageing);
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					alert("XMLHttpRequest=" + XMLHttpRequest);
@@ -304,7 +348,9 @@ $(document).ready(function(){
 	<section id="content" class="gallery">
 	<input type="hidden" id="sizenoting"/>
 	<input type="hidden" id="sizeing"/>
+	<input type="hidden" id="sizedoing"/>
 	<input type="hidden" id="pagenotingtotal" value="<s:property value='#request.PAGENOTINGTotal'/>"/>
+	<input type="hidden" id="pagedoingtotal"  value="<s:property value='#request.PAGEDOINGTotal'/>"/>
 	<div class="ic">More Website Templates @ TemplateMonster.com -
 		August11, 2014!</div>
 	<div class="container">
@@ -567,87 +613,100 @@ $(document).ready(function(){
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="" class="gall_item"><img
-						src="images/transparent.png" alt=""></a>
+				<div id="divdoing0"  style="width:100%;height:200px;">
+					<a id="editdoing0" class="gall_item">			
+					<img id="imagedoing0" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+				</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品</div>
-						<a href="#" class="btn">联系用户</a> <a href="#" class="btn">终止</a>
-						<p>一些注意事项</p>
+						<div id="pnamedoing0" class="box_bot_title"></div>
+						<p id="introductdoing0"></p>
+						<p id="pricedoing0"></p>
+						<p id="textdoing0"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big2.jpg" class="gall_item"><img
-						src="images/page3_img2.jpg" alt=""></a>
-					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品1</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系用户</a> <a href="#" class="btn">终止</a>
+					<div  id="divdoing1" style="width:100%;height:200px;">
+					<a id="editdoing1" class="gall_item">			
+					<img id="imagedoing1" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>						
+			    	<div class="box_bot">
+						<div id="pnamedoing1" class="box_bot_title"></div>
+						<p id="introductdoing1"></p>
+						<p id="pricedoing1"></p>
+						<p id="textdoing1"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big3.jpg" class="gall_item"><img
-						src="images/page3_img3.jpg" alt=""></a>
+					<div id="divdoing2"  style="width:100%;height:200px;">
+					<a id="editdoing2" class="gall_item">			
+					<img id="imagedoing2" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品2</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系用户</a> <a href="#" class="btn">终止</a>
+						<div id="pnamedoing2" class="box_bot_title"></div>
+						<p id="introductdoing2"></p>
+						<p id="pricedoing2"></p>
+						<p id="textdoing2"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big4.jpg" class="gall_item"><img
-						src="images/page3_img4.jpg" alt=""></a>
+					<div id="divdoing3"  style="width:100%;height:200px;">
+					<a id="editdoing3" class="gall_item">			
+					<img id="imagedoing3" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+				</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品3</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系用户</a> <a href="#" class="btn">终止</a>
+						<div id="pnamedoing3" class="box_bot_title"></div>
+						<p id="introductdoing3"></p>
+						<p id="pricedoing3"></p>
+						<p id="textdoing3"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big5.jpg" class="gall_item"><img
-						src="images/page3_img5.jpg" alt=""></a>
+					<div id="divdoing4"  style="width:100%;height:200px;">
+					<a id="editdoing4" class="gall_item">			
+					<img id="imagedoing4" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品4</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系用户</a> <a href="#" class="btn">终止</a>
+						<div id="pnamedoing4" class="box_bot_title"></div>
+						<p id="introductdoing4"></p>
+						<p id="pricedoing4"></p>
+						<p id="textdoing4"></p>
 					</div>
 				</div>
 			</div>
 			<div class="grid_4">
 				<div class="box">
-					<a href="images/big6.jpg" class="gall_item"><img
-						src="images/page3_img6.jpg" alt=""></a>
+					<div id="divdoing5"  style="width:100%;height:200px;">
+					<a id="editdoing5" class="gall_item">			
+					<img id="imagedoing5" style="width:100%;height:100%" src="images/transparent.png" alt="">
+					</a>
+			    	</div>	
 					<div class="box_bot">
-						<div class="box_bot_title">定制艺术品5</div>
-						<p>Dorem ipsum dolor sit amet, consectetur adipiscing elit. In
-							mollis erat mattis neque facilisis, sit amet ultricies erat
-							rutrum. Cras facilisis, nulla vel viverra auctor, leo magna
-							sodales felis, quis malesuada nibh odio ut velit</p>
-						<a href="#" class="btn">联系用户</a> <a href="#" class="btn">终止</a>
+						<div id="pnamedoing5" class="box_bot_title"></div>
+						<p id="introductdoing5"></p>
+						<p id="pricedoing5"></p>
+						<p id="textdoing5"></p>
 					</div>
 				</div>
 			</div>
-
-		</div>
+			<div class="grid_12" align="center" style="font-size: 20px">
+				<a href="javascript:goDOIngPage(-1)">&lt;&lt;</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label id="pagedoing">
+				<s:property value="#request.PAGEDOING + 1"/></label> &nbsp;&nbsp;&nbsp;&nbsp;<a
+					href="javascript:goDOIngPage(1)">&gt;&gt;</a>
+			</div>
 	</div>
 	</section>
 	<!--==============================

@@ -1,5 +1,8 @@
 package cn.edu.xmu.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Common {
 	//TABLE
 	public final static String TABLE_PERSON = "Person";
@@ -27,6 +30,12 @@ public class Common {
 	public final static String HQL_PRODUCTLIST_ING = "HQL_PRODUCTLIST_ING";
 	public final static String HQL_PRODUCTLIST_NOTING = "HQL_PRODUCTLIST_NOTING";
 	public final static String HQL_AUTH = "HQL_AUTH";
+	public final static String HQL_PROACTION_TIME = "HQL_PROACTION_TIME";
+	public final static String HQL_RECORDLIST_PERSON = "HQL_RECORDLIST_PERSON";
+	public final static String HQL_ORDER_PERSON = "HQL_ORDER_PERSON";
+	public final static String HQL_DEMANDLIST_ING = "HQL_DEMANDLIST_ING";
+	public final static String HQL_ORDER_DEMAND = "HQL_ORDER_DEMAND";
+	public final static String HQL_RECORDLIST_DEMAND = "HQL_RECORDLIST_DEMAND";
 	
 	//backstage query
 	public final static String HQL_ARTICLELIST = "HQL_ARTICLELIST";
@@ -53,11 +62,16 @@ public class Common {
 	public final static String HQL_PROORDERLIST_SELECT = "HQL_PROORDERLIST_SELECT";
 	public final static String HQL_DEMORDERLIST_SELECT = "HQL_DEMORDERLIST_SELECT";
 	public final static String HQL_PRORECORDLIST_BYID = "HQL_PRORECORDLIST_BYID";
-
+	public final static String HQL_MESSAGELIST = "HQL_MESSAGELIST";
+	public final static String HQL_MESSAGELIST_SELECT = "HQL_MESSAGELIST_SELECT";
+	
 	//common
 	public final static int BACKSTAGE_PAGESIZE = 3;
 	public final static int PAGESIZE = 6;
 	public final static int MIN = -999999;
 	public final static int MAX = 999999;
 	public final static String DEFAULT_PASSWORD = "666666";
+	public static boolean[] LOCK = new boolean[999999999];
+	
+	
 }

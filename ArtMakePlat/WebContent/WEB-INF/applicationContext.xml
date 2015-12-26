@@ -43,7 +43,7 @@
 				<prop key="hibernate.dialect">
 					org.hibernate.dialect.MySQLDialect
 				</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
 			</props>
 		</property>
 		<!-- mappingResouces属性用来列出全部映射文件 -->
@@ -60,10 +60,11 @@
 				<value>cn/edu/xmu/entity/Demand.hbm.xml</value>
 		    	<value>cn/edu/xmu/entity/Proimg.hbm.xml</value>	
 				<value>cn/edu/xmu/entity/Perkey.hbm.xml</value>
-				<value>cn/edu/xmu/entity/Demkey.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Auth.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Order.hbm.xml</value>
+				<value>cn/edu/xmu/entity/Message.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Prorecord.hbm.xml</value>
+				<value>cn/edu/xmu/entity/Demrecord.hbm.xml</value>	
 
 				<value>cn/edu/xmu/entity/named-queries.hbm.xml</value>
 				<value>cn/edu/xmu/entity/backstage-named-queries.hbm.xml</value>
@@ -87,7 +88,9 @@
 	<bean id="productdao" class="cn.edu.xmu.daoImpl.ProductDaoImpl"></bean>
 	<bean id="demanddao" class="cn.edu.xmu.daoImpl.DemandDaoImpl"></bean>
 	<bean id="proActiondao" class="cn.edu.xmu.daoImpl.ProActionDaoImpl"></bean>
+	<bean id="proRecorddao" class="cn.edu.xmu.daoImpl.ProRecordDaoImpl"></bean>
 	<bean id="orderdao" class="cn.edu.xmu.daoImpl.OrderDaoImpl"></bean>
+	<bean id="messagedao" class="cn.edu.xmu.daoImpl.MessageDaoImpl"></bean>
 	<!-- 配置事务 -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -124,6 +127,7 @@
 	<bean id="demandService" class="cn.edu.xmu.serviceImpl.DemandServiceImpl"></bean>
 	<bean id="proActionService" class="cn.edu.xmu.serviceImpl.ProActionServiceImpl"></bean>
 	<bean id="orderService" class="cn.edu.xmu.serviceImpl.OrderServiceImpl"></bean>
+	<bean id="messageService" class="cn.edu.xmu.serviceImpl.MessageServiceImpl"></bean>
 	<context:annotation-config />
 
 	<!-- 开启Spring的Bean自动扫描机制来查找与管理Bean实例 -->

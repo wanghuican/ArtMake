@@ -20,5 +20,11 @@
 			</key>
 			<one-to-many class="cn.edu.xmu.entity.Perkey" />
 		</bag>
+		<bag name="demandList" order-by="demand_id desc" cascade="all" inverse= "true" lazy= "true">
+			<key>
+				<column name="key_id"/>
+			</key>
+			<one-to-many class="cn.edu.xmu.entity.Demand" />
+		</bag>
 	</class>
 </hibernate-mapping>

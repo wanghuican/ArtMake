@@ -27,6 +27,18 @@ public interface OrderService {
 	
 	public List<Order> getDemList(List<String> pro,int pageNo,int pageSize);
 	
+	public List<Order> getForProList(int pid,int pageNo,int pageSize);
+	
+	public List<Order> getForDemList(int pid,int pageNo,int pageSize);
+	
+	public List<Order> getForIngDemList(int pid,int pageNo,int pageSize);
+	
+	public int getForProCount(int pid);
+	
+	public int getForDemCount(int pid);
+	
+	public int getForIngDemCount(int pid);
+	
 	public int getProCount(List<String> pro);
 	
 	public int getDemCount(List<String> pro);

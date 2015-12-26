@@ -10,14 +10,20 @@
 
 package cn.edu.xmu.serviceImpl;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import net.sf.json.JSONObject;
 import cn.edu.xmu.dao.DemandDao;
 import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.entity.Demand;
+import cn.edu.xmu.entity.Demrecord;
+import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.service.DemandService;
 
 /**
@@ -87,5 +93,34 @@ public class DemandServiceImpl implements DemandService {
 		return dao.getDemandById(id);
 	}
 
+	@Override
+	public List<Demand> getForDemandList(Person person, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(person.getPerson_id());
+		return dao.getForDemand(pro, pageNo, pageSize);
+	}
+
+	@Override
+	public int countForDemand(Person person) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(person.getPerson_id());
+		return dao.countForDemand(pro);
+	}
+
+	@Override
+	public List<Demrecord> getRocordList(int demand_id) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(demand_id);
+		return dao.getRocordList(pro);
+	}
+
+	@Override
+	public void saveDemRecord(Demrecord dr) {
+		// TODO Auto-generated method stub
+		dao.saveDemRecord(dr);
+	}
 	
 }

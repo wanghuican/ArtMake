@@ -209,4 +209,9 @@ public class DemandAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	public String goDetail(){
+		setDemand(demandService.getDemandById(getId()));
+		return "detail";
+	}
+	
 }

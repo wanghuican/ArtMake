@@ -46,6 +46,11 @@ public class Key extends JsonEntity{
 	  */
 	private List<Perkey> perkeyList;
 	
+	/**
+	  * @Fields demandList : TODO（用一句话描述这个变量表示什么）
+	  */
+	private List<Demand> demandList;
+	
 	public Key() {
 		super();
 	}
@@ -60,14 +65,17 @@ public class Key extends JsonEntity{
 	  * @param keyname
 	  * @param times
 	  * @param perkeyList
+	  * @param demandList
 	  */
 	
-	public Key(int key_id, String keyname, int times, List<Perkey> perkeyList) {
+	public Key(int key_id, String keyname, int times, List<Perkey> perkeyList,
+			List<Demand> demandList) {
 		super();
 		this.key_id = key_id;
 		this.keyname = keyname;
 		this.times = times;
 		this.perkeyList = perkeyList;
+		this.demandList = demandList;
 	}
 
 
@@ -154,7 +162,29 @@ public class Key extends JsonEntity{
 	}
 
 
+
+	/**
+	 * getter method
+	 * @return the demandList
+	 */
 	
+	public List<Demand> getDemandList() {
+		return demandList;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param demandList the demandList to set
+	 */
+	
+	public void setDemandList(List<Demand> demandList) {
+		this.demandList = demandList;
+	}
+
+
+
 	/*
 	  * Title: toJsonString
 	  * Description:
@@ -164,8 +194,9 @@ public class Key extends JsonEntity{
 	@Override
 	public String toJsonString() {
 		return "{\"key_id\":\"" + key_id + "\",\"keyname\":\"" + keyname
-				+ "\",\"times\":\"" + times + "\"}  ";
+				+ "\",\"times\":\"" + times + "\",\"perkeyList\":\""
+				+ perkeyList + "\",\"demandList\":\"" + demandList + "\"}  ";
 	}
-	
+
 	
 }

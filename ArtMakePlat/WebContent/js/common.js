@@ -88,4 +88,71 @@ include('js/jquery.simplr.smoothscroll.js');
 		}
 		return string;
 	}
+	
 
+	function getNow(){
+		var nowDate = new Date();
+		var timeStr = nowDate.getYear()+ "-" + (nowDate.getMonth()+1)+"-" + nowDate.getDate()
+		                + "  "+ nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds();
+
+    	return timeStr.substring(1, timeStr.length);
+	}	
+
+	function dealTime(endtime){
+		var time = endtime;
+		while(time.indexOf(" ")>=0){
+			endtime = time;
+			time = endtime.replace(" ","");
+		}
+		var first = endtime.indexOf("-",0);
+		var y = endtime.substring(0,first);
+		y=changeNum(y);
+		var second = endtime.indexOf("-",first+1);
+		var m = endtime.substring(first+1,second);
+		m=changeNum(m);
+		var third = endtime.indexOf(" ",second+1);
+		var d = endtime.substring(second+1,third);
+		d=changeNum(d);
+		var fourth = endtime.indexOf(":",third+1);
+		var h = endtime.substring(third+1,fourth);
+		h=changeNum(h);
+		var fifth = endtime.indexOf(":",fourth+1);
+		var mi = endtime.substring(fourth+1,fifth);
+		mi=changeNum(mi);
+		var s = endtime.substring(fifth+1,endtime.length);
+		s=changeNum(s);
+		return (y+m+d+h+mi+s).trim();
+	}
+	
+	function changeNum(num){
+		if(num.length!=2)
+			num = "0" + num;
+		else
+			num = "" + num;
+		return num;
+	}
+	
+	function downTime(time1,time2,message){
+		if(time1<=time2){
+			return message;
+		}else{
+			var num = new Array(6);
+			for(var i=0;i<6;i++){
+				num[i] = time1.substring(i*2,(i+1)*2) - time2.substring(i*2,(i+1)*2);
+			}
+			
+			if(parseInt(num[0]) == 0 && parseInt(num[1]) == 0 && parseInt(num[2]) == 0){
+				if(num[5]<0){
+					num[5]+=60;
+					num[4]--;
+				}
+				if(num[4]<0){
+					num[4]+=60;
+					num[3]--;
+				}
+				return changeNum(num[3]+"") + ":"+ changeNum(num[4]+"") + ":" + changeNum(num[5]+"");
+			}else{
+				return time1;
+			}
+		}
+	}

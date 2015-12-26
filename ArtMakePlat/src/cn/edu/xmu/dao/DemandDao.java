@@ -4,6 +4,7 @@ package cn.edu.xmu.dao;
 import java.util.List;
 
 import cn.edu.xmu.entity.Demand;
+import cn.edu.xmu.entity.Demrecord;
 import cn.edu.xmu.entity.Prorecord;
 
 
@@ -19,11 +20,19 @@ public interface DemandDao {
 	
 	public List<Demand> getAllDemand(List<String> pro,int pageNo,int pageSize);
 	
+	public List<Demand> getForDemand(List<Integer> pro,int pageNo,int pageSize);
+	
+	public int countForDemand(List<Integer> pro);
+	
 	public int countDemand(List<String> pro);
 	
 	public void saveDemand(Demand demand);
 	
+	public void saveDemRecord(Demrecord dr);
+	
 	public void deleteDemandById(int id);
 	
 	public Demand getDemandById(int id);
+	
+	public List<Demrecord> getRocordList(List<Integer> pro);
 }

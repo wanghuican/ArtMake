@@ -3,7 +3,9 @@ package cn.edu.xmu.service;
 
 import java.util.List;
 
+import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.ProAction;
+import cn.edu.xmu.entity.Product;
 import cn.edu.xmu.entity.Prorecord;
 
 /**
@@ -23,9 +25,19 @@ public interface ProActionService {
 	
 	public void saveProAction(ProAction proAction);
 	
+	public void saveProRecord(Prorecord proRecord);
+	
 	public ProAction getProActionById(int id);
 	
 	public List<Prorecord> getRecordList(int action_id);
 	
 	public Prorecord getFirstRecord(int action_id);
+	
+	public List<ProAction> getActionList(int pid);
+	
+	public ProAction getFirstAction(int pid);
+	
+	public List<Product> getProductListPerson(Person person,int pageNo,int pageSize);
+	
+	public int countProductPerson(Person person);
 }

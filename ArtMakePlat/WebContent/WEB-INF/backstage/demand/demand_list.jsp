@@ -163,6 +163,7 @@
                                 <option value=""
                                 >--请选择--</option>
                                 <option value="1">未完成</option>
+                                <option value="0">制作中</option>
                                 <option value="-1">已完成</option>
                             </select>	
                                                                      通过状态          
@@ -211,10 +212,14 @@
 								<s:elseif test="#row.state == -1">
 								已完成
 								</s:elseif>
+								<s:else>
+								制作中
+								</s:else>
 								</td>
 								<td><s:property value="#row.uptime"/></td>
 								<td><s:property value="#row.introduce"/></td>
 								<td>
+								 <label style="cursor:pointer" id="showbtn<s:property value='#row.demand_id'/>">详情</label>
 									<s:if test="#session.auth == 100">
 									<label style="cursor:pointer" id="passbtn<s:property value='#row.demand_id'/>" onclick="changePass(<s:property value='#row.demand_id'/>)">
 								    <s:if test="#row.pass == 0">

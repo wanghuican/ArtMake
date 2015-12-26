@@ -16,8 +16,11 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import cn.edu.xmu.dao.ProActionDao;
+import cn.edu.xmu.dao.ProRecordDao;
 import cn.edu.xmu.entity.Article;
+import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.ProAction;
+import cn.edu.xmu.entity.Product;
 import cn.edu.xmu.entity.Prorecord;
 import cn.edu.xmu.service.ProActionService;
 
@@ -37,6 +40,11 @@ public class ProActionServiceImpl implements ProActionService {
    @Resource(name="proActiondao")
     ProActionDao dao ;
 
+	/**
+    * @Fields dao : dao组件
+    */
+  @Resource(name="proRecorddao")
+   ProRecordDao prdao ;
 	
 	/*
 	 * Title: getAllProAction
@@ -93,7 +101,7 @@ public class ProActionServiceImpl implements ProActionService {
 		// TODO Auto-generated method stub
 		List<Integer> pro = new ArrayList<Integer>();
 		pro.add(action_id);
-		return dao.getRecordList(pro);
+		return prdao.getRecordList(pro);
 	}
 
 	@Override
@@ -103,6 +111,63 @@ public class ProActionServiceImpl implements ProActionService {
 	    	return null;
 		else 
 			return getRecordList(action_id).get(0);
+	}
+
+	@Override
+	public ProAction getFirstAction(int pid) {
+		// TODO Auto-generated method stub
+		if(getActionList(pid).size() == 0)
+			return null;
+		else 
+			return getActionList(pid).get(0);
+	}
+
+	@Override
+	public List<ProAction> getActionList(int pid) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(pid);
+		return dao.getProActionByPid(pro);
+	}
+
+	@Override
+	public void saveProRecord(Prorecord proRecord) {
+		// TODO Auto-generated method stub
+		prdao.saveProRecord(proRecord);
+	}
+
+	@Override
+	public List<Product> getProductListPerson(Person person,int pageNo,int pageSize) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(person.getPerson_id());
+		List<Prorecord> recordList = dao.getRecordListPerson(pro);
+		List<Product> productList = new ArrayList<Product>();
+		for(int i=0;i<recordList.size();i++){
+			if(!productList.contains(recordList.get(i).getAction().getProduct())){
+	            productList.add(recordList.get(i).getAction().getProduct());
+			}
+		}
+		int start = (pageNo-1)*pageSize;
+		int end = pageNo*pageSize < productList.size()?pageNo*pageSize:productList.size();
+		return productList.subList(start,end);
+	}
+
+	@Override
+	public int countProductPerson(Person person) {
+		// TODO Auto-generated method stub
+		List<Integer> pro = new ArrayList<Integer>();
+		pro.add(person.getPerson_id());
+		List<Prorecord> recordList = dao.getRecordListPerson(pro);
+		List<Product> productList = new ArrayList<Product>();
+		int count = 0;
+		for(int i=0;i<recordList.size();i++){
+				if(!productList.contains(recordList.get(i).getAction().getProduct())){
+					count++;
+	            	productList.add(recordList.get(i).getAction().getProduct());
+				}
+			}
+		return count;
 	}
 
 	

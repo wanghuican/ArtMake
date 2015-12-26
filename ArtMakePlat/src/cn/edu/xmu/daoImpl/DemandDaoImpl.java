@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import cn.edu.xmu.dao.BaseDao;
 import cn.edu.xmu.dao.DemandDao;
 import cn.edu.xmu.entity.Demand;
+import cn.edu.xmu.entity.Demrecord;
 import cn.edu.xmu.util.Common;
 
 public class DemandDaoImpl implements DemandDao {
@@ -108,6 +109,30 @@ public class DemandDaoImpl implements DemandDao {
 	public Demand getDemandById(int id) {
 		// TODO Auto-generated method stub
 		return (Demand) dao.loadById(Demand.class, id);
+	}
+
+	@Override
+	public List<Demand> getForDemand(List<Integer> pro, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return dao.query(Common.HQL_DEMANDLIST_ING,pro, pageNo, pageSize);
+	}
+
+	@Override
+	public int countForDemand(List<Integer> pro) {
+		// TODO Auto-generated method stub
+		return dao.query(Common.HQL_DEMANDLIST_ING,pro).size();
+	}
+
+	@Override
+	public List<Demrecord> getRocordList(List<Integer> pro) {
+		// TODO Auto-generated method stub
+		return dao.query(Common.HQL_ORDER_DEMAND,pro);
+	}
+
+	@Override
+	public void saveDemRecord(Demrecord dr) {
+		// TODO Auto-generated method stub
+		dao.saveOrUpdate(dr);
 	}
 
 

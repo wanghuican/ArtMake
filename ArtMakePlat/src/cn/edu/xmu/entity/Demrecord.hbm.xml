@@ -3,16 +3,22 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-11-22 22:11:50 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-	<class name="cn.edu.xmu.entity.Demkey" table="rl_demkey" catalog="artmake"  lazy="true">
+	<class name="cn.edu.xmu.entity.Demrecord" table="rl_demrecord" catalog="artmake" lazy="true">
 		<id name="record_id" type="int">
 			<column name="record_id" />
 			<generator class="identity" />
 		</id>
+		<property name="message" type="string">
+			<column name="message"/>
+		</property>
+		 <property name="recordtime" type="timestamp">
+            <column name="recordtime" length="19" />
+        </property>
 		<many-to-one name="demand" class="cn.edu.xmu.entity.Demand" fetch="select">
 			<column name="demand_id" not-null="true"></column>
 		</many-to-one>
-		<many-to-one name="key" class="cn.edu.xmu.entity.Key"  fetch="select">
-		   <column name="key_id"></column>
+		<many-to-one name="person" class="cn.edu.xmu.entity.Person" fetch="select">
+			<column name="person_id" not-null="true"></column>
 		</many-to-one>
 	</class>
 </hibernate-mapping>

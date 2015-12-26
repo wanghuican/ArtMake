@@ -27,6 +27,14 @@ public interface OrderDao {
 	
 	public List<Order> getOrderList(int type,List<String> pro, int pageNo, int pageSize);
 	
+	public List<Order> getOrderList(List<Integer> pro);
+	
+	public List<Order> getOrderList(List<Integer> pro, int pageNo, int pageSize);
+	
+	public List<Order> getOrderIngList(List<Integer> pro);
+	
+	public List<Order> getOrderIngList(List<Integer> pro, int pageNo, int pageSize);
+	
 	public int countOrder(int type,List<String> pro);
 	
 	public void saveOrder(Order order);

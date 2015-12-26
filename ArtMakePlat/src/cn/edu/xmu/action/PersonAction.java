@@ -25,9 +25,12 @@ import cn.edu.xmu.entity.Perkey;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.Role;
 import cn.edu.xmu.service.AuthService;
+import cn.edu.xmu.service.DemandService;
 import cn.edu.xmu.service.KeyService;
 import cn.edu.xmu.service.LoginService;
+import cn.edu.xmu.service.OrderService;
 import cn.edu.xmu.service.PersonService;
+import cn.edu.xmu.service.ProActionService;
 import cn.edu.xmu.service.ProductService;
 import cn.edu.xmu.util.Common;
 import cn.edu.xmu.util.WebTool;
@@ -48,11 +51,23 @@ public class PersonAction extends ActionSupport {
 	PersonService personService;
 	
 	/**
+	 * @Fields loginService : 登录业务逻辑组件
+	 */
+	@Resource(name = "orderService")
+	OrderService orderService;
+	
+	/**
 	 * @Fields authService
 	 */
 	@Resource(name = "authService")
 	AuthService authService;
 
+	/**
+	 * @Fields authService
+	 */
+	@Resource(name = "proActionService")
+	ProActionService proActionService;
+	
 	/**
 	 * @Fields keyService : 登录业务逻辑组件
 	 */
@@ -65,6 +80,12 @@ public class PersonAction extends ActionSupport {
 	@Resource(name = "productService")
 	ProductService productService;
 
+	/**
+	  * @Fields demandService : TODO（用一句话描述这个变量表示什么）
+	  */
+	@Resource(name = "demandService")
+	DemandService demandService;
+	
 	private List<Key> keyList;
 
 	private Person person;
@@ -98,6 +119,42 @@ public class PersonAction extends ActionSupport {
 
 	/**
 	 * getter method
+	 * @return the orderService
+	 */
+	
+	public OrderService getOrderService() {
+		return orderService;
+	}
+
+	/**
+	 * setter method
+	 * @param orderService the orderService to set
+	 */
+	
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
+	}
+
+	/**
+	 * getter method
+	 * @return the proActionService
+	 */
+	
+	public ProActionService getProActionService() {
+		return proActionService;
+	}
+
+	/**
+	 * setter method
+	 * @param proActionService the proActionService to set
+	 */
+	
+	public void setProActionService(ProActionService proActionService) {
+		this.proActionService = proActionService;
+	}
+
+	/**
+	 * getter method
 	 * 
 	 * @return the person
 	 */
@@ -115,6 +172,24 @@ public class PersonAction extends ActionSupport {
 
 	public void setPerson(Person person) {
 		this.person = person;
+	}
+
+	/**
+	 * getter method
+	 * @return the demandService
+	 */
+	
+	public DemandService getDemandService() {
+		return demandService;
+	}
+
+	/**
+	 * setter method
+	 * @param demandService the demandService to set
+	 */
+	
+	public void setDemandService(DemandService demandService) {
+		this.demandService = demandService;
 	}
 
 	/**
@@ -281,16 +356,32 @@ public class PersonAction extends ActionSupport {
 		List<Integer> pro = new ArrayList<Integer>();
 		pro.add(getId());
 		if (person.getRole().getRole_code() != Common.CODE_ARTIST) {
+			int counting = proActionService.countProductPerson(getPerson());
+			int countoing = orderService.getForProCount(getId());
+			int countdoing = orderService.getForIngDemCount(getId());
+			int countnoting = demandService.countForDemand(getPerson());
+			int pageing = 0, pageoing = 0,pagenoting = 0,pagedoing = 0;
+			pageing = WebTool.dealPage(counting, pageing, Common.PAGESIZE,
+					"PAGEING");
+			pageoing = WebTool.dealPage(countoing, pageoing, Common.PAGESIZE,
+					"PAGEOING");
+			pagenoting = WebTool.dealPage(countnoting, pagenoting, Common.PAGESIZE - 1,
+					"PAGENOTING");
+			pagedoing = WebTool.dealPage(countdoing, pagedoing, Common.PAGESIZE,
+					"PAGEDOING");
 			return "userinfo";
 		} else {
 			setAuth(authService.getAuthByRole_id(person.getRole().getRole_id()));
-			int pageing = 0, pagenoting = 0;
+			int pageing = 0, pagenoting = 0,pagedoing = 0;
 			int counting = productService.countProductByIng(pro);
 			int countnoting = productService.countProductByNotIng(pro);
+			int countdoing = orderService.getForDemCount(getId());
 			pageing = WebTool.dealPage(counting, pageing, Common.PAGESIZE,
 					"PAGEING");
 			pagenoting = WebTool.dealPage(countnoting, pagenoting,
 					Common.PAGESIZE - 1, "PAGENOTING");
+			pagedoing = WebTool.dealPage(countdoing, pagedoing, Common.PAGESIZE,
+					"PAGEDOING");
 			return "artistinfo";
 		}
 	}

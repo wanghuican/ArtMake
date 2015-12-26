@@ -66,10 +66,14 @@ public class Demand extends JsonEntity{
 	private int pass;
 	
 	/**
-	  * @Fields keyList : 关键词列表
+	  * @Fields key : TODO（用一句话描述这个变量表示什么）
 	  */
-	private List<Demkey> keyList = new ArrayList();
+	private Key key;
 	
+	/**
+	  * @Fields recordList : 
+	  */
+	private List<Demrecord> recordList;
 	
 	/**
 	  * 创建一个新的实例 Demand. 
@@ -81,7 +85,7 @@ public class Demand extends JsonEntity{
 		super();
 	}
 
-	
+
 
 
 	/**
@@ -96,12 +100,13 @@ public class Demand extends JsonEntity{
 	  * @param lasttime
 	  * @param state
 	  * @param pass
-	  * @param keyList
+	  * @param key
+	  * @param recordList
 	  */
 	
 	public Demand(int demand_id, double price, String introduce, Date uptime,
-			Person person, int lasttime, int state, int pass,
-			List<Demkey> keyList) {
+			Person person, int lasttime, int state, int pass, Key key,
+			List<Demrecord> recordList) {
 		super();
 		this.demand_id = demand_id;
 		this.price = price;
@@ -111,9 +116,32 @@ public class Demand extends JsonEntity{
 		this.lasttime = lasttime;
 		this.state = state;
 		this.pass = pass;
-		this.keyList = keyList;
+		this.key = key;
+		this.recordList = recordList;
 	}
 
+
+
+
+	/**
+	 * getter method
+	 * @return the recordList
+	 */
+	
+	public List<Demrecord> getRecordList() {
+		return recordList;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param recordList the recordList to set
+	 */
+	
+	public void setRecordList(List<Demrecord> recordList) {
+		this.recordList = recordList;
+	}
 
 
 
@@ -257,26 +285,6 @@ public class Demand extends JsonEntity{
 	}
 
 
-	/**
-	 * getter method
-	 * @return the keyList
-	 */
-	
-	public List<Demkey> getKeyList() {
-		return keyList;
-	}
-
-
-	/**
-	 * setter method
-	 * @param keyList the keyList to set
-	 */
-	
-	public void setKeyList(List<Demkey> keyList) {
-		this.keyList = keyList;
-	}
-
-
 
 
 	/**
@@ -301,7 +309,30 @@ public class Demand extends JsonEntity{
 	}
 
 
+
+
+	/**
+	 * getter method
+	 * @return the key
+	 */
 	
+	public Key getKey() {
+		return key;
+	}
+
+
+
+
+	/**
+	 * setter method
+	 * @param key the key to set
+	 */
+	
+	public void setKey(Key key) {
+		this.key = key;
+	}
+
+
 	/*
 	  * Title: toJsonString
 	  * Description:
@@ -314,8 +345,10 @@ public class Demand extends JsonEntity{
 				+ "\",\"introduce\":\"" + introduce + "\",\"uptime\":\""
 				+ uptime + "\",\"person\":\"" + person + "\",\"lasttime\":\""
 				+ lasttime + "\",\"state\":\"" + state + "\",\"pass\":\""
-				+ pass + "\",\"keyList\":\"" + keyList + "\"}  ";
+				+ pass + "\",\"key\":\"" + key + "\",\"recordList\":\""
+				+ recordList + "\"}  ";
 	}
 
+	
 	
 }

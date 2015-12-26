@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50625
 File Encoding         : 65001
 
-Date: 2015-12-26 06:14:33
+Date: 2015-12-27 06:07:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -94,16 +94,22 @@ CREATE TABLE `bn_demand` (
   `introduce` varchar(80) DEFAULT NULL,
   `uptime` datetime NOT NULL,
   `pass` int(11) DEFAULT '0',
+  `key_id` int(12) DEFAULT NULL,
   `state` int(1) DEFAULT NULL COMMENT '1:未完成 -1:已完成',
   PRIMARY KEY (`demand_id`),
   KEY `dem_person_id` (`person_id`),
-  CONSTRAINT `dem_person_id` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  KEY `key_id` (`key_id`),
+  CONSTRAINT `dem_person_id` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `key_id` FOREIGN KEY (`key_id`) REFERENCES `bn_key` (`key_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_demand
 -- ----------------------------
-INSERT INTO `bn_demand` VALUES ('1', '30', '2', '好需求', '2015-11-25 21:26:10', '1', '1');
+INSERT INTO `bn_demand` VALUES ('1', '30', '2', '好需求33', '2015-11-25 21:26:10', '1', '2', '-1');
+INSERT INTO `bn_demand` VALUES ('5', '33', '2', '好看的青花', '2015-12-27 01:39:03', '1', '2', '1');
+INSERT INTO `bn_demand` VALUES ('6', '44', '2', '好看的瓷器', '2015-12-27 01:39:57', '1', '8', '-1');
+INSERT INTO `bn_demand` VALUES ('8', '77', '2', '好看的字', '2015-12-27 01:42:05', '1', '3', '-1');
 
 -- ----------------------------
 -- Table structure for `bn_key`
@@ -139,17 +145,20 @@ CREATE TABLE `bn_message` (
   `to_pid` int(12) NOT NULL,
   `content` longtext NOT NULL,
   `messagetime` datetime NOT NULL,
-  `type` int(11) NOT NULL COMMENT '0:消息；1图片',
+  `type` int(11) DEFAULT NULL COMMENT '0:消息；1图片',
   PRIMARY KEY (`message_id`),
   KEY `to_pid` (`to_pid`),
   KEY `from_pid` (`from_pid`),
   CONSTRAINT `from_pid` FOREIGN KEY (`from_pid`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `to_pid` FOREIGN KEY (`to_pid`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_message
 -- ----------------------------
+INSERT INTO `bn_message` VALUES ('1', '1', '2', 'asdasdadsa', '2015-12-27 06:02:22', null);
+INSERT INTO `bn_message` VALUES ('2', '2', '1', 'sdadsa', '2015-12-27 06:02:45', null);
+INSERT INTO `bn_message` VALUES ('4', '4', '3', 'sdada', '2015-12-27 06:03:09', null);
 
 -- ----------------------------
 -- Table structure for `bn_order`
@@ -170,20 +179,19 @@ CREATE TABLE `bn_order` (
   CONSTRAINT `demander` FOREIGN KEY (`demand_id`) REFERENCES `bn_demand` (`demand_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `ordper` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `producter` FOREIGN KEY (`product_id`) REFERENCES `bn_product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_order
 -- ----------------------------
-INSERT INTO `bn_order` VALUES ('1', '1', '2015-12-26 03:22:19', '1', null, '1', '0');
-INSERT INTO `bn_order` VALUES ('3', '2', '2015-12-26 03:23:39', '1', null, '1', '0');
-INSERT INTO `bn_order` VALUES ('4', '3', '2015-12-26 03:23:50', '1', null, '1', '0');
-INSERT INTO `bn_order` VALUES ('5', '3', '2015-12-26 03:24:24', null, '1', '0', '0');
-INSERT INTO `bn_order` VALUES ('6', '2', '2015-12-26 03:24:39', null, '2', '0', '0');
-INSERT INTO `bn_order` VALUES ('7', '4', '2015-12-26 03:25:19', null, '3', '0', '0');
-INSERT INTO `bn_order` VALUES ('8', '1', '2015-12-26 05:32:14', null, '1', '0', '0');
-INSERT INTO `bn_order` VALUES ('9', '1', '2015-12-26 05:49:24', null, '1', '0', '0');
-INSERT INTO `bn_order` VALUES ('10', '1', '2015-12-26 05:49:34', null, '14', '0', '0');
+INSERT INTO `bn_order` VALUES ('1', '3', '2015-12-26 03:22:19', '1', null, '1', '0');
+INSERT INTO `bn_order` VALUES ('2', '2', '2015-12-26 22:49:48', null, '13', '0', '1');
+INSERT INTO `bn_order` VALUES ('3', '3', '2015-12-26 03:23:39', '1', null, '1', '0');
+INSERT INTO `bn_order` VALUES ('10', '2', '2015-12-26 05:49:34', null, '14', '0', '1');
+INSERT INTO `bn_order` VALUES ('11', '2', '2015-12-26 22:23:14', null, '13', '0', '1');
+INSERT INTO `bn_order` VALUES ('12', '3', '2015-12-27 04:36:14', '1', null, '1', '1');
+INSERT INTO `bn_order` VALUES ('13', '3', '2015-12-27 04:36:33', '1', null, '1', '0');
+INSERT INTO `bn_order` VALUES ('14', '3', '2015-12-27 04:44:43', '1', null, '1', '0');
 
 -- ----------------------------
 -- Table structure for `bn_person`
@@ -240,14 +248,18 @@ CREATE TABLE `bn_proaction` (
   PRIMARY KEY (`action_id`),
   KEY `rproid` (`product_id`),
   CONSTRAINT `rproid` FOREIGN KEY (`product_id`) REFERENCES `bn_product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of bn_proaction
 -- ----------------------------
-INSERT INTO `bn_proaction` VALUES ('1', '1', '11', '11', '1', '11', '2015-12-25 05:20:50', '0', '2015-12-22 04:50:50');
-INSERT INTO `bn_proaction` VALUES ('2', '2', '222', '22', '2', '22', '2015-12-25 06:20:58', '0', '2015-12-22 04:50:58');
-INSERT INTO `bn_proaction` VALUES ('3', '14', '20', '10', '3', '很不错的', '2015-12-25 09:08:52', '0', '2015-12-25 06:08:52');
+INSERT INTO `bn_proaction` VALUES ('1', '1', '11', '11', '1', '11', '2015-12-28 18:45:00', '0', '2015-12-22 04:50:50');
+INSERT INTO `bn_proaction` VALUES ('2', '2', '222', '22', '2', '22', '2015-12-28 06:20:58', '0', '2015-12-22 04:50:58');
+INSERT INTO `bn_proaction` VALUES ('3', '14', '20', '10', '3', '很不错的', '2015-12-28 09:08:52', '0', '2015-12-25 06:08:52');
+INSERT INTO `bn_proaction` VALUES ('4', '3', '33', '33', '33', '33', '2015-12-27 20:21:08', '0', '2015-12-26 20:21:11');
+INSERT INTO `bn_proaction` VALUES ('5', '6', '55', '55', '55', '55', '2015-12-28 20:21:28', '0', '2015-12-26 20:21:30');
+INSERT INTO `bn_proaction` VALUES ('6', '5', '44', '44', '44', '44', '2015-12-28 20:21:54', '0', '2015-12-26 20:22:00');
+INSERT INTO `bn_proaction` VALUES ('7', '13', '222', '22', '2', '22', '2015-12-28 20:22:33', '0', '2015-12-26 20:22:35');
 
 -- ----------------------------
 -- Table structure for `bn_product`
@@ -270,14 +282,14 @@ CREATE TABLE `bn_product` (
 -- ----------------------------
 -- Records of bn_product
 -- ----------------------------
-INSERT INTO `bn_product` VALUES ('1', 'lala', '44', 'lalala', '2015-12-22 03:30:57', '3', '1', '1');
-INSERT INTO `bn_product` VALUES ('2', 'lele', '23', '33dads', '2015-12-22 03:31:08', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('1', 'lala', '888', 'lalala', '2015-12-22 03:30:57', '3', '-1', '1');
+INSERT INTO `bn_product` VALUES ('2', 'lele', '88', '33dads', '2015-12-22 03:31:08', '3', '1', '1');
 INSERT INTO `bn_product` VALUES ('3', 'meme', '23', 'adsas', '2015-12-22 03:31:20', '3', '1', '1');
-INSERT INTO `bn_product` VALUES ('5', 'asda', '55', '11', '2015-12-22 22:12:42', '3', '1', '1');
-INSERT INTO `bn_product` VALUES ('6', 'dadsa', '55', 'dada', '2015-12-24 00:06:18', '3', '1', '1');
-INSERT INTO `bn_product` VALUES ('13', 'wwww', '0', '', '2015-12-24 17:41:57', '3', '1', '1');
-INSERT INTO `bn_product` VALUES ('14', '新艺术1', '20', '我问问', '2015-12-24 23:20:24', '3', '1', '1');
-INSERT INTO `bn_product` VALUES ('15', '湿哒哒', '22', '打算的撒', '2015-12-24 23:20:54', '22', '-1', '1');
+INSERT INTO `bn_product` VALUES ('5', 'asda', '666', '11', '2015-12-22 22:12:42', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('6', 'dadsa', '555', 'dada', '2015-12-24 00:06:18', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('13', 'wwww', '666', '', '2015-12-24 17:41:57', '3', '1', '1');
+INSERT INTO `bn_product` VALUES ('14', '新艺术1', '444', '我问问', '2015-12-24 23:20:24', '3', '-1', '1');
+INSERT INTO `bn_product` VALUES ('15', '湿哒哒', '22', '打算的撒', '2015-12-24 23:20:54', '22', '1', '1');
 
 -- ----------------------------
 -- Table structure for `bn_role`
@@ -356,22 +368,23 @@ CREATE TABLE `rl_demrecord` (
   `record_id` int(12) NOT NULL AUTO_INCREMENT,
   `demand_id` int(12) NOT NULL,
   `person_id` int(12) NOT NULL,
-  `price` double NOT NULL,
+  `message` varchar(40) NOT NULL,
   `recordtime` datetime NOT NULL,
   PRIMARY KEY (`record_id`),
   KEY `demrecord` (`demand_id`),
   KEY `personrecord` (`person_id`),
   CONSTRAINT `demrecord` FOREIGN KEY (`demand_id`) REFERENCES `bn_demand` (`demand_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `personrecord` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rl_demrecord
 -- ----------------------------
-INSERT INTO `rl_demrecord` VALUES ('1', '1', '1', '11', '2015-12-26 03:19:35');
-INSERT INTO `rl_demrecord` VALUES ('2', '1', '1', '22', '2015-12-26 03:19:54');
-INSERT INTO `rl_demrecord` VALUES ('3', '1', '1', '33', '2015-12-26 03:20:00');
-INSERT INTO `rl_demrecord` VALUES ('4', '1', '1', '55', '2015-12-26 03:20:19');
+INSERT INTO `rl_demrecord` VALUES ('1', '1', '3', 'asdadads', '2015-12-26 03:19:35');
+INSERT INTO `rl_demrecord` VALUES ('2', '1', '3', '22adadsasd', '2015-12-26 03:19:54');
+INSERT INTO `rl_demrecord` VALUES ('3', '1', '3', '33adsasd', '2015-12-26 03:20:00');
+INSERT INTO `rl_demrecord` VALUES ('4', '1', '3', 'adas', '2015-12-26 03:20:19');
+INSERT INTO `rl_demrecord` VALUES ('5', '8', '3', '我要这个服务', '2015-12-27 05:11:06');
 
 -- ----------------------------
 -- Table structure for `rl_perkey`
@@ -449,11 +462,14 @@ CREATE TABLE `rl_prorecord` (
   KEY `rel_product_id` (`action_id`),
   CONSTRAINT `rel_action_id` FOREIGN KEY (`action_id`) REFERENCES `bn_proaction` (`action_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `rel_person_id` FOREIGN KEY (`person_id`) REFERENCES `bn_person` (`person_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of rl_prorecord
 -- ----------------------------
-INSERT INTO `rl_prorecord` VALUES ('1', '1', '1', '33', '2015-12-26 03:20:57');
-INSERT INTO `rl_prorecord` VALUES ('2', '1', '1', '33', '2015-12-26 03:21:06');
-INSERT INTO `rl_prorecord` VALUES ('3', '3', '1', '4', '2015-12-26 05:35:23');
+INSERT INTO `rl_prorecord` VALUES ('14', '1', '2', '888', '2015-12-26 20:44:23');
+INSERT INTO `rl_prorecord` VALUES ('15', '2', '2', '88', '2015-12-26 20:44:36');
+INSERT INTO `rl_prorecord` VALUES ('16', '6', '2', '666', '2015-12-26 20:46:37');
+INSERT INTO `rl_prorecord` VALUES ('17', '5', '2', '555', '2015-12-26 20:46:45');
+INSERT INTO `rl_prorecord` VALUES ('18', '7', '2', '666', '2015-12-26 20:46:53');
+INSERT INTO `rl_prorecord` VALUES ('19', '3', '2', '444', '2015-12-26 20:47:03');
