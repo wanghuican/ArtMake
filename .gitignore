@@ -88,3 +88,7 @@ hs_err_pid*
 ### Custom
 src/test/
 ArtMakePlat/WebContent/WEB-INF/applicationContext.xml
+*.xml
+*.policy
+Servers/Tomcat v7.0 Server at localhost-config/catalina.properties
+*.project

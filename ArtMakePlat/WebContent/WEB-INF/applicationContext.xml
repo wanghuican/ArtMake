@@ -30,7 +30,7 @@
 		</property>
 		<!-- 指定连接数据库的密码 -->
 		<property name="password">
-			<value>7502111</value>
+			<value>wzx453374</value>
 		</property>
 	</bean>
 	<!-- 定义Hibernate的SessionFactory -->
