@@ -38,7 +38,11 @@
   <div class="container">
     <div class="row">
       <div class="grid_12">
-        <h2>拍卖</h2>
+        <h2 style="float:left">拍卖</h2>
+        <div class="grid_4" style="float:right; padding-top:110px">
+          <button style="font-size:18px; float:right">搜索</button>
+          <input type="text" placeholder="搜索..." style="font-size:18px; float:right"/>
+        </div>
       </div>
       <div class="grid_4">
         <div class="box">
