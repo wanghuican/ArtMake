@@ -198,9 +198,10 @@
 				<div class="row">
 					<h3>广告 <img id="addad" alt="添加"
 						style="cursor: pointer; width: 4%; height: 4%; display: none"
-						src="images/add.png" /></h3>
+						src="images/add.png" />
+					</h3>
 					<div class="grid_2"></div>
-					<div class="grid_12" style="height:500px">
+					<div class="grid_8" style="height:500px">
 						<div id="ifocus">
 							<div id="ifocus_pic">
 								<div id="ifocus_piclist" style="left: 0; top: 0;">

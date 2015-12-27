@@ -19,7 +19,7 @@
 <script src="js/tmStickUp.js"></script>
 <script src="js/jquery.ui.totop.js"></script>
 <script src="js/touchTouch.jquery.js"></script>
-<title>t商城</title>
+<title>商城</title>
 <script>
  $(window).load(function(){
   $().UItoTop({ easingType: 'easeOutQuart' });
@@ -39,65 +39,26 @@
       <div class="grid_12">
         <h2>在线商城</h2>
       </div>
-      <div class="grid_12" align="center">
-        <h2>分类</h2>
-      </div>
-      <div style="transition-duration:.5s">
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img1.jpg" alt=""><span></span></a>
+      
+      <div class="grid_12" style="background-color:#CCC">
+        <div class="navigation" style="float:left">
+            <nav>
+              <ul class="sf-menu" id="sel_menu">
+               <li><a href="#" style="color:black">玉石</a></li>
+               <li><a href="#" style="color:black">国画</a></li>
+               <li><a href="#" style="color:black">雕刻</a></li>
+               <li><a href="#" style="color:black">定制</a></li>
+              </ul>
+            </nav>
+            <div class="clear"></div>
         </div>
-        <br>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img2.jpg" alt=""><span></span></a>
-        </div>
-        <br>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img3.jpg" alt=""><span></span></a>
-        </div>
-        <div class="grid_12" style="height:20px">
-        </div>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img4.jpg" alt=""><span></span></a>
-        </div>
-        <br>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img5.jpg" alt=""><span></span></a>
-        </div>
-        <br>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img6.jpg" alt=""><span></span></a>
+        <div class="grid_4" style="float:right; padding-top:12px">
+          <input type="text" placeholder="搜索..." style="font-size:18px"/>
+          <button style="font-size:18px">搜索</button>
         </div>
       </div>
       
       <div class="grid_12" align="center" id="artist">
-        <h2>艺术家</h2>
-      </div>
-      <div class="grid_4" align="center">
-        <a href="images/big1.jpg" class="gall_item"><img src="images/page3_img1.jpg" alt=""><span></span></a>
-      </div>
-      <br>
-      <div class="grid_4" align="center">
-        <a href="images/big2.jpg" class="gall_item"><img src="images/page3_img2.jpg" alt=""><span></span></a>
-      </div>
-      <br>
-      <div class="grid_4" align="center">
-        <a href="images/big3.jpg" class="gall_item"><img src="images/page3_img3.jpg" alt=""><span></span></a>
-      </div>
-      <div class="grid_12" style="height:20px">
-      </div>
-      <div class="grid_4" align="center">
-        <a href="images/big4.jpg" class="gall_item"><img src="images/page3_img4.jpg" alt=""><span></span></a>
-      </div>
-      <br>
-      <div class="grid_4" align="center">
-        <a href="images/big5.jpg" class="gall_item"><img src="images/page3_img5.jpg" alt=""><span></span></a>
-      </div>
-      <br>
-      <div class="grid_4" align="center">
-        <a href="images/big6.jpg" class="gall_item"><img src="images/page3_img6.jpg" alt=""><span></span></a>
-      </div>
-      
-      <div class="grid_12" align="center">
         <h2>艺术品</h2>
       </div>
       <div class="grid_4" align="center">
@@ -124,6 +85,7 @@
       <div class="grid_4" align="center">
         <a href="images/big6.jpg" class="gall_item"><img src="images/page3_img6.jpg" alt=""><span></span></a>
       </div>
+      
     </div>
   </div>
 </section>
