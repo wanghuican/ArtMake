@@ -44,11 +44,18 @@
         <div class="navigation" style="float:left">
             <nav>
               <ul class="sf-menu" id="sel_menu">
+<<<<<<< HEAD:ArtMakePlat/WebContent/WEB-INF/main/mall.jsp
                <s:iterator value="keyList" id="row">
                 <s:if test="#row.key_id != 1">
                  <li id="key<s:property value='#row.key_id'/>" value="<s:property value='#row.key_id'/>"><s:property value='#row.keyname'/></li>
                 </s:if>
                  </s:iterator>
+=======
+               <li><a href="#" style="color:black">玉石</a></li>
+               <li><a href="#" style="color:black">国画</a></li>
+               <li><a href="#" style="color:black">雕刻</a></li>
+               <li><a href="#" style="color:black">定制</a></li>
+>>>>>>> origin/develop:ArtMakePlat/WebContent/mall.jsp
               </ul>
             </nav>
             <div class="clear"></div>

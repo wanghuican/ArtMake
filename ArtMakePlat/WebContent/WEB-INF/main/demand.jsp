@@ -29,9 +29,29 @@
 <jsp:include page="top.jsp" />
 <section id="content"><div class="ic">More Website Templates @ TemplateMonster.com - August11, 2014!</div>
   <div class="container">
-    <div class="row">    
+    <h2>定制</h2>
+    <div class="row">
+      <div class="grid_12" style="background-color:#CCC">
+          <div class="navigation" style="float:left">
+              <nav>
+                <ul class="sf-menu" id="sel_menu">
+                 <li><a href="#" style="color:black">玉石</a></li>
+                 <li><a href="#" style="color:black">国画</a></li>
+                 <li><a href="#" style="color:black">雕刻</a></li>
+                 <li><a href="#" style="color:black">定制</a></li>
+                </ul>
+              </nav>
+              <div class="clear"></div>
+          </div>
+          <div class="grid_4" style="float:right; padding-top:12px">
+            <input type="text" placeholder="搜索..." style="font-size:18px"/>
+            <button style="font-size:18px">搜索</button>
+          </div>
+      </div>
+    </div>
+    <div class="row" style="padding-left:20px">    
       <div class="grid_4">
-        <h2>热门</h2>
+        <div style="height:70px"></div>
         <ul class="list-1">
           <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>用抽象派画自画像  ￥300</a></pre></li>
           <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>做一个人头雕塑  ￥300</a></pre></li>
@@ -47,36 +67,7 @@
       <div class="grid_2">
       </div>
       <div class="grid_4">
-      	<h2></h2>
-      	<h3>这是一个标题</h3>
-        <div class="extra_wrapper"><p class="offset__1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis erat mattis neque facilisis, sit amet ultricies erat rutrum. Cras facilisis, nulla vel viverra auctor, leo magna sodales felis, quis malesuada nibh odio ut velit. Proin pharetra luctus diam, a scelerisque eros convallis accumsan. Maecenas vehicula egestas  derto venenatis. Duis massa elit, auctor non pellentesque vel, aliquet sit amet erat.</p></div>
-        <a href="#" class="btn">more</a> 
-      </div>   
-    </div>
-  </div>
-</section>
-
-<section id="content"><div class="ic">More Website Templates @ TemplateMonster.com - August11, 2014!</div>
-  <div class="container">
-    <div class="row">    
-      <div class="grid_4">
-        <h2>最新</h2>
-        <ul class="list-1">
-          <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>模仿Category的效果    ￥300</a></pre></li>
-          <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>模仿Category的效果    ￥300</a></pre></li>
-          <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>模仿Category的效果    ￥300</a></pre></li>
-          <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>模仿Category的效果    ￥300</a></pre></li>
-          <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>模仿Category的效果    ￥300</a></pre></li>
-          <li><span></span><pre><a href="#"><div class="fa fa-chevron-right"></div>模仿Category的效果    ￥300</a></pre></li>
-        </ul>
-		<div class="grid_8">
-          <a href="#" class="btn">more</a>
-        </div>
-      </div> 
-      <div class="grid_2">
-      </div>
-      <div class="grid_4">
-      	<h2></h2>
+        <div style="height:20px"></div>
       	<h3>这是一个标题</h3>
         <div class="extra_wrapper"><p class="offset__1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mollis erat mattis neque facilisis, sit amet ultricies erat rutrum. Cras facilisis, nulla vel viverra auctor, leo magna sodales felis, quis malesuada nibh odio ut velit. Proin pharetra luctus diam, a scelerisque eros convallis accumsan. Maecenas vehicula egestas  derto venenatis. Duis massa elit, auctor non pellentesque vel, aliquet sit amet erat.</p></div>
         <a href="#" class="btn">more</a> 
