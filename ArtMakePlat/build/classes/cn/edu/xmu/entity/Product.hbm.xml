@@ -37,9 +37,15 @@
 		</bag>
 		<bag name="actionList" order-by="action_id desc" cascade="all" inverse= "true" lazy= "true">
 			<key>
-				<column name="product_id" not-null="true" />
+				<column name="product_id"/>
 			</key>
 			<one-to-many class="cn.edu.xmu.entity.ProAction" />
+		</bag>
+		<bag name="recordList" order-by="recordtime desc" cascade="all" inverse= "true" lazy= "true">
+			<key>
+				<column name="product_id"/>
+			</key>
+			<one-to-many class="cn.edu.xmu.entity.Prorecord" />
 		</bag>
 	</class>
 </hibernate-mapping>

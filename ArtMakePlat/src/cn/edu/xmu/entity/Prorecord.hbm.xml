@@ -15,7 +15,10 @@
             <column name="recordtime" length="19" />
         </property>
 		<many-to-one name="action" class="cn.edu.xmu.entity.ProAction" fetch="select">
-			<column name="action_id" not-null="true"></column>
+			<column name="action_id"></column>
+		</many-to-one>
+		<many-to-one name="product" class="cn.edu.xmu.entity.Product" fetch="select">
+			<column name="product_id"></column>
 		</many-to-one>
 		<many-to-one name="person" class="cn.edu.xmu.entity.Person" fetch="select">
 			<column name="person_id" not-null="true"></column>

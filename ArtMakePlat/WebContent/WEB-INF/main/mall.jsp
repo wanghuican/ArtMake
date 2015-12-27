@@ -12,14 +12,14 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
-<script src="js/script.js"></script> 
+<script src="js/common.js"></script> 
 <script src="js/superfish.js"></script>
 <script src="js/jquery.equalheights.js"></script>
 <script src="js/jquery.mobilemenu.js"></script>
 <script src="js/tmStickUp.js"></script>
 <script src="js/jquery.ui.totop.js"></script>
 <script src="js/touchTouch.jquery.js"></script>
-<title>t商城</title>
+<title>商城</title>
 <script>
  $(window).load(function(){
   $().UItoTop({ easingType: 'easeOutQuart' });
@@ -32,72 +32,34 @@
 
 <body class="page_uploadart" id="uploadart">
 
-<jsp:include page="WEB-INF/main/top.jsp" />
+<jsp:include page="top.jsp" />
 <section id="content" class="gallery"><div class="ic">More Website Templates @ TemplateMonster.com - August11, 2014!</div>
   <div class="container">
     <div class="row">
       <div class="grid_12">
         <h2>在线商城</h2>
       </div>
-      <div class="grid_12" align="center">
-        <h2>分类</h2>
-      </div>
-      <div style="transition-duration:.5s">
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img1.jpg" alt=""><span></span></a>
+      
+      <div class="grid_12" style="background-color:#CCC">
+        <div class="navigation" style="float:left">
+            <nav>
+              <ul class="sf-menu" id="sel_menu">
+               <s:iterator value="keyList" id="row">
+                <s:if test="#row.key_id != 1">
+                 <li id="key<s:property value='#row.key_id'/>" value="<s:property value='#row.key_id'/>"><s:property value='#row.keyname'/></li>
+                </s:if>
+                 </s:iterator>
+              </ul>
+            </nav>
+            <div class="clear"></div>
         </div>
-        <br>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img2.jpg" alt=""><span></span></a>
-        </div>
-        <br>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img3.jpg" alt=""><span></span></a>
-        </div>
-        <div class="grid_12" style="height:20px">
-        </div>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img4.jpg" alt=""><span></span></a>
-        </div>
-        <br>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img5.jpg" alt=""><span></span></a>
-        </div>
-        <br>
-        <div class="grid_4" align="center">
-          <a href="#artist"><img src="images/page3_img6.jpg" alt=""><span></span></a>
+        <div class="grid_4" style="float:right; padding-top:12px">
+          <input type="text" placeholder="搜索..." style="font-size:18px"/>
+          <button style="font-size:18px">搜索</button>
         </div>
       </div>
       
       <div class="grid_12" align="center" id="artist">
-        <h2>艺术家</h2>
-      </div>
-      <div class="grid_4" align="center">
-        <a href="images/big1.jpg" class="gall_item"><img src="images/page3_img1.jpg" alt=""><span></span></a>
-      </div>
-      <br>
-      <div class="grid_4" align="center">
-        <a href="images/big2.jpg" class="gall_item"><img src="images/page3_img2.jpg" alt=""><span></span></a>
-      </div>
-      <br>
-      <div class="grid_4" align="center">
-        <a href="images/big3.jpg" class="gall_item"><img src="images/page3_img3.jpg" alt=""><span></span></a>
-      </div>
-      <div class="grid_12" style="height:20px">
-      </div>
-      <div class="grid_4" align="center">
-        <a href="images/big4.jpg" class="gall_item"><img src="images/page3_img4.jpg" alt=""><span></span></a>
-      </div>
-      <br>
-      <div class="grid_4" align="center">
-        <a href="images/big5.jpg" class="gall_item"><img src="images/page3_img5.jpg" alt=""><span></span></a>
-      </div>
-      <br>
-      <div class="grid_4" align="center">
-        <a href="images/big6.jpg" class="gall_item"><img src="images/page3_img6.jpg" alt=""><span></span></a>
-      </div>
-      
-      <div class="grid_12" align="center">
         <h2>艺术品</h2>
       </div>
       <div class="grid_4" align="center">
@@ -124,6 +86,7 @@
       <div class="grid_4" align="center">
         <a href="images/big6.jpg" class="gall_item"><img src="images/page3_img6.jpg" alt=""><span></span></a>
       </div>
+      
     </div>
   </div>
 </section>
@@ -131,7 +94,7 @@
 <!--==============================
               footer
 =================================-->
-<jsp:include page="WEB-INF/main/bottom.jsp" />
+<jsp:include page="bottom.jsp" />
 <a href="#" id="toTop" class="fa fa-chevron-up"></a>
 </body>
 </html>

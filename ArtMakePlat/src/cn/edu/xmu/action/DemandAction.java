@@ -22,6 +22,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import net.sf.json.JSONObject;
+import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.entity.Auth;
 import cn.edu.xmu.entity.Demrecord;
 import cn.edu.xmu.entity.Key;
@@ -227,6 +228,11 @@ public class DemandAction extends ActionSupport {
 		this.result = result;
 	}
 
+	@Override
+	public String execute() throws Exception {
+		return SUCCESS;
+	}
+	
 
 	public String toDemandIngList() {
 		Person person = new Person();

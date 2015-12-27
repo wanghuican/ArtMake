@@ -301,6 +301,18 @@ public class ProductAction extends ActionSupport {
 	public void setProActionService(ProActionService proActionService) {
 		this.proActionService = proActionService;
 	}
+	
+	/*
+	  * Title: execute
+	  * Description:
+	  * @return
+	  * @throws Exception
+	  * @see com.opensymphony.xwork2.ActionSupport#execute()
+	  */
+	@Override
+	public String execute() throws Exception {
+		return SUCCESS;
+	}
 
 	public String toProductIngList() {
 		if (getId() == 0) {
@@ -465,6 +477,20 @@ public class ProductAction extends ActionSupport {
 		}else{
 			WebTool.alertMessage("当前正在被竞拍","product!goEditProduct?id="+getId());
 		}
+		return null;
+	}
+	
+	public String createSureRecord() throws IOException {
+		Product product = productService.getProductById(getId());
+		double price = Double.parseDouble(WebTool.getRequest().getParameter(
+				"price"));
+		Prorecord pr = new Prorecord();
+		pr.setPrice(price);
+		pr.setProduct(product);
+		pr.setRecordtime(new Date());
+		pr.setPerson(WebTool.getSessionPerson());
+		proActionService.saveProRecord(pr);
+		WebTool.alertMessage("出价成功", "product!goEditProduct?id="+getId());
 		return null;
 	}
 }

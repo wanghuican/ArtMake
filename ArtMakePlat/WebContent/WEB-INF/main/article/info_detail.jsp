@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/east.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
@@ -19,7 +20,8 @@
 $(window).load(function(){
 	 var content = "<s:property value='article.content'/>";
     $("#contenthtml").html(decodeHtml(content));
-    $("#title<s:property value='article.article_id'/>").css("color","red");
+    $("#title<s:property value='article.article_id'/>").css("color","white");
+    $("#title<s:property value='article.article_id'/>").css("background-color","#88858a");
     $("#title<s:property value='article.article_id'/>").css("font-weight","600");
 }); 
 	$(window).load(function() {
@@ -68,7 +70,8 @@ $(window).load(function(){
 	 
 	 function changeInfo(id){
 		 $("li>a").each(function(i ,e){
-			 $(this).css("color","inherit")
+			 $(this).css("color","inherit");
+			 $(this).css("background-color","transparent");
 			 $(this).css("font-weight","normal");
 		 })
 	     $.ajax({
@@ -83,7 +86,8 @@ $(window).load(function(){
 		        	$("#infoimg").attr("src","<s:property value='#request.IMGSRC'/>/"+data.image);
 		        	$("#contenthtml").html(decodeHtml(data.content));
 		            $("#title").html(data.title);
-		        	$("#title" + data.article_id).css("color","red");
+		            $("#title" + data.article_id).css("color", "white");
+					$("#title" + data.article_id).css("background-color", "#88858a");
 		            $("#title" + data.article_id).css("font-weight","600");
 		        },
 		        error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -138,7 +142,7 @@ $(window).load(function(){
 
 			<div class="grid_4">
 				<h3>资讯录</h3>
-				<ul class="list-1" id="titles" style="font-weight: normal">
+				<ul class="list-2" id="titles" style="font-weight: normal">
 					<s:iterator value="articleList" id="row">
 						<li style="font-size: 20px"><span></span> <a
 							id="title<s:property value='#row.article_id'/>"

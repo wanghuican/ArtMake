@@ -61,6 +61,9 @@ public class OrderAction extends ActionSupport {
 	@Resource(name = "demandService")
 	DemandService demandService;
 	
+	@Resource(name = "productService")
+	ProductService productService;
+	
 	private Product product;
 
 	private String result;
@@ -345,6 +348,22 @@ public class OrderAction extends ActionSupport {
 	    order.getDemand().setState(0);
 	    orderService.saveOrder(order);
 	    WebTool.alertMessage("委任成功", "person!goInfo");
+	    return null;
+	}
+	
+	public String putproduct() throws IOException{
+		Order order = new Order();
+		order.setBuytime(new Date());
+		Product pro = productService.getProductById(getId());
+		Person per = personService.getPersonById(Integer.parseInt(WebTool.getRequest().getParameter("pid")));
+		pro.setPrice(Double.parseDouble(WebTool.getRequest().getParameter("price")));
+		order.setProduct(pro);
+		order.setPerson(per);
+		order.setState(0);
+	    order.setType(0);
+	    order.getProduct().setState(-1);
+	    orderService.saveOrder(order);
+	    WebTool.alertMessage("成交成功", "person!goInfo");
 	    return null;
 	}
 	

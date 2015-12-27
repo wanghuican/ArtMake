@@ -42,7 +42,11 @@ function toSubmit(){
 		$('#infoform').attr("action","product!editProduct").submit();
 	}
 }
-
+function putProduct(id,price){
+	$("#pid").val(id);
+	$("#price").val(price);
+	$("#infoform").attr("action","order!putproduct").submit();
+}
 </script>
 </head>
 
@@ -53,6 +57,8 @@ function toSubmit(){
 <form id="infoform" action="uploadProduct" method="post" enctype="multipart/form-data">
 	<div class="container">
 	<input type="hidden" id="id" name="id" value="<s:property value='product.product_id'/>"/>
+	<input type="hidden" id="pid" name="pid"/>
+	<input type="hidden" id="price" name="price"/>
 		<div class="row">
 			<div class="grid_12">
 			<s:if test="product == null">
@@ -100,6 +106,25 @@ function toSubmit(){
 	                  <a href="javascript:toSubmit()" class="btn" data-type="submit" style="border-color:#87858a; border-width:thin; background:none;">send</a>
 	            </div>
       		</div>
+      		<s:if test="product.state == 0">
+      		<div class="grid_6 preffix_1">
+      		<label style="margin-top: 15px; margin-bottom: 15px;">用户列表</label>
+						<div class="grid_8">
+							<table style="width: 100%;border:1px">
+								<s:iterator value="product.recordList" id="row">
+									<tr>
+										<td><s:property value="#row.person.account" /></td>
+										<td><s:property value="#row.person.realname" /></td>
+										<td><s:property value="#row.price" /></td>
+										<td><s:property value="#row.recordtime" /></td>
+										<td><input type="button" style="cursor:pointer" onclick="putProduct('<s:property value="#row.person.person_id" />','<s:property value="#row.price" />')" value="成交"/></td>
+									</tr>
+								</s:iterator>
+							</table>
+						</div>
+					<br/><br/>
+      		</div>
+      		</s:if>
 			</div>
 		</div>
 	</div>

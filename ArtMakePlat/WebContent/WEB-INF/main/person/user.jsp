@@ -355,7 +355,7 @@ var flag;
 						$("#paydoing" + i).css("display","none");
 						$("#deldoing" + i).css("display","none");
 					}
-					$("#pageoing").html(pageing);
+					$("#pagedoing").html(pageing);
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
 					alert("XMLHttpRequest=" + XMLHttpRequest);

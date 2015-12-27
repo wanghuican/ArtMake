@@ -317,7 +317,7 @@ public class UploadProductAction extends ActionSupport {
 	    }
 	    product.setImageList(imgList);
 	    productService.saveProduct(product);
-		WebTool.confirmMessage("继续上传艺术品？", "product!goUploadProduct",
+		WebTool.confirmMessage("继续上传艺术品？", "product!goEditProduct",
 				"person!goInfo");
 		return null;
 	}

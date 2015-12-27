@@ -52,7 +52,7 @@ function toSubmit(id){
 					<h2>
 						<a
 							href="person!goInfo?id=<s:property value='demand.person.person_id'/>"><<
-							返回</a>
+							返回ta</a>
 					</h2>
 				</div>
 			<div class="grid_12">
@@ -80,14 +80,15 @@ function toSubmit(id){
                 </label>
                 <br/><br/>
                 <s:if test="demand.state == 1">
+                <s:if test="#session.person != null">
                 <label style="margin-top: 15px; margin-bottom: 15px;">申请服务</label>
-						
 							<div class="ta__right">
 								<input type="text" width="20%" id="message" name="message" />
 								<a href="javascript:toSubmit()" class="btn" data-type="submit"
 									style="border-color: #87858a; border-width: thin; background: none;">申请</a>
 							</div>
-						</s:if>		
+				</s:if>
+				</s:if>	
 				<s:else>	
 				被委托人：<br>
 				      <s:property value="order.person.account"/><br>

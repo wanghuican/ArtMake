@@ -24,16 +24,17 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
 
 
 <query name="HQL_PERSONLIST">
-<![CDATA[from Person as p where cast(p.role.role_code as string) = ?]]>
+<![CDATA[from Person as p where cast(p.role.role_code as string) = ? order by p.person_id desc]]>
 </query>
 
 <query name="HQL_PERSONLIST_SELECT">
 <![CDATA[from Person as p where cast(p.state as string) like ? and p.account like ?
- and p.role.rolename like ? and cast(p.role.role_code as string) = ?]]>
+ and p.role.rolename like ? and cast(p.role.role_code as string) = ?
+ order by p.person_id desc]]>
 </query>
 
 <query name="HQL_ROLELIST">
-<![CDATA[from Role as r]]>
+<![CDATA[from Role as r order by role_id desc]]>
 </query>
 
 <query name="HQL_ROLELIST_SELECT">
@@ -65,7 +66,7 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
 </query>
 
 <query name="HQL_MESSAGELIST">
-<![CDATA[from Message as m order by messagetime desc]]>
+<![CDATA[from Message as m order by messagetime desc order by role_id desc]]>
 </query>
 
 <query name="HQL_MESSAGELIST_SELECT">
@@ -74,30 +75,31 @@ and m.toperson.realname like ? and m.content like ? order by messagetime desc]]>
 </query>
 
 <query name="HQL_PRODUCTLIST">
-<![CDATA[from Product as p]]>
+<![CDATA[from Product as p order by p.uptime desc]]>
 </query>
 
 <query name="HQL_PRODUCTLIST_SELECT">
 <![CDATA[from Product as p where p.productname like ? and cast(p.state as string) like ? 
- and cast(p.pass as string) like ? and p.person.realname like ? ]]>
+ and cast(p.pass as string) like ? and p.person.realname like ? order by p.uptime desc]]>
 </query>
 
 <query name="HQL_PROACTIONLIST">
-<![CDATA[from ProAction as pa]]>
+<![CDATA[from ProAction as pa order by pa.recordtime desc]]>
 </query>
 
 <query name="HQL_PROACTIONLIST_SELECT">
 <![CDATA[from ProAction as pa where pa.product.productname like ? 
-and pa.product.person.realname like ?]]>
+and pa.product.person.realname like ? order by pa.recordtime desc]]>
 </query>
 
 <query name="HQL_DEMANDLIST">
-<![CDATA[from Demand as d]]>
+<![CDATA[from Demand as d order by d.uptime desc]]>
 </query>
 
 <query name="HQL_DEMANDLIST_SELECT">
 <![CDATA[from Demand as d where cast(d.state as string) like ?
- and cast(d.pass as string) like ? and d.person.realname like ?]]>
+ and cast(d.pass as string) like ? and d.person.realname like ?
+ order by d.uptime desc]]>
 </query>
 
 <query name="HQL_ORDERLIST">

@@ -398,10 +398,6 @@ public class PersonAction extends ActionSupport {
 		setPerson(personService.getPersonById(person.getPerson_id()));
 		return "repassword";
 	}
-	
-	public String goCastMsg(){
-		return "gocastmsg";
-	}
 
 	public String changeIdentify() {
 		Person person = personService.getPersonById(getId());

@@ -67,7 +67,9 @@
 					$("#etc").css("display", "none");
 				}
 				$("#title<s:property value='article.article_id'/>").css(
-						"color", "red");
+						"background-color", "#88858a");
+				$("#title<s:property value='article.article_id'/>").css(
+						"color", "white");
 				$("#title<s:property value='article.article_id'/>").css(
 						"font-weight", "600");
 				$(".shuffle-me").shuffleImages({
@@ -125,6 +127,7 @@
 	function changeInfo(id) {
 		$("li>a").each(function(i, e) {
 			$(this).css("color", "inherit");
+			$(this).css("background-color", "transparent");
 			$(this).css("font-weight", "normal");
 		})
 		$.ajax({
@@ -146,7 +149,8 @@
 				} else {
 					$("#etc").css("display", "none");
 				}
-				$("#title" + data.article_id).css("color", "red");
+				$("#title" + data.article_id).css("color", "white");
+				$("#title" + data.article_id).css("background-color", "#88858a");
 				$("#title" + data.article_id).css("font-weight", "600");
 				$("#aid").val(data.article_id);
 			},
@@ -194,7 +198,8 @@
 				<div class="row">
 					<h3>广告 <img id="addad" alt="添加"
 						style="cursor: pointer; width: 4%; height: 4%; display: none"
-						src="images/add.png" /></h3>
+						src="images/add.png" />
+					</h3>
 					<div class="grid_2"></div>
 					<div class="grid_8" style="height:500px">
 						<div id="ifocus">
@@ -249,6 +254,7 @@
 							<pre> </pre>
 						</h1>
 					</div>
+					<div class="grid_6">
 					<div class="clear"></div>
 					<s:iterator value="smallarticleList" id="row" status="st">
 					<s:if test="#st.index < 6">		     		
@@ -263,6 +269,7 @@
 						</div>
 					</s:if>	
 					</s:iterator>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -299,7 +306,7 @@
 			</div>
 			<div class="grid_4">
 				<h3></h3>
-				<ul class="list-1" id="titles" style="font-weight: normal">
+				<ul class="list-2" id="titles" style="font-weight: normal;height: 15em">
 					<s:iterator value="articleList" id="row">
 						<li style="font-size: 20px"><span></span> <a
 							id="title<s:property value='#row.article_id'/>"

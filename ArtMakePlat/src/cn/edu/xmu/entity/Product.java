@@ -49,6 +49,7 @@ public class Product extends JsonEntity{
 	  */
 	private Person person;
 	
+	
 	/**
 	  * @Fields productname : TODO（用一句话描述这个变量表示什么）
 	  */
@@ -75,6 +76,11 @@ public class Product extends JsonEntity{
 	private List<ProAction> actionList = new ArrayList();
 	
 	/**
+	  * @Fields recordList : TODO（用一句话描述这个变量表示什么）
+	  */
+	private List<Prorecord> recordList;
+	
+	/**
 	  * 创建一个新的实例 Product. 
 	  * <p>Description: 无参构造函数</p>
 	  */
@@ -84,7 +90,6 @@ public class Product extends JsonEntity{
 	}
 
 	
-
 
 	/**
 	  * 创建一个新的实例 Product. 
@@ -100,11 +105,13 @@ public class Product extends JsonEntity{
 	  * @param pass
 	  * @param imageList
 	  * @param actionList
+	  * @param recordList
 	  */
 	
 	public Product(int product_id, double price, String introduce, Date uptime,
 			Person person, String productname, int state, int pass,
-			List<Proimg> imageList, List<ProAction> actionList) {
+			List<Proimg> imageList, List<ProAction> actionList,
+			List<Prorecord> recordList) {
 		super();
 		this.product_id = product_id;
 		this.price = price;
@@ -116,8 +123,30 @@ public class Product extends JsonEntity{
 		this.pass = pass;
 		this.imageList = imageList;
 		this.actionList = actionList;
+		this.recordList = recordList;
 	}
 
+
+
+	/**
+	 * getter method
+	 * @return the recordList
+	 */
+	
+	public List<Prorecord> getRecordList() {
+		return recordList;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param recordList the recordList to set
+	 */
+	
+	public void setRecordList(List<Prorecord> recordList) {
+		this.recordList = recordList;
+	}
 
 
 
@@ -313,24 +342,25 @@ public class Product extends JsonEntity{
 	}
 
 
+
 	/*
-	  * Title: toJsonString
+	  * Title: toString
 	  * Description:
 	  * @return
-	  * @see cn.edu.xmu.entity.JsonEntity#toJsonString()
+	  * @see java.lang.Object#toJsonString()
 	  */
+	
 	@Override
 	public String toJsonString() {
 		return "{\"product_id\":\"" + product_id + "\",\"price\":\"" + price
-				+ "\",\"introduce\":\"" + introduce + "\",\"uptime\":\"" + uptime
-				+ "\",\"person\":\"" + person + "\",\"productname\":\""
-				+ productname + "\",\"state\":\"" + state + "\",\"pass\":\""
-				+ pass + "\",\"imageList\":\"" + imageList + "\",\"image\":\"" 
-				+ imageList.get(0).getImage()  + "\",\"actionList\":\""
-				+ actionList + "\"}  ";
+				+ "\",\"introduce\":\"" + introduce + "\",\"uptime\":\""
+				+ uptime + "\",\"person\":\"" + person
+				+ "\",\"productname\":\"" + productname + "\",\"state\":\""
+				+ state + "\",\"pass\":\"" + pass + "\",\"imageList\":\""
+				+ imageList +"\",\"image\":\"" + imageList.get(0).getImage() +
+				"\",\"actionList\":\"" + actionList
+				+ "\",\"recordList\":\"" + recordList + "\"}  ";
 	}
-
-	
 
 	
 }

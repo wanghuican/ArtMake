@@ -28,6 +28,11 @@ public class Prorecord extends JsonEntity{
 	private Person person;
 	
 	/**
+	  * @Fields product
+	  */
+	private Product product;
+	
+	/**
 	  * @Fields price
 	  */
 	private double price;
@@ -47,6 +52,8 @@ public class Prorecord extends JsonEntity{
 		super();
 	}
 
+	
+	
 	/**
 	  * 创建一个新的实例 Prorecord. 
 	  * <p>Title: </p>
@@ -54,19 +61,23 @@ public class Prorecord extends JsonEntity{
 	  * @param record_id
 	  * @param action
 	  * @param person
+	  * @param product
 	  * @param price
 	  * @param recordtime
 	  */
 	
 	public Prorecord(int record_id, ProAction action, Person person,
-			double price, Date recordtime) {
+			Product product, double price, Date recordtime) {
 		super();
 		this.record_id = record_id;
 		this.action = action;
 		this.person = person;
+		this.product = product;
 		this.price = price;
 		this.recordtime = recordtime;
 	}
+
+
 
 	/**
 	 * getter method
@@ -159,6 +170,29 @@ public class Prorecord extends JsonEntity{
 	}
 
 
+
+	/**
+	 * getter method
+	 * @return the product
+	 */
+	
+	public Product getProduct() {
+		return product;
+	}
+
+
+
+	/**
+	 * setter method
+	 * @param product the product to set
+	 */
+	
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+
+	
 	/*
 	  * Title: toJsonString
 	  * Description:
@@ -168,10 +202,9 @@ public class Prorecord extends JsonEntity{
 	@Override
 	public String toJsonString() {
 		return "{\"record_id\":\"" + record_id + "\",\"action\":\"" + action
-				+ "\",\"person\":\"" + person + "\",\"price\":\"" + price
-				+ "\",\"recordtime\":\"" + recordtime + "\"}  ";
+				+ "\",\"person\":\"" + person + "\",\"product\":\"" + product
+				+ "\",\"price\":\"" + price + "\",\"recordtime\":\""
+				+ recordtime + "\"}  ";
 	}
-	
-	
-	
+
 }

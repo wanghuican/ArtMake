@@ -176,6 +176,8 @@ public class WebTool {
 
 	public static final String listToJsonStr(List list){
 		StringBuilder json = new StringBuilder();
+		if(list.size() == 0)
+			return "";
 		String rows[] = new String[list.size()];
 		json.append("{\"rows\":[");
 		for(int i=0;i<list.size();i++){
@@ -233,6 +235,11 @@ public class WebTool {
     }
     
     public static final Person getSessionPerson(){
-		return (Person) ActionContext.getContext().getSession().get("person");
+    	Person person = (Person) ActionContext.getContext().getSession().get("person");
+    	if(person == null)
+	    	return new Person();
+    	else{
+    		return person;
+    	}
     }
 }

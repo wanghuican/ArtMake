@@ -46,16 +46,20 @@
 	    <action name="person" class="cn.edu.xmu.action.PersonAction">
 	    	<result name="userinfo">/WEB-INF/main/person/user.jsp</result>
 	    	<result name="artistinfo">/WEB-INF/main/person/artist.jsp</result>
-	    	<result name="gocastmsg">/WEB-INF/main/person/message.jsp</result>
 	    	<result name="improve">/WEB-INF/main/person/improve_info.jsp</result>
 	    	<result name="repassword">/WEB-INF/main/person/repassword.jsp</result>
 	    </action>
 	     <action name="product" class="cn.edu.xmu.action.ProductAction">
+	        <result name="success">/WEB-INF/main/action.jsp</result>
 	    	<result name="edit">/WEB-INF/main/product/product_edit.jsp</result>
 	    	<result name="detail">/WEB-INF/main/product/product_detail.jsp</result>
 	    	<result name="put">/WEB-INF/main/product/product_put.jsp</result>
 	    </action>
+	     <action name="mall" class="cn.edu.xmu.action.MallAction">
+	        <result name="success">/WEB-INF/main/mall.jsp</result>
+	    </action>
 	     <action name="demand" class="cn.edu.xmu.action.DemandAction">
+	        <result name="success">/WEB-INF/main/demand.jsp</result>
 	    	<result name="edit">/WEB-INF/main/demand/demand_edit.jsp</result>
 	    	<result name="detail">/WEB-INF/main/demand/demand_detail.jsp</result>
 	    	<result name="put">/WEB-INF/main/demand/demand_put.jsp</result>

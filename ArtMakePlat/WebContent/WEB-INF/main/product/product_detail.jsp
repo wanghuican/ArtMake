@@ -40,6 +40,11 @@
 
 	function getDownTime() {
 		var endtime = $("#endtime").html();
+		if(endtime == ""){
+			clearInterval(dtime);
+			clearInterval(gprice);
+			return;
+		}
 		var nowtime = getNow();
 		var timeStr = dealTime(nowtime);
 		endtime = dealTime(endtime);
@@ -78,6 +83,11 @@
 		});
 	}
 
+	
+	function toSureSubmit(){
+		$("#infoform").attr("action", "product!createSureRecord").submit();
+	}
+	
 	function toSubmit() {
 		var endtime = $("#endtime").html();
 		var nowtime = getNow();
@@ -85,7 +95,7 @@
 		endtime = dealTime(endtime);
 		var toprice = $("#price").val();
 		var nowprice = $("#nowprice").html();
-		var addprice = <s:property value="proAction.addprice"/>
+		var addprice = $("#addprice").html();
 		if (toprice < parseFloat(addprice) + parseFloat(nowprice)) {
 			alert("小于最小增额");
 			return;
@@ -112,7 +122,7 @@
 					<h2>
 						<a
 							href="person!goInfo?id=<s:property value='product.person.person_id'/>"><<
-							返回</a>
+							返回ta</a>
 					</h2>
 				</div>
 				<div class="grid_12">
@@ -120,6 +130,8 @@
 						<b><s:property value="product.productname" />
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <s:if test="product.state == 1">  当前价格：<label
 									id="nowprice"><s:property value="product.price" /></label>
+									<label style="display:none" id="addprice">
+									<s:property value="proAction.addprice" /></label>
 							</s:if></b>
 					</h2>
 					<h3>
@@ -151,8 +163,14 @@
 								value='product.introduce' />
 						</label> <br>
 						<br>
-						<label style="margin-top: 15px; margin-bottom: 15px;">我的出价</label>
-						<div class="grid_12">
+					</div>
+					<s:if test="#session.person != null">
+					<s:if test="product.state == 1">
+					<div class="grid_8">
+					<hr>
+					
+						<label style="margin-top: 15px; margin-bottom: 15px;"><h2>竞拍</h2></label>
+						<label style="margin-top: 15px; margin-bottom: 15px;">我的竞拍信息</label>
 							<table style="width: 100%;border:1px">
 								<s:iterator value="proAction.recordList" id="row">
 								<s:if test="#row.person.person_id == #session.person.person_id">
@@ -165,21 +183,44 @@
 								</s:if>	
 								</s:iterator>
 							</table>
-						</div>
 						<br/><br/>
-						<s:if test="product.state == 1">
-						<label style="margin-top: 15px; margin-bottom: 15px;">竞拍</label>
 							<div class="ta__right">
 								<input type="text" width="20%" id="price" name="price" />元(最小增额:
 								<s:property value="proAction.addprice" />
 								) <a href="javascript:toSubmit()" class="btn" data-type="submit"
 									style="border-color: #87858a; border-width: thin; background: none;">出价</a>
 							</div>
+						</div>
+						</s:if>
+						<s:if test="product.state == 0">	
+						<div class="grid_8">
+					    <hr>
+						<label style="margin-top: 15px; margin-bottom: 15px;"><h2>定价</h2></label>
+						<label style="margin-top: 15px; margin-bottom: 15px;">我的出价信息</label>
+							<table style="width: 100%;border:1px">
+								<s:iterator value="product.recordList" id="row">
+								<s:if test="#row.person.person_id == #session.person.person_id">
+									<tr>
+										<td><s:property value="#row.person.account" /></td>
+										<td><s:property value="#row.person.realname" /></td>
+										<td><s:property value="#row.price" /></td>
+										<td><s:property value="#row.recordtime" /></td>
+									</tr>
+								</s:if>	
+								</s:iterator>
+							</table>
+						<br/><br/>
+							<div class="ta__right">
+								<input type="text" width="20%" id="price" name="price" />
+								 <a href="javascript:toSureSubmit()" class="btn" data-type="submit"
+									style="border-color: #87858a; border-width: thin; background: none;">出价</a>
+							</div>
+						</div>
+						</s:if>
 						</s:if>
 					</div>
 				</div>
 			</div>
-		</div>
 	</form>
 	</section>
 

@@ -140,16 +140,20 @@ include('js/jquery.simplr.smoothscroll.js');
 			for(var i=0;i<6;i++){
 				num[i] = time1.substring(i*2,(i+1)*2) - time2.substring(i*2,(i+1)*2);
 			}
-			
+			if(num[5]<0){
+				num[5]+=60;
+				num[4]--;
+			}
+			if(num[4]<0){
+				num[4]+=60;
+				num[3]--;
+			}
+			if(num[3]<0){
+				num[3]+=24;
+				num[2]--;
+			}
+
 			if(parseInt(num[0]) == 0 && parseInt(num[1]) == 0 && parseInt(num[2]) == 0){
-				if(num[5]<0){
-					num[5]+=60;
-					num[4]--;
-				}
-				if(num[4]<0){
-					num[4]+=60;
-					num[3]--;
-				}
 				return changeNum(num[3]+"") + ":"+ changeNum(num[4]+"") + ":" + changeNum(num[5]+"");
 			}else{
 				return time1;

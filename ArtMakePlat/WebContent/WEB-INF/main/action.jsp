@@ -5,15 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="images/favicon.ico">
-<link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="css/touchTouch.css">
-
 <link rel="stylesheet" href="css/style.css">
 <script src="js/jquery.js"></script>
 <script src="js/jquery-migrate-1.1.1.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
-<script src="js/script.js"></script> 
+<script src="js/common.js"></script> 
 <script src="js/superfish.js"></script>
 <script src="js/jquery.equalheights.js"></script>
 <script src="js/jquery.mobilemenu.js"></script>
@@ -27,13 +24,12 @@
   $('#stuck_container').tmStickUp({}); 
     $('.gallery .gall_item').touchTouch();
  }); 
-
 </script>
 </head>
 
 <body class="page_uploadart" id="uploadart">
 
-<jsp:include page="WEB-INF/main/top.jsp" />
+<jsp:include page="top.jsp" />
 <section id="content" class="gallery"><div class="ic">More Website Templates @ TemplateMonster.com - August11, 2014!</div>
   <div class="container">
     <div class="row">
@@ -138,7 +134,7 @@
 <!--==============================
               footer
 =================================-->
-<jsp:include page="WEB-INF/main/bottom.jsp" />
+<jsp:include page="bottom.jsp" />
 <a href="#" id="toTop" class="fa fa-chevron-up"></a>
 </body>
 </html>
