@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-22 22:11:50 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class name="cn.edu.xmu.entity.Order" table="bn_order" catalog="artmake" lazy="true">
+		<id name="order_id" type="int">
+			<column name="order_id" />
+			<generator class="identity" />
+		</id>
+		<property name="state" type="int">
+			<column name="state"/>
+		</property>
+		<property name="type" type="int">
+			<column name="type"/>
+		</property>
+		<property name="buytime" type="timestamp">
+			<column name="buytime" length="19" />
+		</property>
+		<many-to-one name="person" class="cn.edu.xmu.entity.Person" fetch="select">
+			<column name="person_id" not-null="true"></column>
+		</many-to-one>
+		<many-to-one name="product" class="cn.edu.xmu.entity.Product" unique="true" column="product_id"/>
+		<many-to-one name="demand" class="cn.edu.xmu.entity.Demand" unique="true" column="demand_id"/>
+	</class>
+</hibernate-mapping>

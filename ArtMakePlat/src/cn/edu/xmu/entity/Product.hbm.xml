@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-22 22:11:50 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class name="cn.edu.xmu.entity.Product" table="bn_product" catalog="artmake" lazy="true">
+		<id name="product_id" type="int">
+			<column name="product_id" />
+			<generator class="identity" />
+		</id>
+		<property name="price" type="double">
+			<column name="price"/>
+		</property>
+		<property name="introduce" type="string">
+			<column name="introduce" length="80"/>
+		</property>
+		 <property name="uptime" type="timestamp">
+            <column name="uptime" length="19" />
+        </property>
+        <property name="productname" type="string">
+            <column name="productname" length="40" />
+        </property>
+       <many-to-one name="person" class="cn.edu.xmu.entity.Person" fetch="select">
+			<column name="person_id" not-null="true"></column>
+		</many-to-one>
+		<property name="state" type="int">
+			<column name="state" not-null="true"/>
+		</property>
+		<property name="pass" type="int">
+			<column name="pass" not-null="true"/>
+		</property>
+		<bag name="imageList" order-by="flag desc" cascade="all" inverse= "true" lazy= "true">
+			<key>
+				<column name="product_id" not-null="true" />
+			</key>
+			<one-to-many class="cn.edu.xmu.entity.Proimg" />
+		</bag>
+		<bag name="actionList" order-by="action_id desc" cascade="all" inverse= "true" lazy= "true">
+			<key>
+				<column name="product_id"/>
+			</key>
+			<one-to-many class="cn.edu.xmu.entity.ProAction" />
+		</bag>
+		<bag name="recordList" order-by="recordtime desc" cascade="all" inverse= "true" lazy= "true">
+			<key>
+				<column name="product_id"/>
+			</key>
+			<one-to-many class="cn.edu.xmu.entity.Prorecord" />
+		</bag>
+	</class>
+</hibernate-mapping>

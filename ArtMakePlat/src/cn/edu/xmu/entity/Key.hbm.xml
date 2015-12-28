@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-22 22:11:50 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class name="cn.edu.xmu.entity.Key" table="bn_key" catalog="artmake"  lazy="true">
+		<id name="key_id" type="int">
+			<column name="key_id" />
+			<generator class="identity" />
+		</id>
+		<property name="times" type="int">
+			<column name="times" default="0" not-null="true" />
+		</property>
+		<property name="keyname" type="string">
+			<column name="keyname" length="20" not-null="true" />
+		</property>
+		<bag name="perkeyList" order-by="record_id desc" cascade="all" inverse= "true" lazy= "true">
+			<key>
+				<column name="key_id" not-null="true" />
+			</key>
+			<one-to-many class="cn.edu.xmu.entity.Perkey" />
+		</bag>
+		<bag name="demandList" order-by="demand_id desc" cascade="all" inverse= "true" lazy= "true">
+			<key>
+				<column name="key_id"/>
+			</key>
+			<one-to-many class="cn.edu.xmu.entity.Demand" />
+		</bag>
+	</class>
+</hibernate-mapping>
