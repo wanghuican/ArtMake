@@ -79,11 +79,6 @@ public class Person extends JsonEntity{
 	private Role role;
 
 	/**
-	  * @Fields addressList : 收货地址列表
-	  */
-	private List<Address> addressList = new ArrayList();
-	
-	/**
 	  * @Fields productList : 商品列表
 	  */
 	private List<Product> productList = new ArrayList();
@@ -111,7 +106,7 @@ public class Person extends JsonEntity{
 	/**
 	  * @Fields recordList
 	  */
-	private List<Prorecord> recordList = new ArrayList();
+	private List<ProRecord> recordList = new ArrayList();
 	
 	/**
 	  * 创建一个新的实例 Person. 
@@ -121,7 +116,6 @@ public class Person extends JsonEntity{
 		super();
 	}
 	
-
 
 	/**
 	  * 创建一个新的实例 Person. 
@@ -140,7 +134,6 @@ public class Person extends JsonEntity{
 	  * @param state
 	  * @param introduce
 	  * @param role
-	  * @param addressList
 	  * @param productList
 	  * @param demandList
 	  * @param keyList
@@ -152,10 +145,10 @@ public class Person extends JsonEntity{
 	public Person(int person_id, String account, String password,
 			String realname, String email, String qq, String idcard,
 			String tel, String address, String sex, int state,
-			String introduce, Role role, List<Address> addressList,
-			List<Product> productList, List<Demand> demandList,
-			List<Perkey> keyList, List<Article> articleList,
-			List<Order> orderList, List<Prorecord> recordList) {
+			String introduce, Role role, List<Product> productList,
+			List<Demand> demandList, List<Perkey> keyList,
+			List<Article> articleList, List<Order> orderList,
+			List<ProRecord> recordList) {
 		super();
 		this.person_id = person_id;
 		this.account = account;
@@ -170,7 +163,6 @@ public class Person extends JsonEntity{
 		this.state = state;
 		this.introduce = introduce;
 		this.role = role;
-		this.addressList = addressList;
 		this.productList = productList;
 		this.demandList = demandList;
 		this.keyList = keyList;
@@ -186,7 +178,7 @@ public class Person extends JsonEntity{
 	 * @return the recordList
 	 */
 	
-	public List<Prorecord> getRecordList() {
+	public List<ProRecord> getRecordList() {
 		return recordList;
 	}
 
@@ -197,7 +189,7 @@ public class Person extends JsonEntity{
 	 * @param recordList the recordList to set
 	 */
 	
-	public void setRecordList(List<Prorecord> recordList) {
+	public void setRecordList(List<ProRecord> recordList) {
 		this.recordList = recordList;
 	}
 
@@ -437,24 +429,9 @@ public class Person extends JsonEntity{
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	/**
-	 * getter method
-	 * @return the addressList
-	 */
 	
-	public List<Address> getAddressList() {
-		return addressList;
-	}
-	/**
-	 * setter method
-	 * @param addressList the addressList to set
-	 */
 	
-	public void setAddressList(List<Address> addressList) {
-		this.addressList = addressList;
-	}
-
-
+	
 	/**
 	 * getter method
 	 * @return the productList
@@ -574,12 +551,7 @@ public class Person extends JsonEntity{
 				+ "\",\"idcard\":\"" + idcard + "\",\"tel\":\"" + tel
 				+ "\",\"address\":\"" + address + "\",\"sex\":\"" + sex
 				+ "\",\"state\":\"" + state + "\",\"introduce\":\"" + introduce
-				+ "\",\"role\":\"" + role + "\",\"addressList\":\""
-				+ addressList + "\",\"productList\":\"" + productList
-				+ "\",\"demandList\":\"" + demandList + "\",\"keyList\":\""
-				+ keyList + "\",\"articleList\":\"" + articleList
-				+ "\",\"orderList\":\"" + orderList + "\",\"recordList\":\""
-				+ recordList + "\"}  ";
+				+ "\",\"role\":\"" + role + "\"}  ";
 	}
 
 	

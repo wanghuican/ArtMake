@@ -232,11 +232,16 @@
 				        {"accessPath":"messageManage","checked":false,"delFlag":0,"parentID":80,"resourceCode":"","resourceDesc":"","resourceGrade":11,"resourceID":81,"resourceName":"消息列表","resourceOrder":0,"resourceType":""}
 				        ];
 			}else if(resourceType == "XITONGGUANLI"){
-				data = [{"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"角色和权限","resourceOrder":0,"resourceType":""},
+				data = [
+				        <s:if test="#session.person.role.role_code > 50">
+				        {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":3,"resourceName":"角色和权限","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"roleManage","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":4,"resourceName":"角色管理","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"authManage","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":5,"resourceName":"艺术家权限","resourceOrder":0,"resourceType":""},
+			            </s:if>
 			            {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":4,"resourceID":6,"resourceName":"其他","resourceOrder":0,"resourceType":""},
+			            <s:if test="#session.person.role.role_code > 20">
 			            {"accessPath":"keyManage","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":7,"resourceName":"关键词管理","resourceOrder":0,"resourceType":""},
+			            </s:if>
 			            {"accessPath":"upInfo","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":8,"resourceName":"修改个人信息","resourceOrder":0,"resourceType":""},
 			            {"accessPath":"upInfo!goRepassword","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":5,"resourceID":9,"resourceName":"修改密码","resourceOrder":0,"resourceType":""}
 			            ];
@@ -302,9 +307,11 @@
 				<li id="left_tab1" class="selected" onClick="javascript:switchTab('TabPage2','left_tab1');" title="业务模块">
 					<img alt="业务模块" title="业务模块" src="images/backstage/common/1_hover.jpg" width="33" height="31">
 				</li>
+				<s:if test="#session.person.role.role_code > 20">
 				<li id="left_tab2" onClick="javascript:switchTab('TabPage2','left_tab2');" title="系统管理">
 					<img alt="系统管理" title="系统管理" src="images/backstage/common/2.jpg" width="33" height="31">
 				</li>		
+				</s:if>
 				<li id="left_tab3" onClick="javascript:switchTab('TabPage2','left_tab3');" title="其他">
 					<img alt="其他" title="其他" src="images/backstage/common/3.jpg" width="33" height="31">
 				</li>

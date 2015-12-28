@@ -6,7 +6,7 @@ import java.util.List;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.Product;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 
 
 /**
@@ -31,5 +31,5 @@ public interface ProActionDao {
 	
 	public List<ProAction> getProActionByPid(List<Integer> pro);
 
-	public List<Prorecord> getRecordListPerson(List<Integer> pro);
+	public List<ProRecord> getRecordListPerson(List<Integer> pro);
 }

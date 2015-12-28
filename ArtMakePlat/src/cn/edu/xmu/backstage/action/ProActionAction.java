@@ -15,7 +15,7 @@ import cn.edu.xmu.entity.Order;
 import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.ProAction;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 import cn.edu.xmu.service.OrderService;
 import cn.edu.xmu.service.ProActionService;
 import cn.edu.xmu.util.Common;
@@ -41,7 +41,7 @@ public class ProActionAction extends ActionSupport {
 
 	private List<String> selectpro;
 
-	private List<Prorecord> recordList;
+	private List<ProRecord> recordList;
 	
 	private ProAction proAction;
 
@@ -216,7 +216,7 @@ public class ProActionAction extends ActionSupport {
 	 * @return the recordList
 	 */
 	
-	public List<Prorecord> getRecordList() {
+	public List<ProRecord> getRecordList() {
 		return recordList;
 	}
 
@@ -225,7 +225,7 @@ public class ProActionAction extends ActionSupport {
 	 * @param recordList the recordList to set
 	 */
 	
-	public void setRecordList(List<Prorecord> recordList) {
+	public void setRecordList(List<ProRecord> recordList) {
 		this.recordList = recordList;
 	}
 
@@ -272,7 +272,7 @@ public class ProActionAction extends ActionSupport {
 	}
 
 	public String complete() {
-		Prorecord pr = proActionService.getFirstRecord(getId());
+		ProRecord pr = proActionService.getFirstRecord(getId());
 		Map<String, Object> map = new HashMap<String, Object>();
 		ProAction proAction = proActionService.getProActionById(getId());
 		if (pr != null) {
@@ -305,7 +305,7 @@ public class ProActionAction extends ActionSupport {
 		for (String aid : aids) {
 			ProAction proAction = proActionService.getProActionById(Integer
 					.parseInt(aid));
-			Prorecord pr = proActionService.getFirstRecord(getId());
+			ProRecord pr = proActionService.getFirstRecord(getId());
 			if (pr != null) {
 		    	proAction.setState(1);
 	    		proActionService.saveProAction(proAction);

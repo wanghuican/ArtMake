@@ -10,7 +10,7 @@ import java.util.Date;
   * team: 3-10打屁屁小队
   * @date 2015年12月14日 下午5:14:44
   */
-public class Demrecord extends JsonEntity{
+public class DemRecord extends JsonEntity{
 	
 	/**
 	  * @Fields record_id
@@ -45,7 +45,7 @@ public class Demrecord extends JsonEntity{
 	  * <p>Description: </p>
 	  */
 	
-	public Demrecord() {
+	public DemRecord() {
 		super();
 	}
 
@@ -60,7 +60,7 @@ public class Demrecord extends JsonEntity{
 	  * @param recordtime
 	  */
 	
-	public Demrecord(int record_id, Demand demand, Person person,
+	public DemRecord(int record_id, Demand demand, Person person,
 			String message, Date recordtime) {
 		super();
 		this.record_id = record_id;

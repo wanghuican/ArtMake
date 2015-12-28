@@ -66,7 +66,7 @@ a.person.account like ? and a.title like ? and cast(a.type as string) = ?
 </query>
 
 <query name="HQL_MESSAGELIST">
-<![CDATA[from Message as m order by messagetime desc order by role_id desc]]>
+<![CDATA[from Message as m order by messagetime desc]]>
 </query>
 
 <query name="HQL_MESSAGELIST_SELECT">
@@ -119,7 +119,7 @@ and pa.product.person.realname like ? order by pa.recordtime desc]]>
 </query>
 
 <query name="HQL_PRORECORDLIST_BYID">
-<![CDATA[from Prorecord where action_id = ? order by recordtime desc]]>
+<![CDATA[from ProRecord where action_id = ? order by recordtime desc]]>
 </query>
 
 </hibernate-mapping>

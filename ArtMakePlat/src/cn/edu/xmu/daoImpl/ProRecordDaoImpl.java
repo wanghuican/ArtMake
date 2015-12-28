@@ -9,7 +9,7 @@ import cn.edu.xmu.dao.BaseDao;
 import cn.edu.xmu.dao.ProActionDao;
 import cn.edu.xmu.dao.ProRecordDao;
 import cn.edu.xmu.entity.ProAction;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 import cn.edu.xmu.util.Common;
 
 public class ProRecordDaoImpl implements ProRecordDao {
@@ -21,13 +21,13 @@ public class ProRecordDaoImpl implements ProRecordDao {
 	BaseDao dao;
 	
 	@Override
-	public List<Prorecord> getRecordList(List<Integer> pro) {
+	public List<ProRecord> getRecordList(List<Integer> pro) {
 		// TODO Auto-generated method stub
 		return dao.query(Common.HQL_PRORECORDLIST_BYID, pro);
 	}
 
 	@Override
-	public void saveProRecord(Prorecord pr) {
+	public void saveProRecord(ProRecord pr) {
 		// TODO Auto-generated method stub
 		dao.saveOrUpdate(pr);
 	}

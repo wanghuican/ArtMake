@@ -10,7 +10,7 @@ import java.util.Date;
   * team: 3-10打屁屁小队
   * @date 2015年12月14日 下午5:14:44
   */
-public class Prorecord extends JsonEntity{
+public class ProRecord extends JsonEntity{
 	
 	/**
 	  * @Fields record_id
@@ -48,7 +48,7 @@ public class Prorecord extends JsonEntity{
 	  * <p>Description: </p>
 	  */
 	
-	public Prorecord() {
+	public ProRecord() {
 		super();
 	}
 
@@ -66,7 +66,7 @@ public class Prorecord extends JsonEntity{
 	  * @param recordtime
 	  */
 	
-	public Prorecord(int record_id, ProAction action, Person person,
+	public ProRecord(int record_id, ProAction action, Person person,
 			Product product, double price, Date recordtime) {
 		super();
 		this.record_id = record_id;

@@ -28,7 +28,7 @@ import cn.edu.xmu.entity.Order;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.Product;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 import cn.edu.xmu.entity.Role;
 import cn.edu.xmu.service.AuthService;
 import cn.edu.xmu.service.DemandService;

@@ -36,7 +36,7 @@
 		<url-pattern>/product!createRecord</url-pattern>
 		<url-pattern>/product!createSureRecord</url-pattern>
 		<url-pattern>/demand!createRecord</url-pattern>
-		<url-pattern>/adminLogin</url-pattern>
+		<url-pattern>/message</url-pattern>
 	</filter-mapping>
 	<filter>
 		<filter-name>struts2</filter-name>

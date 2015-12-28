@@ -52,7 +52,6 @@
 				<!-- 以下用来列出Hibernate映射文件 -->
 				<value>cn/edu/xmu/entity/Person.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Role.hbm.xml</value>
-				<value>cn/edu/xmu/entity/Address.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Article.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Key.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Product.hbm.xml</value>
@@ -63,8 +62,8 @@
 				<value>cn/edu/xmu/entity/Auth.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Order.hbm.xml</value>
 				<value>cn/edu/xmu/entity/Message.hbm.xml</value>
-				<value>cn/edu/xmu/entity/Prorecord.hbm.xml</value>
-				<value>cn/edu/xmu/entity/Demrecord.hbm.xml</value>	
+				<value>cn/edu/xmu/entity/ProRecord.hbm.xml</value>
+				<value>cn/edu/xmu/entity/DemRecord.hbm.xml</value>	
 
 				<value>cn/edu/xmu/entity/named-queries.hbm.xml</value>
 				<value>cn/edu/xmu/entity/backstage-named-queries.hbm.xml</value>

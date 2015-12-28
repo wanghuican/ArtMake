@@ -84,7 +84,7 @@
 						Account: <input id="account" type="text" name="person.account" value="<s:property value='person.account'/>"/> <br><br>
 						Password:<input id="password" type="password" name="person.password" value="<s:property value='person.password'/>"/> <br><br>
 						Realname: <input id="realname" type="text" name="person.realname" value="<s:property value='person.realname'/>"/> <br><br>
-						 QQ: <input id="idcard" type="text" name="person.idcard" value="<s:property value='person.idcard'/>"/> <br><br> 
+						ID: <input id="idcard" type="text" name="person.idcard" value="<s:property value='person.idcard'/>"/> <br><br> 
 						Email: <input id="email" type="text" name="person.email" value="<s:property value='person.email'/>"/> <br> <br>
 						Tel: <input id="tel" type="text" name="person.tel" value="<s:property value='person.tel'/>"/> <br> <br>
 						Address: <input id="address" type="text" name="person.address" value="<s:property value='person.address'/>"/> <br><br>

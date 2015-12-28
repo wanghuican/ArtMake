@@ -4,9 +4,9 @@ package cn.edu.xmu.dao;
 import java.util.List;
 
 import cn.edu.xmu.entity.Demand;
-import cn.edu.xmu.entity.Demrecord;
+import cn.edu.xmu.entity.DemRecord;
 import cn.edu.xmu.entity.Product;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 
 
 /**
@@ -31,11 +31,11 @@ public interface DemandDao {
 	
 	public void saveDemand(Demand demand);
 	
-	public void saveDemRecord(Demrecord dr);
+	public void saveDemRecord(DemRecord dr);
 	
 	public void deleteDemandById(int id);
 	
 	public Demand getDemandById(int id);
 	
-	public List<Demrecord> getRocordList(List<Integer> pro);
+	public List<DemRecord> getRocordList(List<Integer> pro);
 }

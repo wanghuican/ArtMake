@@ -102,8 +102,9 @@
 							</th>
 							<th width="10%">消息来源</th>
 							<th width="10%">消息去向</th>
-							<th width="35%">消息内容</th>
+							<th width="30%">消息内容</th>
 							<th width="15%">消息时间</th>
+							<th width="5%">消息情况</th>
 							<th width="25%">操作</th>
 						</tr>
 						<s:iterator value="messageList" id="row">
@@ -113,6 +114,14 @@
 								<td><s:property value="#row.toperson.realname"/></td>
 								<td><s:property value="#row.content"/></td>
 								<td><s:property value="#row.messagetime"/></td>
+								<td>
+								<s:if test="#row.type == 0">
+								未读
+								</s:if>
+								<s:else>
+								已读
+								</s:else>
+								</td>
 								<td>
 						    			<label style="cursor:pointer" onclick="del(<s:property value='#row.message_id'/>)">删除</label>
 								</td>

@@ -18,7 +18,9 @@ import javax.annotation.Resource;
 import cn.edu.xmu.dao.AuthDao;
 import cn.edu.xmu.dao.MessageDao;
 import cn.edu.xmu.entity.Message;
+import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.service.MessageService;
+import cn.edu.xmu.util.WebTool;
 
 /**
  * @ClassName: MessageServiceImpl
@@ -118,6 +120,40 @@ public class MessageServiceImpl implements MessageService {
 		// TODO Auto-generated method stub
 		return dao.getMessageById(id);
 	}
+
+	@Override
+	public List<Person> getToPerson() {
+		// TODO Auto-generated method stub
+		List<Person> personList = new ArrayList<Person>();
+		List<Integer> pro = new ArrayList<Integer>();
+		Person person = WebTool.getSessionPerson();
+		pro.add(person.getPerson_id());
+		pro.add(person.getPerson_id());
+		List<Message> messageList= dao.getMessageByPerson(pro);
+		for(int i=0;i<messageList.size();i++){
+			Person fperson = messageList.get(i).getFromperson();
+			Person tperson = messageList.get(i).getToperson();
+			if(person.getPerson_id() != fperson.getPerson_id()){
+				if(!personList.contains(fperson))
+					personList.add(fperson);
+			}else{
+				if(!personList.contains(tperson))
+					personList.add(tperson);
+			}
+		}
+		return personList;
+	}
 	
+	@Override
+	public List<Message> getOTOMessage(int pid){
+		List<Integer> pro = new ArrayList<Integer>();
+		Person person = WebTool.getSessionPerson();
+		pro.add(person.getPerson_id());
+		pro.add(pid);
+		pro.add(person.getPerson_id());
+		pro.add(pid);
+		List<Message> messageList= dao.getMessageByOTOPerson(pro);
+		return messageList;
+	}
 
 }

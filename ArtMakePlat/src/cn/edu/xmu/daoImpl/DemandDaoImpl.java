@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import cn.edu.xmu.dao.BaseDao;
 import cn.edu.xmu.dao.DemandDao;
 import cn.edu.xmu.entity.Demand;
-import cn.edu.xmu.entity.Demrecord;
+import cn.edu.xmu.entity.DemRecord;
 import cn.edu.xmu.util.Common;
 
 public class DemandDaoImpl implements DemandDao {
@@ -124,13 +124,13 @@ public class DemandDaoImpl implements DemandDao {
 	}
 
 	@Override
-	public List<Demrecord> getRocordList(List<Integer> pro) {
+	public List<DemRecord> getRocordList(List<Integer> pro) {
 		// TODO Auto-generated method stub
 		return dao.query(Common.HQL_ORDER_DEMAND,pro);
 	}
 
 	@Override
-	public void saveDemRecord(Demrecord dr) {
+	public void saveDemRecord(DemRecord dr) {
 		// TODO Auto-generated method stub
 		dao.saveOrUpdate(dr);
 	}

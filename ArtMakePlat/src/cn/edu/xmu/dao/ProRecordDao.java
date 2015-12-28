@@ -4,7 +4,7 @@ package cn.edu.xmu.dao;
 import java.util.List;
 
 import cn.edu.xmu.entity.ProAction;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 
 
 /**
@@ -15,7 +15,7 @@ import cn.edu.xmu.entity.Prorecord;
   */
 public interface ProRecordDao {
 	
-	public List<Prorecord> getRecordList(List<Integer> pro);
+	public List<ProRecord> getRecordList(List<Integer> pro);
 
-	public void saveProRecord(Prorecord pr);
+	public void saveProRecord(ProRecord pr);
 }

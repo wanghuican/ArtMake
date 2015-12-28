@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import cn.edu.xmu.util.WebTool;
+
 /**
  * @ClassName: Message
  * @Description: 关键词实体
@@ -155,9 +157,18 @@ public class Message extends JsonEntity{
 	  */
 	@Override
 	public String toJsonString() {
+		boolean isSelf = false;
+		if(WebTool.getSessionPerson().getPerson_id() == fromperson.getPerson_id()){
+			isSelf = true;
+		}
+		
 		return "{\"message_id\":\"" + message_id + "\",\"fromperson\":\""
-				+ fromperson + "\",\"toperson\":\"" + toperson
-				+ "\",\"content\":\"" + content + "\",\"messagetime\":\""
+				+ fromperson  + "\",\"nickname\":\""
+						+ fromperson.getRealname() + "\",\"from_pid\":\""
+						+ fromperson.getPerson_id() + "\",\"isSelf\":\""
+								+ isSelf + "\",\"toperson\":\"" + toperson
+						+ "\",\"to_pid\":\"" + toperson.getPerson_id()
+				+ "\",\"content\":\"" + content + "\",\"date\":\""
 				+ messagetime + "\"}  ";
 	}	
 	

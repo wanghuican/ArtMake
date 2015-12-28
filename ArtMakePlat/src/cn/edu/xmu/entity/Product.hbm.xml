@@ -45,7 +45,7 @@
 			<key>
 				<column name="product_id"/>
 			</key>
-			<one-to-many class="cn.edu.xmu.entity.Prorecord" />
+			<one-to-many class="cn.edu.xmu.entity.ProRecord" />
 		</bag>
 	</class>
 </hibernate-mapping>

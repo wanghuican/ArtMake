@@ -26,7 +26,7 @@ import cn.edu.xmu.entity.Auth;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.Product;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 import cn.edu.xmu.entity.Role;
 import cn.edu.xmu.service.AuthService;
 import cn.edu.xmu.service.LoginService;
@@ -449,7 +449,7 @@ public class ProductAction extends ActionSupport {
 	public String createRecord() throws IOException {
 		if (!Common.LOCK[getId()]) {
 			Common.LOCK[getId()] = true;
-			Prorecord pr = new Prorecord();
+			ProRecord pr = new ProRecord();
 			ProAction pa = proActionService.getFirstAction(getId());
 			double price = Double.parseDouble(WebTool.getRequest().getParameter(
 					"price"));
@@ -473,7 +473,7 @@ public class ProductAction extends ActionSupport {
 		Product product = productService.getProductById(getId());
 		double price = Double.parseDouble(WebTool.getRequest().getParameter(
 				"price"));
-		Prorecord pr = new Prorecord();
+		ProRecord pr = new ProRecord();
 		pr.setPrice(price);
 		pr.setProduct(product);
 		pr.setRecordtime(new Date());

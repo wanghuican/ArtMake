@@ -3,6 +3,7 @@ package cn.edu.xmu.service;
 import java.util.List;
 
 import cn.edu.xmu.entity.Message;
+import cn.edu.xmu.entity.Person;
 
 
 /**
@@ -23,5 +24,9 @@ public interface MessageService {
 	public void saveMessage(Message Message);
 	
 	public Message getMessageById(int id);
+	
+	public List<Person> getToPerson();
+	
+	public List<Message> getOTOMessage(int pid);
 	
 }

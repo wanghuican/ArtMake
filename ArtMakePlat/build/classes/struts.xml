@@ -7,20 +7,21 @@
 <struts>
     <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
     <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.action.excludePattern" value="/websocket"></constant>  
 	<!-- 配置了系列常量 -->
 	<package name="default" extends="struts-default">
    		<!-- 登录配置 -->
 		<action name="login" class="cn.edu.xmu.action.LoginAction">
 			<result name="loginSuccess" type= "redirect">article</result>
-			<result name="input">/WEB-INF/main/user.jsp</result>
+			<result name="input">/main/user.jsp</result>
 		</action>
 		<action name="logout" class="cn.edu.xmu.action.LogoutAction">
-			<result name="exit">/WEB-INF/main/user.jsp</result>
+			<result name="exit">/main/user.jsp</result>
 		</action>
 		<action name="forward" class="cn.edu.xmu.action.ForwardAction">
-		    <result name="user">/WEB-INF/main/user.jsp</result>
-			<result name="info">/WEB-INF/main/article/info_edit.jsp</result>
-			<result name="ad">/WEB-INF/main/article/ad_edit.jsp</result>
+		    <result name="user">/main/user.jsp</result>
+			<result name="info">/main/article/info_edit.jsp</result>
+			<result name="ad">/main/article/ad_edit.jsp</result>
 			<result name="adminLogin">/WEB-INF/backstage/adminLogin.jsp</result>
 			<result name="about">/WEB-INF/backstage/about.jsp</result>
 			<result name="admininfo">/WEB-INF/backstage/article/info_edit.jsp</result>
@@ -28,8 +29,8 @@
 			<result name="repassword">/WEB-INF/backstage/other/repassword.jsp</result>
 		</action>
 		<action name="register" class="cn.edu.xmu.action.RegisterAction">
-			<result name="registerSuccess">/WEB-INF/main/index.jsp</result>
-			<result name="input">/WEB-INF/main/user.jsp</result>
+			<result name="registerSuccess">/main/index.jsp</result>
+			<result name="input">/main/user.jsp</result>
 		</action>
 		<action name="uploadArticle" class="cn.edu.xmu.action.UploadArticleAction">
 			<result name="success" type= "redirect">article</result>
@@ -39,33 +40,36 @@
 		</action>
 		
 		<action name="article" class="cn.edu.xmu.action.ArticleAction">
-	    	<result name="success">/WEB-INF/main/index.jsp</result>
-	    	<result name="detail">/WEB-INF/main/article/info_detail.jsp</result>
-	    	<result name="addetail">/WEB-INF/main/article/ad_detail.jsp</result>
+	    	<result name="success">/main/index.jsp</result>
+	    	<result name="detail">/main/article/info_detail.jsp</result>
+	    	<result name="addetail">/main/article/ad_detail.jsp</result>
 	    </action>
 	    <action name="person" class="cn.edu.xmu.action.PersonAction">
-	    	<result name="userinfo">/WEB-INF/main/person/user.jsp</result>
-	    	<result name="artistinfo">/WEB-INF/main/person/artist.jsp</result>
-	    	<result name="improve">/WEB-INF/main/person/improve_info.jsp</result>
-	    	<result name="repassword">/WEB-INF/main/person/repassword.jsp</result>
+	    	<result name="userinfo">/main/person/user.jsp</result>
+	    	<result name="artistinfo">/main/person/artist.jsp</result>
+	    	<result name="improve">/main/person/improve_info.jsp</result>
+	    	<result name="repassword">/main/person/repassword.jsp</result>
 	    </action>
 	     <action name="product" class="cn.edu.xmu.action.ProductAction">
-	        <result name="success">/WEB-INF/main/action.jsp</result>
-	    	<result name="edit">/WEB-INF/main/product/product_edit.jsp</result>
-	    	<result name="detail">/WEB-INF/main/product/product_detail.jsp</result>
-	    	<result name="put">/WEB-INF/main/product/product_put.jsp</result>
+	        <result name="success">/main/action.jsp</result>
+	    	<result name="edit">/main/product/product_edit.jsp</result>
+	    	<result name="detail">/main/product/product_detail.jsp</result>
+	    	<result name="put">/main/product/product_put.jsp</result>
 	    </action>
 	     <action name="mall" class="cn.edu.xmu.action.MallAction">
-	        <result name="success">/WEB-INF/main/mall.jsp</result>
+	        <result name="success">/main/mall.jsp</result>
+	    </action>
+	     <action name="message" class="cn.edu.xmu.action.MessageAction">
+	        <result name="success">/main/person/chat.jsp</result>
 	    </action>
 	     <action name="demand" class="cn.edu.xmu.action.DemandAction">
-	        <result name="success">/WEB-INF/main/demand.jsp</result>
-	    	<result name="edit">/WEB-INF/main/demand/demand_edit.jsp</result>
-	    	<result name="detail">/WEB-INF/main/demand/demand_detail.jsp</result>
-	    	<result name="put">/WEB-INF/main/demand/demand_put.jsp</result>
+	        <result name="success">/main/demand.jsp</result>
+	    	<result name="edit">/main/demand/demand_edit.jsp</result>
+	    	<result name="detail">/main/demand/demand_detail.jsp</result>
+	    	<result name="put">/main/demand/demand_put.jsp</result>
 	    </action>
 	     <action name="order" class="cn.edu.xmu.action.OrderAction">
-	     <result name="detail">/WEB-INF/main/demand/demand_detail.jsp</result>
+	     <result name="detail">/main/demand/demand_detail.jsp</result>
 	    </action>
 	</package>
 	<package name="backstage" extends="struts-default">
@@ -268,6 +272,24 @@
 		</result>
 	</action>
 	<action name="demandListAjax" method="toDemandList" class="cn.edu.xmu.action.DemandAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="messageAjax" method="toMessageList" class="cn.edu.xmu.action.MessageAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="savemessageAjax" method="toSaveMessage" class="cn.edu.xmu.action.MessageAction">
+		<!-- 返回json类型数据 -->
+		<result type="json">
+			<param name="root">result</param>
+		</result>
+	</action>
+	<action name="delmessageAjax" method="toDelMessage" class="cn.edu.xmu.action.MessageAction">
 		<!-- 返回json类型数据 -->
 		<result type="json">
 			<param name="root">result</param>

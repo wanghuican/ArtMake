@@ -14,7 +14,7 @@
 		 <property name="messagetime" type="timestamp">
             <column name="messagetime" length="19" />
         </property>
-		<many-to-one name="fromperson" class="cn.edu.xmu.entity.Person" insert="false" update="false" unique="true" column="from_pid"/>
-		<many-to-one name="toperson" class="cn.edu.xmu.entity.Person" insert="false" update="false" unique="true" column="to_pid"/>
+		<many-to-one name="fromperson" class="cn.edu.xmu.entity.Person" update="false" unique="true" column="from_pid"/>
+		<many-to-one name="toperson" class="cn.edu.xmu.entity.Person" update="false" unique="true" column="to_pid"/>
 	</class>
 </hibernate-mapping>

@@ -36,9 +36,9 @@ public class PersonDaoImpl implements PersonDao {
 		String nq = Common.HQL_GET_PERSON_BYACCOUNT;
 		List<String> pro = new ArrayList<String>();
 		pro.add(account);
-		Person p = (Person) dao.loadObject(nq,pro);
-		if(p != null)
-			return p;
+		List<Person> pList = dao.query(nq,pro);
+		if(pList.size() != 0)
+			return pList.get(0);
 		return null;
 	}
 

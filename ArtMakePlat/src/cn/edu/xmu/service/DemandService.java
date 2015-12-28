@@ -5,7 +5,7 @@ import java.util.List;
 
 import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.entity.Demand;
-import cn.edu.xmu.entity.Demrecord;
+import cn.edu.xmu.entity.DemRecord;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.Product;
 
@@ -34,7 +34,7 @@ public interface DemandService {
 	
 	public int countForDemand(Person person);
 	
-	public List<Demrecord> getRocordList(int demand_id);
+	public List<DemRecord> getRocordList(int demand_id);
 	
-	public void saveDemRecord(Demrecord dr);
+	public void saveDemRecord(DemRecord dr);
 }

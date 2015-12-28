@@ -11,6 +11,7 @@
 package cn.edu.xmu.util;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -57,7 +58,13 @@ public class LoginFilter implements Filter{
 		String path = servletRequest.getServletPath();
 		if(person == null){
 			System.out.println("我是过滤器：没通过" );
-			servletResponse.sendRedirect(servletRequest.getContextPath()+"/forward!goUser");
+			response.setContentType("text/html;charset=UTF-8");
+	        response.setCharacterEncoding("UTF-8");//防止弹出的信息出现乱码
+			PrintWriter out = response.getWriter();
+			out.print("<script>alert('请先登录！')</script>");
+	        out.print("<script>window.location.href= 'forward!goUser'</script>");
+	        out.flush();
+	        out.close();
 			return;
 		}else{
 			chain.doFilter(request,response);

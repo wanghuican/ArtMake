@@ -6,7 +6,7 @@ import java.util.List;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.Product;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 
 /**
   * @ClassName: ProActionService
@@ -25,13 +25,13 @@ public interface ProActionService {
 	
 	public void saveProAction(ProAction proAction);
 	
-	public void saveProRecord(Prorecord proRecord);
+	public void saveProRecord(ProRecord proRecord);
 	
 	public ProAction getProActionById(int id);
 	
-	public List<Prorecord> getRecordList(int action_id);
+	public List<ProRecord> getRecordList(int action_id);
 	
-	public Prorecord getFirstRecord(int action_id);
+	public ProRecord getFirstRecord(int action_id);
 	
 	public List<ProAction> getActionList(int pid);
 	

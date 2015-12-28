@@ -78,7 +78,7 @@ public class Product extends JsonEntity{
 	/**
 	  * @Fields recordList : TODO（用一句话描述这个变量表示什么）
 	  */
-	private List<Prorecord> recordList;
+	private List<ProRecord> recordList;
 	
 	/**
 	  * 创建一个新的实例 Product. 
@@ -111,7 +111,7 @@ public class Product extends JsonEntity{
 	public Product(int product_id, double price, String introduce, Date uptime,
 			Person person, String productname, int state, int pass,
 			List<Proimg> imageList, List<ProAction> actionList,
-			List<Prorecord> recordList) {
+			List<ProRecord> recordList) {
 		super();
 		this.product_id = product_id;
 		this.price = price;
@@ -133,7 +133,7 @@ public class Product extends JsonEntity{
 	 * @return the recordList
 	 */
 	
-	public List<Prorecord> getRecordList() {
+	public List<ProRecord> getRecordList() {
 		return recordList;
 	}
 
@@ -144,7 +144,7 @@ public class Product extends JsonEntity{
 	 * @param recordList the recordList to set
 	 */
 	
-	public void setRecordList(List<Prorecord> recordList) {
+	public void setRecordList(List<ProRecord> recordList) {
 		this.recordList = recordList;
 	}
 

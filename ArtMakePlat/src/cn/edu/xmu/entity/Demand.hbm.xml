@@ -33,7 +33,7 @@
 			<key>
 				<column name="demand_id" />
 			</key>
-			<one-to-many class="cn.edu.xmu.entity.Demrecord" />
+			<one-to-many class="cn.edu.xmu.entity.DemRecord" />
 		</bag>
 	</class>
 </hibernate-mapping>

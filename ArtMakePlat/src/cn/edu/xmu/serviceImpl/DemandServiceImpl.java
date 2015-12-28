@@ -22,7 +22,7 @@ import net.sf.json.JSONObject;
 import cn.edu.xmu.dao.DemandDao;
 import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.entity.Demand;
-import cn.edu.xmu.entity.Demrecord;
+import cn.edu.xmu.entity.DemRecord;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.service.DemandService;
 
@@ -110,7 +110,7 @@ public class DemandServiceImpl implements DemandService {
 	}
 
 	@Override
-	public List<Demrecord> getRocordList(int demand_id) {
+	public List<DemRecord> getRocordList(int demand_id) {
 		// TODO Auto-generated method stub
 		List<Integer> pro = new ArrayList<Integer>();
 		pro.add(demand_id);
@@ -118,7 +118,7 @@ public class DemandServiceImpl implements DemandService {
 	}
 
 	@Override
-	public void saveDemRecord(Demrecord dr) {
+	public void saveDemRecord(DemRecord dr) {
 		// TODO Auto-generated method stub
 		dao.saveDemRecord(dr);
 	}

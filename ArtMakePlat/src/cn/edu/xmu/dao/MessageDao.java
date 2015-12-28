@@ -16,6 +16,10 @@ public interface MessageDao {
 	
 	public List<Message> getAllMessage(List<String> pro,int pageNo,int pageSize);
 	
+	public List<Message> getMessageByPerson(List<Integer> pro);
+	
+	public List<Message> getMessageByOTOPerson(List<Integer> pro);
+	
 	public int countMessage(List<String> pro);
 	
 	public void saveMessage(Message Message);

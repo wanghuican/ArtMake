@@ -62,7 +62,7 @@ public class ProAction extends JsonEntity{
 	/**
 	  * @Fields recordList : TODO（用一句话描述这个变量表示什么）
 	  */
-	private List<Prorecord> recordList;
+	private List<ProRecord> recordList;
 	
 	/**
 	  * 创建一个新的实例 ProAction. 
@@ -94,7 +94,7 @@ public class ProAction extends JsonEntity{
 	
 	public ProAction(int action_id, Product product, double startprice,
 			double addprice, int lasttime, Date recordtime, Date endtime,
-			String introduce, int state, List<Prorecord> recordList) {
+			String introduce, int state, List<ProRecord> recordList) {
 		super();
 		this.action_id = action_id;
 		this.product = product;
@@ -115,7 +115,7 @@ public class ProAction extends JsonEntity{
 	 * @return the recordList
 	 */
 	
-	public List<Prorecord> getRecordList() {
+	public List<ProRecord> getRecordList() {
 		return recordList;
 	}
 
@@ -126,7 +126,7 @@ public class ProAction extends JsonEntity{
 	 * @param recordList the recordList to set
 	 */
 	
-	public void setRecordList(List<Prorecord> recordList) {
+	public void setRecordList(List<ProRecord> recordList) {
 		this.recordList = recordList;
 	}
 

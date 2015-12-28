@@ -129,7 +129,7 @@ var num = 1;
 						日期：
 						</td>
 						<td>
-						<img id="delInfo" alt="减少" style="cursor:pointer;height:10%;display:none" src="images/add.png"/>	
+						<img id="delInfo" alt="减少" style="cursor:pointer;height:10%;display:none" src="images/minu.png"/>	
 						</td>
 						<td>
 						&nbsp;

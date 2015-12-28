@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 import net.sf.json.JSONObject;
 import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.entity.Auth;
-import cn.edu.xmu.entity.Demrecord;
+import cn.edu.xmu.entity.DemRecord;
 import cn.edu.xmu.entity.Key;
 import cn.edu.xmu.entity.Order;
 import cn.edu.xmu.entity.Person;
@@ -32,7 +32,7 @@ import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.Demand;
 import cn.edu.xmu.entity.Demand;
 import cn.edu.xmu.entity.Product;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 import cn.edu.xmu.entity.Role;
 import cn.edu.xmu.service.AuthService;
 import cn.edu.xmu.service.KeyService;
@@ -331,7 +331,7 @@ public class DemandAction extends ActionSupport {
 	}
 	
 	public String createRecord() throws IOException{
-		Demrecord dr = new Demrecord();
+		DemRecord dr = new DemRecord();
 		dr.setDemand(demandService.getDemandById(getId()));
 		dr.setPerson(WebTool.getSessionPerson());
 		dr.setMessage(WebTool.getRequest().getParameter("message"));

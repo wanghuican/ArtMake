@@ -31,13 +31,13 @@ and cast(type as string) = ? Order by uptime desc]]>
 </query>
 
 <query name="HQL_RECORDLIST_PERSON">
-<![CDATA[from Prorecord as pr where pr.person.person_id = ? 
+<![CDATA[from ProRecord as pr where pr.person.person_id = ? 
 and pr.action.product.state = 1
  order by recordtime desc]]>
 </query>
 
 <query name="HQL_RECORDLIST_DEMAND">
-<![CDATA[from Demrecord as dr where dr.demand.demand_id = ? order by recordtime desc]]>
+<![CDATA[from DemRecord as dr where dr.demand.demand_id = ? order by recordtime desc]]>
 </query>
 
 <query name="HQL_AUTH">
@@ -66,6 +66,17 @@ and pr.action.product.state = 1
 <query name="HQL_DEMAND_INTRODUCE">
 <![CDATA[from Demand as d where d.state = 1 and d.key.keyname like ? and (
  d.person.realname like ? or d.introduce like ?) order by d.uptime desc]]>
+</query>
+
+<query name="HQL_MESSAGELIST_PERSON">
+<![CDATA[from Message as m where (m.fromperson.person_id = ?
+ or m.toperson.person_id = ?) order by messagetime]]>
+</query>
+
+<query name="HQL_MESSAGELIST_OTOPERSON">
+<![CDATA[from Message as m where (m.fromperson.person_id = ?
+ and m.toperson.person_id = ?) or (m.toperson.person_id = ?
+ and m.fromperson.person_id = ?) order by messagetime]]>
 </query>
 </hibernate-mapping>
 

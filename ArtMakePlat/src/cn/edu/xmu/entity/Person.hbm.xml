@@ -44,12 +44,6 @@
 		<many-to-one name="role" class="cn.edu.xmu.entity.Role" fetch="select">
 			<column name="role_id" not-null="true"></column>
 		</many-to-one>
-		<bag name="addressList" order-by="record_id desc" cascade="all" inverse= "true" lazy= "true">
-			<key>
-				<column name="person_id" not-null="true" />
-			</key>
-			<one-to-many class="cn.edu.xmu.entity.Address" />
-		</bag>
 		<bag name="productList" order-by="uptime desc" cascade="all" inverse= "true" lazy= "true">
 			<key>
 				<column name="person_id" not-null="true" />
@@ -78,7 +72,7 @@
 			<key>
 				<column name="action_id" not-null="true" />
 			</key>
-			<one-to-many class="cn.edu.xmu.entity.Prorecord" />
+			<one-to-many class="cn.edu.xmu.entity.ProRecord" />
 		</bag>
 	</class>
 </hibernate-mapping>

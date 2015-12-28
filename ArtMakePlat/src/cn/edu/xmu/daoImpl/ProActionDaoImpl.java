@@ -10,7 +10,7 @@ import cn.edu.xmu.dao.ProActionDao;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.Product;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 import cn.edu.xmu.util.Common;
 
 public class ProActionDaoImpl implements ProActionDao {
@@ -121,7 +121,7 @@ public class ProActionDaoImpl implements ProActionDao {
 	}
 
 	@Override
-	public List<Prorecord> getRecordListPerson(List<Integer> pro){
+	public List<ProRecord> getRecordListPerson(List<Integer> pro){
 		return dao.query(Common.HQL_RECORDLIST_PERSON,pro);
 	}
 

@@ -21,7 +21,7 @@ import cn.edu.xmu.entity.Article;
 import cn.edu.xmu.entity.Person;
 import cn.edu.xmu.entity.ProAction;
 import cn.edu.xmu.entity.Product;
-import cn.edu.xmu.entity.Prorecord;
+import cn.edu.xmu.entity.ProRecord;
 import cn.edu.xmu.service.ProActionService;
 
 /**
@@ -97,7 +97,7 @@ public class ProActionServiceImpl implements ProActionService {
 	}
 
 	@Override
-	public List<Prorecord> getRecordList(int action_id) {
+	public List<ProRecord> getRecordList(int action_id) {
 		// TODO Auto-generated method stub
 		List<Integer> pro = new ArrayList<Integer>();
 		pro.add(action_id);
@@ -105,7 +105,7 @@ public class ProActionServiceImpl implements ProActionService {
 	}
 
 	@Override
-	public Prorecord getFirstRecord(int action_id) {
+	public ProRecord getFirstRecord(int action_id) {
 		// TODO Auto-generated method stub
 		if(getRecordList(action_id).size() == 0)
 	    	return null;
@@ -131,7 +131,7 @@ public class ProActionServiceImpl implements ProActionService {
 	}
 
 	@Override
-	public void saveProRecord(Prorecord proRecord) {
+	public void saveProRecord(ProRecord proRecord) {
 		// TODO Auto-generated method stub
 		prdao.saveProRecord(proRecord);
 	}
@@ -141,7 +141,7 @@ public class ProActionServiceImpl implements ProActionService {
 		// TODO Auto-generated method stub
 		List<Integer> pro = new ArrayList<Integer>();
 		pro.add(person.getPerson_id());
-		List<Prorecord> recordList = dao.getRecordListPerson(pro);
+		List<ProRecord> recordList = dao.getRecordListPerson(pro);
 		List<Product> productList = new ArrayList<Product>();
 		for(int i=0;i<recordList.size();i++){
 			if(!productList.contains(recordList.get(i).getAction().getProduct())){
@@ -158,7 +158,7 @@ public class ProActionServiceImpl implements ProActionService {
 		// TODO Auto-generated method stub
 		List<Integer> pro = new ArrayList<Integer>();
 		pro.add(person.getPerson_id());
-		List<Prorecord> recordList = dao.getRecordListPerson(pro);
+		List<ProRecord> recordList = dao.getRecordListPerson(pro);
 		List<Product> productList = new ArrayList<Product>();
 		int count = 0;
 		for(int i=0;i<recordList.size();i++){

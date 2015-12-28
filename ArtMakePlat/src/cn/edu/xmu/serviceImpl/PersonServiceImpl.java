@@ -39,10 +39,7 @@ public class PersonServiceImpl implements PersonService {
 	public Person checkAccount(String account) {
 		// TODO Auto-generated method stub
 		Person person = dao.getPersonByAccount(account);
-		if(person != null){
-			return person;
-		}
-		return null;
+		return person;
 	}
 
 	@Override

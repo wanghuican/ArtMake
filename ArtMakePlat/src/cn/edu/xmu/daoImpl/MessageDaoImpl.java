@@ -131,4 +131,16 @@ public class MessageDaoImpl implements MessageDao {
 		// TODO Auto-generated method stub
 		return (Message)dao.loadById(Message.class, id);
 	}
+
+	@Override
+	public List<Message> getMessageByPerson(List<Integer> pro) {
+		// TODO Auto-generated method stub
+		return dao.query(Common.HQL_MESSAGELIST_PERSON,pro);
+	}
+
+	@Override
+	public List<Message> getMessageByOTOPerson(List<Integer> pro) {
+		// TODO Auto-generated method stub
+		return dao.query(Common.HQL_MESSAGELIST_OTOPERSON,pro);
+	}
 }

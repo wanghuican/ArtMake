@@ -19,7 +19,7 @@ public class Common {
 	public final static int CODE_SUPERARTIST = 100;
 	
 	//config
-	public final static String PLAT_SRC = "L:/ArtMake/ArtMakePlat/WebContent/";
+	public final static String PLAT_SRC = "C:/Tomcat_7.0/webapps/ArtMakePlat/";
 	public final static String ARTICLE_SRC = "images/article";
 	public final static String PRODUCT_SRC = "images/product";
 	
@@ -38,7 +38,9 @@ public class Common {
 	public final static String HQL_RECORDLIST_DEMAND = "HQL_RECORDLIST_DEMAND";
 	public final static String HQL_MALL_PNAME = "HQL_MALL_PNAME";
 	public final static String HQL_DEMAND_INTRODUCE = "HQL_DEMAND_INTRODUCE";
-	
+	public final static String HQL_MESSAGELIST_PERSON = "HQL_MESSAGELIST_PERSON";
+	public final static String HQL_MESSAGELIST_OTOPERSON = "HQL_MESSAGELIST_OTOPERSON";
+			
 	//backstage query
 	public final static String HQL_ARTICLELIST = "HQL_ARTICLELIST";
 	public final static String HQL_INFOLIST_SELECT = "HQL_INFOLIST_SELECT";

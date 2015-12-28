@@ -73,7 +73,7 @@ public class Demand extends JsonEntity{
 	/**
 	  * @Fields recordList : 
 	  */
-	private List<Demrecord> recordList;
+	private List<DemRecord> recordList;
 	
 	/**
 	  * 创建一个新的实例 Demand. 
@@ -106,7 +106,7 @@ public class Demand extends JsonEntity{
 	
 	public Demand(int demand_id, double price, String introduce, Date uptime,
 			Person person, int lasttime, int state, int pass, Key key,
-			List<Demrecord> recordList) {
+			List<DemRecord> recordList) {
 		super();
 		this.demand_id = demand_id;
 		this.price = price;
@@ -128,7 +128,7 @@ public class Demand extends JsonEntity{
 	 * @return the recordList
 	 */
 	
-	public List<Demrecord> getRecordList() {
+	public List<DemRecord> getRecordList() {
 		return recordList;
 	}
 
@@ -139,7 +139,7 @@ public class Demand extends JsonEntity{
 	 * @param recordList the recordList to set
 	 */
 	
-	public void setRecordList(List<Demrecord> recordList) {
+	public void setRecordList(List<DemRecord> recordList) {
 		this.recordList = recordList;
 	}
 
